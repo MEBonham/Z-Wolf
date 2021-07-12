@@ -5,6 +5,7 @@ import Home from './Home';
 import RpgBasics from './rules/RpgBasics';
 import DiceMechanics from './rules/DiceMechanics';
 import CharacterCreation from './rules/CharacterCreation';
+import Karma from './rules/Karma';
 
 const MainRouting = () => useRoutes([
     {
@@ -22,6 +23,10 @@ const MainRouting = () => useRoutes([
     {
         path: "/rules/charactercreation",
         element: <CharacterCreation />
+    },
+    {
+        path: "/rules/karma",
+        element: <Karma />
     }
 ]);
 export default MainRouting;
