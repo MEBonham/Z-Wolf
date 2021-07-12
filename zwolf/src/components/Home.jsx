@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
     return(
@@ -8,7 +9,18 @@ const Home = () => {
             <p>Z-Wolf is designed to be played using a Virtual Tabletop, such as Foundry VTT. I believe this is the way of the future for many RPG players. Some of the rules, such as the basic die roll and the gridless tactical combat that Z-Wolf is designed around, will be annoyingly clunky without the aid of computer automation provided by a good VTT.</p>
             <h2>Rules</h2>
             <ul>
-                
+                <li>
+                    <Link to="/rules/rpgbasics">Tabletop RPG Basics</Link>
+                </li>
+                <li>
+                    <Link to="/rules/dicemechanics">Dice Mechanics</Link>
+                </li>
+                <li>
+                    <Link to="/rules/charactercreation">Creating a Character</Link>
+                </li>
+                <li>
+                    <Link to="/rules/karma">Earning and Using Karma Points</Link>
+                </li>
             </ul>
         </>
     );
