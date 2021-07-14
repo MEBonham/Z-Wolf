@@ -21,6 +21,33 @@ const Home = () => {
                 <li>
                     <Link to="/rules/karma">Earning and Using Karma Points</Link>
                 </li>
+                <li>
+                    <Link to="/rules/wealth">Wealth and Treasure</Link>
+                </li>
+                <li>
+                    <Link to="/rules/gear">Adventuring Equipment</Link>
+                </li>
+            </ul>
+            <h2>Sample Creatures</h2>
+            <ul>
+                <li>
+                    <Link to="/bestiary/pcs">Example PCs</Link>
+                </li>
+                <li>
+                    <Link to="/bestiary/monsters">Example Monsters</Link>
+                </li>
+            </ul>
+            <h2>System Library</h2>
+            <ul>
+                <li>
+                    <Link to="/library/kits">Kits</Link>
+                </li>
+                <li>
+                    <Link to="/library/feats">Feats</Link>
+                </li>
+                <li>
+                    <Link to="/library/talents">Talents</Link>
+                </li>
             </ul>
         </>
     );

@@ -64,7 +64,7 @@ const CharacterCreation = () => {
             <p>Your Spellcraft Check is equal to your final Caster Level.</p>
             <p>Your Speed Check is +0.</p>
             <p>Each of your Skills is equal to the number of Ranks placed within it.</p>
-            <p>Attacks' Range, Impact, and Peril Trigger are generally determined by the weapon being used for the attack or the special ability that grants the attack to the character. The attack's Accuracy is more dependent on the character's skill, and is equal to 6 + another number: the character's final Fighting Level for weapon attacks; the character's final Caster Level for spell attacks; or the character's Final "Base" Fortitude for vim attacks.</p>
+            <p>Attacks' Range, Impact, and Bleed Numbers are generally determined by the weapon being used for the attack or the special ability that grants the attack to the character. The attack's Accuracy is more dependent on the character's skill, and is equal to 6 + another number: the character's final Fighting Level for weapon attacks; the character's final Caster Level for spell attacks; or the character's Final "Base" Fortitude for vim attacks.</p>
             <p>Your Wealth is equal to ... whatever was left over when you started with the Wealth dictated by the GM and then finished purchasing starting equipment.</p>
             <h4>Synergy Bonuses</h4>
             <p>Having a lot of Ranks in a Skill can give you bonuses to statistics that are tangentially related to that skill, as relayed on the following table.</p>
