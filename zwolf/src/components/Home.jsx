@@ -31,7 +31,10 @@ const Home = () => {
             <h2>Sample Creatures</h2>
             <ul>
                 <li>
-                    <Link to="/bestiary/pcs">Example PCs</Link>
+                    <Link to="/bestiary/fighter">Example Fighter Build</Link>
+                </li>
+                <li>
+                    <Link to="/bestiary/mage">Example Mage Build</Link>
                 </li>
                 <li>
                     <Link to="/bestiary/monsters">Example Monsters</Link>

@@ -8,6 +8,11 @@ import CharacterCreation from './rules/CharacterCreation';
 import Karma from './rules/Karma';
 import Wealth from './rules/Wealth';
 import Gear from './rules/Gear';
+import Kits from './library/Kits';
+import Feats from './library/Feats';
+import Talents from './library/Talents';
+import Fighter from './bestiary/Fighter';
+import Mage from './bestiary/Mage';
 
 const MainRouting = () => useRoutes([
     {
@@ -37,6 +42,26 @@ const MainRouting = () => useRoutes([
     {
         path: "/rules/gear",
         element: <Gear />
+    },
+    {
+        path: "/library/kits",
+        element: <Kits />
+    },
+    {
+        path: "/library/feats",
+        element: <Feats />
+    },
+    {
+        path: "/library/talents",
+        element: <Talents />
+    },
+    {
+        path: "/bestiary/fighter",
+        element: <Fighter />
+    },
+    {
+        path: "/bestiary/mage",
+        element: <Mage />
     }
 ]);
 export default MainRouting;
