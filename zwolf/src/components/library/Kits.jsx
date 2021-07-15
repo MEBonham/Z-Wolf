@@ -128,6 +128,26 @@ const Kits = () => {
                     <li>Stealth Skill 4 Ranks.</li>
                 </ul>
             </section>
+            <section>
+                <h2>Wizard</h2>
+                <h4>[Core] Kit</h4>
+                <p><strong>Prerequisites:</strong> Lore of Arcana Talent; must be literate.</p>
+                <h4>Benefits:</h4>
+                <ul>
+                    <li>Caster Level +1</li>
+                    <li>Gain a bonus Talent with the [Buff] or [Seed] tag.</li>
+                    <li>Gain a Synergy bonus to your Willpower Save, based on Ranks in your Knowledge Skill.</li>
+                    <li>When you finish a Long Rest, you may immediately re-train one of your Feats. Both the Feat you lose and the Feat you gain must have the [Spell] tag and must be inscribed in a tome you have access to during your Long Rest.</li>
+                </ul>
+                <h4>Drawbacks:</h4>
+                <ul>
+                    <li><strong>Armor Aversion:</strong> If you wear armor or wield a shield, you suffer a penalty to your Spellcraft Checks and the Accuracy of your spell attacks. This penalty is equal to the armor's and shield's penalties to Athletics, Dexterity, and Stealth skills, plus 1 if you are wearing armor, plus 1 if you wield a shield.</li>
+                </ul>
+                <h4>Archetypes:</h4>
+                <ul>
+                    <li>Gadgetry Skill 3 Ranks; (Shaman Kit or Tinker Kit); Alchemy Talent.</li>
+                </ul>
+            </section>
         </>
     );
 }
