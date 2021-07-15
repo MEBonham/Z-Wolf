@@ -131,7 +131,7 @@ const Kits = () => {
             <section>
                 <h2>Wizard</h2>
                 <h4>[Core] Kit</h4>
-                <p><strong>Prerequisites:</strong> Lore of Arcana Talent; must be literate.</p>
+                <p><strong>Prerequisites:</strong> Knowledge Skill 1 Rnak; Lore of Arcana Talent; must be literate.</p>
                 <h4>Benefits:</h4>
                 <ul>
                     <li>Caster Level +1</li>

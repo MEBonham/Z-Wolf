@@ -80,7 +80,7 @@ const Feats = () => {
                 <p><strong>[Basic] Applicable Seeds:</strong> Air, Illusory, Mind, Shadow</p>
                 <p><strong>Activity:</strong> 1 [Dominant] Action plus Concentration</p>
                 <h4>[Basic] Effect:</h4>
-                <p>Target an ally within 5 ft. That ally becomes Invisible, which lasts until expended by the Invisible creature completing an Attack. If not expended, the effect lasts as long as you maintain concentration, to a maximum of about 10 minutes.</p>
+                <p>Target an ally within 5 ft. That ally becomes Invisible, which lasts until expended by the Invisible creature completing an Attack. If not expended, the effect lasts as long as you maintain concentration, to a maximum of about 5 minutes.</p>
                 <h4>[Basic] Seed Effects:</h4>
                 <ul>
                     <li><strong>Illusory:</strong> The Invisible creature may use your Spellcraft Check in place of their Stealth Skill.</li>
@@ -106,7 +106,7 @@ const Feats = () => {
                 <p><strong>[Basic] Applicable Seeds:</strong> Air, Cold, Earth, Illusory, Luck, Plant, Weave</p>
                 <p><strong>Activity:</strong> 1 Action plus Concentration</p>
                 <h4>[Basic] Effect:</h4>
-                <p>Target an ally within 30 ft. That ally has a Ward placed on it, which lasts as long as you maintain concentration, to a maximum of about 10 minutes.</p>
+                <p>Target an ally within 30 ft. That ally has a Ward placed on it, which lasts as long as you maintain concentration, to a maximum of about 5 minutes.</p>
                 <p>When the Warded creature is the target of a weapon attack, they may use your Spellcraft Check in place of their Defense Save against that attack.</p>
                 <h4>[Basic] Seed Effects:</h4>
                 <ul>

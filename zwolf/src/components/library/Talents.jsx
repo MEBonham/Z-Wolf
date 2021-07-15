@@ -4,6 +4,13 @@ const Talents = () => {
     return(
         <>
             <section>
+                <h2>Acid Seed</h2>
+                <h4>[Core] [Seed] Talent</h4>
+                <p><strong>Prerequisites:</strong> none.</p>
+                <h4>Benefits:</h4>
+                <p>As an Action, you can enable yourself to cast your Spells using the Acid Seed. This lasts until you activate another Seed of magic or become unconscious.</p>
+            </section>
+            <section>
                 <h2>Artisan</h2>
                 <h4>[Core] [Skill Trick] Talent</h4>
                 <p><strong>Prerequisites:</strong> see table.</p>
@@ -161,11 +168,34 @@ const Talents = () => {
                 </table>
             </section>
             <section>
+                <h2>Aura Sight</h2>
+                <h4>[Buff] [Core] Talent</h4>
+                <p><strong>Prerequisites:</strong> Caster Level 1.</p>
+                <h4>Benefits:</h4>
+                <p>As a [Dominant] Action, you can enable yourself to see magical auras up to 60 ft away. This does not help you find magical things that would be hidden from your view (e.g. a creature successfully using the Stealth skill while wearing magic items), and illusionary magic that creates the appearance of a nonmagical object includes masking its magical aura from this ability.</p>
+                <p>Once you can see a magical aura, Knowledge Skill checks can be used to attempt to discern the magic's function, at least in general categories.</p>
+            </section>
+            <section>
                 <h2>Bestride</h2>
                 <h4>[Core] [Skill Trick] Talent</h4>
                 <p><strong>Prerequisites:</strong> Athletics Skill 1 Rank.</p>
                 <h4>Benefits:</h4>
                 <p>You can Coast Athletics and Nature Skill checks related to riding a mount, even under pressure. (This includes checks to control a mount in combat, or to avoid being dismounted.)</p>
+            </section>
+            <section>
+                <h2>Cantrips</h2>
+                <h4>[Buff] [Core] Talent</h4>
+                <p><strong>Prerequisites:</strong> Caster Level 1; Dexterity Skill 1 Rank; two Talents with the [Seed] tag.</p>
+                <h4>Benefits:</h4>
+                <p>As a [Dominant] Action, you can create a minor display of magic, such as a flash of light of a certain color, a clap of dramatic noise, or a translucent handheld-sized illusion floating above your palm. The GM may allow you to come up with other effects of similar magnitude to these. The most common mechanical benefit of these tricks is to let you use your Spellcraft Check in place of a skill check to impress an audience, especially if the performance is of a sort based on misdirection and flourishes.</p>
+                <p>Ongoing changes to an object made by Cantrips (such as moderately altering their temperature or taste) can last about an hour.</p>
+            </section>
+            <section>
+                <h2>Cold Seed</h2>
+                <h4>[Core] [Seed] Talent</h4>
+                <p><strong>Prerequisites:</strong> none.</p>
+                <h4>Benefits:</h4>
+                <p>As an Action, you can enable yourself to cast your Spells using the Cold Seed. This lasts until you activate another Seed of magic or become unconscious.</p>
             </section>
             <section>
                 <h2>Engineering</h2>
@@ -182,11 +212,46 @@ const Talents = () => {
                 <p>You can use your Nature Skill to earn additional Wealth during downtime. You can also use your Nature skill, Uncapped, to farm crops or handle common domesticated animals.</p>
             </section>
             <section>
+                <h2>Fire Seed</h2>
+                <h4>[Core] [Seed] Talent</h4>
+                <p><strong>Prerequisites:</strong> none.</p>
+                <h4>Benefits:</h4>
+                <p>As an Action, you can enable yourself to cast your Spells using the Fire Seed. This lasts until you activate another Seed of magic or become unconscious.</p>
+            </section>
+            <section>
                 <h2>Hold the Line</h2>
                 <h4>[Core] Talent</h4>
                 <p><strong>Prerequisites:</strong> Fighting Level 2.</p>
                 <h4>Benefits:</h4>
                 <p>Your Opportunity Attacks, if provoked by the target's movement, deal +1d6 Impact.</p>
+            </section>
+            <section>
+                <h2>Lightning Seed</h2>
+                <h4>[Core] [Seed] Talent</h4>
+                <p><strong>Prerequisites:</strong> none.</p>
+                <h4>Benefits:</h4>
+                <p>As an Action, you can enable yourself to cast your Spells using the Lightning Seed. This lasts until you activate another Seed of magic or become unconscious.</p>
+            </section>
+            <section>
+                <h2>Lore of Arcana</h2>
+                <h4>[Core] [Skill Trick] Talent</h4>
+                <p><strong>Prerequisites:</strong> Knowledge Skill 1 Rank.</p>
+                <h4>Benefits:</h4>
+                <ul>
+                    <li>You can make Knowledge Skill checks (Uncapped) about the workings of magic, an esoteric subject that is normally Capped.</li>
+                    <li>You can Coast Knowledge Skill checks about the workings of magic</li>
+                    <li>You can perform Rituals with the [Arcane] tag, as long as you meet their other requirements.</li>
+                </ul>
+            </section>
+            <section>
+                <h2>Mage Armor</h2>
+                <h4>[Buff] [Core] Talent</h4>
+                <p><strong>Prerequisites:</strong> Caster Level 1; one Feat with the [Spell] tag.</p>
+                <h4>Benefits:</h4>
+                <ul>
+                    <li>Gain a +2 Item bonus to your Armor Value.</li>
+                    <li>As part of an Extended Rest, you can activate or deactivate the armor's <strong>Consuming Mode</strong>. This mode incurs a -1 penalty to your Willpower Save, but increases the Armor Value bonus depending on your Caster Level: +3 at Caster Level 2-4, +4 at Caster Level 5-8, or +5 at Caster Level 9.</li>
+                </ul>
             </section>
             <section>
                 <h2>Martial Training</h2>
