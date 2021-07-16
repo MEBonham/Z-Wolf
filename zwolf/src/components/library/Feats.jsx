@@ -4,12 +4,48 @@ const Feats = () => {
     return(
         <>
             <section>
+                <h2>Battle Banter</h2>
+                <h4>[Boost] [Core] Feat</h4>
+                <p><strong>Prerequisites:</strong> Coast Number 5 or Heroics Check bonus +1.</p>
+                <p><strong>Activity:</strong> 1 Action</p>
+                <h4>Effect:</h4>
+                <p>Target a creature who can understand a language. If you hit (or crit) that creature with a melee attack before the end of your turn, the target must make a Willpower Save (TN = 6 + your Glibness Skill modifier). On a failure, you may inflict a special Hazard on the creature from the following menu:</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Requirement</th>
+                            <th>Effect</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>The target has Momentum.</td>
+                            <td>The target loses Momentum, and cannot expend Momentum to cancel Hazards inflicted by this attack.</td>
+                        </tr>
+                        <tr>
+                            <td>The target does not have Momentum.</td>
+                            <td>You gain Momentum.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            <section>
                 <h2>Cleave</h2>
                 <h4>[Core] [Strike] Feat</h4>
                 <p><strong>Prerequisites:</strong> Fighting Level 1.</p>
                 <p><strong>Activity:</strong> 1 Action</p>
                 <h4>Effect:</h4>
                 <p>When you have Momentum and you inflict a Hazard with a melee weapon attack, immediately make another standard attack with the same weapon against a different target. You don't need Momentum if the weapon involved is a Heavy Blade (other than a Saber) or an Axe.</p>
+            </section>
+            <section>
+                <h2>Dodge</h2>
+                <h4>[Core] [Counter] [Grace] Feat</h4>
+                <p><strong>Prerequisites:</strong> Athletics Skill 3 Ranks.</p>
+                <p><strong>Activity:</strong> Reaction, or Free with expenditure of Momentum</p>
+                <h4>Effect:</h4>
+                <p>When you are targeted by an attack that is opposed by your Defense Save, you may use your Reflex Save instead of your Defense Save to oppose that attack. If your saving throw (of either sort) succeeds, you also Resist the attack's effects.</p>
+                <h4>Benefit:</h4>
+                <p>Gain a +1 Discipline Bonus to your Reflex Save.</p>
             </section>
             <section>
                 <h2>Energy Blast</h2>
@@ -62,6 +98,14 @@ const Feats = () => {
                 <p>When you have Momentum, make a Charge special attack. Immediately after this Charge is resolved, make a Shove special attack at the same target. If the Charge attack inflicted a Hazard or the target was successfully Shoved, expend Momentum.</p>
                 <h4>Benefit:</h4>
                 <p>When you make a Shove special attack, you do not provoke an opportunity attack from the target.</p>
+            </section>
+            <section>
+                <h2>Sneak Attack</h2>
+                <h4>[Core] [Strike] Feat</h4>
+                <p><strong>Prerequisites:</strong> Coast Number 5; Stealth Skill 3 Ranks.</p>
+                <p><strong>Activity:</strong> 1 [Dominant] Action</p>
+                <h4>Effect:</h4>
+                <p>Make a weapon attack. If the target has not yet acted in this encounter, it is Off-Guard against this attack even if it is not Surprised. If the target is Surprised, Dazed, or Stunned, or if you were hidden from the target at the start of your turn, this attack adds +1d4 Impact (or +1d6 if using a Light Blade weapon). If this attack inflicts a Hazard during a surprise round, attempt an Awesome Check (TN 12) to gain Momentum.</p>
             </section>
             <section>
                 <h2>Toughness</h2>

@@ -129,6 +129,22 @@ const Kits = () => {
                 </ul>
             </section>
             <section>
+                <h2>Thief</h2>
+                <h4>[Core] Kit</h4>
+                <p><strong>Prerequisites:</strong> Dexterity Skill 1 Rank; Stealth Skill 2 Ranks.</p>
+                <h4>Benefits:</h4>
+                <ul>
+                    <li>Coast Number +1</li>
+                    <li>Gain two bonus Talents with the [Skill Trick] tag.</li>
+                    <li>Train an additional Skill.</li>
+                    <li>You may Coast Dexterity Skill checks and Stealth Skill checks, even under pressure.</li>
+                </ul>
+                <h4>Archetypes:</h4>
+                <ul>
+                    <li>Athletics Skill 4 Ranks; Gadgetry Skill 3 Ranks; Lockpicking Talent; Steady Climber Talent.</li>
+                </ul>
+            </section>
+            <section>
                 <h2>Wizard</h2>
                 <h4>[Core] Kit</h4>
                 <p><strong>Prerequisites:</strong> Knowledge Skill 1 Rnak; Lore of Arcana Talent; must be literate.</p>

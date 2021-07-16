@@ -172,7 +172,7 @@ const Talents = () => {
                 <h4>[Buff] [Core] Talent</h4>
                 <p><strong>Prerequisites:</strong> Caster Level 1.</p>
                 <h4>Benefits:</h4>
-                <p>As a [Dominant] Action, you can enable yourself to see magical auras up to 60 ft away. This does not help you find magical things that would be hidden from your view (e.g. a creature successfully using the Stealth skill while wearing magic items), and illusionary magic that creates the appearance of a nonmagical object includes masking its magical aura from this ability.</p>
+                <p>As a [Dominant] Action, you can enable yourself to see magical auras up to 60 ft away as long as you maintain Concentration. This does not help you find magical things that would be hidden from your view (e.g. a creature successfully using the Stealth skill while wearing magic items), and illusionary magic that creates the appearance of a nonmagical object includes masking its magical aura from this ability.</p>
                 <p>Once you can see a magical aura, Knowledge Skill checks can be used to attempt to discern the magic's function, at least in general categories.</p>
             </section>
             <section>
@@ -198,6 +198,14 @@ const Talents = () => {
                 <p>As an Action, you can enable yourself to cast your Spells using the Cold Seed. This lasts until you activate another Seed of magic or become unconscious.</p>
             </section>
             <section>
+                <h2>Courtly Manner</h2>
+                <h4>[Core] [Skill Trick] Talent</h4>
+                <p><strong>Prerequisites:</strong> Glibness Skill 1 Rank.</p>
+                <h4>Benefits:</h4>
+                <p>You can use your Glibness Skill (Uncapped) to make a first impression on aristocrats or nobles. (These people are an insular group, so making a first impression on them is normally Capped.)</p>
+                <p>For purposes of Coasting, your skill checks to navigate social situations are not considered "under pressure" merely because of interacting with someone of lofty societal status. You can Coast such skill checks unless you are "under pressure" in some other way.</p>
+            </section>
+            <section>
                 <h2>Engineering</h2>
                 <h4>[Core] [Skill Trick] Talent</h4>
                 <p><strong>Prerequisites:</strong> Knowledge Skill 1 Rank.</p>
@@ -219,11 +227,40 @@ const Talents = () => {
                 <p>As an Action, you can enable yourself to cast your Spells using the Fire Seed. This lasts until you activate another Seed of magic or become unconscious.</p>
             </section>
             <section>
+                <h2>Haggler</h2>
+                <h4>[Core] Talent</h4>
+                <p><strong>Prerequisites:</strong> Glibness Skill 1 Rank; (Gadgetry Skill 2 Ranks or Knowledge Skill 3 Ranks or Streetwise Talent).</p>
+                <h4>Benefits:</h4>
+                <p>When you roll Wealth rolls to buy or sell something, you may change one d6 that rolled 1-4 to a success instead.</p>
+            </section>
+            <section>
                 <h2>Hold the Line</h2>
                 <h4>[Core] Talent</h4>
                 <p><strong>Prerequisites:</strong> Fighting Level 2.</p>
                 <h4>Benefits:</h4>
                 <p>Your Opportunity Attacks, if provoked by the target's movement, deal +1d6 Impact.</p>
+            </section>
+            <section>
+                <h2>Legerdemain</h2>
+                <h4>[Core] [Skill Trick] Talent</h4>
+                <p><strong>Prerequisites:</strong> Coast Number 5 or Dexterity Skill 4 Ranks.</p>
+                <h4>Benefits:</h4>
+                <ul>
+                    <li>When you lift carried items off a victim's person discretely, the target's TN to promptly notice the theft is equal to your Dexterity check result.</li>
+                    <li>If you have at least 4 ranks of Dexterity, you may use your Glibness skill in place of your Dexterity skill to steal items off a victim's person.</li>
+                    <li>When you perform acts of "stage magic," you can coast your Dexterity checks for the sleight of hand involved.</li>
+                </ul>
+                <h4>Normal:</h4>
+                <p>You can use your Dexterity skill (Uncapped) to pick a pocket or otherwise lift an item, but the Perception TN for the victim to promptly notice the theft is only 6.</p>
+            </section>
+            <section>
+                <h2>Light Armor Training</h2>
+                <h4>[Core] [Proficiency] Talent</h4>
+                <p><strong>Prerequisites:</strong> none.</p>
+                <h4>Benefits:</h4>
+                <p>You are proficient with light armor (and chainmail).</p>
+                <h4>Normal:</h4>
+                <p>Wearing light armor nonproficiently incurs a -2 penalty to attack Accuracy and a -1 penalty to Speed Checks. Wearing chainmail nonproficiently incurs a -4 penalty to attack Accuracy and a -2 penalty to Speed Checks.</p>
             </section>
             <section>
                 <h2>Lightning Seed</h2>
@@ -233,13 +270,23 @@ const Talents = () => {
                 <p>As an Action, you can enable yourself to cast your Spells using the Lightning Seed. This lasts until you activate another Seed of magic or become unconscious.</p>
             </section>
             <section>
+                <h2>Lockpicking</h2>
+                <h4>[Core] [Skill Trick] Talent</h4>
+                <p><strong>Prerequisites:</strong> Coast Number 5 or Dexterity Skill 3 Ranks.</p>
+                <h4>Benefits:</h4>
+                <ul>
+                    <li>Your Gadgetry Skill checks to pick locks are Uncapped, and can be Coasted. (Normally, this is a Capped activity that cannot be Coasted.)</li>
+                    <li>If you have at least 4 Ranks of Gadgetry Skill, you can use your Dexterity Skill in place of your Gadgetry Skill to pick locks.</li>
+                </ul>
+            </section>
+            <section>
                 <h2>Lore of Arcana</h2>
                 <h4>[Core] [Skill Trick] Talent</h4>
                 <p><strong>Prerequisites:</strong> Knowledge Skill 1 Rank.</p>
                 <h4>Benefits:</h4>
                 <ul>
                     <li>You can make Knowledge Skill checks (Uncapped) about the workings of magic, an esoteric subject that is normally Capped.</li>
-                    <li>You can Coast Knowledge Skill checks about the workings of magic</li>
+                    <li>You can Coast Knowledge Skill checks about the workings of magic.</li>
                     <li>You can perform Rituals with the [Arcane] tag, as long as you meet their other requirements.</li>
                 </ul>
             </section>
@@ -259,6 +306,17 @@ const Talents = () => {
                 <p><strong>Prerequisites:</strong> Select one Category of weapons (Axes, Bows, Clubs, Crossbows, Flails, Heavy Blades, Light Blades, Polearms, or Spears). (You can take this Talent multiple times to select multiple Categories.</p>
                 <h4>Benefits:</h4>
                 <p>You are proficient with Martial-grade weapons of the selected Category. (If a Martial weapon has more than one Category, you only need one of them in order to be proficient.)</p>
+            </section>
+            <section>
+                <h2>Performer</h2>
+                <h4>[Core] [Skill Trick] Talent</h4>
+                <p><strong>Prerequisites:</strong> Coast Number 5 or Glibness Skill 3 Ranks.</p>
+                <h4>Benefits:</h4>
+                <ul>
+                    <li>Your skill checks to impress an audience are Uncapped. (For example, you can use Athletics to dance; Dexterity to juggle or perform sleight-of-hand; Glibness to orate or perform comedy; or Nature to demonstrate animal handling stunts. Brawn, Gadgetry, and Knowledge are more situational, but may also apply at the GM's discretion.) Normally, these are sufficiently different from normal uses of Skills that the check is Capped.</li>
+                    <li>You can Coast skill checks to perform with a musical instrument you have proficiency with, even under pressure.</li>
+                    <li>You can use your Glibness Skill (or other skills, at the GM's discretion) to earn additional Wealth during downtime.</li>
+                </ul>
             </section>
             <section>
                 <h2>Sailor</h2>
@@ -285,6 +343,40 @@ const Talents = () => {
                 </ul>
                 <h4>Normal</h4>
                 <p>Wielding a shield nonproficiently incurs a -2 penalty to Athletics, Dexterity, and Stealth checks, as well as Spellcraft checks and spell attack Accuracy. Nonproficient shield bash attacks have an Impact modifier of -3, rather than the Impact Modifier shown on the Shields table.</p>
+            </section>
+            <section>
+                <h2>Streetwise</h2>
+                <h4>[Core] [Skill Trick] Talent</h4>
+                <p><strong>Prerequisites:</strong> Glibness Skill 1 Rank or Stealth Skill 1 Rank.</p>
+                <h4>Benefits:</h4>
+                <ul>
+                    <li>If you have inhabited a neighborhood for at least a year, you can use your Knowledge skill (uncapped) to provide information about the area. You can use your Heroics Check instead, if that is better.</li>
+                    <li>You can Coast Glibness Skill checks to collect rumors in a social setting, even under pressure.</li>
+                    <li>You can Coast Insight or Knowledge Skill checks, as applicable, to play skill-based card or dice games. (You can also Coast Dexterity or Glibness Skill checks to cheat at almost any card or dice game, although a Perception check that matches your skill check can still catch you cheating.)</li>
+                </ul>
+            </section>
+            <section>
+                <h2>Trapfinder</h2>
+                <h4>[Core] [Skill Trick] Talent</h4>
+                <p><strong>Prerequisites:</strong> Coast Number 5; Gadgetry Skill 1 Rank; Perception Skill 1 Rank.</p>
+                <h4>Benefits:</h4>
+                <ul>
+                    <li>You can Coast Gadgetry Skill checks to disable traps. This is normally considered a high-pressure activity.</li>
+                    <li>You can use your Gadgetry Skill (Uncapped) to disable magical traps, as if they were nonmagical.</li>
+                    <li>You can Coast Perception Checks to detect the presence of traps, even under pressure. (You are therefore assumed to be using this ability always, unless the GM rules you are particularly distracted as a Complication Trigger.)</li>
+                </ul>
+            </section>
+            <section>
+                <h2>Urchin</h2>
+                <h4>[Background] [Core] Talent</h4>
+                <p><strong>Prerequisites:</strong> Streetwise Talent. This Talent can only be taken at Level 1.</p>
+                <h4>Benefits:</h4>
+                <ul>
+                    <li>Boost your Fortitude Saves vs. Filth Fever disease or starvation.</li>
+                    <li>If you have spent a lot of time in an urban area before becoming an adventurer, Boost your Knowledge checks to know information about that area.</li>
+                </ul>
+                <h4>Drawbacks:</h4>
+                <p>Reduce your Wealth Score by -2.</p>
             </section>
         </>
     );

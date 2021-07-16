@@ -37,6 +37,9 @@ const Home = () => {
                     <Link to="/bestiary/mage">Example Mage Build</Link>
                 </li>
                 <li>
+                    <Link to="/bestiary/thief">Example Thief Build</Link>
+                </li>
+                <li>
                     <Link to="/bestiary/monsters">Example Monsters</Link>
                 </li>
             </ul>
