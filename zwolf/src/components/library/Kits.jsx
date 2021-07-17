@@ -113,6 +113,23 @@ const Kits = () => {
                 </ul>
             </section>
             <section>
+                <h2>Priest</h2>
+                <h4>[Core] Kit</h4>
+                <p><strong>Prerequisites:</strong> Lore of Divinity Talent.</p>
+                <h4>Benefits:</h4>
+                <ul>
+                    <li>Caster Level +1 or Coast Number +1</li>
+                    <li>Vitality Points +2</li>
+                    <li>Gain a bonus Talent with the [Ki] or [Seed] tag.</li>
+                    <li>You may use your Willpower Save in place of your Spellcraft Check.</li>
+                    <li>You may use your Awesome Check in place of your Knowledge Skill to know stuff about your own religion's traditions.</li>
+                </ul>
+                <h4>Archetypes:</h4>
+                <ul>
+                    <li>Knowledge Skill 3 Ranks; Healer Talent.</li>
+                </ul>
+            </section>
+            <section>
                 <h2>Soldier</h2>
                 <h4>[Core] Kit</h4>
                 <p><strong>Prerequisites:</strong> Base Fortitude Save +1; Athletics Skill 1 Rank; Brawn Skill 1 Rank; proficiency with a Martial weapon.</p>
@@ -152,7 +169,7 @@ const Kits = () => {
                 <ul>
                     <li>Caster Level +1</li>
                     <li>Gain a bonus Talent with the [Buff] or [Seed] tag.</li>
-                    <li>Gain a Synergy bonus to your Willpower Save, based on Ranks in your Knowledge Skill.</li>
+                    <li>Gain a Synergy bonus to your Spellcraft Check, based on Ranks in your Knowledge Skill.</li>
                     <li>When you finish a Long Rest, you may immediately re-train one of your Feats. Both the Feat you lose and the Feat you gain must have the [Spell] tag and must be inscribed in a tome you have access to during your Long Rest.</li>
                 </ul>
                 <h4>Drawbacks:</h4>

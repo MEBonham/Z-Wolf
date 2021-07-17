@@ -14,6 +14,7 @@ import Talents from './library/Talents';
 import Fighter from './bestiary/Fighter';
 import Mage from './bestiary/Mage';
 import Thief from './bestiary/Thief';
+import Cleric from './bestiary/Cleric';
 
 const MainRouting = () => useRoutes([
     {
@@ -67,6 +68,10 @@ const MainRouting = () => useRoutes([
     {
         path: "/bestiary/thief",
         element: <Thief />
+    },
+    {
+        path: "/bestiary/cleric",
+        element: <Cleric />
     }
 ]);
 export default MainRouting;

@@ -90,6 +90,70 @@ const Feats = () => {
                 </ul>
             </section>
             <section>
+                <h2>Evoke Fortune</h2>
+                <h4>[Core] [Spell] Feat</h4>
+                <p><strong>Prerequisites:</strong> Caster Level 1.</p>
+                <p><strong>[Basic] Applicable Seeds:</strong> Luck, Mind, Radiant</p>
+                <p><strong>Activity:</strong> 1 Action</p>
+                <h4>[Basic] Effect:</h4>
+                <p>Target an ally within 30 ft and attempt a TN 13 Spellcraft Check. On a success, the target gains Momentum.</p>
+                <h4>[Basic] Seed Effects:</h4>
+                <ul>
+                    <li><strong>Luck:</strong> If the target is Shaken, the spell (if successful) can remove the Shaken condition instead of granting Momentum.</li>
+                    <li><strong>Mind:</strong> If you are the (only) target, casting this spell does not provoke Opportunity Attacks.</li>
+                    <li><strong>Radiant:</strong> If the (only) target is within 5 ft of you, casting this spell does not provoke Opportunity Attacks.</li>
+                </ul>
+                <h4>[Advanced] Effect:</h4>
+                <p>You can cast the spell even if you do not have one of its Applicable Seeds active. The target can be up to 60 ft away from you. If a target is Shaken, the spell (if successful) can remove the Shaken condition instead of granting Momentum. In addition, choose one of the following enhancements to the [Basic] Effect:
+                    <ul>
+                        <li>Boost your Spellcraft Check.</li>
+                        <li>Cast the spell using two [Dominant] Actions. Automatically succeed on your Spellcraft Check.</li>
+                        <li>Target a number of creatures or objects up to 1 + half your Level (rounded down). All targets must be within 30 ft of each other.</li>
+                    </ul>
+                </p>
+                <h4>[Advanced] Seed Effects:</h4>
+                <ul>
+                    <li><strong>Luck:</strong> You may use your Awesome Check in place of your Spellcraft Check.</li>
+                </ul>
+            </section>
+            <section>
+                <h2>Healing Embrace</h2>
+                <h4>[Core] [Spell] Feat</h4>
+                <p><strong>Prerequisites:</strong> Caster Level 1; Insight Skill 2 Ranks; one applicable Talent with the [Seed] tag.</p>
+                <p><strong>Applicable Seeds:</strong> Animal, Mind, Plant, Radiant, Shadow, Water</p>
+                <p><strong>[Basic] Activity:</strong> 1 Action</p>
+                <h4>[Basic] Effect:</h4>
+                <p>Target an ally within 30 ft. That ally, if able to Exert, may Exert to regain Vitality Points equal to half their Vitality Points Pool (rounded up).</p>
+                <p>You can use this spell with a non-applicable Seed if that Seed is appropriate to the nature of the target: Acid Seed for an Ooze Type creature; Air, Earth, Fire for an Elemental Type creature of the correct affiliation. The GM is ultimately the arbiter of this interaction.</p>
+                <h4>[Basic] Seed Effects:</h4>
+                <ul>
+                    <li><strong>Animal:</strong> The target must not be of the Undead Type.</li>
+                    <li><strong>Mind:</strong> The target must be yourself.</li>
+                    <li><strong>Plant:</strong> The target must not be of the Undead Type.</li>
+                    <li><strong>Radiant:</strong> The target must not be of the Undead Type.</li>
+                    <li><strong>Shadow:</strong> The target must be of the Undead Type.</li>
+                    <li><strong>Water:</strong> The target must not be of the Undead Type or have the Fire Energy Association.</li>
+                </ul>
+                <p><strong>[Advanced] Activity:</strong> 1 [Dominant] Action</p>
+                <h4>[Advanced] Effect:</h4>
+                <p>Target an ally within 5 ft. That ally can either lose the Dropped condition (but will still be Prone, typically) or regain Vitality Points equal to half their Vitality Points Pool (rounded up). After all other effects, if the ally is Dying, they gain the Stable condition. In addition, choose one of the following enhancements to the spell:
+                    <ul>
+                        <li>If Dying, the target may attempt a TN 12 Fortitude Save to lose the Dying condition (but still be Wounded).</li>
+                        <li>If not Dying, the target may attempt a TN 12 Fortitude Save to lose the Wounded condition.</li>
+                        <li>Target a number of additional allies up to half your Level (rounded down), who need not be within 5 ft of you. All targets must be within 30 ft of each other. Some targets may recover from being Dropped while other targets regain VP.</li>
+                    </ul>
+                </p>
+                <h4>[Advanced] Seed Effects:</h4>
+                <ul>
+                    <li><strong>Animal:</strong> If the target wishes, you can negate a [Shapeshift] effect on them.</li>
+                    <li><strong>Mind:</strong> If the spell affects more than one target, only one of them need be yourself.</li>
+                    <li><strong>Plant:</strong> The target can lose the Prone condition.</li>
+                    <li><strong>Radiant:</strong> If the initial target is within 5 ft, casting this spell does not provoke Opportunity Attacks. Alternatively, the initial target can be up to 30 ft away from you, but no target can be more than 45 ft away from you.</li>
+                    <li><strong>Shadow:</strong> The target must either be of the Undead Type or have the Blighted condition.</li>
+                    <li><strong>Water:</strong> In place of having the target make a Fortitude Save, you can attempt a TN 16 skill check for first aid.</li>
+                </ul>
+            </section>
+            <section>
                 <h2>Rhino's Charge</h2>
                 <h4>[Core] [Strike] Feat</h4>
                 <p><strong>Prerequisites:</strong> Base Fortitude Save +1; Athletics Skill 1 Rank; Brawn Skill 3 Ranks.</p>
@@ -106,6 +170,35 @@ const Feats = () => {
                 <p><strong>Activity:</strong> 1 [Dominant] Action</p>
                 <h4>Effect:</h4>
                 <p>Make a weapon attack. If the target has not yet acted in this encounter, it is Off-Guard against this attack even if it is not Surprised. If the target is Surprised, Dazed, or Stunned, or if you were hidden from the target at the start of your turn, this attack adds +1d4 Impact (or +1d6 if using a Light Blade weapon). If this attack inflicts a Hazard during a surprise round, attempt an Awesome Check (TN 12) to gain Momentum.</p>
+            </section>
+            <section>
+                <h2>Spell Ward</h2>
+                <h4>[Core] [Spell] Feat</h4>
+                <p><strong>Prerequisites:</strong> Caster Level 1.</p>
+                <p><strong>Applicable Seeds:</strong> Cold, Fire, Illusory, Luck, Mind, Radiant, Shadow, Weave</p>
+                <p><strong>[Basic] Activity:</strong> 1 Action plus Concentration</p>
+                <h4>[Basic] Effect:</h4>
+                <p>Target an ally within 30 ft. That ally has a Ward placed on it, which lasts as long as you maintain concentration, to a maximum of about 5 minutes.</p>
+                <p>When the Warded creature is the target of a Spell Attack or Vim Attack, they may use your Spellcraft Check in place of their normal saving throw against that attack.</p>
+                <h4>[Basic] Seed Effects:</h4>
+                <ul>
+                    <li><strong>Cold:</strong> The Ward functions only against attacks that deal Cold Damage or Fire Damage.</li>
+                    <li><strong>Fire:</strong> The Ward functions only against attacks that deal Cold Damage or Fire Damage.</li>
+                    <li><strong>Illusory:</strong> The Ward functions only against [Divination] effects.</li>
+                    <li><strong>Mind:</strong> The Ward functions only against attacks opposed by a Willpower Save.</li>
+                    <li><strong>Radiant:</strong> The Ward functions only against attacks that deal Necrotic Damage or Radiant Damage.</li>
+                    <li><strong>Shadow:</strong> The Ward functions only against attacks that deal Necrotic Damage or Radiant Damage.</li>
+                </ul>
+                <p><strong>[Advanced] Activity:</strong> 1 [Dominant] Action plus Concentration</p>
+                <h4>[Advanced] Effect:</h4>
+                <p>You can cast the spell even if you do not have one of its Applicable Seeds active. Restrictions on the effect due to [Basic] Seed Effects are lifted. Choose one of the following enhancements to the [Basic] Effect:
+                    <ul>
+                        <li>When the Warded creature is the target of a Spell Attack or Vim Attack, they may roll their normal Saving Throw <em>and</em> your Spellcraft Check, and use the better result.</li>
+                        <li>Target a number of creatures or objects up to 1 + half your Level (rounded down). All targets must be within 30 ft of each other.</li>
+                    </ul>
+                </p>
+                <h4>Benefit:</h4>
+                <p>Gain a +1 Discipline Bonus to your Spellcraft Check.</p>
             </section>
             <section>
                 <h2>Toughness</h2>
@@ -148,7 +241,7 @@ const Feats = () => {
                 <h4>[Core] [Spell] Feat</h4>
                 <p><strong>Prerequisites:</strong> Caster Level 1.</p>
                 <p><strong>[Basic] Applicable Seeds:</strong> Air, Cold, Earth, Illusory, Luck, Plant, Weave</p>
-                <p><strong>Activity:</strong> 1 Action plus Concentration</p>
+                <p><strong>[Basic] Activity:</strong> 1 Action plus Concentration</p>
                 <h4>[Basic] Effect:</h4>
                 <p>Target an ally within 30 ft. That ally has a Ward placed on it, which lasts as long as you maintain concentration, to a maximum of about 5 minutes.</p>
                 <p>When the Warded creature is the target of a weapon attack, they may use your Spellcraft Check in place of their Defense Save against that attack.</p>
@@ -158,6 +251,7 @@ const Feats = () => {
                     <li><strong>Illusory:</strong> The Ward functions only against attackers who rely primarily on sight to aim their attack.</li>
                 </ul>
                 <p><strong>[Advanced] Applicable Seeds:</strong> Acid, Air, Cold, Earth, Fire, Illusory, Lightning, Luck, Plant, Radiant, Shadow, Weave</p>
+                <p><strong>[Advanced] Activity:</strong> 1 [Dominant] Action plus Concentration</p>
                 <h4>[Advanced] Effect:</h4>
                 <p>Choose one of the following enhancements to the [Basic] Effect:
                     <ul>
