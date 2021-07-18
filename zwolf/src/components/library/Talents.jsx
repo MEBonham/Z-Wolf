@@ -176,6 +176,13 @@ const Talents = () => {
                 <p>Once you can see a magical aura, Knowledge Skill checks can be used to attempt to discern the magic's function, at least in general categories.</p>
             </section>
             <section>
+                <h2>Battle-Cast</h2>
+                <h4>[Core] Talent</h4>
+                <p><strong>Prerequisites:</strong> Heroics Check +1; one Feat with the [Spell] tag.</p>
+                <h4>Benefits:</h4>
+                <p>When your saving throw against an Opportunity Attack (provoked by your spellcasting) succeeds, you Resist the attack's effects. You can use your Willpower Save in place of your Defense Save against such an attack.</p>
+            </section>
+            <section>
                 <h2>Bestride</h2>
                 <h4>[Core] [Skill Trick] Talent</h4>
                 <p><strong>Prerequisites:</strong> Athletics Skill 1 Rank.</p>
@@ -234,11 +241,30 @@ const Talents = () => {
                 <p>When you roll Wealth rolls to buy or sell something, you may change one d6 that rolled 1-4 to a success instead.</p>
             </section>
             <section>
+                <h2>Healer</h2>
+                <h4>[Core] [Skill Trick] Talent</h4>
+                <p><strong>Prerequisites:</strong> none.</p>
+                <h4>Benefits:</h4>
+                <ul>
+                    <li>Your Knowledge Skill checks to provide medical care are Uncapped, and can be Coasted. (Normally, this is a Capped activity that cannot be Coasted.)</li>
+                    <li>If you have at least 3 Ranks of Knowledge Skill, you can use your Nature Skill in place of your Knowledge Skill to provide medical care.</li>
+                </ul>
+            </section>
+            <section>
                 <h2>Hold the Line</h2>
                 <h4>[Core] Talent</h4>
                 <p><strong>Prerequisites:</strong> Fighting Level 2.</p>
                 <h4>Benefits:</h4>
                 <p>Your Opportunity Attacks, if provoked by the target's movement, deal +1d6 Impact.</p>
+            </section>
+            <section>
+                <h2>Imbued Lantern</h2>
+                <h4>[Buff] [Core] Talent</h4>
+                <p><strong>Prerequisites:</strong> Caster Level 1.</p>
+                <h4>Benefits:</h4>
+                <p>As a [Dominant] Action, you can cause a touched Tiny or smaller object to radiate light, illuminating a 20-ft radius in bright light and a further 20-ft radius in dim light.</p>
+                <p>The illuminating property lasts for about an hour, or until you use this ability on another object or dismiss the effect as an Action.</p>
+                <p>If you try to touch an object held or worn by a hostile creature, the intended target can make a Defense Save as if opposing your Unarmed Strike attack. On a successful Save, you fail to alight the intended object.</p>
             </section>
             <section>
                 <h2>Legerdemain</h2>
@@ -291,6 +317,16 @@ const Talents = () => {
                 </ul>
             </section>
             <section>
+                <h2>Lore of Divinity</h2>
+                <h4>[Core] [Skill Trick] Talent</h4>
+                <p><strong>Prerequisites:</strong> none.</p>
+                <h4>Benefits:</h4>
+                <ul>
+                    <li>You can Coast Knowledge Skill checks about religions, cosmology, and extraplanar beings associated with religion (e.g. gods, angels, demons).</li>
+                    <li>You can perform Rituals with the [Divine] tag, as long as you meet their other requirements.</li>
+                </ul>
+            </section>
+            <section>
                 <h2>Mage Armor</h2>
                 <h4>[Buff] [Core] Talent</h4>
                 <p><strong>Prerequisites:</strong> Caster Level 1; one Feat with the [Spell] tag.</p>
@@ -317,6 +353,13 @@ const Talents = () => {
                     <li>You can Coast skill checks to perform with a musical instrument you have proficiency with, even under pressure.</li>
                     <li>You can use your Glibness Skill (or other skills, at the GM's discretion) to earn additional Wealth during downtime.</li>
                 </ul>
+            </section>
+            <section>
+                <h2>Radiant Seed</h2>
+                <h4>[Core] [Seed] Talent</h4>
+                <p><strong>Prerequisites:</strong> none.</p>
+                <h4>Benefits:</h4>
+                <p>As an Action, you can enable yourself to cast your Spells using the Radiant Seed. This lasts until you activate another Seed of magic or become unconscious.</p>
             </section>
             <section>
                 <h2>Sailor</h2>
@@ -369,7 +412,7 @@ const Talents = () => {
             <section>
                 <h2>Urchin</h2>
                 <h4>[Background] [Core] Talent</h4>
-                <p><strong>Prerequisites:</strong> Streetwise Talent. This Talent can only be taken at Level 1.</p>
+                <p><strong>Prerequisites:</strong> Streetwise Talent or Beast Type. This Talent can only be taken at Level 1.</p>
                 <h4>Benefits:</h4>
                 <ul>
                     <li>Boost your Fortitude Saves vs. Filth Fever disease or starvation.</li>
