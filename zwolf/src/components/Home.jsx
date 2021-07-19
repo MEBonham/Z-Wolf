@@ -43,7 +43,7 @@ const Home = () => {
                     <Link to="/bestiary/cleric">Example Cleric Build</Link>
                 </li>
                 <li>
-                    <Link to="/bestiary/monsters">Example Monsters</Link>
+                    <Link to="/bestiary/caverat">Example Cave Rat Monster</Link>
                 </li>
             </ul>
             <h2>System Library</h2>

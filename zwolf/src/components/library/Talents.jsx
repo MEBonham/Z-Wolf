@@ -227,6 +227,16 @@ const Talents = () => {
                 <p>You can use your Nature Skill to earn additional Wealth during downtime. You can also use your Nature skill, Uncapped, to farm crops or handle common domesticated animals.</p>
             </section>
             <section>
+                <h2>Filthy Squalor</h2>
+                <h4>[Monster] Talent</h4>
+                <p><strong>Prerequisites:</strong> Bite natural weapon.</p>
+                <h4>Benefits:</h4>
+                <ul>
+                    <li>Boost your Fortitude Saves vs. Filth Fever disease or starvation.</li>
+                    <li>A creature taking a rest after being hit (or critted) by your Bite natural weapon must make a Fortitude Save or contract the Filth Fever Disease. The TN of this saving throw is 6 + your Base Fortitude Save bonus.</li>
+                </ul>
+            </section>
+            <section>
                 <h2>Fire Seed</h2>
                 <h4>[Core] [Seed] Talent</h4>
                 <p><strong>Prerequisites:</strong> none.</p>
@@ -265,6 +275,16 @@ const Talents = () => {
                 <p>As a [Dominant] Action, you can cause a touched Tiny or smaller object to radiate light, illuminating a 20-ft radius in bright light and a further 20-ft radius in dim light.</p>
                 <p>The illuminating property lasts for about an hour, or until you use this ability on another object or dismiss the effect as an Action.</p>
                 <p>If you try to touch an object held or worn by a hostile creature, the intended target can make a Defense Save as if opposing your Unarmed Strike attack. On a successful Save, you fail to alight the intended object.</p>
+            </section>
+            <section>
+                <h2>Keen Smell</h2>
+                <h4>Talent</h4>
+                <p><strong>Prerequisites:</strong> Perception Skill 1 Rank; (Orc Kit or Beast Type trait or Giant Type trait).</p>
+                <h4>Benefits:</h4>
+                <ul>
+                    <li>Boost your Perception Skill checks to notice or locate things with a strong or distinctive scent.</li>
+                    <li>You may use your Perception Skill in place of your Nature Skill to track creatures, using their scent instead of visual cues.</li>
+                </ul>
             </section>
             <section>
                 <h2>Legerdemain</h2>
@@ -362,6 +382,16 @@ const Talents = () => {
                 <p>As an Action, you can enable yourself to cast your Spells using the Radiant Seed. This lasts until you activate another Seed of magic or become unconscious.</p>
             </section>
             <section>
+                <h2>Runted</h2>
+                <h4>[Monster] Talent</h4>
+                <p><strong>Prerequisites:</strong> This Talent can only be taken at Level 1.</p>
+                <h4>Benefits:</h4>
+                <p>Gain a +1 Untyped bonus to Speed.</p>
+                <p><strong>Size Category -1:</strong> Gain +1 Size bonuses to Defense saves and Accuracy of weapon attacks. Boost checks where your being smaller than a compared creature is an advantage (e.g. hiding from them).</p>
+                <h4>Drawbacks:</h4>
+                <p><strong>Size Category -1:</strong> Incur a -2 Size penalty to your Brawn skill. Incur -1 Size penalties to Armor Value, Impact of weapon attacks, and Speed. Drag checks where your being smaller than a compared creature is a disadvantage (e.g. maintaining your footing if they push you around).</p>
+            </section>
+            <section>
                 <h2>Sailor</h2>
                 <h4>[Core] [Skill Trick] Talent</h4>
                 <p><strong>Prerequisites:</strong> Athletics Skill 1 Rank.</p>
@@ -388,6 +418,13 @@ const Talents = () => {
                 <p>Wielding a shield nonproficiently incurs a -2 penalty to Athletics, Dexterity, and Stealth checks, as well as Spellcraft checks and spell attack Accuracy. Nonproficient shield bash attacks have an Impact modifier of -3, rather than the Impact Modifier shown on the Shields table.</p>
             </section>
             <section>
+                <h2>Steady Climber</h2>
+                <h4>[Core] [Skill Trick] Talent</h4>
+                <p><strong>Prerequisites:</strong> none.</p>
+                <h4>Benefits:</h4>
+                <p>You can Coast Athletics Skill checks related to climbing, even under pressure.</p>
+            </section>
+            <section>
                 <h2>Streetwise</h2>
                 <h4>[Core] [Skill Trick] Talent</h4>
                 <p><strong>Prerequisites:</strong> Glibness Skill 1 Rank or Stealth Skill 1 Rank.</p>
@@ -397,6 +434,13 @@ const Talents = () => {
                     <li>You can Coast Glibness Skill checks to collect rumors in a social setting, even under pressure.</li>
                     <li>You can Coast Insight or Knowledge Skill checks, as applicable, to play skill-based card or dice games. (You can also Coast Dexterity or Glibness Skill checks to cheat at almost any card or dice game, although a Perception check that matches your skill check can still catch you cheating.)</li>
                 </ul>
+            </section>
+            <section>
+                <h2>Swimmer</h2>
+                <h4>[Core] [Skill Trick] Talent</h4>
+                <p><strong>Prerequisites:</strong> Base Fortitude Save +1 or Athletics Skill 1 Rank.</p>
+                <h4>Benefits:</h4>
+                <p>You can Coast Athletics Skill checks related to swimming, even under pressure (e.g. in dangerous water conditions).</p>
             </section>
             <section>
                 <h2>Trapfinder</h2>
@@ -412,14 +456,14 @@ const Talents = () => {
             <section>
                 <h2>Urchin</h2>
                 <h4>[Background] [Core] Talent</h4>
-                <p><strong>Prerequisites:</strong> Streetwise Talent or Beast Type. This Talent can only be taken at Level 1.</p>
+                <p><strong>Prerequisites:</strong> Streetwise Talent. This Talent can only be taken at Level 1.</p>
                 <h4>Benefits:</h4>
                 <ul>
                     <li>Boost your Fortitude Saves vs. Filth Fever disease or starvation.</li>
                     <li>If you have spent a lot of time in an urban area before becoming an adventurer, Boost your Knowledge checks to know information about that area.</li>
                 </ul>
                 <h4>Drawbacks:</h4>
-                <p>Reduce your Wealth Score by -2.</p>
+                <p>Reduce your starting Wealth Score by -2.</p>
             </section>
         </>
     );

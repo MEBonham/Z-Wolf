@@ -18,7 +18,7 @@ const CharacterCreation = () => {
             <p>Choose two of your Skills to Train by default and put two Ranks in each of them. (Special abilities may let you later Train more skills.)</p>
             <p>Then, at each level your character goes through (up to level 8), choose five Skills to put Ranks into. Since you can't exceed your level in any one Skill (or your level +2 if the skill is Trained), you should normally pick five <em>different</em> Skills to put a Rank into at each level. That way you'll never break this limit.</p>
             <p>Some characters like to pick five specialty skills and keep them all at maximum Rank throughout their progression; other characters are more jacks-of-all-trades and spread their Ranks out to more than five Skills.</p>
-            <p>On rare occasions, if the character you are building is a Monster, you may have special abilities that Limit your Ranks in a skill. For example, many mundane Beasts have the Charisma, Dexterity, and Knowledge skills Limited. This means the Skill in question is limited to Ranks equal to the character's Heroics Check bonus.</p>
+            <p>On rare occasions, if the character you are building is a Monster, you may have special abilities that Limit your Ranks in a skill. For example, many mundane Beasts have the Dexterity, Gadgetry, Glibness, and Knowledge skills Limited. This means the Skill in question is limited to Ranks equal to the character's Heroics Check bonus.</p>
             <h3>4. Select Kits, Feats, and Talents</h3>
             <p>Your character's special abilities are divided into three categories:
                 <ul>

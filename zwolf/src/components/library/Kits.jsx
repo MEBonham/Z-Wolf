@@ -4,6 +4,24 @@ const Kits = () => {
     return(
         <>
             <section>
+                <h2>Brawler</h2>
+                <h4>[Core] Kit</h4>
+                <p><strong>Prerequisites:</strong> Athletics Skill 1 Rank.</p>
+                <h4>Benefits:</h4>
+                <ul>
+                    <li>Fighting Level +1 or Stamina Points Pool +1</li>
+                    <li>Vitality Points Pool +4</li>
+                    <li>Stamina Points Pool +1</li>
+                    <li>Gain a bonus Talent with the [Background] or [Monster] or [Proficiency] tag.</li>
+                </ul>
+                <h4>Archetypes:</h4>
+                <ul>
+                    <li>Nature Skill 1 Rank; Primitive Handiwork Talent.</li>
+                    <li>A Complication that states the character is illiterate.</li>
+                    <li>Athletics Skill 3 Ranks; Brawn Skill 3 Ranks; (Mighty Leap Talent or Steady Climber Talent or Swimmer Talent).</li>
+                </ul>
+            </section>
+            <section>
                 <h2>Dwarf</h2>
                 <h4>[Ancestry] [Core] Kit</h4>
                 <p><strong>Prerequisites:</strong> No other [Ancestry] Kits. This should be a character's first Kit.</p>
@@ -13,7 +31,7 @@ const Kits = () => {
                     <li>Boost your saving throws vs. poison and intoxication.</li>
                     <li>If you wear armor that gives you a Speed penalty (heavy armor or chainmail), and you are proficient with that armor, ignore the Speed penalty.</li>
                     <li><strong>Darkvision:</strong> Treat nonmagical darkness as if it were dimly lit.</li>
-                    <li><strong>Stability:</strong> Boost your Athletics and Brawn skill checks to maintain your footing.</li>
+                    <li><strong>Stability:</strong> Boost your Athletics and Brawn Skill checks to maintain your footing.</li>
                 </ul>
                 <h4>Drawbacks:</h4>
                 <ul>
@@ -138,7 +156,7 @@ const Kits = () => {
                     <li>Fighting Level +1 or Coast Number +1</li>
                     <li>Vitality Points Pool +4</li>
                     <li>Boost your Knowledge skill checks related to military traditions (including rank hierarchies).</li>
-                    <li><strong>Martial Weaponry:</strong> You are proficient with all martial weapons and with light armor. (You may immediately retrain the Light Armor Proficiency Talent if you have it.)</li>
+                    <li><strong>Martial Weaponry:</strong> You are proficient with all martial weapons and with light armor. (You may immediately retrain the Light Armor Training Talent if you have it.)</li>
                 </ul>
                 <h4>Archetypes:</h4>
                 <ul>
@@ -159,6 +177,26 @@ const Kits = () => {
                 <h4>Archetypes:</h4>
                 <ul>
                     <li>Athletics Skill 4 Ranks; Gadgetry Skill 3 Ranks; Lockpicking Talent; Steady Climber Talent.</li>
+                </ul>
+            </section>
+            <section>
+                <h2>Tiny Critter</h2>
+                <h4>[Ancestry] [Monster] Kit</h4>
+                <p><strong>Prerequisites:</strong> No other [Ancestry] Kits. This should be a character's first Kit.</p>
+                <h4>Benefits:</h4>
+                <ul>
+                    <li>Gain a "Bite" natural weapon: Range Melee 1; Impact Modifier -1; Piercing Damage; Bleed Number 5.</li>
+                    <li>Gain a +1 Ancestry bonus to Speed.</li>
+                    <li>Gain a +2 Ancestry bonus to Dexterity.</li>
+                    <li><strong>Tiny Size:</strong> Gain +2 Size bonuses to Defense saves and Accuracy of weapon attacks. Boost checks where your being smaller than a compared creature is an advantage (e.g. hiding from them).</li>
+                    <li><strong>Low-Light Vision:</strong> Treat nonmagical dim lighting as brightly lit.</li>
+                    <li><strong>Stability:</strong> Boost your Athletics and Brawn Skill checks to maintain your footing.</li>
+                </ul>
+                <h4>Drawbacks:</h4>
+                <ul>
+                    <li><strong>Beast Type:</strong> Cannot speak normal languages. Illiterate. Limited in the Dexterity, Gadgetry, Glibness, and Knowledge Skills.</li>
+                    <li><strong>Tiny Size:</strong> Incur a -4 Size penalty to your Brawn skill. Incur -2 Size penalties to Armor Value, Impact of weapon attacks, and Speed. Drag checks where your being smaller than a compared creature is a disadvantage (e.g. maintaining your footing if they push you around).</li>
+                    <li>Incur -2 penalties to your Gadgetry, Glibness, and Knowledge Skills.</li>
                 </ul>
             </section>
             <section>
