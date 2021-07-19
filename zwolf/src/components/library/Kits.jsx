@@ -200,9 +200,26 @@ const Kits = () => {
                 </ul>
             </section>
             <section>
+                <h2>Truespeaker</h2>
+                <h4>[Core] Kit</h4>
+                <p><strong>Prerequisites:</strong> Glibness Skill 1 Rank; Knowledge Skill 2 Ranks; Speak Language Talent.</p>
+                <h4>Benefits:</h4>
+                <ul>
+                    <li>Caster Level +1</li>
+                    <li>Gain a bonus Talent with the [Seed] or [Skill Trick] tag.</li>
+                    <li>Gain a Synergy bonus to your Spellcraft Check, based on Ranks in your Glibness Skill.</li>
+                </ul>
+                <h4>Archetypes:</h4>
+                <ul>
+                    <li>Word of Power Talent.</li>
+                    <li>Glibness Skill 5 Ranks; Performer Talent.</li>
+                    <li>Knowledge Skill 9 Ranks; Lore of History Talent; have used a [Creation] Ritual.</li>
+                </ul>
+            </section>
+            <section>
                 <h2>Wizard</h2>
                 <h4>[Core] Kit</h4>
-                <p><strong>Prerequisites:</strong> Knowledge Skill 1 Rnak; Lore of Arcana Talent; must be literate.</p>
+                <p><strong>Prerequisites:</strong> Knowledge Skill 1 Rank; Lore of Arcana Talent; must be literate.</p>
                 <h4>Benefits:</h4>
                 <ul>
                     <li>Caster Level +1</li>
