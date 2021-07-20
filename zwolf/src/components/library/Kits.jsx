@@ -22,6 +22,24 @@ const Kits = () => {
                 </ul>
             </section>
             <section>
+                <h2>Catfolk</h2>
+                <h4>[Ancestry] Kit</h4>
+                <p><strong>Prerequisites:</strong> No other [Ancestry] Kits. This should be a character's first Kit.</p>
+                <h4>Benefits:</h4>
+                <ul>
+                    <li>Gain a "Claw" natural weapon: Range Melee 1; Impact Modifier -3; Slashing Damage; Bleed Number 6.</li>
+                    <li>Gain a +1 Ancestry bonus to Reflex saves.</li>
+                    <li>Gain a +1 Ancestry bonus to Speed. Boost your Speed Checks whenever you have Exerted.</li>
+                    <li>Train your Perception and Stealth Skills. If Perception or Stealth is already Trained, you may immediately Retrain that Trained Skill.</li>
+                    <li><strong>Low-Light Vision:</strong> Treat nonmagical dim lighting as brightly lit.</li>
+                </ul>
+                <h4>Archetypes:</h4>
+                <ul>
+                    <li>Athletics 3 Ranks; Catfall Talent.</li>
+                    <li>Athletics 3 Ranks; Steady Climber Talent.</li>
+                </ul>
+            </section>
+            <section>
                 <h2>Dwarf</h2>
                 <h4>[Ancestry] [Core] Kit</h4>
                 <p><strong>Prerequisites:</strong> No other [Ancestry] Kits. This should be a character's first Kit.</p>
@@ -54,7 +72,7 @@ const Kits = () => {
                     <li>Gain a +2 Ancestry bonus to Reflex saves.</li>
                     <li>Gain a +1 Ancestry bonus to Speed.</li>
                     <li>Gain a +1 Ancestry bonus to Spellcraft.</li>
-                    <li>Train your Perception skill. If Perception is already Trained, you may immediately Retrain that Trained Skill.</li>
+                    <li>Train your Perception Skill. If Perception is already Trained, you may immediately Retrain that Trained Skill.</li>
                     <li>Boost your saving throws vs. [Charm] effects.</li>
                     <li><strong>Low-Light Vision:</strong> Treat nonmagical dim lighting as brightly lit.</li>
                     <li><em>Extended Rest:</em> During an extended rest, you only need be inert for four hours. You can spend the other four hours doing calm activities (such as keeping watch, reading, meditating, or handicrafts).</li>
@@ -194,7 +212,7 @@ const Kits = () => {
                 </ul>
                 <h4>Drawbacks:</h4>
                 <ul>
-                    <li><strong>Beast Type:</strong> Cannot speak normal languages. Illiterate. Limited in the Dexterity, Gadgetry, Glibness, and Knowledge Skills.</li>
+                    <li><strong>Beast Type:</strong> Cannot speak normal languages. Illiterate. Limited in the Charisma, Dexterity, Gadgetry, Glibness, and Knowledge Skills.</li>
                     <li><strong>Tiny Size:</strong> Incur a -4 Size penalty to your Brawn skill. Incur -2 Size penalties to Armor Value, Impact of weapon attacks, and Speed. Drag checks where your being smaller than a compared creature is a disadvantage (e.g. maintaining your footing if they push you around).</li>
                     <li>Incur -2 penalties to your Gadgetry, Glibness, and Knowledge Skills.</li>
                 </ul>

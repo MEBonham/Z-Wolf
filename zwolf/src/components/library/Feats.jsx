@@ -119,7 +119,7 @@ const Feats = () => {
             <section>
                 <h2>Healing Embrace</h2>
                 <h4>[Core] [Spell] Feat</h4>
-                <p><strong>Prerequisites:</strong> Caster Level 1; Insight Skill 2 Ranks; one applicable Talent with the [Seed] tag.</p>
+                <p><strong>Prerequisites:</strong> Caster Level 1; Charisma Skill 2 Ranks; one applicable Talent with the [Seed] tag.</p>
                 <p><strong>Applicable Seeds:</strong> Animal, Mind, Plant, Radiant, Shadow, Water</p>
                 <p><strong>[Basic] Activity:</strong> 1 Action</p>
                 <h4>[Basic] Effect:</h4>
@@ -156,7 +156,7 @@ const Feats = () => {
             <section>
                 <h2>Pile On</h2>
                 <h4>[Strike] Feat</h4>
-                <p><strong>Prerequisites:</strong> Base Reflex Save +2; (Insight 3 Ranks or Beast Type trait).</p>
+                <p><strong>Prerequisites:</strong> Base Reflex Save +2; (Charisma 3 Ranks or Beast Type trait).</p>
                 <p><strong>Activity:</strong> Reaction</p>
                 <h4>Effect:</h4>
                 <p>When you are flanking a creature and your flanking ally hits (or crits) that creature with a melee attack, and either you or your flanking ally has Momentum, make a melee attack against the flanked creature.</p>
