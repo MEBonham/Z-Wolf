@@ -29,8 +29,8 @@ const Kits = () => {
                 <ul>
                     <li>Gain a "Claw" natural weapon: Range Melee 1; Impact Modifier -3; Slashing Damage; Bleed Number 6.</li>
                     <li>Gain a +1 Ancestry bonus to Reflex saves.</li>
-                    <li>Gain a +1 Ancestry bonus to Speed. Boost your Speed Checks whenever you have Exerted.</li>
-                    <li>Train your Perception and Stealth Skills. If Perception or Stealth is already Trained, you may immediately Retrain that Trained Skill.</li>
+                    <li>Gain a +1 Ancestry bonus to Speed. Boost your Speed Checks whenever you have Exerted. (You can freely Exert in combat with no other benefit, just to activate this ability, if you wish.)</li>
+                    <li>Train your Perception or Stealth Skill. If Perception and Stealth are already Trained, you may immediately Retrain one of those Trained Skills.</li>
                     <li><strong>Low-Light Vision:</strong> Treat nonmagical dim lighting as brightly lit.</li>
                 </ul>
                 <h4>Archetypes:</h4>
@@ -90,6 +90,22 @@ const Kits = () => {
                 </ul>
             </section>
             <section>
+                <h2>Guardian</h2>
+                <h4>[Core] Kit</h4>
+                <p><strong>Prerequisites:</strong> Fighting Level 2.</p>
+                <h4>Benefits:</h4>
+                <ul>
+                    <li>Fighting Level +1</li>
+                    <li>Vitality Points Pool +4</li>
+                    <li>Gain a bonus Talent with the [Proficiency] tag.</li>
+                    <li><em>Free Action:</em> If a creature you are Pressuring attacks your ally (and you are not also a target of the same attack), gain Momentum.</li>
+                </ul>
+                <h4>Archetypes:</h4>
+                <ul>
+                    <li>Base Fortitude Save +3; Hold the Line Talent; a Complication related to your having a protective instinct towards others.</li>
+                </ul>
+            </section>
+            <section>
                 <h2>Halfling</h2>
                 <h4>[Ancestry] [Core] Kit</h4>
                 <p><strong>Prerequisites:</strong> No other [Ancestry] Kits. This should be a character's first Kit.</p>
@@ -136,7 +152,7 @@ const Kits = () => {
                     <li>Train your Brawn skill. If Brawn is already Trained, you may immediately Retrain that Trained Skill.</li>
                     <li>Gain a +1 Discipline bonus to the Accuracy of your weapon attacks.</li>
                     <li><strong>Low-Light Vision:</strong> Treat nonmagical dim lighting as brightly lit.</li>
-                    <li><strong>Bully:</strong> Boost your skill checks to intimidate creatures who are not a larger Size Category than you.</li>
+                    <li><strong>Bully:</strong> Boost your skill checks to intimidate creatures who are not of a larger Size Category than your own.</li>
                 </ul>
                 <h4>Drawbacks:</h4>
                 <ul>
@@ -184,6 +200,42 @@ const Kits = () => {
                 </ul>
             </section>
             <section>
+                <h2>Ruffian</h2>
+                <h4>[Core] Kit</h4>
+                <p><strong>Prerequisites:</strong> Brawn Skill 2 Ranks; Stealth Skill 1 Rank.</p>
+                <h4>Benefits:</h4>
+                <ul>
+                    <li>Fighting Level +1</li>
+                    <li>Vitality Points Pool +2</li>
+                    <li>Gain a bonus Talent with the [Skill Trick] tag.</li>
+                    <li>Train an additional Skill.</li>
+                    <li><strong>Bully:</strong> Boost your skill checks to intimidate creatures who are not of a larger Size Category than your own.</li>
+                </ul>
+                <h4>Archetypes:</h4>
+                <ul>
+                    <li>Streetwise Talent.</li>
+                    <li>(Base Fortitude Save +3 or Base Reflex Save +3); Athletics Skill 3 Ranks; Gadgetry Skill 2 Ranks; Sailor Talent.</li>
+                </ul>
+            </section>
+            <section>
+                <h2>Shaman</h2>
+                <h4>[Core] Kit</h4>
+                <p><strong>Prerequisites:</strong> Nature Skill 2 Ranks; (Lore of Divinity Talent or Lore of Nature Talent).</p>
+                <h4>Benefits:</h4>
+                <ul>
+                    <li>Caster Level +1</li>
+                    <li>Vitality Points +2</li>
+                    <li>Gain a bonus Talent with the [Buff] or [Seed] tag.</li>
+                    <li>Gain a Synergy bonus to the Impact of your Spell Attacks, based on Ranks in your Nature Skill.</li>
+                </ul>
+                <h4>Drawbacks:</h4>
+                <p><strong>Wilds' Aversion:</strong> If you wear metallic armor or wield a metallic shield, you suffer a -2 penalty to your Spellcraft Checks and the Accuracy of your spell attacks.</p>
+                <h4>Archetypes:</h4>
+                <ul>
+                    <li>Glibness Skill 2 Ranks; (Warlock Kit or Wizard Kit); Bestow Curse Feat.</li>
+                </ul>
+            </section>
+            <section>
                 <h2>Soldier</h2>
                 <h4>[Core] Kit</h4>
                 <p><strong>Prerequisites:</strong> Base Fortitude Save +1; Athletics Skill 1 Rank; Brawn Skill 1 Rank; proficiency with a Martial weapon.</p>
@@ -197,6 +249,23 @@ const Kits = () => {
                 <h4>Archetypes:</h4>
                 <ul>
                     <li>Stealth Skill 4 Ranks.</li>
+                </ul>
+            </section>
+            <section>
+                <h2>Spellblade</h2>
+                <h4>[Core] Kit</h4>
+                <p><strong>Prerequisites:</strong> Heroics Check +1; one Feat with the [Spell] tag; Battle-Cast Talent.</p>
+                <h4>Benefits:</h4>
+                <ul>
+                    <li>Fighting Level +1</li>
+                    <li>Caster Level +1</li>
+                    <li>Vitality Points +2</li>
+                    <li>Gain a bonus Talent with the [Proficiency] or [Seed] tag.</li>
+                    <li>When you would lose Concentration due to a Hazard being inflicted on you, you may attempt a TN 15 Willpower Save to cancel that Hazard.</li>
+                </ul>
+                <h4>Archetypes:</h4>
+                <ul>
+                    <li>Base Fortitude Save +3; (Mighty Constitution Talent or Steely Focus Talent).</li>
                 </ul>
             </section>
             <section>
@@ -264,9 +333,7 @@ const Kits = () => {
                     <li>When you finish a Long Rest, you may immediately re-train one of your Feats. Both the Feat you lose and the Feat you gain must have the [Spell] tag and must be inscribed in a tome you have access to during your Long Rest.</li>
                 </ul>
                 <h4>Drawbacks:</h4>
-                <ul>
-                    <li><strong>Armor Aversion:</strong> If you wear armor or wield a shield, you suffer a penalty to your Spellcraft Checks and the Accuracy of your spell attacks. This penalty is equal to the armor's and shield's penalties to Athletics, Dexterity, and Stealth skills, plus 1 if you are wearing armor, plus 1 if you wield a shield.</li>
-                </ul>
+                <p><strong>Armor Aversion:</strong> If you wear armor or wield a shield, you suffer a penalty to your Spellcraft Checks and the Accuracy of your spell attacks. This penalty is equal to the armor's and shield's penalties to Athletics, Dexterity, and Stealth skills, plus 1 if you are wearing armor, plus 1 if you wield a shield.</p>
                 <h4>Archetypes:</h4>
                 <ul>
                     <li>Gadgetry Skill 3 Ranks; (Shaman Kit or Tinker Kit); Alchemy Talent.</li>

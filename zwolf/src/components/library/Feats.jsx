@@ -30,12 +30,83 @@ const Feats = () => {
                 </table>
             </section>
             <section>
+                <h2>Bestow Curse</h2>
+                <h4>[Core] [Spell] Feat</h4>
+                <p><strong>Prerequisites:</strong> Caster Level 1; one applicable Talent with the [Seed] tag.</p>
+                <p><strong>Applicable Seeds:</strong> Animal, Luck, Mind, Shadow</p>
+                <p><strong>Activity:</strong> 1 [Dominant] Action</p>
+                <h4>[Basic] Effect:</h4>
+                <p>Make a Spell Attack against one creature: Range 30 ft, Impact Modifier -4, damage type determined by your active Seed, Bleed Number 5.</p>
+                <p>Targets oppose this attack with a Willpower Save. Compare Impact to the target's Heroics Check bonus, instead of the target's AV, to determine Secondary Effects. If this attack inflicts a Hazard, use the provided Hazard Menu.</p>
+                <h4>[Basic] Seed Effects:</h4>
+                <ul>
+                    <li><strong>Animal:</strong> The attack deals Necrotic Damage. If the target would be Dropped by the attack, the target instead is transformed into a Tiny or smaller, virtually harmless animal for approximately 5 minutes. This is a [Shapeshift] effect.</li>
+                    <li><strong>Luck:</strong> The attack deals Psychic Damage.</li>
+                    <li><strong>Mind:</strong> The attack deals Psychic Damage.</li>
+                    <li><strong>Shadow:</strong> The attack deals Necrotic and Psychic Damage. If you cast the spell with Melee 1 Range, and allow the target to (optionally) use their Defense Save instead of their Willpower Save to oppose the attack, add +1d8 Impact to the attack.</li>
+                </ul>
+                <h4>[Advanced] Effect:</h4>
+                <p>Choose one of the following enhancements to the [Basic] Effect:
+                    <ul>
+                        <li>The attack's Range increases to 120 ft, and its Impact is Boosted.</li>
+                        <li>The attack's effects that last for approximately 5 minutes last approximately 3 days instead.</li>
+                        <li>Target a number of creatures or objects up to 1 + half your Level (rounded down). All targets must be within 30 ft of each other.</li>
+                        <li>The attack has a Special Augment for the purposes of inflicting Hazards.</li>
+                    </ul>
+                </p>
+                <h4>[Advanced] Seed Effects:</h4>
+                <ul>
+                    <li><strong>Luck:</strong> If the attack inflicts a Hazard, gain Momentum.</li>
+                    <li><strong>Mind:</strong> If the attack has a Special Augment, it is a [Fear] effect.</li>
+                    <li><strong>Shadow:</strong> If the attack has a Special Augment, it is a [Fear] effect.</li>
+                </ul>
+                <h4>Special Hazard Menu</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Requirement</th>
+                            <th>Effect</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>No Requirement.</td>
+                            <td>The target is Blinded until the end of your next turn.</td>
+                        </tr>
+                        <tr>
+                            <td>Bleed Number triggered.</td>
+                            <td>The target is Blinded for approximately 5 minutes.</td>
+                        </tr>
+                        <tr>
+                            <td>The target has Momentum.</td>
+                            <td>The target loses Momentum, and cannot expend Momentum to cancel Hazards inflicted by this attack.</td>
+                        </tr>
+                        <tr>
+                            <td>This spell has a Special Augment option.</td>
+                            <td>The target becomes Shaken for approximately 5 minutes, and cannot expend Momentum to cancel Hazards inflicted by this attack.</td>
+                        </tr>
+                        <tr>
+                            <td>You have at least Caster Level 4 and cast this spell using the Shadow Seed. The target is Off-Guard. Bleed Number triggered.</td>
+                            <td>The target dies.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            <section>
                 <h2>Cleave</h2>
                 <h4>[Core] [Strike] Feat</h4>
                 <p><strong>Prerequisites:</strong> Fighting Level 1.</p>
                 <p><strong>Activity:</strong> 1 Action</p>
                 <h4>Effect:</h4>
                 <p>When you have Momentum and you inflict a Hazard with a melee weapon attack, immediately make another standard attack with the same weapon against a different target. You don't need Momentum if the weapon involved is a Heavy Blade (other than a Saber) or an Axe.</p>
+            </section>
+            <section>
+                <h2>Dazing Strike</h2>
+                <h4>[Core] [Strike] Feat</h4>
+                <p><strong>Prerequisites:</strong> Fighting Level 2.</p>
+                <p><strong>Activity:</strong> 1 [Dominant] Action</p>
+                <h4>Effect:</h4>
+                <p>Make a melee weapon attack or a Charge Special Attack. The target of this attack may (optionally) use their Fortitude Save in place of their Defense Save to oppose this attack. If this attack inflicts a Hazard, the target is also Dazed until the start of your next turn.</p>
             </section>
             <section>
                 <h2>Dodge</h2>
@@ -87,6 +158,47 @@ const Feats = () => {
                         <li>Targets made primarily of metal or wearing primarily-metal armor Drag their Defense Save against the attack.</li>
                     </ul></li>
                     <li><strong>Weave:</strong> If the attack is a "miss," it still has the effects of a "hit."</li>
+                </ul>
+            </section>
+            <section>
+                <h2>Energy Strike</h2>
+                <h4>[Core] [Spell] [Strike] Feat</h4>
+                <p><strong>Prerequisites:</strong> Caster Level 1; one applicable Talent with the [Seed] tag.</p>
+                <p><strong>[Basic] Applicable Seeds:</strong> Acid, Air, Cold, Fire, Lightning, Radiant, Shadow</p>
+                <p><strong>Activity:</strong> 1 [Dominant] Action</p>
+                <h4>[Basic] Effect:</h4>
+                <p>Casting this Spell does not provoke Opportunity Attacks. Make a weapon attack, changing the Damage Type to a different type depending on the Seed you use to cast this Spell.</p>
+                <h4>[Basic] Seed Effects:</h4>
+                <ul>
+                    <li><strong>Acid:</strong> The attack deals Acid Damage.</li>
+                    <li><strong>Air:</strong> The attack deals Bludgeoning Damage.</li>
+                    <li><strong>Cold:</strong> The attack deals Cold Damage.</li>
+                    <li><strong>Fire:</strong> The attack deals Fire Damage.</li>
+                    <li><strong>Lightning:</strong> The attack deals Lightning Damage.</li>
+                    <li><strong>Radiant:</strong> The attack deals Radiant Damage.</li>
+                    <li><strong>Shadow:</strong> The attack deals Necrotic Damage.</li>
+                </ul>
+                <p><strong>[Advanced] Applicable Seeds:</strong> Acid, Air, Cold, Fire, Lightning, Mind, Plant, Radiant, Shadow, Weave</p>
+                <h4>[Advanced] Effect:</h4>
+                <p>Casting this Spell does not provoke Opportunity Attacks. Make a weapon attack, choosing one of the following enhancements to it:
+                    <ul>
+                        <li>The attack's Impact increases by +1d6. The attack deals its normal Damage Type <em>and</em> the Damage Type associated with the Seed used to cast this Spell.</li>
+                        <li>If the attack is a melee attack, its Range increases by Melee +2. The attack deals only the Damage Type associated with the Seed used to cast this Spell.</li>
+                        <li>If the attack is a melee attack, its Range increases by Melee +2, and its Impact increases by +1d6. The attack deals only the Damage Type associated with the Seed used to cast this Spell. Drag your Willpower Save to stay Suffused after casting this Spell.</li>
+                    </ul>
+                </p>
+                <h4>[Advanced] Seed Effects:</h4>
+                <ul>
+                    <li><strong>Acid:</strong> The associated Damage Type is Acid Damage.</li>
+                    <li><strong>Air:</strong> The associated Damage Type is Bludgeoning Damage.</li>
+                    <li><strong>Cold:</strong> The associated Damage Type is Cold Damage.</li>
+                    <li><strong>Fire:</strong> The associated Damage Type is Fire Damage.</li>
+                    <li><strong>Lightning:</strong> The associated Damage Type is Lightning Damage.</li>
+                    <li><strong>Mind:</strong> The associated Damage Type is Psychic Damage.</li>
+                    <li><strong>Plant:</strong> The associated Damage Type is Piercing Damage.</li>
+                    <li><strong>Radiant:</strong> The associated Damage Type is Radiant Damage.</li>
+                    <li><strong>Shadow:</strong> The associated Damage Type is Necrotic Damage.</li>
+                    <li><strong>Weave:</strong> The associated Damage Type is Thunder Damage.</li>
                 </ul>
             </section>
             <section>
