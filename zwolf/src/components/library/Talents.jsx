@@ -432,7 +432,7 @@ const Talents = () => {
                 <ul>
                     <li>If you have inhabited a neighborhood for at least a year, you can use your Knowledge skill (uncapped) to provide information about the area. You can use your Heroics Check instead, if that is better.</li>
                     <li>You can Coast Glibness Skill checks to collect rumors in a social setting, even under pressure.</li>
-                    <li>You can Coast Glibness or Knowledge Skill checks, as applicable, to play skill-based card or dice games. (You can also Coast Dexterity or Glibness Skill checks to cheat at almost any card or dice game, although a Perception check that matches your skill check can still catch you cheating.)</li>
+                    <li>You can Coast Glibness, Insight, or Knowledge Skill checks, as applicable, to play skill-based card or dice games. (You can also Coast Dexterity or Glibness Skill checks to cheat at almost any card or dice game, although a Perception check that matches your skill check can still catch you cheating.)</li>
                 </ul>
             </section>
             <section>

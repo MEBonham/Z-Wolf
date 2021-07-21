@@ -98,7 +98,7 @@ const Kits = () => {
                     <li>Gain a +1 Ancestry bonus to Speed.</li>
                     <li>Train your Dexterity skill. If Dexterity is already Trained, you may immediately Retrain that Trained Skill.</li>
                     <li>Boost your saving throws vs. Fear.</li>
-                    <li>You are proficient with throwing small rocks (they do not count as improvised weapons for you). Treat it as a One-Handed weapon with an Impact Modifier of -1, Bludgeoning damage, Bleed Number 3, Range: Thrown 15 ft.</li>
+                    <li>You are proficient with throwing small rocks (they do not count as improvised weapons for you). Treat them as a One-Handed weapon with an Impact Modifier of -1, Bludgeoning damage, Bleed Number 3, Range: Thrown 15 ft.</li>
                     <li><strong>Small Size:</strong> Gain +1 Size bonuses to Defense saves and Accuracy of weapon attacks. Boost checks where your being smaller than a compared creature is an advantage (e.g. hiding from them).</li>
                 </ul>
                 <h4>Drawbacks:</h4>
@@ -166,6 +166,24 @@ const Kits = () => {
                 </ul>
             </section>
             <section>
+                <h2>Rogue</h2>
+                <h4>[Core] Kit</h4>
+                <p><strong>Prerequisites:</strong> Courtly Manner Talent or Social Intuition Talent or Streetwise Talent.</p>
+                <h4>Benefits:</h4>
+                <ul>
+                    <li>Coast Number +1</li>
+                    <li>Gain a bonus Talent with the [Luck] or [Skill Trick] tag.</li>
+                    <li>Train an additional Skill.</li>
+                    <li>You may Coast Glibness Skill checks, even under pressure.</li>
+                    <li>Gain a Synergy bonus to your Awesome Check, based on Ranks in your Glibness Skill.</li>
+                </ul>
+                <h4>Archetypes:</h4>
+                <ul>
+                    <li>Snake-Tongued Talent.</li>
+                    <li>Stealth Skill 6 Ranks; Disguises Talent.</li>
+                </ul>
+            </section>
+            <section>
                 <h2>Soldier</h2>
                 <h4>[Core] Kit</h4>
                 <p><strong>Prerequisites:</strong> Base Fortitude Save +1; Athletics Skill 1 Rank; Brawn Skill 1 Rank; proficiency with a Martial weapon.</p>
@@ -225,7 +243,7 @@ const Kits = () => {
                 <ul>
                     <li>Caster Level +1</li>
                     <li>Gain a bonus Talent with the [Seed] or [Skill Trick] tag.</li>
-                    <li>Gain a Synergy bonus to your Spellcraft Check, based on Ranks in your Glibness Skill.</li>
+                    <li>Gain a Synergy bonus to the Accuracy of your Spell Attacks, based on Ranks in your Glibness Skill.</li>
                 </ul>
                 <h4>Archetypes:</h4>
                 <ul>
