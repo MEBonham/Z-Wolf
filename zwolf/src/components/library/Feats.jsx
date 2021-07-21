@@ -109,6 +109,15 @@ const Feats = () => {
                 <p>Make a melee weapon attack or a Charge Special Attack. The target of this attack may (optionally) use their Fortitude Save in place of their Defense Save to oppose this attack. If this attack inflicts a Hazard, the target is also Dazed until the start of your next turn.</p>
             </section>
             <section>
+                <h2>Dirty Trick</h2>
+                <h4>[Boost] [Core] Feat</h4>
+                <p><strong>Prerequisites:</strong> Coast Number 5.</p>
+                <p><strong>Activity:</strong> 1 Action</p>
+                <h4>Effect:</h4>
+                <p>If you have Momentum, cause one creature within 15 ft to be Dazed. The victim can attempt to make a Reflex Save (with a TN equal to your Coast Number) to make you expend Momentum.</p>
+                <p>The Dazed condition from this effect lasts until the end of your turn if the victim succeeds on a Fortitude Save (with a TN equal to your Coast Number), or at the start of your next turn otherwise.</p>
+            </section>
+            <section>
                 <h2>Dodge</h2>
                 <h4>[Core] [Counter] [Grace] Feat</h4>
                 <p><strong>Prerequisites:</strong> Athletics Skill 3 Ranks.</p>
@@ -319,6 +328,14 @@ const Feats = () => {
                 </p>
                 <h4>Benefit:</h4>
                 <p>Gain a +1 Discipline Bonus to your Spellcraft Check.</p>
+            </section>
+            <section>
+                <h2>Stunt Attack</h2>
+                <h4>[Core] [Grace] [Strike] Feat</h4>
+                <p><strong>Prerequisites:</strong> Base Reflex Save +2 or Brawn Skill 4 Ranks.</p>
+                <p><strong>Activity:</strong> 1 [Dominant] Action</p>
+                <h4>Effect:</h4>
+                <p>Move your normal striding distance. If this movement involves an Athletics Check with a result of at least 9 (or 5 if you have a free hand), make a melee weapon attack at the end of your movement. You may expend Momentum to use your Athletics result in place of this attack's normal Accuracy. If your attack is made with a Light Blade weapon, the attack also enjoys Combat Advantage.</p>
             </section>
             <section>
                 <h2>Toughness</h2>

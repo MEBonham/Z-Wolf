@@ -11,6 +11,16 @@ const Talents = () => {
                 <p>As an Action, you can enable yourself to cast your Spells using the Acid Seed. This lasts until you activate another Seed of magic or become unconscious.</p>
             </section>
             <section>
+                <h2>Alchemy</h2>
+                <h4>[Core] [Seed] Talent</h4>
+                <p><strong>Prerequisites:</strong> Knowledge Skill 1 Rank.</p>
+                <h4>Benefits:</h4>
+                <ul>
+                    <li>You can use your Gadgetry Skill to earn additional Wealth during downtime.</li>
+                    <li>You can use your Gadgetry Skill (Uncapped) to craft alchemical items.</li>
+                </ul>
+            </section>
+            <section>
                 <h2>Artisan</h2>
                 <h4>[Core] [Skill Trick] Talent</h4>
                 <p><strong>Prerequisites:</strong> see table.</p>
@@ -261,6 +271,15 @@ const Talents = () => {
                 </ul>
             </section>
             <section>
+                <h2>Heavy Armor Training</h2>
+                <h4>[Core] [Proficiency] Talent</h4>
+                <p><strong>Prerequisites:</strong> Base Fortitude Save +2; Brawn Skill 3 Ranks; proficient with light armor.</p>
+                <h4>Benefits:</h4>
+                <p>You are proficient with heavy armor. (Wearing heavy armor still incurs a -1 penalty to Speed Checks unless this is prevented by the Dwarf Kit or a similar effect.)</p>
+                <h4>Normal:</h4>
+                <p>Wearing heavy armor nonproficiently incurs a -4 penalty to attack Accuracy and a -2 penalty to Speed Checks.</p>
+            </section>
+            <section>
                 <h2>Hold the Line</h2>
                 <h4>[Core] Talent</h4>
                 <p><strong>Prerequisites:</strong> Fighting Level 2.</p>
@@ -347,6 +366,30 @@ const Talents = () => {
                 </ul>
             </section>
             <section>
+                <h2>Lore of Nature</h2>
+                <h4>[Core] [Skill Trick] Talent</h4>
+                <p><strong>Prerequisites:</strong> Nature Skill 1 Rank.</p>
+                <h4>Benefits:</h4>
+                <ul>
+                    <li>You can Coast Knowledge Skill checks about flora, fauna, ecology, and weather.</li>
+                    <li>You can perform Rituals with the [Primal] tag, as long as you meet their other requirements.</li>
+                </ul>
+            </section>
+            <section>
+                <h2>Luck Seed</h2>
+                <h4>[Core] [Luck] [Seed] Talent</h4>
+                <p><strong>Prerequisites:</strong> none.</p>
+                <h4>Benefits:</h4>
+                <p>As an Action, you can enable yourself to cast your Spells using the Luck Seed. This lasts until you activate another Seed of magic or become unconscious.</p>
+            </section>
+            <section>
+                <h2>Lucky Attitude</h2>
+                <h4>[Core] [Luck] Talent</h4>
+                <p><strong>Prerequisites:</strong> Coast Number 5 or Heroics Check +2.</p>
+                <h4>Benefits:</h4>
+                <p>When you roll Initiative, you can attempt a TN 15 Awesome Check to gain Momentum.</p>
+            </section>
+            <section>
                 <h2>Mage Armor</h2>
                 <h4>[Buff] [Core] Talent</h4>
                 <p><strong>Prerequisites:</strong> Caster Level 1; one Feat with the [Spell] tag.</p>
@@ -359,9 +402,16 @@ const Talents = () => {
             <section>
                 <h2>Martial Training</h2>
                 <h4>[Core] [Proficiency] Talent</h4>
-                <p><strong>Prerequisites:</strong> Select one Category of weapons (Axes, Bows, Clubs, Crossbows, Flails, Heavy Blades, Light Blades, Polearms, or Spears). (You can take this Talent multiple times to select multiple Categories.</p>
+                <p><strong>Prerequisites:</strong> Select one Category of weapons (Axes, Bows, Clubs, Crossbows, Flails, Heavy Blades, Light Blades, Polearms, or Spears). (You can take this Talent multiple times to select multiple Categories.)</p>
                 <h4>Benefits:</h4>
                 <p>You are proficient with Martial-grade weapons of the selected Category. (If a Martial weapon has more than one Category, you only need one of them in order to be proficient.)</p>
+            </section>
+            <section>
+                <h2>Mighty Leap</h2>
+                <h4>[Core] [Skill Trick] Talent</h4>
+                <p><strong>Prerequisites:</strong> none.</p>
+                <h4>Benefits:</h4>
+                <p>You can Coast Athletics Skill checks related to jumping, even under pressure.</p>
             </section>
             <section>
                 <h2>Performer</h2>
@@ -373,6 +423,13 @@ const Talents = () => {
                     <li>You can Coast skill checks to perform with a musical instrument you have proficiency with, even under pressure.</li>
                     <li>You can use your Glibness Skill (or other skills, at the GM's discretion) to earn additional Wealth during downtime.</li>
                 </ul>
+            </section>
+            <section>
+                <h2>Plant Seed</h2>
+                <h4>[Core] [Seed] Talent</h4>
+                <p><strong>Prerequisites:</strong> none.</p>
+                <h4>Benefits:</h4>
+                <p>As an Action, you can enable yourself to cast your Spells using the Plant Seed. This lasts until you activate another Seed of magic or become unconscious.</p>
             </section>
             <section>
                 <h2>Radiant Seed</h2>
@@ -392,6 +449,13 @@ const Talents = () => {
                 <p><strong>Size Category -1:</strong> Incur a -2 Size penalty to your Brawn skill. Incur -1 Size penalties to Armor Value, Impact of weapon attacks, and Speed. Drag checks where your being smaller than a compared creature is a disadvantage (e.g. maintaining your footing if they push you around).</p>
             </section>
             <section>
+                <h2>Saber Training</h2>
+                <h4>[Core] [Proficiency] Talent</h4>
+                <p><strong>Prerequisites:</strong> Dexterity Skill 1 Rank; (Martial Training Talent selecting Heavy Blades or Light Blades, or Martial Weaponry trait).</p>
+                <h4>Benefits:</h4>
+                <p>You are proficient with Sabers.</p>
+            </section>
+            <section>
                 <h2>Sailor</h2>
                 <h4>[Core] [Skill Trick] Talent</h4>
                 <p><strong>Prerequisites:</strong> Athletics Skill 1 Rank.</p>
@@ -406,6 +470,13 @@ const Talents = () => {
                 </ul>
             </section>
             <section>
+                <h2>Shadow Seed</h2>
+                <h4>[Core] [Seed] Talent</h4>
+                <p><strong>Prerequisites:</strong> none.</p>
+                <h4>Benefits:</h4>
+                <p>As an Action, you can enable yourself to cast your Spells using the Shadow Seed. This lasts until you activate another Seed of magic or become unconscious.</p>
+            </section>
+            <section>
                 <h2>Shield Training</h2>
                 <h4>[Core] [Proficiency] Talent</h4>
                 <p><strong>Prerequisites:</strong> Fighting Level 1.</p>
@@ -416,6 +487,21 @@ const Talents = () => {
                 </ul>
                 <h4>Normal</h4>
                 <p>Wielding a shield nonproficiently incurs a -2 penalty to Athletics, Dexterity, and Stealth checks, as well as Spellcraft checks and spell attack Accuracy. Nonproficient shield bash attacks have an Impact modifier of -3, rather than the Impact Modifier shown on the Shields table.</p>
+            </section>
+            <section>
+                <h2>Snake-Tongued</h2>
+                <h4>[Core] [Skill Trick] Talent</h4>
+                <p><strong>Prerequisites:</strong> none.</p>
+                <h4>Benefits:</h4>
+                <p>You can Coast Glibness Skill checks related to lying, even under pressure.</p>
+            </section>
+            <section>
+                <h2>Speak Language</h2>
+                <h4>[Core] [Skill Trick] Talent</h4>
+                <p><strong>Prerequisites:</strong> (Knowledge Skill 2 Ranks or Coast Number 6 or (if taking this Talent at Level 1) extensive exposure to a language in your background); select one Language available in your setting. (You can take this Talent multiple times to select multiple Categories.)</p>
+                <h4>Benefits:</h4>
+                <p>You learn at least the basics of your selected language. While the GM might rule that you need in-game time to become truly fluent, you should be able to do everyday communication without penalty.</p>
+                <p><strong>Standard Languages List:</strong> Abyssal, Aquan, Auran, Celestial, Common, Deep Speech, Draconic, Dwarvish, Elvish, Gnoll, Gnomish, Goblin, Halfling, Ignan, Infernal, Jotun, Orcish, Sylvan, Terran, Undercommon.</p>
             </section>
             <section>
                 <h2>Steady Climber</h2>
@@ -464,6 +550,20 @@ const Talents = () => {
                 </ul>
                 <h4>Drawbacks:</h4>
                 <p>Reduce your starting Wealth Score by -2.</p>
+            </section>
+            <section>
+                <h2>Weapon Focus</h2>
+                <h4>[Core] [Proficiency] Talent</h4>
+                <p><strong>Prerequisites:</strong> Fighting Level 2. Select one Category of weapons (Axes, Bows, Clubs, Crossbows, Flails, Heavy Blades, Light Blades, Polearms, or Spears). (You can take this Talent multiple times to select multiple Categories.)</p>
+                <h4>Benefits:</h4>
+                <p>Boost your Saving Throws that oppose a wielded weapon of the selected Category get Disarmed or Sundered.</p>
+            </section>
+            <section>
+                <h2>Windfall</h2>
+                <h4>[Core] Talent</h4>
+                <p><strong>Prerequisites:</strong> If this Talent is taken later than Level 1, there must be an in-story explanation of how your Wealth is increasing before the effect takes place.</p>
+                <h4>Benefits:</h4>
+                <p>Your Wealth Score gains a one-time increase of +4.</p>
             </section>
         </>
     );

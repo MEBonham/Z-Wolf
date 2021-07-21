@@ -12,7 +12,9 @@ const CaveRat = () => {
             <h3>Saving Throws</h3>
             <p><strong>Defense:</strong> +3; <strong>Fortitude:</strong> +0; <strong>Reflex:</strong> +2; <strong>Willpower:</strong> +0</p>
             <h3>Skills (Coast Number 4)</h3>
-            <p><strong>Athletics:</strong> +3; <strong>Brawn:</strong> -5; <strong>Dexterity:</strong> +2; <strong>Gadgetry:</strong> -2; <strong>Glibness:</strong> -2; <strong>Insight:</strong> +1; <strong>Knowledge:</strong> -2; <strong>Nature:</strong> +1; <strong>Perception:</strong> +2; <strong>Stealth:</strong> +1</p>
+            <p><strong>Athletics:</strong> +3; <strong>Brawn:</strong> -5; <strong>Charisma:</strong> +0; <strong>Dexterity:</strong> +2; <strong>Gadgetry:</strong> -2; <strong>Glibness:</strong> -2; <strong>Insight:</strong> +1; <strong>Knowledge:</strong> -2; <strong>Nature:</strong> +1; <strong>Perception:</strong> +3; <strong>Stealth:</strong> +1</p>
+            <h3>Equipment</h3>
+            <p><strong>Wealth:</strong> 1</p>
             <h3>Attacks</h3>
             <p><strong>Bite:</strong> Range Melee 1; Impact Modifier -4; Piercing Damage; Accuracy 10; Bleed Number 5.</p>
             <p><strong>Unarmed Strike:</strong> Range Melee 1; Impact Modifier -7; Bludgeoning Damage; Accuracy 6; Bleed Number 3.</p>
