@@ -1,19 +1,24 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
+import { FOOTER_HEIGHT_PX } from '../helpers/SiteConstants';
+import { MainEnvelope } from '../styling/StyleBank';
+import MainHeader from './headerfooter/MainHeader';
 import MainRouting from './MainRouting';
 
 const App = () => {
+    const [headerFooterHeight, setHeaderFooterHeight] = useState(80);
+
+    useEffect(() => {
+        setHeaderFooterHeight(document.querySelector(".App > header").offsetHeight + FOOTER_HEIGHT_PX);
+    }, []);
+
     return(
         <div className="App">
-            <header>
-                <h1>Z-Wolf RPG</h1>
-            </header>
-            <section>
+            <MainHeader />
+            <MainEnvelope headerFooterHeight={headerFooterHeight}>
                 <MainRouting />
-            </section>
-            <footer>
-                <p>&copy; {new Date().getFullYear()} M. Everett Bonham</p>
-            </footer>
+            </MainEnvelope>
+            <MainFooter />
         </div>
     );
 }
