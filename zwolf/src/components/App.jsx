@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import { FOOTER_HEIGHT_PX } from '../helpers/SiteConstants';
-import { MainEnvelope } from '../styling/StyleBank';
+import { MainEnvelope, PrimaryBar } from '../styling/StyleBank';
 import MainHeader from './headerfooter/MainHeader';
 import MainFooter from './headerfooter/MainFooter';
 import MainRouting from './MainRouting';
@@ -17,11 +17,11 @@ const App = () => {
         <div className="App">
             <MainHeader />
             <MainEnvelope headerFooterHeight={headerFooterHeight}>
-                <section className="primary">
+                <PrimaryBar>
                     <MainRouting />
-                </section>
-                <section classname="sidebar">
-                    
+                </PrimaryBar>
+                <section className="sidebar">
+
                 </section>
             </MainEnvelope>
             <MainFooter />

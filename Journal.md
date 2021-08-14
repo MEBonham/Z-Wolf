@@ -20,4 +20,5 @@
 18. Within zwolf folder, `yarn add styled-components`
 19. Create StyleBank.js in styling folder, add first styled component CSS
 20. Put Eric Meyer Reset and global styles in index.css
-21. 
+21. If vite stops working, delete node_modules and yarn.lock and re-install stuff with `yarn`
+22. Style main blocks of screen

@@ -43,4 +43,46 @@ export const MainEnvelope = styled.section`
     a {
         color: #32a852;
     }
+    
+    > section.sidebar {
+        width: 34%;
+        background-color: #302315;
+    }
 `;
+
+export const PrimaryBar = styled.section`
+    width: 66%;
+    margin: 10px 12px 10px 10px;
+    padding: 10px 30px;
+    background-color: #2a2a2a;
+    border-radius: 10px;
+    box-shadow: 0 0 7px #32a852;
+    overflow-y: auto;
+
+    h1 {
+        margin: 14px 0 8px;
+        font-size: 3rem;
+    }
+    h2 {
+        margin: 8px 0;
+        font-size: 2.4rem;
+    }
+    p {
+        margin: 8px 0;
+        line-height: 1.4;
+        font-size: 1.4rem;
+    }
+
+    nav.toc, section.typicalList {
+        font-size: 1.4rem;
+
+        ul {
+            list-style: none;
+            
+            li {
+                margin: 2px 0;
+            }
+        }
+    }
+`;
+
