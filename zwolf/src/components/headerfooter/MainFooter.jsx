@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { FOOTER_HEIGHT_PX } from '../helpers/SiteConstants';
+import { FOOTER_HEIGHT_PX } from '../../helpers/SiteConstants';
 import { FooterEnvelope } from '../../styling/StyleBank';
 
 const MainFooter = () => {

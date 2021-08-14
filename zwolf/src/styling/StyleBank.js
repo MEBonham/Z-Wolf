@@ -39,4 +39,8 @@ export const MainEnvelope = styled.section`
     display: flex;
     justify-content: center;
     color: #32a852;
+
+    a {
+        color: #32a852;
+    }
 `;

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { FOOTER_HEIGHT_PX } from '../helpers/SiteConstants';
 import { MainEnvelope } from '../styling/StyleBank';
 import MainHeader from './headerfooter/MainHeader';
+import MainFooter from './headerfooter/MainFooter';
 import MainRouting from './MainRouting';
 
 const App = () => {
@@ -16,7 +17,12 @@ const App = () => {
         <div className="App">
             <MainHeader />
             <MainEnvelope headerFooterHeight={headerFooterHeight}>
-                <MainRouting />
+                <section className="primary">
+                    <MainRouting />
+                </section>
+                <section classname="sidebar">
+                    
+                </section>
             </MainEnvelope>
             <MainFooter />
         </div>
