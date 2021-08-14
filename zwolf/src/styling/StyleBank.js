@@ -53,11 +53,10 @@ export const MainEnvelope = styled.section`
 export const PrimaryBar = styled.section`
     width: 66%;
     margin: 10px 12px 10px 10px;
-    padding: 10px 30px;
+    padding: 10px 8px 10px 30px;
     background-color: #2a2a2a;
     border-radius: 10px;
     box-shadow: 0 0 7px #32a852;
-    overflow-y: auto;
 
     h1 {
         margin: 14px 0 8px;
@@ -92,8 +91,6 @@ export const PrimaryBar = styled.section`
             }
         }
     }
-
-
 `;
 
 export const SpecialBlock = styled.section`

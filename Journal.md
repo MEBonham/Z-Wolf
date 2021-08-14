@@ -22,3 +22,6 @@
 20. Put Eric Meyer Reset and global styles in index.css
 21. If vite stops working, delete node_modules and yarn.lock and re-install stuff with `yarn`
 22. Style main blocks of screen
+23. `yarn add simplebar-react`
+24. Add SimpleBarReact component within PrimaryBar envelope. Remove PrimaryBar's overflow-y style, adjust padding of both elements (unfortunately using inline styling for SimpleBarReact, both padding and height).
+25. 

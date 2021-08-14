@@ -27,9 +27,9 @@ const Ankithlakith = () => {
             <p><strong>Saber:</strong> Range Melee 3; Impact Modifier -2; Piercing or Slashing Damage; Accuracy 8; Bleed Number 5.</p>
             <p><strong>Dagger:</strong> Range Melee 1 or Thrown 15 ft; Impact Modifier -3; Piercing and Slashing Damage; Accuracy 8; Bleed Number 5.</p>
             <p><strong>Claw:</strong> Range Melee 1; Impact Modifier -3; Slashing Damage; Accuracy 8; Bleed Number 6.</p>
-            <p><strong>Unarmed Strike:</strong> Range Melee 1; Impact Modifier -4; Bludgeoning Damage; Accuracy 3; Bleed Number 4.</p>
+            <p><strong>Unarmed Strike:</strong> Range Melee 1; Impact Modifier -4; Bludgeoning Damage; Accuracy 3; Bleed Number 3.</p>
             <h2>[Dominant] Actions</h2>
-            <p><strong>Stunt Attack:</strong> Move up to 30 ft. If this movement involves an Athletics Skill check with a result of at least 5 (or 9 with off-hand holding something), make a melee weapon attack at the end of your movement. If you expend Momentum, use Athletics result in place of attack's normal Accuracy. If your attack is made with a Light Blade weapon, the attack also enjoys Combat Advantage.</p>
+            <p><strong>Stunt Attack:</strong> Move up to 30 ft. If this movement involves an Athletics Skill check with a result of at least 5 (or at least 9 with off-hand holding something), make a melee weapon attack at the end of your movement. If you expend Momentum, use Athletics result in place of attack's normal Accuracy. If your attack is made with a Light Blade weapon, the attack also enjoys Combat Advantage.</p>
             <h2>Actions</h2>
             <p><strong>Dirty Trick:</strong> With Momentum, Daze a creature within 15 ft; expend Momentum if it passes a TN 5 Reflex Save. At the end of your turn, it can attempt a TN 5 Fortitude Save to end the Dazed condition; otherwise, Dazed lasts until the start of your next turn.</p>
             <h2>Reactions</h2>
@@ -40,7 +40,7 @@ const Ankithlakith = () => {
                     <li><strong>Catfolk:</strong> Boost Speed Checks whenever Exerted.</li>
                     <li><strong>Low-Light Vision:</strong> Treat nonmagical dim lighting as brightly lit.</li>
                     <li><strong>Rogue:</strong> Coast Glibness Skill checks.</li>
-                    <li><strong>Streetwise:</strong> Use Knowledge Skill or Heroics Check (Uncapped) to know info about neighborhood with at least a year's exposure. Coast skill checks to play card or dice games, cheating where applicable.</li>
+                    <li><strong>Streetwise:</strong> Use Knowledge Skill or Heroics Check (Uncapped) to know info about neighborhood with at least a year's exposure. Coast skill checks to play card or dice games, including cheating.</li>
                     <li><strong>Steady Climber:</strong> Coast Athletics Skill checks to climb.</li>
                     <li><strong>Lockpicking:</strong> Use Dexterity Skill (Uncapped) to pick locks. Coast Dexterity Skill checks to pick locks.</li>
                     <li><strong>Bully:</strong> Boost skill checks to intimidate Medium or smaller creatures.</li>
@@ -49,6 +49,16 @@ const Ankithlakith = () => {
             </section>
             <h2>Special</h2>
             <p><strong>Lucky Attitude:</strong> When rolling Initiative, attempt a TN 15 Awesome Check to gain Momentum.</p>
+            <section className="typicalList">
+                <h2>Complications</h2>
+                <ul>
+                    <li><strong>Motivation - Survival:</strong> Ankithlakith is scrappy and pragmatic when it comes to staying alive.</li>
+                    <li><strong>Relationship:</strong> Ankithlakith is very close to his girlfiend Zaninath, who has recently gone missing. He is highly concerned about this.</li>
+                    <li><strong>Lazy:</strong> Ankithlakith really likes the fact that he doesn't have a normal day job. He's willing to live in squalid conditions and face dangers to maintain that status.</li>
+                    <li><strong>Impulsive:</strong> Ankithlakith doesn't always think plans through before executing them.</li>
+                    <li><strong>Glory Hog:</strong> Ankithlakith enjoys the praise and attention he can sometimes earn through heroics or by use of his silver tongue.</li>
+                </ul>
+            </section>
         </>
     );
 }

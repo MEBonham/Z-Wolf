@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import SimpleBarReact from 'simplebar-react';
 
+import 'simplebar/dist/simplebar.min.css';
 import { FOOTER_HEIGHT_PX } from '../helpers/SiteConstants';
 import { MainEnvelope, PrimaryBar } from '../styling/StyleBank';
 import MainHeader from './headerfooter/MainHeader';
@@ -18,7 +20,9 @@ const App = () => {
             <MainHeader />
             <MainEnvelope headerFooterHeight={headerFooterHeight}>
                 <PrimaryBar>
-                    <MainRouting />
+                    <SimpleBarReact style={{ height: '100%', paddingRight: '30px' }}>
+                        <MainRouting />
+                    </SimpleBarReact>
                 </PrimaryBar>
                 <section className="sidebar">
 
