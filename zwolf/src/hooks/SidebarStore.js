@@ -3,7 +3,7 @@ import create from 'zustand';
 const useSidebar = create((set) => ({
 
     mode: "acctMgt",
-    modeSwap: (newMode) => set((state) => { mode: newMode }),
+    modeSwap: (newMode) => set((state) => ({ mode: newMode })),
     modesList: {
         mainNavMenu: {
             navInclude: false,

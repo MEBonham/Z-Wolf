@@ -1,30 +1,36 @@
 import React, { useEffect, useState } from 'react';
-import SimpleBarReact from 'simplebar-react';
 
 import useSidebar from '../../hooks/SidebarStore';
 
 import MainNav from './MainNav';
+import AcctMgt from './AcctMgt';
 
 const SideContents = () => {
     const sideMode = useSidebar((state) => state.mode);
     const [modeComp, setModeComp] = useState(null);
+    const modeSwap = useSidebar((state) => state.modeSwap);
+
+    const handleMenuBtn = (ev) => {
+        modeSwap("mainNavMenu");
+    }
 
     useEffect(() => {
         switch (sideMode) {
+            case "acctMgt":
+                setModeComp(<AcctMgt />);
+                break;
             default:
                 setModeComp(<MainNav />);
         }
-    }, []);
+    }, [sideMode]);
 
     return(
         <>
             <header>
                 <span>Theme Swap</span>
-                <span>Main Menu Button</span>
+                <span onClick={handleMenuBtn} className="clickable">Main Menu Button</span>
             </header>
-            <SimpleBarReact style={{ height: 'calc(100% - 60px)', paddingRight: '20px' }}>
-                {modeComp}
-            </SimpleBarReact>
+            {modeComp}
         </>
     );
 }
