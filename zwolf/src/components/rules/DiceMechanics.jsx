@@ -3,7 +3,7 @@ import React from 'react';
 const DiceMechanics = () => {
     return(
         <>
-            <h2>Dice Mechanics</h2>
+            <h1>Dice Mechanics</h1>
             <p>Z-Wolf is designed entirely around twelve-sided (or "dodecahedral") dice, called d12s for short.</p>
             <p>When an RPG tells you to roll dice, it usually uses NdS notation, where N is the number of dice and S is the number of sides those dice have. For example, in Z-Wolf you usually roll three twelve-sided dice, or 3d12.</p>
             <h2>Basic Z-Wolf Checks</h2>
@@ -35,6 +35,9 @@ const DiceMechanics = () => {
             <p>Normally, Roll Replacement is optional, so you can just use it when it improves your situation. An exception is "Capped" die rolls, which represent your character attempting to do something that normally requires special training, without having the training in question.</p>
             <p>Your character has a statistic called his Heroics Check. It represents basic competency at just about everything, but is not a very high statistic. For Capped rolls, use this Heroics Check in place of a normal die roll, only if the overall modifier is reduced by this replacement. (This is effectively a penalty.)</p>
             <p>For example, Gunnzo the Goblin is a high-level character who is generally good at using items (tying knots, assembling clockwork, mixing up chemicals in a beaker), but hasn't gotten around to learning how locks work specifically. His Gadgetry Skill is +9, but his Heroic Bonus is only +3. If he attempts to pick a lock, he has to use the +3 modifier to his die roll instead of the +9.</p>
+            <h2>Types of Bonuses</h2>
+            <p>Some bonuses have a type given when they are detailed, such as a "Discipline Bonus" to your Armor Value if you have the Toughness Feat.</p>
+            <p>Bonuses of the same type do not "stack" with each other. If you have two Discipline Bonuses to the same statistic, only the best one of these bonuses can be used.</p>
         </>
     );
 }

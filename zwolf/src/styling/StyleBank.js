@@ -38,10 +38,10 @@ export const MainEnvelope = styled.section`
     max-width: 1400px;
     display: flex;
     justify-content: center;
-    color: #32a852;
+    color: #cccccc;
 
     a {
-        color: #32a852;
+        color: #cccccc;
     }
     
     > section.sidebar {
@@ -67,6 +67,14 @@ export const PrimaryBar = styled.section`
         margin: 8px 0;
         font-size: 2.4rem;
     }
+    h3 {
+        margin: 8px 0;
+        font-size: 2rem;
+    }
+    h4 {
+        margin: 8px 0;
+        font-size: 1.6rem;
+    }
     p {
         margin: 8px 0;
         line-height: 1.4;
@@ -80,9 +88,32 @@ export const PrimaryBar = styled.section`
             list-style: none;
             
             li {
-                margin: 2px 0;
+                margin: 4px 0;
             }
         }
     }
+
+
 `;
 
+export const SpecialBlock = styled.section`
+    margin: 10px 0 20px;
+
+    ul {
+        margin-left: 24px;
+        font-size: 1.4rem;
+
+        li {
+            margin: 4px 0;
+        }
+    }
+    table {
+        border-collapse: separate;
+        border-spacing: 0 8px;
+        font-size: 1.4rem;
+
+        th {
+            font-weight: bold;
+        }
+    }
+`;

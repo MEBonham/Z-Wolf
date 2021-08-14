@@ -34,7 +34,7 @@ const CharacterCreation = () => {
             <h4>At Higher Levels</h4>
             <p>At levels higher than 1, Kits must be selected before Feats, and Feats before Talents, which may affect whether you quality for special abilities' Prerequisites.</p>
             <p>Your character gains a new Kit at Levels 3, 5, 7, and 9. They gain a Feat at each Level, up to Level 8. They gain a new Talent at each level.</p>
-            <h4>Help! I'm Paralyzed by Options!</h4>
+            <h4>"Help! I'm Paralyzed by Options!"</h4>
             <p>Z-Wolf allows for very diverse characters that do a lot of different things. If you're new to the system, this can cause a lot of stressful decision-making that you're not ready for.</p>
             <p>In this case, we recommend you follow the Pre-Built Characters' selections of special abilities. This is similar to having a Class in another TTRPG, dictating what special abilities you receive at each level of progression.</p>
             <h3>5. Choose Complications</h3>
