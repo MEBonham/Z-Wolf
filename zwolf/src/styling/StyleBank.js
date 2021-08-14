@@ -70,8 +70,8 @@ export const PrimaryBar = styled.section`
         font-size: 1.6rem;
     }
     p {
-        margin: 8px 0;
-        line-height: 1.4;
+        margin: 12px 0;
+        line-height: 1.5;
         font-size: 1.4rem;
     }
 
@@ -82,7 +82,7 @@ export const PrimaryBar = styled.section`
             list-style: none;
             
             li {
-                margin: 4px 0;
+                margin: 6px 0;
             }
         }
     }
@@ -102,6 +102,21 @@ export const Sidebar = styled.section`
     }
 `;
 
+export const MainNavStyle = styled.nav`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h2 {
+        margin: 12px 0;
+        font-size: 2.4rem;
+    }
+    p {
+        margin: 8px 0;
+        font-size: 1.6rem;
+    }
+`;
+
 export const SpecialBlock = styled.section`
     margin: 10px 0 20px;
 
@@ -110,7 +125,7 @@ export const SpecialBlock = styled.section`
         font-size: 1.4rem;
 
         li {
-            margin: 4px 0;
+            margin: 6px 0;
         }
     }
     table {
