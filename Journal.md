@@ -24,4 +24,7 @@
 22. Style main blocks of screen
 23. `yarn add simplebar-react`
 24. Add SimpleBarReact component within PrimaryBar envelope. Remove PrimaryBar's overflow-y style, adjust padding of both elements (unfortunately using inline styling for SimpleBarReact, both padding and height).
-25. 
+25. Go to Firebase Console and add Auth to project. Copy script tag for firebase/auth into scripts section of index.html (apparently this is a new way where you don't need the full firebase credentials JSON anymore?)
+26. `yarn add zustand`
+27. Create useSidebar hook using zustand.create under hooks folder; fill it in with information about all sidebar modes and a swap function
+28. 

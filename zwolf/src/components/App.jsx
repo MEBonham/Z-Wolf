@@ -3,9 +3,10 @@ import SimpleBarReact from 'simplebar-react';
 
 import 'simplebar/dist/simplebar.min.css';
 import { FOOTER_HEIGHT_PX } from '../helpers/SiteConstants';
-import { MainEnvelope, PrimaryBar } from '../styling/StyleBank';
+import { MainEnvelope, PrimaryBar, Sidebar } from '../styling/StyleBank';
 import MainHeader from './headerfooter/MainHeader';
 import MainFooter from './headerfooter/MainFooter';
+import SideContents from './sidebar/SideContents';
 import MainRouting from './MainRouting';
 
 const App = () => {
@@ -24,9 +25,9 @@ const App = () => {
                         <MainRouting />
                     </SimpleBarReact>
                 </PrimaryBar>
-                <section className="sidebar">
-
-                </section>
+                <Sidebar>
+                    <SideContents />
+                </Sidebar>
             </MainEnvelope>
             <MainFooter />
         </div>

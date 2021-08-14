@@ -12,16 +12,16 @@ const Home = () => {
                 <h2>Monsters & Characters</h2>
                 <ul>
                     <li>
-                        <Link to="/bestiary/fighter">Example Fighter Build</Link>
+                        <Link to="/bestiary/fighter">Pre-Built PC: Fighter</Link>
                     </li>
                     <li>
-                        <Link to="/bestiary/mage">Example Mage Build</Link>
+                        <Link to="/bestiary/mage">Pre-Built PC: Mage</Link>
                     </li>
                     <li>
-                        <Link to="/bestiary/thief">Example Thief Build</Link>
+                        <Link to="/bestiary/thief">Pre-Built PC: Thief</Link>
                     </li>
                     <li>
-                        <Link to="/bestiary/cleric">Example Cleric Build</Link>
+                        <Link to="/bestiary/cleric">Pre-Built PC: Cleric</Link>
                     </li>
                     <li>
                         <Link to="/bestiary/ankithlakith">Example PC: Ankithlakith</Link>

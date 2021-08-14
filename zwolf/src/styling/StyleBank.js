@@ -43,11 +43,6 @@ export const MainEnvelope = styled.section`
     a {
         color: #cccccc;
     }
-    
-    > section.sidebar {
-        width: 34%;
-        background-color: #302315;
-    }
 `;
 
 export const PrimaryBar = styled.section`
@@ -90,6 +85,20 @@ export const PrimaryBar = styled.section`
                 margin: 4px 0;
             }
         }
+    }
+`;
+
+export const Sidebar = styled.section`
+    width: 34%;
+    background-color: #302315;
+
+    > header {
+        height: 60px;
+        background-color: rgba(255, 255, 255, 0.05);
+        font-size: 2rem;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
     }
 `;
 
