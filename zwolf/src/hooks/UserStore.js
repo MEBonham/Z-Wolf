@@ -17,6 +17,8 @@ const useUser = create((set) => ({
             }));
         }
     },
+    loadingUser: false,
+    setLoadingUser: (loadStatus) => set((state) => ({ loadingUser: loadStatus })),
     loginFlag: false,
     setLoginFlag: (newVal) => set((state) => ({ loginFlag: newVal }))
 

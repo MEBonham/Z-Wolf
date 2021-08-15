@@ -4,6 +4,7 @@ import fb from '../../fbConfig';
 import useUser from '../../hooks/UserStore';
 
 const LoginForm = () => {
+    const setLoadingUser = useUser((state) => state.setLoadingUser);
     const loginFlag = useUser((state) => state.loginFlag);
     const setLoginFlag = useUser((state) => state.setLoginFlag);
     const handleToggle = (ev) => {
@@ -16,6 +17,7 @@ const LoginForm = () => {
     const gProvider = fb.provider;
     const gRegister = (ev) => {
         // ev.preventDefault();
+        setLoadingUser(true);
         fb.auth.useDeviceLanguage();
         fb.auth.signInWithRedirect(gProvider);
     }

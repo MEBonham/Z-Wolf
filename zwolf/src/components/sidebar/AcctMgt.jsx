@@ -9,6 +9,7 @@ import RegisterForm from './RegisterForm';
 
 const AcctMgt = () => {
     const uid = useUser((state) => state.uid);
+    const loadingUser = useUser((state) => state.loadingUser);
     const loginFlag = useUser((state) => state.loginFlag);
     const setLoginFlag = useUser((state) => state.setLoginFlag);
 
@@ -23,11 +24,15 @@ const AcctMgt = () => {
         <div className="sidePane">
             <h4>Account Management</h4>
             <SimpleBarReact style={{ width: '100%', height: 'calc(100% - 60px)', paddingRight: '20px' }}>
-                {uid ?
-                    <UserSettings /> :
-                    loginFlag ?
-                        <LoginForm /> :
-                        <RegisterForm />
+                {loadingUser ?
+                    <div className="sidePane">
+                        <h2>(Loading ...)</h2>
+                    </div> :
+                    uid ?
+                        <UserSettings /> :
+                        loginFlag ?
+                            <LoginForm /> :
+                            <RegisterForm />
                 }
             </SimpleBarReact>
         </div>

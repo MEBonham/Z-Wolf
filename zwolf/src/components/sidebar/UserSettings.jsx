@@ -9,7 +9,7 @@ const UserSettings = () => {
 
     return(
         <div className="sidePane">
-            <h2>Settings</h2>
+            <h2>Settings ()</h2>
             <button onClick={logout}>Logout</button>
         </div>
     );
