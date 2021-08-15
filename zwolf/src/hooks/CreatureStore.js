@@ -9,4 +9,4 @@ const useChar = create((set) => ({
 
 }));
 
-export default useUser;
+export default useChar;

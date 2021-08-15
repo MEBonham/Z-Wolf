@@ -165,5 +165,64 @@ export const SpecialBlock = styled.section`
 `;
 
 export const CharSheetStyling = styled.div`
-    
+    padding-top: 6px;
+
+    > header {
+        display: flex;
+        justify-content: space-between;
+
+        header {
+            padding-bottom: 2px;
+            border-bottom: 1px solid #32a852;
+        }
+        div.pools {
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-around;
+
+            div.pool {
+                width: 74px;
+                padding: 4px 0;
+                border-radius: 8px;
+                border: 1px solid #32a852;
+                background-color: rgba(255, 255, 255, 0.07);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                div.poolMax {
+                    margin-bottom: 4px;
+                    font-size: 1.2rem;
+                }
+                div.bar {
+                    width: 100%;
+                    height: 12px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: flex-start;
+                    background-color: #444444;
+
+                    div.innerBar {
+                        height: 3px;
+                    }
+                }
+                div.mainPoolVal {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+
+                    p:first-child {
+                        margin: 0;
+                        font-weight: bold;
+                        font-size: 2rem;
+                    }
+                    p:nth-child(2) {
+                        margin: 0;
+                        font-size: 1.2rem;
+                    }
+                }
+            }
+        }
+    }
 `;

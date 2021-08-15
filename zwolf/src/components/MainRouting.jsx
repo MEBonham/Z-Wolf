@@ -76,10 +76,10 @@ const MainRouting = () => useRoutes([
         path: "/bestiary/cleric",
         element: <Cleric />
     },
-    {
-        path: "/bestiary/ankithlakith",
-        element: <Ankithlakith />
-    },
+    // {
+    //     path: "/bestiary/ankithlakith",
+    //     element: <Ankithlakith />
+    // },
     {
         path: "/bestiary/caverat",
         element: <CaveRat />
