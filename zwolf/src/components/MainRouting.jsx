@@ -11,6 +11,7 @@ import Gear from './rules/Gear';
 import Kits from './library/Kits';
 import Feats from './library/Feats';
 import Talents from './library/Talents';
+import CharSheetShell from './charSheets/CharSheetShell';
 import Fighter from './bestiary/Fighter';
 import Mage from './bestiary/Mage';
 import Thief from './bestiary/Thief';
@@ -82,6 +83,10 @@ const MainRouting = () => useRoutes([
     {
         path: "/bestiary/caverat",
         element: <CaveRat />
+    },
+    {
+        path: "/bestiary/:slug",
+        element: <CharSheetShell />
     }
 ]);
 export default MainRouting;

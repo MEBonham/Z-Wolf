@@ -163,3 +163,7 @@ export const SpecialBlock = styled.section`
         }
     }
 `;
+
+export const CharSheetStyling = styled.div`
+    
+`;

@@ -15,12 +15,12 @@ const UsersLoader = () => {
             onceOnly.current = false;
         }
 
-        const authSub = fb.auth.onAuthStateChanged((user) => {
+        const authUnsub = fb.auth.onAuthStateChanged((user) => {
             setUser(user);
             setLoadingUser(false);
         });
         return(() => {
-            authSub();
+            authUnsub();
         });
     }, [setUser])
 
