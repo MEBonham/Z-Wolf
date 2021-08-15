@@ -1,5 +1,6 @@
 import React from 'react';
 
+import fb from '../../fbConfig';
 import useUser from '../../hooks/UserStore';
 
 const RegisterForm = () => {
@@ -11,6 +12,8 @@ const RegisterForm = () => {
         }
         setLoginFlag(!loginFlag);
     }
+
+    const gProvider = fb.auth.GoogleAuthProvider();
 
     return(
         <div className="sidePane">
