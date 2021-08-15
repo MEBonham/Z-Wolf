@@ -121,6 +121,9 @@ export const Sidebar = styled.section`
         p.small {
             font-size: 1.2rem;
         }
+        > button {
+            margin: 10px 0 8px;
+        }
     }
 `;
 
