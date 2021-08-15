@@ -165,7 +165,7 @@ export const SpecialBlock = styled.section`
 `;
 
 export const CharSheetStyling = styled.div`
-    padding-top: 6px;
+    padding-top: 4px;
 
     > header {
         display: flex;
@@ -221,6 +221,41 @@ export const CharSheetStyling = styled.div`
                         margin: 0;
                         font-size: 1.2rem;
                     }
+                }
+            }
+        }
+        div.basics {
+            display: flex;
+
+            div.defVals {
+                margin: 4px 14px 0 0;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                p {
+                    margin: 2px 0;
+                    font-size: 1.6rem;
+                }
+            }
+            div.pseudoTable {
+                margin: 3px 0 0;
+                flex-grow: 1;
+
+                > div {
+                    width: 100%;
+                    padding: 6px;
+                    display: flex;
+
+                    span {
+                        padding: 0 8px;
+                        flex-grow: 1;
+                        font-size: 1.6rem;
+                    }
+                }
+                div.saves {
+                    border-radius: 4px;
+                    border: 1px solid rgba(50, 168, 82, 0.4);
                 }
             }
         }

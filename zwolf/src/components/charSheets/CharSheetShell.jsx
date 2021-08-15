@@ -49,6 +49,26 @@ const CharSheetShell = () => {
                                 <Pool type="sp" color="red" spellOut="Stamina" />
                                 <Pool type="kp" color="blue" spellOut="Karma" />
                             </div>
+                            <div className="basics">
+                                <div className="defVals">
+                                    <p><strong>AV: {cur.stats.av}</strong></p>
+                                    <p><strong>Res.Val.: {cur.stats.resVal}</strong></p>
+                                </div>
+                                <div className="pseudoTable">
+                                    <div className="misc">
+                                        <span><strong>Heroics +{cur.stats.heroics}</strong></span>
+                                        <span><strong>Awesome +{cur.stats.awesome}</strong></span>
+                                        <span><strong>Speed {cur.stats.speed >= 0 ? "+" : null}{cur.stats.speed}</strong></span>
+                                        <span><strong>Spellcraft {cur.stats.spellcraft >= 0 ? "+" : null}{cur.stats.spellcraft}</strong></span>
+                                    </div>
+                                    <div className="saves">
+                                        <span><strong>Defense {cur.stats.defSave >= 0 ? "+" : null}{cur.stats.defSave}</strong></span>
+                                        <span><strong>Fortitude {cur.stats.fortSave >= 0 ? "+" : null}{cur.stats.fortSave}</strong></span>
+                                        <span><strong>Reflex {cur.stats.refSave >= 0 ? "+" : null}{cur.stats.refSave}</strong></span>
+                                        <span><strong>Willpower {cur.stats.willSave >= 0 ? "+" : null}{cur.stats.willSave}</strong></span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div className="portrait">
                             (for image)
