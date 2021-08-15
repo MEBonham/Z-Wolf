@@ -26,7 +26,7 @@ const MainNav = () => {
                             );
                         } else {
                             return (
-                                <p className="clickable" val={mode} onClick={() => modeSwap(mode)} key={mode}>{modeObj.spellOut}</p>
+                                <p className="clickable" val={mode} onClick={(ev) => modeSwap(mode)} key={mode}>{modeObj.spellOut}</p>
                             );
                         }
                     })

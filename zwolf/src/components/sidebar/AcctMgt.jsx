@@ -1,10 +1,36 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import SimpleBarReact from 'simplebar-react';
+
+import useUser from '../../hooks/UserStore';
+
+import UserSettings from './UserSettings';
+import LoginForm from './LoginForm';
+import RegisterForm from './RegisterForm';
 
 const AcctMgt = () => {
+    const uid = useUser((state) => state.uid);
+    const loginFlag = useUser((state) => state.loginFlag);
+    const setLoginFlag = useUser((state) => state.setLoginFlag);
+
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            const saved = window.localStorage.getItem("zWolfAlreadyMadeAccount");
+            setLoginFlag(saved === "true" ? true : false);
+        }
+    }, []);
+
     return(
-        <>
-            <h2>Account Management</h2>
-        </>
+        <div className="sidePane">
+            <h4>Account Management</h4>
+            <SimpleBarReact style={{ width: '100%', height: 'calc(100% - 60px)', paddingRight: '20px' }}>
+                {uid ?
+                    <UserSettings /> :
+                    loginFlag ?
+                        <LoginForm /> :
+                        <RegisterForm />
+                }
+            </SimpleBarReact>
+        </div>
     );
 }
 

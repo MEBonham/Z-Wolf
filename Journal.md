@@ -27,4 +27,6 @@
 25. Go to Firebase Console and add Auth to project. Copy script tag for firebase/auth into scripts section of index.html (apparently this is a new way where you don't need the full firebase credentials JSON anymore?)
 26. `yarn add zustand`
 27. Create useSidebar hook using zustand.create under hooks folder; fill it in with information about all sidebar modes and a swap function
-28. 
+28. Make main navigation component that can swap to other modes
+29. `yarn add use-persisted-state`
+30. 

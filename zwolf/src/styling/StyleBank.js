@@ -100,6 +100,28 @@ export const Sidebar = styled.section`
         justify-content: space-around;
         align-items: center;
     }
+    div.sidePane {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        h2 {
+            margin: 14px 0 8px;
+            font-size: 2.4rem
+        }
+        h4 {
+            margin: 8px 0;
+            font-size: 1.6rem;
+        }
+        p {
+            margin: 12px 0;
+            line-height: 1.5;
+            font-size: 1.4rem;
+        }
+        p.small {
+            font-size: 1.2rem;
+        }
+    }
 `;
 
 export const MainNavStyle = styled.nav`
