@@ -260,4 +260,14 @@ export const CharSheetStyling = styled.div`
             }
         }
     }
+    nav.charSheetTabs {
+        width: 100%;
+        margin: 10px 0;
+        border-top: 1px solid #32a852;
+        border-bottom: 1px solid #32a852;
+        padding: 6px 0;
+        display: flex;
+        justify-content: space-around;
+        font-size: 1.6rem;
+    }
 `;

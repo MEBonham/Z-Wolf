@@ -74,6 +74,12 @@ const CharSheetShell = () => {
                             (for image)
                         </div>
                     </header>
+                    <nav className="charSheetTabs">
+                        <span className="clickable">Main</span>
+                        <span className="clickable">Inventory</span>
+                        <span className="clickable">Configure</span>
+                        <span className="clickable">Biographic</span>
+                    </nav>
                 </>
             }
         </CharSheetStyling>
