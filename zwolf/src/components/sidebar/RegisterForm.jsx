@@ -13,7 +13,7 @@ const RegisterForm = () => {
         setLoginFlag(!loginFlag);
     }
 
-    const gProvider = fb.auth.GoogleAuthProvider();
+    const gProvider = fb.provider;
 
     return(
         <div className="sidePane">
