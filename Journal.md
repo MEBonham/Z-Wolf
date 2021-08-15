@@ -28,5 +28,9 @@
 26. `yarn add zustand`
 27. Create useSidebar hook using zustand.create under hooks folder; fill it in with information about all sidebar modes and a swap function
 28. Make main navigation component that can swap to other modes
-29. `yarn add use-persisted-state`
-30. 
+29. `yarn add firebase`, but also comment out the firebase scripts in index.html and replace them with a fbConfig file with the JSON-style firebase credentials. Initiate an instance of a firebase object, including a property that is a new firebase.auth.GoogleAuthProvider().
+30. Add a UserStore under hooks, with information about the current user.
+31. Use Firebase Auth API to capture register, login, and logout buttons' functions. Build hidden UserLoader component that loads data into UserStore after login/logout.
+32. Implement loading status of auth changes; protect with a use-once-limited ref hook inside UserLoader
+33. Enable firestore in firebase console. Create profiles and creatures collections. Save users to profiles collection on registry; create first creatures object manually
+34. 
