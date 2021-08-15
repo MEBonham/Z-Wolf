@@ -4,6 +4,7 @@ import SimpleBarReact from 'simplebar-react';
 import 'simplebar/dist/simplebar.min.css';
 import { FOOTER_HEIGHT_PX } from '../helpers/SiteConstants';
 import { MainEnvelope, PrimaryBar, Sidebar } from '../styling/StyleBank';
+import UsersLoader from './hidden/UsersLoader';
 import MainHeader from './headerfooter/MainHeader';
 import MainFooter from './headerfooter/MainFooter';
 import SideContents from './sidebar/SideContents';
@@ -18,6 +19,7 @@ const App = () => {
 
     return(
         <div className="App">
+            <UsersLoader />
             <MainHeader />
             <MainEnvelope headerFooterHeight={headerFooterHeight}>
                 <PrimaryBar>

@@ -1,5 +1,5 @@
 import firebase from 'firebase/app';
-// import 'firebase/firestore';
+import 'firebase/firestore';
 import 'firebase/auth';
 // import 'firebase/storage';
 
@@ -20,7 +20,7 @@ class Firebase {
         firebase.initializeApp(firebaseConfig);
         this.provider = new firebase.auth.GoogleAuthProvider();
         this.auth = firebase.auth();
-        // this.db = firebase.firestore();
+        this.db = firebase.firestore();
         // this.storage = firebase.storage;
     }
 }

@@ -56,6 +56,12 @@ const useSidebar = create((set) => ({
             link: null,
             order: 0.5,
             spellOut: "Create New Character"
+        },
+        toc: {
+            navInclude: true,
+            link: "/",
+            order: -1,
+            spellOut: "Table of Contents"
         }
     }
 

@@ -13,12 +13,48 @@ const RegisterForm = () => {
         setLoginFlag(!loginFlag);
     }
 
+    const db = fb.db;
+
     const gProvider = fb.provider;
+    const gRegister = (ev) => {
+        // ev.preventDefault();
+        fb.auth.useDeviceLanguage();
+        fb.auth.signInWithRedirect(gProvider);
+    }
+    fb.auth.getRedirectResult()
+        .then((res) => {
+            if (res.user) {
+                try {
+                    db.collection("profiles").doc(res.user.uid).set({
+                        defaultData: {
+                            displayName: res.user.displayName,
+                            emailVerified: res.user.emailVerified,
+                            isAnonymous: res.user.isAnonymous,
+                            phoneNumber: res.user.phoneNumber,
+                            photoURL: res.user.photoURL,
+                            refreshToken: res.user.refreshToken
+                        },
+                        email: res.user.email,
+                        rank: "peasant",
+                        passcodes: []
+                    }).then(() => {
+                        handleToggle();
+                    }).catch((err) => {
+                        console.log("Error:", err);
+                    });
+                } catch(err) {
+                    console.log("Error:", err);
+                }
+            }
+        }).catch((error) => {
+            console.log(err);
+        });
 
     return(
         <div className="sidePane">
             <h2>Register</h2>
             <p className="small clickable" onClick={handleToggle}>(Already have an account?)</p>
+            <button onClick={gRegister}>Use Google Account to Register</button>
         </div>
     );
 }
