@@ -33,7 +33,7 @@ const CharSheetShell = () => {
             .onSnapshot((snapshot) => {
                 setCur(snapshot.data());
                 setLoadingChar(false);
-                console.log(cur);
+                // console.log(cur);
             });
         
         return(() => {

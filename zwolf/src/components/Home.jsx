@@ -33,13 +33,13 @@ const Home = () => {
                 <h2>System Library</h2>
                 <ul>
                     <li>
-                        <Link to="/library/kits">Kits</Link>
+                        <Link to="/library/kits">Kits</Link> <Link to="/library/newkit">(add)</Link>
                     </li>
                     <li>
-                        <Link to="/library/feats">Feats</Link>
+                        <Link to="/library/feats">Feats</Link> <Link to="/library/newfeat">(add)</Link>
                     </li>
                     <li>
-                        <Link to="/library/talents">Talents</Link>
+                        <Link to="/library/talents">Talents</Link> <Link to="/library/newtalent">(add)</Link>
                     </li>
                 </ul>
                 <h2>Rules</h2>

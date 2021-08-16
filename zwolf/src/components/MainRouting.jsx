@@ -8,6 +8,9 @@ import CharacterCreation from './rules/CharacterCreation';
 import Karma from './rules/Karma';
 import Wealth from './rules/Wealth';
 import Gear from './rules/Gear';
+import NewKit from './library/NewKit';
+import NewFeat from './library/NewFeat';
+import NewTalent from './library/NewTalent';
 import Kits from './library/Kits';
 import Feats from './library/Feats';
 import Talents from './library/Talents';
@@ -49,12 +52,24 @@ const MainRouting = () => useRoutes([
         element: <Gear />
     },
     {
+        path: "/library/newkit",
+        element: <NewKit />
+    },
+    {
         path: "/library/kits",
         element: <Kits />
     },
     {
+        path: "/library/newfeat",
+        element: <NewFeat />
+    },
+    {
         path: "/library/feats",
         element: <Feats />
+    },
+    {
+        path: "/library/newtalent",
+        element: <NewTalent />
     },
     {
         path: "/library/talents",

@@ -37,4 +37,5 @@
 35. `yarn add nanoid` to add uuids to aspects of creatures
 36. Create CreatureStore hook (I love zustand!) and CharLoader hidden component
 37. Build character sheet HTML/structure
-38. 
+38. `yarn add slate slate-react` for rich text editor library ... build input pages for new Kits, Feats, Talents
+39. 

@@ -305,3 +305,23 @@ export const CharSheetStyling = styled.div`
         }
     }
 `;
+
+export const SlateEditorStyle = styled.section`
+    margin: 4px 0;
+    border-radius: 8px;
+    border: 2px solid rgba(50, 168, 82, 0.4);
+
+    div.slateToolbar {
+        border-radius: 6px 6px 0 0;
+        padding: 2px 8px;
+        background-color: #999999;
+
+        button.pushed {
+            background-color: #777777;
+            color: #aaaaaa;
+        }
+    }
+    div.slateToolbar + div {
+        padding: 0 10px;
+    }
+`;
