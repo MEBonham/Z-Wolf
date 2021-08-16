@@ -81,7 +81,7 @@ a {
   text-decoration: none;
 }
 
-strong {
+strong, th {
   font-weight: bold;
 }
 

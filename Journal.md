@@ -36,4 +36,5 @@
 34. Enable firestore in firebase console. Create profiles and creatures collections. Save users to profiles collection on registry; create first creatures object manually
 35. `yarn add nanoid` to add uuids to aspects of creatures
 36. Create CreatureStore hook (I love zustand!) and CharLoader hidden component
-37. 
+37. Build character sheet HTML/structure
+38. 

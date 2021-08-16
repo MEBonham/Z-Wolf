@@ -269,5 +269,39 @@ export const CharSheetStyling = styled.div`
         display: flex;
         justify-content: space-around;
         font-size: 1.6rem;
+
+        span.active {
+            font-weight: bold;
+        }
+    }
+    section.tab.main {
+        display: flex;
+
+        > table {
+            font-size: 1.6rem;
+            border-collapse: separate;
+            border-spacing: 0 4px;
+
+            td:first-child {
+                padding-right: 8px;
+            }
+            td:nth-child(2) {
+                width: 100%;
+                text-align: center;
+            }
+        }
+        section.verbs {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+    section.tab.inventory {
+        > header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
     }
 `;
