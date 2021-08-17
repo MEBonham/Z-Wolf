@@ -5,7 +5,7 @@ import RichTextEditor from '../slatejs/RichTextEditor';
 const NewKit = () => {
     const [richText, setRichText] = useState([
         {
-          type: "heading2",
+          type: "h2",
           children: [{ text: "New Kit Name" }]
         }
     ]);

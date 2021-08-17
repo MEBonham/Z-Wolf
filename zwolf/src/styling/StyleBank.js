@@ -313,7 +313,7 @@ export const SlateEditorStyle = styled.section`
 
     div.slateToolbar {
         border-radius: 6px 6px 0 0;
-        padding: 2px 12px;
+        padding: 4px 12px;
         background-color: #999999;
         display: flex;
         align-items: center;
@@ -341,7 +341,8 @@ export const SlateEditorStyle = styled.section`
                 font-size: 1.4rem;
                 color: #222222;
             }
-            div.dropOption__menu div div:nth-child(5) {
+            div.dropOption__menu div div:nth-child(5),
+            div.dropOption__menu div div:nth-child(6) {
                 font-size: 1.4rem;
                 color: #222222;
             }

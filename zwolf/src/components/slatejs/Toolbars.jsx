@@ -1,11 +1,13 @@
-import React, { Fragment } from 'react';
-import Select from 'react-select';
+import React, { useCallback } from 'react';
+// import Select from 'react-select';
 import { useSlateStatic } from "slate-react";
+import Dropdown from "react-bootstrap/Dropdown";
+import DropdownButton from "react-bootstrap/DropdownButton";
 
-import { getActiveStyles, toggleStyle } from '../../helpers/EditorUtils';
+import { getActiveStyles, getTextBlockStyle, toggleStyle, toggleBlockType } from '../../helpers/EditorUtils';
 
-const PARAGRAPH_STYLES = ["h1", "h2", "h3", "h4", "paragraph"];
-const PARAGRAPH_STYLES_LABELS = ["Header 1", "Header 2", "Header 3", "Header 4", "Paragraph"];
+const PARAGRAPH_STYLES = ["h1", "h2", "h3", "h4", "paragraph", "multiple"];
+const PARAGRAPH_STYLES_LABELS = ["Header 1", "Header 2", "Header 3", "Header 4", "Paragraph", "Multiple"];
 const CHARACTER_STYLES = ["bold", "italic", "underline", "code"];
 
 const ToolBarButton = (props) => {
@@ -23,6 +25,25 @@ const ToolBarButton = (props) => {
 const Toolbar = (props) => {
     const { selection, previousSelection } = props;
     const editor = useSlateStatic();
+
+    function getLabelForBlockStyle(style) {
+        switch (style) {
+            case "h1":
+                return "Heading 1";
+            case "h2":
+                return "Heading 2";
+            case "h3":
+                return "Heading 3";
+            case "h4":
+                return "Heading 4";
+            case "paragraph":
+                return "Paragraph";
+            case "multiple":
+                return "Multiple";
+            default:
+                throw new Error(`Unhandled style in getLabelForBlockStyle: ${style}`);
+        }
+    }
 
     const options = PARAGRAPH_STYLES.map((style, i) => {
         return({
@@ -45,14 +66,32 @@ const Toolbar = (props) => {
         }
     }
 
+    const onBlockTypeChange = useCallback((targetType) => {
+        console.log(targetType);
+        if (targetType === "multiple") {
+            return;
+        }
+        toggleBlockType(editor, targetType);
+    }, [editor]);
+
+    const blockType = getTextBlockStyle(editor);
+
     return (
         <div className="slateToolbar">
         {/* Dropdown for paragraph styles */}
-        <Select
-            className="paragraphStyleDropdown"
-            classNamePrefix="dropOption"
-            options={options}
-        />
+        <DropdownButton
+            className={"block-style-dropdown"}
+            disabled={blockType == null || blockType === ""}
+            id="block-style"
+            title={getLabelForBlockStyle(blockType ?? "paragraph")}
+            onSelect={onBlockTypeChange}
+        >
+            {PARAGRAPH_STYLES.map((blockType) => (
+            <Dropdown.Item eventKey={blockType} key={blockType}>
+                {getLabelForBlockStyle(blockType)}
+            </Dropdown.Item>
+            ))}
+        </DropdownButton>
         {/* Buttons for character styles */}
         {CHARACTER_STYLES.map((style) => (
             <ToolBarButton
@@ -70,23 +109,3 @@ const Toolbar = (props) => {
 }
 
 export default Toolbar;
-
-// export const Toolbar = () => {
-//     const editor = useSlate();
-//     // console.log(editor);
-
-//     const isFormatActive = (editor, format) => {
-//         const [match] = Editor.nodes(editor, {
-//             match: n => n[format] === true,
-//             mode: 'all'
-//         });
-//         return !!match;
-//     }
-
-//     return (
-//         <div className="slateToolbar">
-//             <button className={isFormatActive(editor, "bold") ? "pushed" : null}><strong>B</strong></button>
-//             <button className={isFormatActive(editor, "italic") ? "pushed" : null}><em>I</em></button>
-//         </div>
-//     );
-// }

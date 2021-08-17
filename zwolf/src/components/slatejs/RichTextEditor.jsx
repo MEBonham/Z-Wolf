@@ -11,7 +11,7 @@ import { SlateEditorStyle } from '../../styling/StyleBank';
 const RichTextEditor = (props) => {
     const { richText, setRichText } = props;    
     const editor = useMemo(() => withReact(createEditor()), []);
-    const [selection, setSelection] = useSelection(editor);
+    const [previousSelection, selection, setSelection] = useSelection(editor);
 
     const handleChange = useCallback((newText) => {
         setRichText(newText);
