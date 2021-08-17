@@ -1,7 +1,8 @@
 import React, { Fragment } from 'react';
 import Select from 'react-select';
-// import { Editor } from 'slate';
-// import { useSlate } from 'slate-react';
+import { useSlateStatic } from "slate-react";
+
+import { getActiveStyles, toggleStyle } from '../../helpers/EditorUtils';
 
 const PARAGRAPH_STYLES = ["h1", "h2", "h3", "h4", "paragraph"];
 const PARAGRAPH_STYLES_LABELS = ["Header 1", "Header 2", "Header 3", "Header 4", "Paragraph"];
@@ -21,6 +22,7 @@ const ToolBarButton = (props) => {
 
 const Toolbar = (props) => {
     const { selection, previousSelection } = props;
+    const editor = useSlateStatic();
 
     const options = PARAGRAPH_STYLES.map((style, i) => {
         return({
@@ -56,7 +58,11 @@ const Toolbar = (props) => {
             <ToolBarButton
                 key={style}
                 icon={getIcon(style)}
-                isActive={false}
+                isActive={getActiveStyles(editor).has(style)}
+                onMouseDown={(ev) => {
+                    ev.preventDefault();
+                    toggleStyle(editor, style);
+                }}
             />
         ))}
         </div>

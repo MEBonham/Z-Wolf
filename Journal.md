@@ -42,4 +42,5 @@
 40. `yarn add lodash` to get a deep object comparison function to replace the one in the tutorial
 41. `yarn add babel-plugin-lodash` to minify lodash library - not sure where is the .babelrc file that is supposed to power this?
 42. `yarn add react-select` to get stylable option tags
-43. 
+43. `yarn add is-hotkey` to get hotkey library
+44. 

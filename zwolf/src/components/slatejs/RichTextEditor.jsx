@@ -3,6 +3,7 @@ import { createEditor } from 'slate';
 import { Slate, Editable, withReact } from 'slate-react';
 
 import useSelection from '../../hooks/useSelection';
+import useEditorConfig from '../../hooks/useEditorConfig';
 import { renderElement, renderLeaf } from './Elements';
 import Toolbar from './Toolbars';
 import { SlateEditorStyle } from '../../styling/StyleBank';
@@ -28,6 +29,7 @@ const RichTextEditor = (props) => {
                 <Editable
                     renderElement={useCallback(renderElement, [])}
                     renderLeaf={useCallback(renderLeaf, [])}
+                    onKeyDown={useEditorConfig(editor)}
                 />
                 <footer>
                     <p>Icons by <a href='https://icons8.com'>icons8.com</a></p>
