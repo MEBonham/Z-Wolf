@@ -1,16 +1,10 @@
 import React from 'react';
 
-// const DefaultElement = (props) => {
-//     return <p {...props.attributes}>{props.children}</p>;
-// }
-
-// const Header2 = (props) => {
-//     return <h2 {...props.attributes}>{props.children}</h2>
-// }
+// Make these into a useEditorConfig hook?
 
 // Define a rendering function based on the element passed to `props`.
 export const renderElement = (props) => {
-    const { attributes, children, element } = props
+    const { element, children, attributes } = props;
     switch (element.type) {
         case 'thead':
             return (<thead {...attributes}>{children}</thead>);
@@ -38,17 +32,17 @@ export const renderElement = (props) => {
             </pre>);
         case 'bulleted-list':
             return (<ul {...attributes}>{children}</ul>);
-        case 'heading-one':
+        case 'heading1':
             return (<h1 {...attributes}>{children}</h1>);
-        case 'heading-two':
+        case 'heading2':
             return (<h2 {...attributes}>{children}</h2>);
-        case 'heading-three':
+        case 'heading3':
             return (<h3 {...attributes}>{children}</h3>);
-        case 'heading-four':
+        case 'heading4':
             return (<h4 {...attributes}>{children}</h4>);
-        case 'heading-five':
+        case 'heading5':
             return (<h5 {...attributes}>{children}</h5>);
-        case 'heading-six':
+        case 'heading6':
             return (<h6 {...attributes}>{children}</h6>);
         case 'list-item':
             return (<li {...attributes}>{children}</li>);
@@ -62,3 +56,21 @@ export const renderElement = (props) => {
             return (<p {...attributes}>{children}</p>);
     }
 };
+
+export const renderLeaf = (props) => {
+    const { leaf, children, attributes } = props;
+    let el = <>{children}</>;
+    if (leaf.bold) {
+      el = <strong>{el}</strong>;
+    }
+    if (leaf.code) {
+      el = <code>{el}</code>;
+    }
+    if (leaf.italic) {
+      el = <em>{el}</em>;
+    }
+    if (leaf.underline) {
+      el = <u>{el}</u>;
+    }
+    return <span {...attributes}>{el}</span>;
+  }

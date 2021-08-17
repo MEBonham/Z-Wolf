@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 
-import RichTextEditor from '../slate/RichTextEditor';
+import RichTextEditor from '../slatejs/RichTextEditor';
 
 const NewKit = () => {
     const [richText, setRichText] = useState([
         {
-          type: "h2",
+          type: "heading2",
           children: [{ text: "New Kit Name" }]
         }
     ]);

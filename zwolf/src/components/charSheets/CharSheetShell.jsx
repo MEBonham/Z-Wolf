@@ -91,7 +91,7 @@ const CharSheetShell = () => {
                             <div className="pools">
                                 <Pool type="vp" color="green" spellOut="Vitality" />
                                 <Pool type="sp" color="red" spellOut="Stamina" />
-                                <Pool type="kp" color="blue" spellOut="Karma" />
+                                {cur.pc ? <Pool type="kp" color="blue" spellOut="Karma" /> : null}
                             </div>
                             <div className="basics">
                                 <div className="defVals">

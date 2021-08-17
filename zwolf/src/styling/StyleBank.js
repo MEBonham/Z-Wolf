@@ -313,9 +313,39 @@ export const SlateEditorStyle = styled.section`
 
     div.slateToolbar {
         border-radius: 6px 6px 0 0;
-        padding: 2px 8px;
+        padding: 2px 12px;
         background-color: #999999;
+        display: flex;
+        align-items: center;
 
+        div.paragraphStyleDropdown {
+            width: 150px;
+
+            div.dropOption__menu div div:first-child {
+                font-weight: bold;
+                font-size: 2rem;
+                color: #222222;
+            }
+            div.dropOption__menu div div:nth-child(2) {
+                font-weight: bold;
+                font-size: 1.8rem;
+                color: #222222;
+            }
+            div.dropOption__menu div div:nth-child(3) {
+                font-weight: bold;
+                font-size: 1.6rem;
+                color: #222222;
+            }
+            div.dropOption__menu div div:nth-child(4) {
+                font-weight: bold;
+                font-size: 1.4rem;
+                color: #222222;
+            }
+            div.dropOption__menu div div:nth-child(5) {
+                font-size: 1.4rem;
+                color: #222222;
+            }
+        }
         button.pushed {
             background-color: #777777;
             color: #aaaaaa;

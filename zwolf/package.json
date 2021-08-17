@@ -7,12 +7,15 @@
     "serve": "vite preview"
   },
   "dependencies": {
+    "babel-plugin-lodash": "^3.3.4",
     "firebase": "^8.9.1",
     "history": "^5.0.1",
+    "lodash": "^4.17.21",
     "nanoid": "^3.1.25",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
     "react-router-dom": "^6.0.0-beta.1",
+    "react-select": "^4.3.1",
     "simplebar-react": "^2.3.5",
     "slate": "^0.65.3",
     "slate-react": "^0.65.3",
