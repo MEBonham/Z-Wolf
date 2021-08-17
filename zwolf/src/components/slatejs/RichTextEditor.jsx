@@ -29,6 +29,9 @@ const RichTextEditor = (props) => {
                     renderElement={useCallback(renderElement, [])}
                     renderLeaf={useCallback(renderLeaf, [])}
                 />
+                <footer>
+                    <p>Icons by <a href='https://icons8.com'>icons8.com</a></p>
+                </footer>
             </Slate>
         </SlateEditorStyle>
     );

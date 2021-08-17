@@ -346,6 +346,15 @@ export const SlateEditorStyle = styled.section`
                 color: #222222;
             }
         }
+        button {
+            padding: 0;
+            position: relative;
+
+            img {
+                position: relative;
+                top: 2px;
+            }
+        }
         button.pushed {
             background-color: #777777;
             color: #aaaaaa;
@@ -353,5 +362,23 @@ export const SlateEditorStyle = styled.section`
     }
     div.slateToolbar + div {
         padding: 0 10px;
+    }
+    footer {
+        border-radius: 0 0 6px 6px;
+        padding: 2px 12px;
+        background-color: #999999;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+
+        p {
+            margin: 0;
+            font-size: 1rem;
+            color: #333333;
+
+            a {
+                color: #444444;
+            }
+        }
     }
 `;

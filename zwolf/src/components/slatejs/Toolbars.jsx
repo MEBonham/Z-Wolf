@@ -19,21 +19,6 @@ const ToolBarButton = (props) => {
     );
 }
 
-// const BlockLabel = (props) => {
-//     switch (props.blockType) {
-//         case "h1":
-//             return (<h1>Header 1</h1>);
-//         case "h2":
-//             return (<h2>Header 2</h2>);
-//         case "h3":
-//             return (<h3>Header 3</h3>);
-//         case "h4":
-//             return (<h4>Header 4</h4>);
-//         default:
-//             return (<p>Paragraph</p>);
-//     }
-// }
-
 const Toolbar = (props) => {
     const { selection, previousSelection } = props;
 
@@ -43,6 +28,20 @@ const Toolbar = (props) => {
             label: PARAGRAPH_STYLES_LABELS[i]
         });
     });
+    const getIcon = (style) => {
+        switch (style) {
+            case "bold":
+                return (<img src="https://img.icons8.com/ios-glyphs/30/000000/bold.png"/>);
+            case "italic":
+                return (<img src="https://img.icons8.com/ios-glyphs/30/000000/italic.png"/>);
+            case "underline":
+                return (<img src="https://img.icons8.com/ios-glyphs/30/000000/underline.png"/>);
+            case "code":
+                return (<img src="https://img.icons8.com/ios-glyphs/30/000000/code.png"/>);
+            default:
+                return null;
+        }
+    }
 
     return (
         <div className="slateToolbar">
@@ -56,8 +55,7 @@ const Toolbar = (props) => {
         {CHARACTER_STYLES.map((style) => (
             <ToolBarButton
                 key={style}
-                // icon={<i className={`bi ${getIconForButton(style)}`} />}
-                icon={<i className={`bi ${style}`} />}
+                icon={getIcon(style)}
                 isActive={false}
             />
         ))}
