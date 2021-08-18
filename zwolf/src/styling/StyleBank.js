@@ -143,16 +143,6 @@ export const MainNavStyle = styled.nav`
 `;
 
 export const SpecialBlock = styled.section`
-    margin: 10px 0 20px;
-
-    ul {
-        margin-left: 24px;
-        font-size: 1.4rem;
-
-        li {
-            margin: 6px 0;
-        }
-    }
     table {
         border-collapse: separate;
         border-spacing: 0 8px;
@@ -160,6 +150,35 @@ export const SpecialBlock = styled.section`
 
         th {
             font-weight: bold;
+        }
+    }
+    div.quill {
+        border: 0;
+
+        div.ql-toolbar {
+            display: none;
+        }
+        div.ql-container {
+            border: 0;
+
+            h2 {
+                margin: 24px 0 6px;
+            }
+            h3 {
+                margin: 8px 0 4px;
+                font-weight: bold;
+            }
+            p {
+                margin: 6px 0;
+            }
+            ul {
+                font-size: 1.4rem;
+        
+                li {
+                    margin: 4px 0;
+                    padding-left: 0;
+                }
+            }
         }
     }
 `;

@@ -19,9 +19,7 @@ const UsersLoader = () => {
             setUser(user);
             setLoadingUser(false);
         });
-        return(() => {
-            authUnsub();
-        });
+        return (() => authUnsub());
     }, [setUser])
 
     return null;

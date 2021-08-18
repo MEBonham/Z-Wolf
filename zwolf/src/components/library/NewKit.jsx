@@ -25,9 +25,6 @@ const NewKit = () => {
 
     const db = fb.db;
     const handleSave = (formData) => {
-        // console.log(richText);
-        // console.log(delta);
-        // console.log(formData);
         const newSlug = encodeURIComponent(formData.slug.split(" ").join("").toLowerCase().replace(/'/g, ""));
         const formDataFixed = _.cloneDeep(formData);
         formData.modifier.forEach((modObj, i) => {
