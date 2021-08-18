@@ -44,4 +44,7 @@
     42. `yarn add react-select` to get stylable option tags - UPDATE: unfortunately it looks like I need `yarn add react-bootstrap` (a much bigger library) to avoid the text getting deselected when a dropdown option is clicked
     43. `yarn add is-hotkey` to get hotkey library
 44. Revert last few commits to get rid of Slate stuff. Start over with Quill.js. Copy changes to Journal.md, Home.jsx, MainRouting.jsx, and CharSheetShell.jsx over from discarded commits.
-45. 
+45. Delete node_modules and yarn.lock again and reinstall libraries to clean up react-select and is-hotkey leftovers (since node_modules is under .gitignore).
+46. `yarn add react-quill`; adapt tutorial from https://www.scalablepath.com/blog/using-quill-js-build-wysiwyg-editor-website/
+47. `yarn add react-hook-form` to add other pieces of New Kit/Feat/Talent forms
+48. 

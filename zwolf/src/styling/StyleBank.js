@@ -86,6 +86,17 @@ export const PrimaryBar = styled.section`
             }
         }
     }
+    div.quill {
+        margin: 12px 0;
+        background-color: rgba(255, 255, 255, 0.03);
+
+        div.ql-toolbar {
+            border-radius: 8px 8px 0 0;
+        }
+        div.ql-container {
+            border-radius: 0 0 8px 8px;
+        }
+    }
 `;
 
 export const Sidebar = styled.section`
@@ -303,5 +314,37 @@ export const CharSheetStyling = styled.div`
             justify-content: space-between;
             align-items: flex-end;
         }
+    }
+`;
+
+export const LibraryAdd = styled.form`
+    label {
+        font-size: 1.4rem;
+    }
+    div.cols {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    div.rows {
+        display: flex;
+        flex-direction: column;
+    }
+    div.labelPair {
+        margin: 4px 0;
+        label {
+            margin: 0 6px 0 0;
+        }
+    }
+    div.bottomRight {
+        margin: 14px 0 0;
+        display: flex;
+        justify-content: flex-end;
+    }
+    input.shortenBit {
+        width: 141px;
+    }
+    select.fitFive {
+        height: 84px;
     }
 `;
