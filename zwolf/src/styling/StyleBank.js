@@ -86,17 +86,6 @@ export const PrimaryBar = styled.section`
             }
         }
     }
-    div.quill {
-        margin: 12px 0;
-        background-color: rgba(255, 255, 255, 0.03);
-
-        div.ql-toolbar {
-            border-radius: 8px 8px 0 0;
-        }
-        div.ql-container {
-            border-radius: 0 0 8px 8px;
-        }
-    }
 `;
 
 export const Sidebar = styled.section`
@@ -346,5 +335,29 @@ export const LibraryAdd = styled.form`
     }
     select.fitFive {
         height: 84px;
+    }
+    div.quill {
+        margin: 12px 0;
+        background-color: rgba(255, 255, 255, 0.04);
+
+        div.ql-toolbar {
+            border-radius: 8px 8px 0 0;
+        }
+        div.ql-container {
+            border-radius: 0 0 8px 8px;
+        }
+    }
+    section.mods {
+        margin: 6px 0;
+        font-size: 1.4rem;
+
+        > div {
+            margin: 4px 0;
+
+            input.short {
+                width: 50px;
+                height: 19px;
+            }
+        }
     }
 `;
