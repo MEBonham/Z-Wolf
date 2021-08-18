@@ -334,7 +334,7 @@ export const LibraryAdd = styled.form`
         width: 141px;
     }
     select.fitFive {
-        height: 84px;
+        height: 88px;
     }
     div.quill {
         margin: 12px 0;

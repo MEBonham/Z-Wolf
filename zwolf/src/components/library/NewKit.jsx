@@ -49,9 +49,9 @@ const NewKit = () => {
                     delete kitObj.slug;
                     db.collection("kits").doc(newSlug).set(kitObj)
                         .then(() => {
-                            reset();
                             setNumMods(0);
                             setNumVerbs(0);
+                            reset();
                             setRichText(TEMPLATE);
                             setDelta(null);
                         }).catch((err) => {
