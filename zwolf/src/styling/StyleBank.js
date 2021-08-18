@@ -86,6 +86,17 @@ export const PrimaryBar = styled.section`
             }
         }
     }
+    div.quill {
+        margin: 12px 0;
+        background-color: rgba(255, 255, 255, 0.03);
+
+        div.ql-toolbar {
+            border-radius: 8px 8px 0 0;
+        }
+        div.ql-container {
+            border-radius: 0 0 8px 8px;
+        }
+    }
 `;
 
 export const Sidebar = styled.section`
@@ -306,80 +317,34 @@ export const CharSheetStyling = styled.div`
     }
 `;
 
-export const SlateEditorStyle = styled.section`
-    margin: 4px 0;
-    border-radius: 8px;
-    border: 2px solid rgba(50, 168, 82, 0.4);
-
-    div.slateToolbar {
-        border-radius: 6px 6px 0 0;
-        padding: 4px 12px;
-        background-color: #999999;
+export const LibraryAdd = styled.form`
+    label {
+        font-size: 1.4rem;
+    }
+    div.cols {
         display: flex;
+        justify-content: space-between;
         align-items: center;
-
-        div.paragraphStyleDropdown {
-            width: 150px;
-
-            div.dropOption__menu div div:first-child {
-                font-weight: bold;
-                font-size: 2rem;
-                color: #222222;
-            }
-            div.dropOption__menu div div:nth-child(2) {
-                font-weight: bold;
-                font-size: 1.8rem;
-                color: #222222;
-            }
-            div.dropOption__menu div div:nth-child(3) {
-                font-weight: bold;
-                font-size: 1.6rem;
-                color: #222222;
-            }
-            div.dropOption__menu div div:nth-child(4) {
-                font-weight: bold;
-                font-size: 1.4rem;
-                color: #222222;
-            }
-            div.dropOption__menu div div:nth-child(5),
-            div.dropOption__menu div div:nth-child(6) {
-                font-size: 1.4rem;
-                color: #222222;
-            }
-        }
-        button {
-            padding: 0;
-            position: relative;
-
-            img {
-                position: relative;
-                top: 2px;
-            }
-        }
-        button.pushed {
-            background-color: #777777;
-            color: #aaaaaa;
+    }
+    div.rows {
+        display: flex;
+        flex-direction: column;
+    }
+    div.labelPair {
+        margin: 4px 0;
+        label {
+            margin: 0 6px 0 0;
         }
     }
-    div.slateToolbar + div {
-        padding: 0 10px;
-    }
-    footer {
-        border-radius: 0 0 6px 6px;
-        padding: 2px 12px;
-        background-color: #999999;
+    div.bottomRight {
+        margin: 14px 0 0;
         display: flex;
         justify-content: flex-end;
-        align-items: center;
-
-        p {
-            margin: 0;
-            font-size: 1rem;
-            color: #333333;
-
-            a {
-                color: #444444;
-            }
-        }
+    }
+    input.shortenBit {
+        width: 141px;
+    }
+    select.fitFive {
+        height: 84px;
     }
 `;
