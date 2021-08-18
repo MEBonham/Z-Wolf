@@ -209,6 +209,16 @@ export const SpecialBlock = styled.section`
                 position: relative;
                 top: 2px;
             }
+            select {
+                margin: 2px 0 0;
+            }
+        }
+        div.disabled {
+            opacity: 0.3;
+
+            img.clickable {
+                cursor: default;
+            }
         }
     }
 `;

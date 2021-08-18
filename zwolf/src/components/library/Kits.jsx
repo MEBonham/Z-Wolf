@@ -15,6 +15,7 @@ const Kits = () => {
     const [coreChecked, setCoreChecked] = useState(true);
     const [monstChecked, setMonstChecked] = useState(false);
     const [tagFilter, setTagFilter] = useState(null);
+    const [filteredSlugs, setFilteredSlugs] = useState(null);
     const quill = useRef(null);
     const db = fb.db;
     useEffect(() => {
@@ -30,8 +31,18 @@ const Kits = () => {
 
     useEffect(() => {
         if (kitsLib) {
+            setFilteredSlugs(
+                Object.keys(kitsLib).filter((slug) => (!coreChecked) || (kitsLib[slug].tags.includes("Core")))
+                    .filter((slug) => (monstChecked) || (!kitsLib[slug].tags.includes("Monster")))
+                    .filter((slug) => (!tagFilter) || (tagFilter === "Select Tag") || (kitsLib[slug].tags.includes(tagFilter)))
+            );
+        }
+    }, [coreChecked, kitsLib, monstChecked, tagFilter]);
+
+    useEffect(() => {
+        if (kitsLib && filteredSlugs) {
             setAllText(
-                _.flatten(Object.keys(kitsLib).sort((a, b) => (kitsLib[a].name - kitsLib[b].name))
+                _.flatten(filteredSlugs.sort((a, b) => (kitsLib[a].name - kitsLib[b].name))
                     .map((slug) => {
                         const rawDelta = JSON.parse(kitsLib[slug].delta).ops;
                         const tagString = kitsLib[slug].tags.length ?
@@ -51,8 +62,10 @@ const Kits = () => {
                     })
                 )
             );
+        } else {
+            setAllText(<h1>(Loading ...)</h1>);
         }
-    }, [kitsLib]);
+    }, [kitsLib, filteredSlugs]);
 
     useEffect(() => {
         if (quill.current && allText) {
@@ -68,17 +81,31 @@ const Kits = () => {
             />
             <div className="filterBox">
                 <div>
-                    <img src={coreChecked ? checked : unchecked} alt="checkbox" />
+                    <img
+                        src={coreChecked ? checked : unchecked}
+                        alt="checkbox"
+                        className="clickable"
+                        onClick={(ev) => setCoreChecked(!coreChecked)}
+                    />
                     <span> </span>
                     Core-only
                 </div>
-                <div>
-                    <img src={monstChecked ? checked : unchecked} alt="checkbox" />
+                <div className={coreChecked ? "disabled" : ""}>
+                    <img
+                        src={monstChecked ? checked : unchecked}
+                        alt="checkbox"
+                        className="clickable"
+                        onClick={(ev) => {
+                            if (!coreChecked) {
+                                setMonstChecked(!monstChecked)
+                            }
+                        }}
+                    />
                     <span> </span>
                     include [Monster]
                 </div>
                 <div>
-                    <select>
+                    <select onChange={(ev) => { ev.preventDefault(); setTagFilter(ev.target.value); }}>
                         <option value={null}>Select Tag</option>
                         {kitTags.filter((tag) => tag !== "Core" && tag !== "Monster").map((tag) => (
                             <option value={tag} key={tag}>{tag}</option>
