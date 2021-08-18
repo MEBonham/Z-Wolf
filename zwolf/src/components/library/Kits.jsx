@@ -3,12 +3,18 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import _ from 'lodash';
 
+import checked from '../../media/ui/checked-box.png';
+import unchecked from '../../media/ui/empty-checkbox.png';
 import fb from '../../fbConfig';
 import { SpecialBlock } from '../../styling/StyleBank';
+import { kitTags } from '../../helpers/GameConstants';
 
 const Kits = () => {
     const [kitsLib, setKitsLib] = useState(null);
     const [allText, setAllText] = useState(null);
+    const [coreChecked, setCoreChecked] = useState(true);
+    const [monstChecked, setMonstChecked] = useState(false);
+    const [tagFilter, setTagFilter] = useState(null);
     const quill = useRef(null);
     const db = fb.db;
     useEffect(() => {
@@ -27,7 +33,21 @@ const Kits = () => {
             setAllText(
                 _.flatten(Object.keys(kitsLib).sort((a, b) => (kitsLib[a].name - kitsLib[b].name))
                     .map((slug) => {
-                        return JSON.parse(kitsLib[slug].delta).ops;
+                        const rawDelta = JSON.parse(kitsLib[slug].delta).ops;
+                        const tagString = kitsLib[slug].tags.length ?
+                            `[${kitsLib[slug].tags.join("] [")}] Kit` :
+                            "Kit";
+                        return([
+                            ...rawDelta.slice(0, 2),
+                            {
+                                insert: tagString
+                            },
+                            {
+                                attributes: { header: 4 },
+                                insert: "\n"
+                            },
+                            ...rawDelta.slice(2)
+                        ]);
                     })
                 )
             );
@@ -35,8 +55,6 @@ const Kits = () => {
     }, [kitsLib]);
 
     useEffect(() => {
-        // console.log(quill.current.getEditor());
-        console.log(allText);
         if (quill.current && allText) {
             quill.current.getEditor().setContents(allText);
         }
@@ -48,6 +66,26 @@ const Kits = () => {
                 readOnly={true}
                 ref={quill}
             />
+            <div className="filterBox">
+                <div>
+                    <img src={coreChecked ? checked : unchecked} alt="checkbox" />
+                    <span> </span>
+                    Core-only
+                </div>
+                <div>
+                    <img src={monstChecked ? checked : unchecked} alt="checkbox" />
+                    <span> </span>
+                    include [Monster]
+                </div>
+                <div>
+                    <select>
+                        <option value={null}>Select Tag</option>
+                        {kitTags.filter((tag) => tag !== "Core" && tag !== "Monster").map((tag) => (
+                            <option value={tag} key={tag}>{tag}</option>
+                        ))}
+                    </select>
+                </div>
+            </div>
         </SpecialBlock>
     );
 }

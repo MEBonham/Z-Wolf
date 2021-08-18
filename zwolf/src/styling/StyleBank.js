@@ -52,6 +52,7 @@ export const PrimaryBar = styled.section`
     background-color: #2a2a2a;
     border-radius: 10px;
     box-shadow: 0 0 7px #32a852;
+    transform: scale(1, 1);
 
     h1 {
         margin: 14px 0 8px;
@@ -143,6 +144,8 @@ export const MainNavStyle = styled.nav`
 `;
 
 export const SpecialBlock = styled.section`
+    display: flex;
+
     table {
         border-collapse: separate;
         border-spacing: 0 8px;
@@ -162,11 +165,15 @@ export const SpecialBlock = styled.section`
             border: 0;
 
             h2 {
-                margin: 24px 0 6px;
+                margin: 24px 0 4px;
+                font-size: 2.4rem;
             }
             h3 {
                 margin: 8px 0 4px;
                 font-weight: bold;
+            }
+            h4 {
+                margin: 0;
             }
             p {
                 margin: 6px 0;
@@ -178,6 +185,29 @@ export const SpecialBlock = styled.section`
                     margin: 4px 0;
                     padding-left: 0;
                 }
+            }
+        }
+    }
+    div.filterBox {
+        position: fixed;
+        right: 10px;
+        top: 10px;
+        z-index: 1;
+        padding: 8px 12px;
+        border-radius: 6px;
+        background-color: #333333;
+        box-shadow: 0 0 5px #32a852;
+        font-size: 1.4rem;
+        display: flex;
+        flex-direction: column;
+
+        div {
+            margin: 4px 0;
+
+            img {
+                height: 14px;
+                position: relative;
+                top: 2px;
             }
         }
     }
