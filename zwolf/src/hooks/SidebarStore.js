@@ -62,10 +62,19 @@ const useSidebar = create((set) => ({
             link: "/",
             order: -1,
             spellOut: "Table of Contents"
+        },
+        libPreview: {
+            navInclude: false,
+            link: null,
+            spellOut: "Library Preview"
         }
     },
     manualSave: false,
-    toggleManualSave: () => set((state) => ({ manualSave: !state.manualSave }))
+    toggleManualSave: () => set((state) => ({ manualSave: !state.manualSave })),
+    previewType: null,
+    setPreviewType: (type) => set((state) => ({ previewType: type })),
+    previewSlug: null,
+    setPreviewSlug: (slug) => set((state) => ({ previewSlug: slug }))
 
 }));
 

@@ -188,6 +188,15 @@ export const SpecialBlock = styled.section`
             }
         }
     }
+    div.quill.sidebarMode {
+        div.ql-container {
+            padding-left: 10px;
+
+            h2 {
+                margin: 4px 0;
+            }
+        }
+    }
     div.filterBox {
         position: fixed;
         right: 10px;

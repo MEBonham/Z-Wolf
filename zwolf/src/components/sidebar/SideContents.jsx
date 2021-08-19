@@ -4,6 +4,7 @@ import useSidebar from '../../hooks/SidebarStore';
 
 import MainNav from './MainNav';
 import AcctMgt from './AcctMgt';
+import LibPreview from './LibPreview';
 
 const SideContents = () => {
     const sideMode = useSidebar((state) => state.mode);
@@ -19,6 +20,9 @@ const SideContents = () => {
         switch (sideMode) {
             case "acctMgt":
                 setModeComp(<AcctMgt />);
+                break;
+            case "libPreview":
+                setModeComp(<LibPreview />);
                 break;
             default:
                 setModeComp(<MainNav />);

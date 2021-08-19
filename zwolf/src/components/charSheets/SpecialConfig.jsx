@@ -4,12 +4,16 @@ import { nanoid } from 'nanoid'
 
 import fb from '../../fbConfig';
 import useChar from '../../hooks/CreatureStore';
+import useSidebar from '../../hooks/SidebarStore';
 import BufferDot from '../ui/BufferDot';
 
 const SpecialConfig = (props) => {
     const { id, level, origin, slug, type } = props.data;
     const cur = useChar((state) => state.cur);
     const setCur = useChar((state) => state.setCur);
+    const setPreviewType = useSidebar((state) => state.setPreviewType);
+    const setPreviewSlug = useSidebar((state) => state.setPreviewSlug);
+    const modeSwap = useSidebar((state) => state.modeSwap);
     const [lib, setLib] = useState({});
     const [prevId, setPrevId] = useState(id ? id : "(none)");
     const db = fb.db;
@@ -78,9 +82,15 @@ const SpecialConfig = (props) => {
         setPrevId(newId);
     }
 
+    const handlePreview = (ev) => {
+        setPreviewType(type);
+        setPreviewSlug(slug);
+        modeSwap("libPreview");
+    }
+
     return(
         <div className="specialConfig">
-            <span className="levelBubble">{level}</span>
+            <span className="levelBubble clickable" onClick={handlePreview}>{level}</span>
             <BufferDot />
             <span>
                 <select onChange={handleMenu} value={slug ? slug : "(none)"}>
