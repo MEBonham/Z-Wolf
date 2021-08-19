@@ -363,6 +363,15 @@ export const CharSheetStyling = styled.div`
             align-items: flex-end;
         }
     }
+    section.tab.configure {
+        line-height: 1.3;
+
+        span.specialConfig span.levelBubble {
+            padding: 2px 8px 3px;
+            border-radius: 50%;
+            background-color: rgba(50, 168, 82, 0.3);
+        }
+    }
 `;
 
 export const LibraryAdd = styled.form`
