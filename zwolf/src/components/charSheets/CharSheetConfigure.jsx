@@ -81,7 +81,7 @@ const CharSheetConfigure = () => {
                     />
                 )}
             </div>
-            <div>
+            <div className="notKits">
                 <strong>Feats:</strong>
                 <span> </span>
                 {featBlocks.map((featObj, i) =>
@@ -91,7 +91,7 @@ const CharSheetConfigure = () => {
                     />
                 )}
             </div>
-            <div>
+            <div className="notKits">
                 <strong>Talents:</strong>
                 <span> </span>
                 {talentBlocks.map((talentObj, i) =>

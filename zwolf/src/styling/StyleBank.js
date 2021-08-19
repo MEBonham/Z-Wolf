@@ -374,7 +374,18 @@ export const CharSheetStyling = styled.div`
     }
     section.tab.configure {
         line-height: 1.3;
+        strong {
+            font-size: 1.6rem;
+        }
 
+        > div.notKits {
+            margin: 6px 0;
+            display: flex;
+
+            strong {
+                margin-right: 4px;
+            }
+        }
         div.specialConfig span.levelBubble {
             padding: 3px 8px 4px;
             border-radius: 50%;

@@ -5,6 +5,7 @@ import { nanoid } from 'nanoid'
 import fb from '../../fbConfig';
 import useChar from '../../hooks/CreatureStore';
 import useSidebar from '../../hooks/SidebarStore';
+import { calcStats } from '../../helpers/CalcStats';
 import BufferDot from '../ui/BufferDot';
 
 const SpecialConfig = (props) => {
@@ -33,7 +34,7 @@ const SpecialConfig = (props) => {
     const handleMenu = (ev) => {
         const newId = nanoid();
         if (ev.target.value === "(none)") {
-            setCur({
+            const tempBlock = {
                 ...cur,
                 [type]: [
                     ...cur[type].filter((obj) => obj.origin !== origin)
@@ -43,7 +44,14 @@ const SpecialConfig = (props) => {
                 ],
                 verbs: [
                     ...cur.verbs.filter((obj) => obj.origin !== prevId)
+                ],
+                trainedSkills: [
+                    ...cur.trainedSkills.filter((obj) => obj.origin !== prevId)
                 ]
+            };
+            setCur({
+                ...tempBlock,
+                stats: calcStats(tempBlock)
             });
         } else {
             const libEntry = lib[ev.target.value];
@@ -57,7 +65,7 @@ const SpecialConfig = (props) => {
                 ...prev,
                 origin: newId
             }));
-            setCur({
+            const tempBlock = {
                 ...cur,
                 [type]: [
                     ...cur[type].filter((obj) => obj.origin !== origin),
@@ -77,6 +85,10 @@ const SpecialConfig = (props) => {
                     ...cur.verbs.filter((obj) => obj.origin !== prevId),
                     ...tempVerbs
                 ]
+            };
+            setCur({
+                ...tempBlock,
+                stats: calcStats(tempBlock)
             });
         }
         setPrevId(newId);
@@ -91,7 +103,7 @@ const SpecialConfig = (props) => {
     return(
         <div className="specialConfig">
             <span className="levelBubble clickable" onClick={handlePreview}>{level}</span>
-            <BufferDot />
+            {type === "kits" && <BufferDot />}
             <span>
                 <select onChange={handleMenu} value={slug ? slug : "(none)"}>
                     <option value="(none)">(none)</option>

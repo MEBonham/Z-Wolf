@@ -10,7 +10,7 @@ const CharSheetMain = () => {
             <table>
                 <thead>
                     <tr>
-                        <th colSpan='2'>Skills</th>
+                        <th colSpan='2'>Skills (CoastNum: {cur.stats.coastNum})</th>
                     </tr>
                 </thead>
                 <tbody>
