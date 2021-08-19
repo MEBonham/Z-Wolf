@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { useForm } from 'react-hook-form';
@@ -12,7 +12,7 @@ const TEMPLATE = "<h2>Feat Name</h2><p><strong>Prerequisites:</strong> none.</p>
 
 const NewFeat = () => {
     const { register, handleSubmit, watch, reset } = useForm();
-    const quill = useRef(null);
+    // const quill = useRef(null);
     const [numMods, setNumMods] = useState(0);
     const [numVerbs, setNumVerbs] = useState(0);
     const watchModTypes = watch([...Array(numMods).keys()].map((i) => (`modifier.${i}.type`)));
@@ -61,9 +61,9 @@ const NewFeat = () => {
             });
     }
 
-    useEffect(() => {
-        quill.current.getEditor().getModule('better-table');
-    }, []);
+    // useEffect(() => {
+    //     quill.current.getEditor().getModule('better-table');
+    // }, []);
 
     return (
         <LibraryAdd onSubmit={handleSubmit(handleSave)}>
@@ -71,7 +71,7 @@ const NewFeat = () => {
             <ReactQuill
                 value={richText}
                 onChange={handleChange}
-                ref={quill}
+                // ref={quill}
             />
             <div className="cols">
                 <div>
