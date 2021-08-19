@@ -3,9 +3,9 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import _ from 'lodash';
 
+import fb from '../../fbConfig';
 import checked from '../../media/ui/checked-box.png';
 import unchecked from '../../media/ui/empty-checkbox.png';
-import fb from '../../fbConfig';
 import { SpecialBlock } from '../../styling/StyleBank';
 import { kitTags } from '../../helpers/GameConstants';
 
