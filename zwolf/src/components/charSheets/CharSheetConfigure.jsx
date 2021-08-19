@@ -45,7 +45,7 @@ const CharSheetConfigure = () => {
                     level: i,
                     origin: `${i}`,
                     type: "kits",
-                    ...cur.kits.filter((kitObj) => kitObj.origin === "1")[0]
+                    ...cur.kits.filter((kitObj) => kitObj.origin === `${i}`)[0]
                 });
             }
             if (i < 9) {
@@ -53,14 +53,14 @@ const CharSheetConfigure = () => {
                     level: i,
                     origin: `${i}`,
                     type: "feats",
-                    ...cur.feats.filter((featObj) => featObj.origin === `${i}`)
+                    ...cur.feats.filter((featObj) => featObj.origin === `${i}`)[0]
                 });
             }
             tempTalents.push({
                 level: i,
                 origin: `${i}`,
                 type: "talents",
-                ...cur.talents.filter((talentObj) => talentObj.origin === `${i}`)
+                ...cur.talents.filter((talentObj) => talentObj.origin === `${i}`)[0]
             });
         }
         setKitBlocks(tempKits);
@@ -71,37 +71,36 @@ const CharSheetConfigure = () => {
     return (
         <section className="tab configure">
             <h2>Configuration</h2>
-            <p>
+            <div>
                 <strong>Kits:</strong>
                 <span> </span>
                 {kitBlocks.map((kitObj, i) => 
                     <SpecialConfig
                         key={i}
                         data={kitObj}
-                        terminal={i === kitBlocks.length - 1}
                     />
                 )}
-            </p>
-            <p>
+            </div>
+            <div>
                 <strong>Feats:</strong>
                 <span> </span>
                 {featBlocks.map((featObj, i) =>
                     <SpecialConfig
+                        key={i}
                         data={featObj}
-                        terminal={i === featBlocks.length - 1}
                     />
                 )}
-            </p>
-            <p>
+            </div>
+            <div>
                 <strong>Talents:</strong>
                 <span> </span>
                 {talentBlocks.map((talentObj, i) =>
                     <SpecialConfig
+                        key={i}
                         data={talentObj}
-                        terminal={i === talentBlocks.length - 1}
                     />
                 )}
-            </p>
+            </div>
         </section>
     );
 }

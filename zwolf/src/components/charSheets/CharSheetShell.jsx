@@ -5,6 +5,7 @@ import fb from '../../fbConfig';
 import { CharSheetStyling } from '../../styling/StyleBank';
 import useChar from '../../hooks/CreatureStore';
 
+import CharSaver from '../hidden/CharSaver';
 import Pool from './Pool';
 import CharSheetMain from './CharSheetMain';
 import CharSheetInventory from './CharSheetInventory';
@@ -82,6 +83,7 @@ const CharSheetShell = () => {
             {(loadingChar || !cur) ?
                 <h1>(Loading ...)</h1> :
                 <>
+                    <CharSaver slug={slug} />
                     <header>
                         <div className="headerStats">
                             <header>

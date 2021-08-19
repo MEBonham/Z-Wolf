@@ -63,7 +63,9 @@ const useSidebar = create((set) => ({
             order: -1,
             spellOut: "Table of Contents"
         }
-    }
+    },
+    manualSave: false,
+    toggleManualSave: () => set((state) => ({ manualSave: !state.manualSave }))
 
 }));
 

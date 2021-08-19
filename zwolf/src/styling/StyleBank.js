@@ -366,8 +366,8 @@ export const CharSheetStyling = styled.div`
     section.tab.configure {
         line-height: 1.3;
 
-        span.specialConfig span.levelBubble {
-            padding: 2px 8px 3px;
+        div.specialConfig span.levelBubble {
+            padding: 3px 8px 4px;
             border-radius: 50%;
             background-color: rgba(50, 168, 82, 0.3);
         }

@@ -98,3 +98,19 @@ div.App {
   flex-direction: column;
   align-items: center;
 }
+
+.flashing {
+    -webkit-animation-name: flash-animation;
+    -webkit-animation-duration: 1.2s;
+    animation-name: flash-animation;
+    animation-duration: 1.2s;
+    animation-timing-function: ease-out;
+}
+@-webkit-keyframes flash-animation {
+    from { background-color: #45e670; }
+    to   { background-color: default; }
+}
+@keyframes flash-animation {
+    from { background-color: #45e670; }
+    to   { background-color: default; }
+}

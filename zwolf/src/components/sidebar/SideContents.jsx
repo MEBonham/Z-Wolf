@@ -9,6 +9,7 @@ const SideContents = () => {
     const sideMode = useSidebar((state) => state.mode);
     const [modeComp, setModeComp] = useState(null);
     const modeSwap = useSidebar((state) => state.modeSwap);
+    const toggleManualSave = useSidebar((state) => state.toggleManualSave);
 
     const handleMenuBtn = (ev) => {
         modeSwap("mainNavMenu");
@@ -27,7 +28,7 @@ const SideContents = () => {
     return(
         <>
             <header>
-                <span>Theme Swap</span>
+                <button onClick={(ev) => { ev.preventDefault(); toggleManualSave(); }}>Save Work</button>
                 <span onClick={handleMenuBtn} className="clickable">Main Menu Button</span>
             </header>
             {modeComp}
