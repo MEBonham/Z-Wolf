@@ -47,4 +47,5 @@
 45. Delete node_modules and yarn.lock again and reinstall libraries to clean up react-select and is-hotkey leftovers (since node_modules is under .gitignore).
 46. `yarn add react-quill`; adapt tutorial from https://www.scalablepath.com/blog/using-quill-js-build-wysiwyg-editor-website/
 47. `yarn add react-hook-form` to add other pieces of New Kit/Feat/Talent forms
-48. 
+48. Add transparent wooden texture as background-image for Sidebar.
+49. 

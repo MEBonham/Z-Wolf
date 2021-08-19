@@ -92,7 +92,7 @@ export const PrimaryBar = styled.section`
 export const Sidebar = styled.section`
     width: 34%;
     background-color: #17110a;
-    background-image: url("/src/media/wood-texture.png");
+    background-image: url("/wood-texture.png");
 
     > header {
         height: 60px;
