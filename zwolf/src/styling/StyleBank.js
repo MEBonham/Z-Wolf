@@ -424,6 +424,9 @@ export const LibraryAdd = styled.form`
     select.fitFive {
         height: 88px;
     }
+    select.fitSix {
+        height: 106px;
+    }
     div.quill {
         margin: 12px 0;
         background-color: rgba(255, 255, 255, 0.04);

@@ -85,3 +85,30 @@ export const kitTags = [
     "Heritage",
     "Monster"
 ];
+
+export const featTags = [
+    "Boost",
+    "Core",
+    "Counter",
+    "Grace",
+    "Spell",
+    "Strike"
+];
+
+export const seedsList = [
+    "Acid",
+    "Air",
+    "Animal",
+    "Cold",
+    "Earth",
+    "Fire",
+    "Illusory",
+    "Lightning",
+    "Luck",
+    "Mind",
+    "Plant",
+    "Radiant",
+    "Shadow",
+    "Water",
+    "Weave"
+];
