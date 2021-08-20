@@ -379,6 +379,9 @@ export const CharSheetStyling = styled.div`
             font-size: 1.6rem;
         }
 
+        > div div.bufferBox {
+            display: flex;
+        }
         > div.notKits {
             margin: 6px 0;
             display: flex;
@@ -392,9 +395,11 @@ export const CharSheetStyling = styled.div`
             }
         }
         div.specialConfig {
-            padding: 0 0 3px 4px;
+            margin-right: 2px;
+            padding: 2px 3px 3px 2px;
         }
         div.specialConfig.bonus {
+            margin-right: 4px;
             border: 2px solid rgba(255, 255, 100, 0.2);
             box-shadow: 0 0 4px rgba(255, 255, 100, 0.4);
         }

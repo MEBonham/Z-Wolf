@@ -95,7 +95,7 @@ const CharSheetConfigure = () => {
     return (
         <section className="tab configure">
             <h2>Configuration</h2>
-            <div>
+            <div className="kits">
                 <strong>Kits:</strong>
                 <span> </span>
                 {kitBlocks.map((kitObj, i) => 

@@ -130,19 +130,21 @@ const SpecialConfig = (props) => {
     }
 
     return(
-        <div className={`specialConfig ${origin.length > 6 ? "bonus" : null}`}>
-            <span className="levelBubble clickable" onClick={handlePreview}>{level}</span>
-            {type === "kits" && <BufferDot />}
-            <span>
-                <select onChange={handleMenu} value={slug ? slug : "(none)"}>
-                    <option value="(none)">(none)</option>
-                    {Object.keys(lib).sort((a, b) => lib[a].name - lib[b].name)
-                        .map((libSlug) => (
-                            <option value={libSlug} key={libSlug}>{lib[libSlug].name}</option>
-                    ))}
-                </select>
-                <BufferDot />
-            </span>
+        <div className="bufferBox">
+            <div className={`specialConfig ${origin.length > 6 ? "bonus" : null}`}>
+                <span className="levelBubble clickable" onClick={handlePreview}>{level}</span>
+                {type === "kits" && <BufferDot />}
+                <span>
+                    <select onChange={handleMenu} value={slug ? slug : "(none)"}>
+                        <option value="(none)">(none)</option>
+                        {Object.keys(lib).sort((a, b) => lib[a].name - lib[b].name)
+                            .map((libSlug) => (
+                                <option value={libSlug} key={libSlug}>{lib[libSlug].name}</option>
+                        ))}
+                    </select>
+                </span>
+            </div>
+            <BufferDot />
         </div>
     );
 }
