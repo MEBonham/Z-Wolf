@@ -6,6 +6,7 @@ import fb from '../../fbConfig';
 import useChar from '../../hooks/CreatureStore';
 import useSidebar from '../../hooks/SidebarStore';
 import { calcStats } from '../../helpers/CalcStats';
+import { skillsList } from '../../helpers/GameConstants';
 import BufferDot from '../ui/BufferDot';
 
 const SpecialConfig = (props) => {
@@ -130,22 +131,80 @@ const SpecialConfig = (props) => {
     }
 
     return(
-        <div className="bufferBox">
-            <div className={`specialConfig ${origin.length > 6 ? "bonus" : null}`}>
-                <span className="levelBubble clickable" onClick={handlePreview}>{level}</span>
-                {type === "kits" && <BufferDot />}
-                <span>
-                    <select onChange={handleMenu} value={slug ? slug : "(none)"}>
-                        <option value="(none)">(none)</option>
-                        {Object.keys(lib).sort((a, b) => lib[a].name - lib[b].name)
-                            .map((libSlug) => (
-                                <option value={libSlug} key={libSlug}>{lib[libSlug].name}</option>
-                        ))}
-                    </select>
-                </span>
+        <>
+            <div className="bufferBox">
+                <div className={`specialConfig ${origin.length > 6 ? "bonus" : null}`}>
+                    <span className="levelBubble clickable" onClick={handlePreview}>{level}</span>
+                    {type === "kits" && <BufferDot />}
+                    <span>
+                        <select onChange={handleMenu} value={slug ? slug : "(none)"}>
+                            <option value="(none)">(none)</option>
+                            {Object.keys(lib).sort((a, b) => lib[a].name - lib[b].name)
+                                .map((libSlug) => (
+                                    <option value={libSlug} key={libSlug}>{lib[libSlug].name}</option>
+                            ))}
+                        </select>
+                    </span>
+                </div>
+                <BufferDot />
+                {id && (cur.mods).filter((modObj) => modObj.origin === id && modObj.target === "numTrainedSkills")
+                    .map((modObj) => {
+                        if (modObj.type === "Synergy") return;
+                        return(
+                            <div key="onlyOne" className="training">
+                                {[...Array(modObj.mag).keys()].map((i) => {
+                                    let curSkill;
+                                    if (cur.trainedSkills.filter((obj) => obj.origin === id).length) {
+                                        curSkill = cur.trainedSkills.filter((obj) => obj.origin === id)[i].skill;
+                                    } else {
+                                        curSkill = "Free Choice";
+                                    }
+                                    return (
+                                        <select
+                                            key={i}
+                                            value={curSkill}
+                                            onChange={(ev) => {
+                                                ev.preventDefault();
+                                                const tempObjs = cur.trainedSkills.filter((obj) => obj.origin === id);
+                                                tempObjs[i] = _.set(tempObjs[i], "skill", ev.target.value);
+                                                const tempBlock = {
+                                                    ...cur,
+                                                    trainedSkills: [
+                                                        ...cur.trainedSkills.filter((obj) => obj.origin !== id),
+                                                        ...tempObjs
+                                                    ]
+                                                };
+                                                setCur({
+                                                    ...tempBlock,
+                                                    stats: calcStats(tempBlock)
+                                                });
+                                            }}
+                                        >
+                                            {modObj.selection === "any" ?
+                                                <>
+                                                    <option value="Free Choice">(none)</option>
+                                                    {skillsList.map((skillName) => (
+                                                        <option value={skillName} key={skillName}>{skillName}</option>
+                                                    ))}
+                                                </> :
+                                                (modObj.selection ?? []).length > 1 ?
+                                                    <>
+                                                        <option value="Free Choice">(none)</option>
+                                                        {modObj.selection.map((skillName) => (
+                                                            <option value={skillName} key={skillName}>{skillName}</option>
+                                                        ))}
+                                                    </> :
+                                                    <option value={modObj.selection ? modObj.selection[0] : "error"}>{modObj.selection ? modObj.selection[0] : "error"}</option>
+                                            }
+                                        </select>
+                                    );
+                                })}
+                                <BufferDot />
+                            </div>
+                        );
+                    })}
             </div>
-            <BufferDot />
-        </div>
+        </>
     );
 }
 

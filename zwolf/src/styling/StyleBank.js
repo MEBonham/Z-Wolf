@@ -324,7 +324,8 @@ export const CharSheetStyling = styled.div`
                 }
                 div.saves {
                     border-radius: 4px;
-                    border: 1px solid rgba(50, 168, 82, 0.4);
+                    border: 1px solid rgba(50, 168, 82, 0.2);
+                    box-shadow: 0 0 2px rgba(50, 168, 82, 0.4);
                 }
             }
         }
@@ -381,6 +382,12 @@ export const CharSheetStyling = styled.div`
 
         > div div.bufferBox {
             display: flex;
+
+            div.training select {
+                margin-left: 4px;
+                position: relative;
+                top: 2px;
+            }
         }
         > div.notKits {
             margin: 6px 0;
