@@ -88,11 +88,25 @@ export const kitTags = [
 
 export const featTags = [
     "Boost",
+    "Buff",
     "Core",
     "Counter",
     "Grace",
+    "Monster",
     "Spell",
     "Strike"
+];
+
+export const talentTags = [
+    "Background",
+    "Buff",
+    "Core",
+    "Epic",
+    "Luck",
+    "Monster",
+    "Proficiency",
+    "Seed",
+    "Skill Trick"
 ];
 
 export const seedsList = [

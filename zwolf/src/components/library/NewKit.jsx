@@ -27,7 +27,7 @@ const NewKit = () => {
     const handleSave = (formData) => {
         const newSlug = encodeURIComponent(formData.slug.split(" ").join("").toLowerCase().replace(/'/g, ""));
         const formDataFixed = _.cloneDeep(formData);
-        formData.modifier.forEach((modObj, i) => {
+        (formData.modifier ?? []).forEach((modObj, i) => {
             if (modObj.type === "Synergy") {
                 _.set(formDataFixed, `modifier[${i}].mag`, "special");
             } else {
