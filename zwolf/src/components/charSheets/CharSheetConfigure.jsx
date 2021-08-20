@@ -62,6 +62,30 @@ const CharSheetConfigure = () => {
                 type: "talents",
                 ...cur.talents.filter((talentObj) => talentObj.origin === `${i}`)[0]
             });
+            cur.mods.filter((modObj) => modObj.level === i && modObj.target === "numFeats")
+                .forEach((bonusFeatObj) => {
+                    if (bonusFeatObj.type === "Synergy") return;    // Synergy bonuses to numFeats or numTalents won't work
+                    for (let j = 0; j < bonusFeatObj.mag; j++) {
+                        tempFeats.push({
+                            level: i,
+                            origin: bonusFeatObj.origin,
+                            type: "feats",
+                            ...cur.feats.filter((featObj) => featObj.origin === bonusFeatObj.origin)[j]
+                        });
+                    }
+                });
+            cur.mods.filter((modObj) => modObj.level === i && modObj.target === "numTalents")
+                .forEach((bonusTalentObj) => {
+                    if (bonusTalentObj.type === "Synergy") return;    // Synergy bonuses to numFeats or numTalents won't work
+                    for (let j = 0; j < bonusTalentObj.mag; j++) {
+                        tempTalents.push({
+                            level: i,
+                            origin: bonusTalentObj.origin,
+                            type: "talents",
+                            ...cur.talents.filter((talentObj) => talentObj.origin === bonusTalentObj.origin)[j]
+                        });
+                    }
+                });
         }
         setKitBlocks(tempKits);
         setFeatBlocks(tempFeats);

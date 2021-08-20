@@ -31,22 +31,36 @@ const SpecialConfig = (props) => {
             });
     }, []);
 
+    const expunge = (block, badId) => {
+        let tempArr = [];
+        ["feats", "talents", "mods", "verbs", "trainedSkills"].forEach((type) => {
+            tempArr = tempArr.concat(block[type].filter((obj) => obj.origin === badId));
+        });
+        if (!tempArr.length) {
+            return block;
+        }
+        let tempBlock = {
+            ...block,
+            mods: block.mods.filter((obj) => obj.origin !== badId),
+            verbs: block.verbs.filter((obj) => obj.origin !== badId),
+            trainedSkills: block.trainedSkills.filter((obj) => obj.origin !== badId)
+        };
+        block.feats.filter((obj) => obj.origin === badId).forEach((featObj) => {
+            tempBlock = expunge(tempBlock, featObj.id);
+        });
+        block.talents.filter((obj) => obj.origin === badId).forEach((talentObj) => {
+            tempBlock = expunge(tempBlock, talentObj.id);
+        });
+        return tempBlock;
+    }
+
     const handleMenu = (ev) => {
         const newId = nanoid();
         if (ev.target.value === "(none)") {
             const tempBlock = {
-                ...cur,
+                ...(expunge(cur, prevId)),
                 [type]: [
                     ...cur[type].filter((obj) => obj.origin !== origin)
-                ],
-                mods: [
-                    ...cur.mods.filter((obj) => obj.origin !== prevId)
-                ],
-                verbs: [
-                    ...cur.verbs.filter((obj) => obj.origin !== prevId)
-                ],
-                trainedSkills: [
-                    ...cur.trainedSkills.filter((obj) => obj.origin !== prevId)
                 ]
             };
             setCur({
@@ -57,16 +71,24 @@ const SpecialConfig = (props) => {
             const libEntry = lib[ev.target.value];
             let tempMods = _.get(libEntry, "modifier", []);
             let tempVerbs = _.get(libEntry, "verb", []);
-            tempMods = tempMods.map((prev) => ({
-                ...prev,
-                origin: newId
+            tempMods = tempMods.map((base) => ({
+                ...base,
+                origin: newId,
+                level
             }));
-            tempVerbs = tempVerbs.map((prev) => ({
-                ...prev,
-                origin: newId
+            tempVerbs = tempVerbs.map((base) => ({
+                ...base,
+                origin: newId,
+                level
             }));
-            const tempBlock = {
-                ...cur,
+            const tempTrains = tempMods.filter((modObj) => modObj.target === "numTrainedSkills")
+                .map((modObj) => ({
+                    origin: newId,
+                    level,
+                    skill: _.get(modObj, "skillOptions", "Free Choice")
+                }));
+            let tempBlock = {
+                ...(expunge(cur, prevId)),
                 [type]: [
                     ...cur[type].filter((obj) => obj.origin !== origin),
                     {
@@ -76,14 +98,21 @@ const SpecialConfig = (props) => {
                         level,
                         name: libEntry.name
                     }
-                ],
+                ]
+            };
+            tempBlock = {
+                ...tempBlock,
                 mods: [
-                    ...cur.mods.filter((obj) => obj.origin !== prevId),
+                    ...tempBlock.mods,
                     ...tempMods
                 ],
                 verbs: [
-                    ...cur.verbs.filter((obj) => obj.origin !== prevId),
+                    ...tempBlock.verbs,
                     ...tempVerbs
+                ],
+                trainedSkills: [
+                    ...tempBlock.trainedSkills,
+                    ...tempTrains
                 ]
             };
             setCur({
@@ -101,7 +130,7 @@ const SpecialConfig = (props) => {
     }
 
     return(
-        <div className="specialConfig">
+        <div className={`specialConfig ${origin.length > 6 ? "bonus" : null}`}>
             <span className="levelBubble clickable" onClick={handlePreview}>{level}</span>
             {type === "kits" && <BufferDot />}
             <span>

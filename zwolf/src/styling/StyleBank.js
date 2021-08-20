@@ -382,10 +382,21 @@ export const CharSheetStyling = styled.div`
         > div.notKits {
             margin: 6px 0;
             display: flex;
+            flex-wrap: wrap;
 
             strong {
                 margin-right: 4px;
             }
+            span.levelBubble {
+                margin-right: 2px;
+            }
+        }
+        div.specialConfig {
+            padding: 0 0 3px 4px;
+        }
+        div.specialConfig.bonus {
+            border: 2px solid rgba(255, 255, 100, 0.2);
+            box-shadow: 0 0 4px rgba(255, 255, 100, 0.4);
         }
         div.specialConfig span.levelBubble {
             padding: 3px 8px 4px;
