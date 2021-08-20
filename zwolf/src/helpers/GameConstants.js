@@ -92,6 +92,7 @@ export const featTags = [
     "Core",
     "Counter",
     "Grace",
+    "Ki",
     "Monster",
     "Spell",
     "Strike"
@@ -102,6 +103,7 @@ export const talentTags = [
     "Buff",
     "Core",
     "Epic",
+    "Ki",
     "Luck",
     "Monster",
     "Proficiency",

@@ -383,7 +383,8 @@ export const CharSheetStyling = styled.div`
         > div div.bufferBox {
             display: flex;
 
-            div.training select {
+            div.training select,
+            div.choices select {
                 margin-left: 4px;
                 position: relative;
                 top: 2px;

@@ -7,6 +7,7 @@ import useChar from '../../hooks/CreatureStore';
 import useSidebar from '../../hooks/SidebarStore';
 import { calcStats } from '../../helpers/CalcStats';
 import { skillsList } from '../../helpers/GameConstants';
+import { clumpObjectsByProperty } from '../../helpers/utilityFct';
 import BufferDot from '../ui/BufferDot';
 
 const SpecialConfig = (props) => {
@@ -17,6 +18,7 @@ const SpecialConfig = (props) => {
     const setPreviewSlug = useSidebar((state) => state.setPreviewSlug);
     const modeSwap = useSidebar((state) => state.modeSwap);
     const [lib, setLib] = useState({});
+    const [overlaps, setOverlaps] = useState([]);
     const [prevId, setPrevId] = useState(id ? id : "(none)");
     const db = fb.db;
     useEffect(() => {
@@ -75,7 +77,8 @@ const SpecialConfig = (props) => {
             tempMods = tempMods.map((base) => ({
                 ...base,
                 origin: newId,
-                level
+                level,
+                choices: {}
             }));
             tempVerbs = tempVerbs.map((base) => ({
                 ...base,
@@ -97,7 +100,8 @@ const SpecialConfig = (props) => {
                         slug: ev.target.value,
                         origin,
                         level,
-                        name: libEntry.name
+                        name: libEntry.name,
+                        choices: {}
                     }
                 ]
             };
@@ -120,6 +124,7 @@ const SpecialConfig = (props) => {
                 ...tempBlock,
                 stats: calcStats(tempBlock)
             });
+            setOverlaps(clumpObjectsByProperty(tempMods, "overlap"));
         }
         setPrevId(newId);
     }
@@ -129,6 +134,11 @@ const SpecialConfig = (props) => {
         setPreviewSlug(slug);
         modeSwap("libPreview");
     }
+
+    useEffect(() => {
+        const tempMods = cur.mods.filter((modObj) => modObj.origin === id);
+        setOverlaps(clumpObjectsByProperty(tempMods, "overlap"));
+    }, [cur, id]);
 
     return(
         <>
@@ -203,6 +213,40 @@ const SpecialConfig = (props) => {
                             </div>
                         );
                     })}
+                {overlaps.length > 0 && overlaps.map((modCluster, i) => {
+                    const overlapId = modCluster[0].overlap;
+                    let quarry = cur[type].filter((specialObj) => specialObj.id === id)[0];
+                    const curChoice = _.get(quarry, `choices[${overlapId}]`, modCluster[0].target);
+                    return (
+                        <div key={i} className="choices">
+                            <select
+                                value={curChoice}
+                                onChange={(ev) => {
+                                    ev.preventDefault();
+                                    quarry = _.set(quarry, `choices[${overlapId}]`, ev.target.value);
+                                    const tempBlock = {
+                                        ...cur,
+                                        [type]: [
+                                            ...cur[type].filter((obj) => obj.id !== id),
+                                            quarry
+                                        ]
+                                    };
+                                    setCur({
+                                        ...tempBlock,
+                                        stats: calcStats(tempBlock)
+                                    });
+                                }}
+                            >
+                                {modCluster.map((modObj) => (
+                                    <option value={modObj.target} key={modObj.target}>
+                                        {modObj.mag > 0 ? "+" : null}{modObj.mag} to {modObj.target}
+                                    </option>
+                                ))}
+                            </select>
+                            <BufferDot />
+                        </div>
+                    )
+                })}
             </div>
         </>
     );
