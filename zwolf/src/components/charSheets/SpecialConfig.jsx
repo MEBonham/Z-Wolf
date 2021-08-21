@@ -3,11 +3,8 @@ import _ from 'lodash';
 import { nanoid } from 'nanoid'
 
 import fb from '../../fbConfig';
-import checked from '../../media/ui/checked-box.png';
-import unchecked from '../../media/ui/empty-checkbox.png';
 import useChar from '../../hooks/CreatureStore';
 import useSidebar from '../../hooks/SidebarStore';
-import { calcStats } from '../../helpers/CalcStats';
 import { skillsList } from '../../helpers/GameConstants';
 import { clumpObjectsByProperty } from '../../helpers/utilityFct';
 import BufferDot from '../ui/BufferDot';
@@ -16,13 +13,14 @@ const SpecialConfig = (props) => {
     const { id, level, origin, slug, type } = props.data;
     const cur = useChar((state) => state.cur);
     const setCur = useChar((state) => state.setCur);
+    const archeEdit = useChar((state) => state.archeEdit);
+    const setArcheEdit = useChar((state) => state.setArcheEdit);
     const setPreviewType = useSidebar((state) => state.setPreviewType);
     const setPreviewSlug = useSidebar((state) => state.setPreviewSlug);
     const modeSwap = useSidebar((state) => state.modeSwap);
     const [lib, setLib] = useState({});
     const [overlaps, setOverlaps] = useState([]);
     const [archeStr, setArcheStr] = useState([]);
-    const [archeShow, setArcheShow] = useState(false);
     const [prevId, setPrevId] = useState(id ? id : "(none)");
     const db = fb.db;
     useEffect(() => {
@@ -64,17 +62,19 @@ const SpecialConfig = (props) => {
     const handleMenu = (ev) => {
         const newId = nanoid();
         if (ev.target.value === "(none)") {
-            const tempBlock = {
+            if (archeEdit === prevId) {
+                setArcheEdit(null);
+            }
+            setCur({
                 ...(expunge(cur, prevId)),
                 [type]: [
                     ...cur[type].filter((obj) => obj.origin !== origin)
                 ]
-            };
-            setCur({
-                ...tempBlock,
-                stats: calcStats(tempBlock)
             });
         } else {
+            if (archeEdit === prevId) {
+                setArcheEdit(newId);
+            }
             const libEntry = lib[ev.target.value];
             let tempMods = _.get(libEntry, "modifier", []);
             let tempVerbs = _.get(libEntry, "verb", []);
@@ -110,7 +110,7 @@ const SpecialConfig = (props) => {
                     }
                 ]
             };
-            tempBlock = {
+            setCur({
                 ...tempBlock,
                 mods: [
                     ...tempBlock.mods,
@@ -124,10 +124,6 @@ const SpecialConfig = (props) => {
                     ...tempBlock.trainedSkills,
                     ...tempTrains
                 ]
-            };
-            setCur({
-                ...tempBlock,
-                stats: calcStats(tempBlock)
             });
             setOverlaps(clumpObjectsByProperty(tempMods, "overlap"));
         }
@@ -143,33 +139,7 @@ const SpecialConfig = (props) => {
     useEffect(() => {
         const tempMods = cur.mods.filter((modObj) => modObj.origin === id);
         setOverlaps(clumpObjectsByProperty(tempMods, "overlap"));
-        let deltaStr = _.get(cur[type].filter((obj) => obj.id === id)[0], "delta", "");
-        if (deltaStr.includes(`{"insert":"Archetypes:"},`)) {
-            deltaStr = deltaStr.split(`{"insert":"Archetypes:"},`)[1];
-            let prevStart = 0;
-            let depth = 0;
-            let indexOdd = false;
-            let tempArr = [];
-            for (let i = 0; i < deltaStr.length; i++) {
-                if (deltaStr[i] === "{") {
-                    depth += 1;
-                    if (depth === 1) {
-                        prevStart = i;
-                    }
-                } else if (deltaStr[i] === "}") {
-                    depth -= 1;
-                    if (depth === 0) {
-                        if (indexOdd) {
-                            tempArr.push(JSON.parse(deltaStr.slice(prevStart, i + 1)));
-                        }
-                        indexOdd = !indexOdd;
-                    }
-                }
-            }
-            setArcheStr(tempArr.map((obj) => obj.insert));
-        } else {
-            setArcheStr([]);
-        }
+        setArcheStr(_.get(cur[type].filter((obj) => obj.id === id)[0], "delta", ""));
     }, [cur, id]);
 
     return(
@@ -209,16 +179,12 @@ const SpecialConfig = (props) => {
                                                 ev.preventDefault();
                                                 const tempObjs = cur.trainedSkills.filter((obj) => obj.origin === id);
                                                 tempObjs[i] = _.set(tempObjs[i], "skill", ev.target.value);
-                                                const tempBlock = {
+                                                setCur({
                                                     ...cur,
                                                     trainedSkills: [
                                                         ...cur.trainedSkills.filter((obj) => obj.origin !== id),
                                                         ...tempObjs
                                                     ]
-                                                };
-                                                setCur({
-                                                    ...tempBlock,
-                                                    stats: calcStats(tempBlock)
                                                 });
                                             }}
                                         >
@@ -256,16 +222,12 @@ const SpecialConfig = (props) => {
                                 onChange={(ev) => {
                                     ev.preventDefault();
                                     quarry = _.set(quarry, `choices[${overlapId}]`, ev.target.value);
-                                    const tempBlock = {
+                                    setCur({
                                         ...cur,
                                         [type]: [
                                             ...cur[type].filter((obj) => obj.id !== id),
                                             quarry
                                         ]
-                                    };
-                                    setCur({
-                                        ...tempBlock,
-                                        stats: calcStats(tempBlock)
                                     });
                                 }}
                             >
@@ -279,68 +241,19 @@ const SpecialConfig = (props) => {
                         </div>
                     )
                 })}
-                {archeStr.length > 0 && <div className="archetypes">
+                {archeStr.includes(`{"insert":"Archetypes:"},`) && <div className="archetypes">
                     <button
                         onClick={(ev) => {
                             ev.preventDefault();
-                            setArcheShow(!archeShow);
+                            if (archeEdit === id) {
+                                setArcheEdit(null);
+                            } else {
+                                setArcheEdit(id);
+                            }
                         }}
                     >
                         Archetypes
                     </button>
-                    {archeShow && <div className="checklist">
-                        {archeStr.map((reqs, i) => {
-                            const tempMod = cur.mods.filter(
-                                (modObj) => (modObj.origin === id && modObj.target === "kpMax" && modObj.archeNum === i)
-                            )[0];
-                            return(
-                                <div key={reqs}>
-                                    <img
-                                        src={tempMod ? checked : unchecked}
-                                        alt="checkbox"
-                                        className="clickable"
-                                        onClick={(ev) => {
-                                            let tempBlock = {};
-                                            if (tempMod) {          // Un-checking Archetype
-                                                tempBlock = {
-                                                    ...cur,
-                                                    mods: [
-                                                        ...cur.mods.filter(
-                                                            (modObj) => (modObj.origin !== id ||
-                                                                modObj.target !== "kpMax" ||
-                                                                modObj.archeNum !== i)
-                                                        )
-                                                    ]
-                                                }
-                                            } else {                // Checking Archetype
-                                                tempBlock = {
-                                                    ...cur,
-                                                    mods: [
-                                                        ...cur.mods,
-                                                        {
-                                                            choices: {},
-                                                            level,
-                                                            mag: 1,
-                                                            origin: id,
-                                                            overlap: Math.random(),
-                                                            target: "kpMax",
-                                                            type: "Untyped",
-                                                            archeNum: i
-                                                        }
-                                                    ]
-                                                }
-                                            }
-                                            setCur({
-                                                ...tempBlock,
-                                                stats: calcStats(tempBlock)
-                                            });
-                                        }}
-                                    />
-                                    <span>{reqs}</span>
-                                </div>
-                            );
-                        })}
-                    </div>}
                     <BufferDot />
                 </div>}
             </div>

@@ -376,10 +376,40 @@ export const CharSheetStyling = styled.div`
     }
     section.tab.configure {
         line-height: 1.3;
+        transform: scale(1, 1);
+
         strong {
             font-size: 1.6rem;
         }
+        div.checklist {
+            position: absolute;
+            top: 4px;
+            right: 0;
+            z-index: 2;
+            max-width: 300px;
+            border: 2px solid #333333;
+            padding: 4px 8px;
+            border-radius: 4px;
+            background-color: #555555;
+            
+            h4 {
+                width: 100%;
+                margin: 4px 0;
+                font-size: 1.4rem;
+                text-align: center;
+            }
+            > div {
+                margin: 4px 0;
+                display: flex;
+                align-items: center;
+                font-size: 1.2rem;
 
+                img {
+                    height: 14px;
+                    margin-right: 4px;
+                }
+            }
+        }
         > div div.bufferBox {
             display: flex;
 
@@ -387,30 +417,8 @@ export const CharSheetStyling = styled.div`
             div.choices select,
             div.archetypes button {
                 margin-left: 4px;
-            }
-            div.archetypes {
-                transform: scale(1, 1);
-                
-                div.checklist {
-                    position: absolute;
-                    top: 24px;
-                    z-index: 2;
-                    padding: 4px;
-                    background-color: #555555;
-                    
-                    > div {
-                        margin: 4px 0;
-                        display: flex;
-                        align-items: center;
-
-                        img {
-                            height: 14px;
-                            position: relative;
-                            top: 2px;
-                            margin-right: 4px;
-                        }
-                    }
-                }
+                position: relative;
+                top: 2px;
             }
         }
         > div.notKits {
