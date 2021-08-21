@@ -2,20 +2,19 @@ import React, { useState, useEffect } from 'react';
 import _ from 'lodash';
 
 import useChar from '../../hooks/CreatureStore';
-import checked from '../../media/ui/checked-box.png';
-import unchecked from '../../media/ui/empty-checkbox.png';
 import SpecialConfig from './SpecialConfig';
+import { skillsList } from '../../helpers/GameConstants';
 import BufferDot from '../ui/BufferDot';
+import TrainingPicker from './TrainingPicker';
+import ArchetypeChecklist from './ArchetypeChecklist';
 
 const CharSheetConfigure = () => {
     const cur = useChar((state) => state.cur);
     const setCur = useChar((state) => state.setCur);
-    const archeEdit = useChar((state) => state.archeEdit);
-    const setArcheEdit = useChar((state) => state.setArcheEdit);
     const [kitBlocks, setKitBlocks] = useState([]);
     const [featBlocks, setFeatBlocks] = useState([]);
     const [talentBlocks, setTalentBlocks] = useState([]);
-    const [archeStr, setArcheStr] = useState([]);
+    const [synergies, setSynergies] = useState([]);
 
     useEffect(() => {
         const tempKits = [];
@@ -98,115 +97,12 @@ const CharSheetConfigure = () => {
         setKitBlocks(tempKits);
         setFeatBlocks(tempFeats);
         setTalentBlocks(tempTalents);
+        setSynergies(cur.mods.filter((modObj) => modObj.type === "Synergy"));
     }, [cur]);
-
-    useEffect(() => {
-        if (archeEdit) {
-            let deltaStr = _.get(cur.kits.filter((obj) => obj.id === archeEdit)[0], "delta", "");
-            if (deltaStr.includes(`{"insert":"Archetypes:"},`)) {
-                deltaStr = deltaStr.split(`{"insert":"Archetypes:"},`)[1];
-                let prevStart = 0;
-                let depth = 0;
-                let indexOdd = false;
-                let tempArr = [];
-                const orMarkers = [];
-                for (let i = 0; i < deltaStr.length; i++) {
-                    if (deltaStr[i] === "{") {
-                        depth += 1;
-                        if (depth === 1) {
-                            prevStart = i;
-                        }
-                    } else if (deltaStr[i] === "}") {
-                        depth -= 1;
-                        if (depth === 0) {
-                            const fragment = JSON.parse(deltaStr.slice(prevStart, i + 1));
-                            const orTag = {
-                                attributes: {
-                                    bold: true
-                                },
-                                insert: "or"
-                            };
-                            if (_.isEqual(fragment, orTag)) {
-                                tempArr.push(fragment);
-                                orMarkers.push(i);
-                            } else if (indexOdd) {
-                                tempArr.push(fragment);
-                            }
-                            indexOdd = !indexOdd;
-                        }
-                    }
-                }
-                setArcheStr(tempArr.map((obj) => obj.insert).join("$$").replaceAll("$$or$$", " or ").split("$$"));
-            } else {
-                setArcheStr([]);
-            }
-        } else {
-            setArcheStr([]);
-        }
-    }, [archeEdit, cur]);
 
     return (
         <section className="tab configure">
-            {archeEdit && <div className="checklist">
-                <h4>
-                    Archetypes Attained
-                    <BufferDot />
-                    <span
-                        className="clickable"
-                        onClick={() => setArcheEdit(null)}
-                    >
-                        Close
-                    </span>
-                </h4>
-                {archeStr.map((reqs, i) => {
-                    const tempMod = cur.mods.filter(
-                        (modObj) => (modObj.origin === archeEdit && modObj.target === "kpMax" && modObj.archeNum === i)
-                    )[0];
-                    return(
-                        <div key={reqs}>
-                            <img
-                                src={tempMod ? checked : unchecked}
-                                alt="checkbox"
-                                className="clickable"
-                                onClick={(ev) => {
-                                    let tempBlock = {};
-                                    if (tempMod) {          // Un-checking Archetype
-                                        tempBlock = {
-                                            ...cur,
-                                            mods: [
-                                                ...cur.mods.filter(
-                                                    (modObj) => (modObj.origin !== id ||
-                                                        modObj.target !== "kpMax" ||
-                                                        modObj.archeNum !== i)
-                                                )
-                                            ]
-                                        }
-                                    } else {                // Checking Archetype
-                                        tempBlock = {
-                                            ...cur,
-                                            mods: [
-                                                ...cur.mods,
-                                                {
-                                                    choices: {},
-                                                    level: _.get(cur.kits.filter((obj) => obj.id === archeEdit)[0], "level", -1),
-                                                    mag: 1,
-                                                    origin: archeEdit,
-                                                    overlap: Math.random(),
-                                                    target: "kpMax",
-                                                    type: "Untyped",
-                                                    archeNum: i
-                                                }
-                                            ]
-                                        }
-                                    }
-                                    setCur(tempBlock);
-                                }}
-                            />
-                            <span>{reqs}</span>
-                        </div>
-                    );
-                })}
-            </div>}
+            <ArchetypeChecklist />
             <h2>Configuration</h2>
             <div className="kits">
                 <strong>Kits:</strong>
@@ -238,6 +134,91 @@ const CharSheetConfigure = () => {
                     />
                 )}
             </div>
+            <section>
+                <h3>Skills</h3>
+                <section>
+                    <h4>Initial Trainings</h4>
+                    <div>
+                        <TrainingPicker index={0} origin="1A" modObj={{ selection: "any" }} />
+                        <TrainingPicker index={0} origin="1B" modObj={{ selection: "any" }} />
+                    </div>
+                </section>
+                <h4>Normal Ranks</h4>
+                <table className="skillRankSelections">
+                    <tbody>
+                        {[...Array(cur.level).keys()].map((i) => (
+                            <tr key={i}>
+                                <td><strong>(L{i + 1})</strong><BufferDot /></td>
+                                {[...Array(6).keys()].map((j) => (
+                                    <td key={j}>
+                                        <select
+                                            value={_.get(cur, `baseSkillRanks[${i + 1}][${j}]`, "Athletics")}
+                                            onChange={(ev) => {
+                                                ev.preventDefault();
+                                                setCur(_.set(cur, `baseSkillRanks[${i + 1}][${j}]`, ev.target.value));
+                                            }}
+                                        >
+                                            {skillsList.map((skillName) => (
+                                                <option key={skillName} value={skillName}>{skillName}</option>
+                                            ))}
+                                        </select>
+                                    </td>
+                                ))}
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+                {synergies.length > 0 && <section className="synergies">
+                    <h4>Primary Synergy Bonuses</h4>
+                    <div>
+                        {skillsList.map((skillName) => {
+                            const mods = synergies.filter((modObj) => modObj.skill === skillName);
+                            let alreadyPrimary = mods.findIndex((modObj) => modObj.primary);
+                            if (mods.length > 0 && alreadyPrimary < 0) {
+                                alreadyPrimary = 0;
+                                mods[0].primary = true;
+                                setCur({
+                                    ...cur,
+                                    mods: [
+                                        ...cur.mods.filter((modObj) => modObj.type !== "Synergy" || modObj.skill !== skillName),
+                                        ...mods
+                                    ]
+                                });
+                            }
+                            if (!mods.length) return null;
+                            return (
+                                <span key={skillName}>
+                                    <strong>{skillName}:</strong> 
+                                    <select
+                                        value={alreadyPrimary}
+                                        onChange={(ev) => {
+                                            ev.preventDefault();
+                                            for (let i = 0; i < mods.length; i++) {
+                                                if (i === ev.target.value) {
+                                                    mods[i].primary = true;
+                                                } else {
+                                                    mods[i].primary = false;
+                                                }
+                                            }
+                                            setCur({
+                                                ...cur,
+                                                mods: [
+                                                    ...cur.mods.filter((modObj) => modObj.type !== "Synergy" || modObj.skill !== skillName),
+                                                    ...mods
+                                                ]
+                                            });
+                                        }}
+                                    >
+                                        {mods.map((modObj, i) => (
+                                            <option key={modObj.target} value={i}>{modObj.target}</option>
+                                        ))}
+                                    </select>
+                                </span>
+                            );
+                        })}
+                    </div>
+                </section>}
+            </section>
         </section>
     );
 }

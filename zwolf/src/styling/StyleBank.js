@@ -344,6 +344,9 @@ export const CharSheetStyling = styled.div`
             font-weight: bold;
         }
     }
+    section.tab {
+        padding-bottom: 12px;
+    }
     section.tab.main {
         display: flex;
 
@@ -446,6 +449,22 @@ export const CharSheetStyling = styled.div`
             padding: 3px 8px 4px;
             border-radius: 50%;
             background-color: rgba(50, 168, 82, 0.3);
+        }
+        table.skillRankSelections td:first-child {
+            padding-right: 4px;
+        }
+        section.synergies {
+            > div {
+                display: flex;
+                flex-wrap: wrap;
+
+                > span {
+                    margin-right: 12px;
+                }
+            }
+            strong {
+                margin-right: 4px;
+            }
         }
     }
 `;
