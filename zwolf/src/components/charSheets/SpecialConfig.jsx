@@ -3,6 +3,8 @@ import _ from 'lodash';
 import { nanoid } from 'nanoid'
 
 import fb from '../../fbConfig';
+import checked from '../../media/ui/checked-box.png';
+import unchecked from '../../media/ui/empty-checkbox.png';
 import useChar from '../../hooks/CreatureStore';
 import useSidebar from '../../hooks/SidebarStore';
 import { calcStats } from '../../helpers/CalcStats';
@@ -19,6 +21,8 @@ const SpecialConfig = (props) => {
     const modeSwap = useSidebar((state) => state.modeSwap);
     const [lib, setLib] = useState({});
     const [overlaps, setOverlaps] = useState([]);
+    const [archeStr, setArcheStr] = useState([]);
+    const [archeShow, setArcheShow] = useState(false);
     const [prevId, setPrevId] = useState(id ? id : "(none)");
     const db = fb.db;
     useEffect(() => {
@@ -101,7 +105,8 @@ const SpecialConfig = (props) => {
                         origin,
                         level,
                         name: libEntry.name,
-                        choices: {}
+                        choices: {},
+                        delta: libEntry.delta
                     }
                 ]
             };
@@ -138,6 +143,33 @@ const SpecialConfig = (props) => {
     useEffect(() => {
         const tempMods = cur.mods.filter((modObj) => modObj.origin === id);
         setOverlaps(clumpObjectsByProperty(tempMods, "overlap"));
+        let deltaStr = _.get(cur[type].filter((obj) => obj.id === id)[0], "delta", "");
+        if (deltaStr.includes(`{"insert":"Archetypes:"},`)) {
+            deltaStr = deltaStr.split(`{"insert":"Archetypes:"},`)[1];
+            let prevStart = 0;
+            let depth = 0;
+            let indexOdd = false;
+            let tempArr = [];
+            for (let i = 0; i < deltaStr.length; i++) {
+                if (deltaStr[i] === "{") {
+                    depth += 1;
+                    if (depth === 1) {
+                        prevStart = i;
+                    }
+                } else if (deltaStr[i] === "}") {
+                    depth -= 1;
+                    if (depth === 0) {
+                        if (indexOdd) {
+                            tempArr.push(JSON.parse(deltaStr.slice(prevStart, i + 1)));
+                        }
+                        indexOdd = !indexOdd;
+                    }
+                }
+            }
+            setArcheStr(tempArr.map((obj) => obj.insert));
+        } else {
+            setArcheStr([]);
+        }
     }, [cur, id]);
 
     return(
@@ -247,6 +279,70 @@ const SpecialConfig = (props) => {
                         </div>
                     )
                 })}
+                {archeStr.length > 0 && <div className="archetypes">
+                    <button
+                        onClick={(ev) => {
+                            ev.preventDefault();
+                            setArcheShow(!archeShow);
+                        }}
+                    >
+                        Archetypes
+                    </button>
+                    {archeShow && <div className="checklist">
+                        {archeStr.map((reqs, i) => {
+                            const tempMod = cur.mods.filter(
+                                (modObj) => (modObj.origin === id && modObj.target === "kpMax" && modObj.archeNum === i)
+                            )[0];
+                            return(
+                                <div key={reqs}>
+                                    <img
+                                        src={tempMod ? checked : unchecked}
+                                        alt="checkbox"
+                                        className="clickable"
+                                        onClick={(ev) => {
+                                            let tempBlock = {};
+                                            if (tempMod) {          // Un-checking Archetype
+                                                tempBlock = {
+                                                    ...cur,
+                                                    mods: [
+                                                        ...cur.mods.filter(
+                                                            (modObj) => (modObj.origin !== id ||
+                                                                modObj.target !== "kpMax" ||
+                                                                modObj.archeNum !== i)
+                                                        )
+                                                    ]
+                                                }
+                                            } else {                // Checking Archetype
+                                                tempBlock = {
+                                                    ...cur,
+                                                    mods: [
+                                                        ...cur.mods,
+                                                        {
+                                                            choices: {},
+                                                            level,
+                                                            mag: 1,
+                                                            origin: id,
+                                                            overlap: Math.random(),
+                                                            target: "kpMax",
+                                                            type: "Untyped",
+                                                            archeNum: i
+                                                        }
+                                                    ]
+                                                }
+                                            }
+                                            setCur({
+                                                ...tempBlock,
+                                                stats: calcStats(tempBlock)
+                                            });
+                                        }}
+                                    />
+                                    <span>{reqs}</span>
+                                </div>
+                            );
+                        })}
+                    </div>}
+                    <BufferDot />
+                </div>}
             </div>
         </>
     );

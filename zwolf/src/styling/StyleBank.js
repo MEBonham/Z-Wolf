@@ -384,10 +384,33 @@ export const CharSheetStyling = styled.div`
             display: flex;
 
             div.training select,
-            div.choices select {
+            div.choices select,
+            div.archetypes button {
                 margin-left: 4px;
-                position: relative;
-                top: 2px;
+            }
+            div.archetypes {
+                transform: scale(1, 1);
+                
+                div.checklist {
+                    position: absolute;
+                    top: 24px;
+                    z-index: 2;
+                    padding: 4px;
+                    background-color: #555555;
+                    
+                    > div {
+                        margin: 4px 0;
+                        display: flex;
+                        align-items: center;
+
+                        img {
+                            height: 14px;
+                            position: relative;
+                            top: 2px;
+                            margin-right: 4px;
+                        }
+                    }
+                }
             }
         }
         > div.notKits {
