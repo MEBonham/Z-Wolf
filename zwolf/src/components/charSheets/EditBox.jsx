@@ -12,7 +12,7 @@ const EditBox = (props) => {
     const [mebOpen, setMebOpen] = useState(false);
     const { register, handleSubmit, reset } = useForm();
     const field = useRef(null);
-    const { ref, ...rest } = register("newVal");
+    const { ref, ...rest } = register("newVal", { valueAsNumber: inputType === "number" });
 
     useEffect(() => {
         if (mebOpen) {
