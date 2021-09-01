@@ -146,10 +146,10 @@ const CharSheetConfigure = () => {
                 <h4>Normal Ranks</h4>
                 <table className="skillRankSelections">
                     <tbody>
-                        {[...Array(cur.level).keys()].map((i) => (
+                        {_.range(cur.level).map((i) => (
                             <tr key={i}>
                                 <td><strong>(L{i + 1})</strong><BufferDot /></td>
-                                {[...Array(6).keys()].map((j) => (
+                                {_.range(6).map((j) => (
                                     <td key={j}>
                                         <select
                                             value={_.get(cur, `baseSkillRanks[${i + 1}][${j}]`, "Athletics")}

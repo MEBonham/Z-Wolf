@@ -2,11 +2,12 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 
 import fb from '../../fbConfig';
-import { CharSheetStyling } from '../../styling/StyleBank';
+import { CharSheetStyling, HzSpace } from '../../styling/StyleBank';
 import useChar from '../../hooks/CreatureStore';
 
 import CharSaver from '../hidden/CharSaver';
 import Pool from './Pool';
+import EditBox from './EditBox';
 import CharSheetMain from './CharSheetMain';
 import CharSheetInventory from './CharSheetInventory';
 import CharSheetConfigure from './CharSheetConfigure';
@@ -88,7 +89,15 @@ const CharSheetShell = () => {
                         <div className="headerStats">
                             <header>
                                 <h1>{cur.name}</h1>
-                                <h2>Level {cur.level} {cur.epithet}</h2>
+                                <h2 className="editParent">Level<HzSpace />{
+                                    activeTab === "Configure" ?
+                                    <EditBox attributePath="level" classes="" inputType="number" /> :
+                                    cur.level
+                                }<HzSpace />{
+                                    activeTab === "Configure" ?
+                                    <EditBox attributePath="epithet" classes="" inputType="text" /> :
+                                    cur.epithet
+                                }</h2>
                             </header>
                             <div className="pools">
                                 <Pool type="vp" color="green" spellOut="Vitality" />

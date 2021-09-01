@@ -467,6 +467,9 @@ export const CharSheetStyling = styled.div`
             }
         }
     }
+    .editParent {
+        display: flex;
+    }
 `;
 
 export const LibraryAdd = styled.form`
@@ -526,4 +529,37 @@ export const LibraryAdd = styled.form`
             }
         }
     }
+`;
+
+export const MebEditBox = styled.span`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: scale(1, 1);
+
+    > span.clickable {
+        text-shadow: 1px 1px 12px #3dcc63;
+    }
+
+    > form.popout.closed {
+        display: none;
+    }
+    > form.popout.open {
+        padding: 0 1px;
+        display: flex;
+        background-color: #666666;
+        border: 2px solid #444444;
+        border-radius: 2px;
+        position: absolute;
+        bottom: -2.6rem;
+        z-index: 2;
+
+        input.short {
+            width: 60px;
+        }
+    }
+`;
+
+export const HzSpace = styled.span`
+    width: 0.8rem;
 `;
