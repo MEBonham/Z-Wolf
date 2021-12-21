@@ -30,7 +30,6 @@ export const attackTypes = [
 ];
 
 export const verbTypes = [
-    "Passive",
     "Attack",
     "Dominant",
     "Maneuver",
@@ -39,6 +38,7 @@ export const verbTypes = [
     "Free",
     "Short Rest",
     "Extended Rest",
+    "Passive",
     "Special"
 ];
 

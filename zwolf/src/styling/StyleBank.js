@@ -349,8 +349,10 @@ export const CharSheetStyling = styled.div`
     }
     section.tab.main {
         display: flex;
+        align-items: flex-start;
 
         > table {
+            width: 20rem;
             font-size: 1.6rem;
             border-collapse: separate;
             border-spacing: 0 4px;
@@ -364,10 +366,15 @@ export const CharSheetStyling = styled.div`
             }
         }
         section.verbs {
-            flex-grow: 1;
+            width: calc(100% - 20rem);
+            padding-left: 24px;
             display: flex;
             flex-direction: column;
-            align-items: center;
+
+            h2 {
+                width: 100%;
+                text-align: center;
+            }
         }
     }
     section.tab.inventory {
@@ -465,6 +472,26 @@ export const CharSheetStyling = styled.div`
             strong {
                 margin-right: 4px;
             }
+        }
+    }
+    .accordion {
+        width: 100%;
+        border-radius: 10px;
+        overflow-y: hidden;
+        background-color: hsla(136, 54%, 43%, 0.1);
+
+        .title {
+            cursor: pointer;
+            padding: 3px 20px;
+            background-color: hsla(136, 54%, 43%, 0.3);
+        }
+        .toggle {
+            display: none;
+        }
+        .toggle.open {
+            width: 100%;
+            padding: 0 20px 2px;
+            display: flex;
         }
     }
     .editParent {
