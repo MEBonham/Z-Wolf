@@ -3,27 +3,43 @@ import _ from 'lodash';
 import { skillsList } from './GameConstants';
 
 const farmMods = (modsArr, skillRanks={}) => {
-    let total = 0;
+    const typeTotals = {
+        Untyped: 0
+    };
     modsArr.forEach((modObj) => {
+        let mag = 0;
         if (modObj.type === "Synergy") {
             const ranks = _.get(skillRanks, modObj.skill, 0);
             if (_.get(modObj, "primary", false)) {
                 if (ranks > 6) {
-                    total += 2;
+                    mag = 2;
                 } else if (ranks > 2) {
-                    total += 1;
+                    mag = 1;
                 }
             } else {
                 if (ranks > 8) {
-                    total += 2;
+                    mag = 2;
                 } else if (ranks > 4) {
-                    total += 1;
+                    mag = 1;
                 }
             }
         } else {
-            total += modObj.mag;
+            mag = modObj.mag;
+        }
+        if (modObj.type === "Untyped") {
+            typeTotals.Untyped += mag;
+        } else if (typeTotals[modObj.type] && mag < 0) {
+            typeTotals[modObj.type] += mag;
+        } else if (typeTotals[modObj.type] && typeTotals[modObj.type] >= mag) {
+            typeTotals[modObj.type] += 0;
+        } else {
+            typeTotals[modObj.type] = mag;
         }
     });
+    let total = 0;
+    Object.keys(typeTotals).forEach((type) => {
+        total += typeTotals[type];
+    })
     return total;
 }
 

@@ -10,7 +10,7 @@ import BufferDot from '../ui/BufferDot';
 import TrainingPicker from './TrainingPicker';
 
 const SpecialConfig = (props) => {
-    const { id, level, origin, slug, type } = props.data;
+    const { id, level, origin, slug, type, choices } = props.data;
     const cur = useChar((state) => state.cur);
     const setCur = useChar((state) => state.setCur);
     const archeEdit = useChar((state) => state.archeEdit);
@@ -82,7 +82,7 @@ const SpecialConfig = (props) => {
                 ...base,
                 origin: newId,
                 level,
-                choices: {}
+                choices
             }));
             tempVerbs = tempVerbs.map((base) => ({
                 ...base,
