@@ -6,6 +6,11 @@ import { CharSheetStyling, HzSpace, PortraitDiv } from '../../styling/StyleBank'
 import useChar from '../../hooks/CreatureStore';
 
 import portraitDefault from '../../media/ui/portrait-default.jpg';
+import jasmine from '../../media/example-playgroup/JasmineAvatar.png';
+import kelani from '../../media/example-playgroup/KelaniAvatar.png';
+import megan from '../../media/example-playgroup/MeganAvatar.png';
+import pedro from '../../media/example-playgroup/PedroAvatar.png';
+import tim from '../../media/example-playgroup/TimAvatar.png';
 import CharSaver from '../hidden/CharSaver';
 import Pool from './Pool';
 import EditBox from './EditBox';
@@ -27,11 +32,38 @@ const CharSheetShell = () => {
     const [activeTab, setActiveTab] = useState("Main");
     const [tabContents, setTabContents] = useState(null);
     const [headerStatsWidth, setHeaderStatsWidth] = useState(1000);
+    const [examplePlayerReminder, setExamplePlayerReminder] = useState(null);
     const portraitElement = useRef(null);
 
     useEffect(() => {
-        setHeaderStatsWidth(document.querySelector("div.headerStats").offsetWidth);
-    }, []);
+        if (cur && cur.examplePc) {
+            switch (slug) {
+                case "ankithlakith":
+                    setExamplePlayerReminder(<img className="exRemind" src={jasmine} alt="Player: Jasmine" />);
+                    break;
+                case "robry":
+                    setExamplePlayerReminder(<img className="exRemind" src={pedro} alt="Player: Pedro" />);
+                    break;
+                case "znibbi":
+                    setExamplePlayerReminder(<img className="exRemind" src={tim} alt="Player: Tim" />);
+                    break;
+                case "gratlyn":
+                    setExamplePlayerReminder(<img className="exRemind" src={megan} alt="Player: Megan" />);
+                    break;
+                default:
+                    setExamplePlayerReminder(<img className="exRemind" src={kelani} alt="GM: Kelani" />);
+            }
+        } else if (examplePlayerReminder) {
+            setExamplePlayerReminder(null);
+        }
+    }, [cur, slug]);
+
+    useEffect(() => {
+        const ele = document.querySelector("div.headerStats");
+        if (ele) {
+            setHeaderStatsWidth(ele.offsetWidth);
+        }
+    }, [cur, loadingChar]);
 
     const db = fb.db;
     const onceOnly = useRef(true);
@@ -160,6 +192,7 @@ const CharSheetShell = () => {
                                 /> : 
                                 <img ref={portraitElement} alt="portrait" />
                             }
+                            {examplePlayerReminder}
                         </PortraitDiv>
                     </header>
                     <nav className="charSheetTabs">

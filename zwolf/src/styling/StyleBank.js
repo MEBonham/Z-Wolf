@@ -508,9 +508,17 @@ export const CharSheetStyling = styled.div`
 export const PortraitDiv = styled.div`
     width: calc(100% - ${(props) => props.headerStatsWidth}px);
     padding-left: 10px;
+    position: relative;
 
     img {
         width: 100%;
+    }
+    img.exRemind {
+        width: 80px;
+        height: 80px;
+        position: absolute;
+        right: 10px;
+        bottom: 70px;
     }
 `;
 
