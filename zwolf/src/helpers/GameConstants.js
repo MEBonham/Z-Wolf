@@ -38,8 +38,8 @@ export const verbTypes = [
     "Free",
     "Short Rest",
     "Extended Rest",
-    "Passive",
-    "Special"
+    "Special",
+    "Passive"
 ];
 
 export const modTargets = [
