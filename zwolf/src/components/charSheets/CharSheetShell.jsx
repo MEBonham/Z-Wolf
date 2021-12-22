@@ -5,6 +5,7 @@ import fb from '../../fbConfig';
 import { CharSheetStyling, HzSpace } from '../../styling/StyleBank';
 import useChar from '../../hooks/CreatureStore';
 
+import portraitDefault from '../../media/ui/portrait-default.jpg';
 import CharSaver from '../hidden/CharSaver';
 import Pool from './Pool';
 import EditBox from './EditBox';
@@ -12,6 +13,9 @@ import CharSheetMain from './CharSheetMain';
 import CharSheetInventory from './CharSheetInventory';
 import CharSheetConfigure from './CharSheetConfigure';
 import CharSheetBiographic from './CharSheetBiographic';
+import ImageUploader from '../ui/ImageUploader';
+
+const PORTRAIT_PATH = "portraits";
 
 const CharSheetShell = () => {
     const { slug } = useParams();
@@ -22,6 +26,8 @@ const CharSheetShell = () => {
 
     const [activeTab, setActiveTab] = useState("Main");
     const [tabContents, setTabContents] = useState(null);
+    const [portraitFile, setPortraitFile] = useState(portraitDefault);
+    const portraitElement = useRef(null);
 
     const db = fb.db;
     const onceOnly = useRef(true);
@@ -73,6 +79,22 @@ const CharSheetShell = () => {
                 setTabContents(<CharSheetMain />);
         }
     }, [activeTab]);
+
+    const storageRef = fb.storage().ref(`${PORTRAIT_PATH}/${slug}`);
+    storageRef.getDownloadURL()
+        .then((url) => {
+            if (portraitElement.current) {
+                portraitElement.current.setAttribute('src', url);
+            }
+        }).catch((error) => {
+            if (error.code === "storage/object-not-found") {
+                if (portraitElement.current) {
+                    portraitElement.current.setAttribute('src', portraitDefault);
+                }
+            } else {
+                console.log(error.code);
+            }
+        });
 
     const handleTab = (newTab) => {
         window.localStorage.setItem("zWolfActiveCharTab", newTab);
@@ -126,7 +148,14 @@ const CharSheetShell = () => {
                             </div>
                         </div>
                         <div className="portrait">
-                            (for image)
+                            {activeTab === "Configure" ?
+                                <ImageUploader
+                                    path={PORTRAIT_PATH}
+                                    slug={slug}
+                                    defaultPortrait={portraitDefault}
+                                /> : 
+                                <img ref={portraitElement} alt="portrait" />
+                            }
                         </div>
                     </header>
                     <nav className="charSheetTabs">

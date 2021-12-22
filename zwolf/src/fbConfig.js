@@ -1,7 +1,7 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
-// import 'firebase/storage';
+import 'firebase/storage';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -21,7 +21,7 @@ class Firebase {
         this.provider = new firebase.auth.GoogleAuthProvider();
         this.auth = firebase.auth();
         this.db = firebase.firestore();
-        // this.storage = firebase.storage;
+        this.storage = firebase.storage;
     }
 }
 
