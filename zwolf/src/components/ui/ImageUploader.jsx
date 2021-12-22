@@ -12,7 +12,7 @@ import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
 
 const ImageUploader = ({ path, slug, defaultPortrait }) => {
     const storage = fb.storage().ref();
-    const [file, setFile] = useState(defaultPortrait);
+    const [file, setFile] = useState(null);
     registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
 
     const server = {
@@ -63,7 +63,7 @@ const ImageUploader = ({ path, slug, defaultPortrait }) => {
                 if (fileItems.length === 0) {
                     setFile(defaultPortrait);
                 }
-                setFile(fileItems.mamp((fileItem) => fileItem.file));
+                setFile(fileItems.map((fileItem) => fileItem.file));
             }}
             server={server}
         />

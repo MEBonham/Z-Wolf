@@ -240,6 +240,9 @@ export const CharSheetStyling = styled.div`
         display: flex;
         justify-content: space-between;
 
+        div.headerStats {
+            // flex-grow: 20;
+        }
         header {
             padding-bottom: 2px;
             border-bottom: 1px solid #32a852;
@@ -496,6 +499,15 @@ export const CharSheetStyling = styled.div`
     }
     .editParent {
         display: flex;
+    }
+`;
+
+export const PortraitDiv = styled.div`
+    width: calc(100% - ${(props) => props.headerStatsWidth}px);
+    padding-left: 10px;
+
+    img {
+        width: 100%;
     }
 `;
 

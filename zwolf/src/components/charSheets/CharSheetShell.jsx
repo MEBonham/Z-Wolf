@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 
 import fb from '../../fbConfig';
-import { CharSheetStyling, HzSpace } from '../../styling/StyleBank';
+import { CharSheetStyling, HzSpace, PortraitDiv } from '../../styling/StyleBank';
 import useChar from '../../hooks/CreatureStore';
 
 import portraitDefault from '../../media/ui/portrait-default.jpg';
@@ -26,8 +26,12 @@ const CharSheetShell = () => {
 
     const [activeTab, setActiveTab] = useState("Main");
     const [tabContents, setTabContents] = useState(null);
-    const [portraitFile, setPortraitFile] = useState(portraitDefault);
+    const [headerStatsWidth, setHeaderStatsWidth] = useState(1000);
     const portraitElement = useRef(null);
+
+    useEffect(() => {
+        setHeaderStatsWidth(document.querySelector("div.headerStats").offsetWidth);
+    }, []);
 
     const db = fb.db;
     const onceOnly = useRef(true);
@@ -147,7 +151,7 @@ const CharSheetShell = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="portrait">
+                        <PortraitDiv className="portrait" headerStatsWidth={headerStatsWidth}>
                             {activeTab === "Configure" ?
                                 <ImageUploader
                                     path={PORTRAIT_PATH}
@@ -156,7 +160,7 @@ const CharSheetShell = () => {
                                 /> : 
                                 <img ref={portraitElement} alt="portrait" />
                             }
-                        </div>
+                        </PortraitDiv>
                     </header>
                     <nav className="charSheetTabs">
                         <span className={`clickable ${activeTab === "Main" ? "active" : null}`} onClick={() => handleTab("Main")}>Main</span>
