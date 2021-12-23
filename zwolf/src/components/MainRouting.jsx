@@ -11,9 +11,11 @@ import Gear from './rules/Gear';
 import NewKit from './library/NewKit';
 import NewFeat from './library/NewFeat';
 import NewTalent from './library/NewTalent';
+import NewItem from './library/NewItem';
 import Kits from './library/Kits';
 import Feats from './library/Feats';
 import Talents from './library/Talents';
+import Items from './library/Items';
 import CharSheetShell from './charSheets/CharSheetShell';
 import Fighter from './bestiary/Fighter';
 import Mage from './bestiary/Mage';
@@ -74,6 +76,14 @@ const MainRouting = () => useRoutes([
     {
         path: "/library/talents",
         element: <Talents />
+    },
+    {
+        path: "/library/newitem",
+        element: <NewItem />
+    },
+    {
+        path: "/library/items",
+        element: <Items />
     },
     {
         path: "/bestiary/fighter",

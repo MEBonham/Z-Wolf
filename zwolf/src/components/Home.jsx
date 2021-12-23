@@ -41,6 +41,9 @@ const Home = () => {
                     <li>
                         <Link to="/library/talents">Talents</Link> <Link to="/library/newtalent">(add)</Link>
                     </li>
+                    <li>
+                        <Link to="/library/items">Items</Link> <Link to="/library/newitem">(add)</Link>
+                    </li>
                 </ul>
                 <h2>Rules</h2>
                 <ul>

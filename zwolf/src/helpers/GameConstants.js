@@ -111,6 +111,14 @@ export const talentTags = [
     "Skill Trick"
 ];
 
+export const itemTags = [
+    "General Gear",
+    "Armor",
+    "Shield",
+    "Weapon",
+    "Magic"
+];
+
 export const seedsList = [
     "Acid",
     "Air",
@@ -127,4 +135,35 @@ export const seedsList = [
     "Shadow",
     "Water",
     "Weave"
+];
+
+export const armorGirths = [
+    "Light",
+    "Heavy"
+];
+
+export const weaponGrades = [
+    "Simple",
+    "Martial",
+    "Exotic"
+];
+
+export const weaponHefts = [
+    "Light",
+    "One-Handed",
+    "Versatile",
+    "Two-Handed"
+];
+
+export const weaponCategories = [
+    "Axe",
+    "Bow",
+    "Club",
+    "Crossbow",
+    "Flail",
+    "Heavy Blade",
+    "Light Blade",
+    "Polearm",
+    "Spear",
+    "Other"
 ];
