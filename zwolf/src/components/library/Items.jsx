@@ -43,13 +43,28 @@ const Items = () => {
                 _.flatten(filteredSlugs.sort((a, b) => (itemsLib[a].name - itemsLib[b].name))
                     .map((slug) => {
                         const rawDelta = JSON.parse(itemsLib[slug].delta).ops;
-                        const tagString = itemsLib[slug].tags.length ?
+                        let tagString = itemsLib[slug].tags.length ?
                             `[${itemsLib[slug].tags.join("] [")}] Item` :
                             "Item";
+                        if (itemsLib[slug].tags.includes("Armor")) {
+                            tagString += ` - ${itemsLib[slug].girth}`;
+                        }
+                        if (itemsLib[slug].tags.includes("Weapon")) {
+                            tagString += ` - ${itemsLib[slug].grade} - ${itemsLib[slug].heft}`;
+                        }
+                        const attrString = `Price ${itemsLib[slug].price} - Bulk ${itemsLib[slug].bulk} - Hardness ${itemsLib[slug].hardness} - ` +
+                            `Structural Save ${parseInt(itemsLib[slug].strucSave) > -1 ? "+" : null}${itemsLib[slug].strucSave}`
                         return([
                             ...rawDelta.slice(0, 2),
                             {
                                 insert: tagString
+                            },
+                            {
+                                attributes: { header: 4 },
+                                insert: "\n"
+                            },
+                            {
+                                insert: attrString
                             },
                             {
                                 attributes: { header: 4 },
