@@ -53,7 +53,7 @@ const Items = () => {
                             tagString += ` - ${itemsLib[slug].grade} - ${itemsLib[slug].heft}`;
                         }
                         const attrString = `Price ${itemsLib[slug].price} - Bulk ${itemsLib[slug].bulk} - Hardness ${itemsLib[slug].hardness} - ` +
-                            `Structural Save ${parseInt(itemsLib[slug].strucSave) > -1 ? "+" : null}${itemsLib[slug].strucSave}`
+                            `Structural Save ${parseInt(itemsLib[slug].strucSave) > -1 ? "+" : ""}${itemsLib[slug].strucSave}`
                         return([
                             ...rawDelta.slice(0, 2),
                             {

@@ -381,10 +381,17 @@ export const CharSheetStyling = styled.div`
         }
     }
     section.tab.inventory {
+        .short {
+            width: 60px;
+        }
         > header {
             display: flex;
             justify-content: space-between;
             align-items: flex-end;
+        }
+        div.floatRight {
+            display: flex;
+            justify-content: flex-end;
         }
     }
     section.tab.configure {

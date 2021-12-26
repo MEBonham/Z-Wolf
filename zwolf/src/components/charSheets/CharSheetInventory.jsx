@@ -13,6 +13,11 @@ const CharSheetInventory = () => {
                     <h3>Wealth: {cur.wealth}</h3>
                 </div>
             </header>
+            <div className="floatRight">
+                <button>Add Wealth</button>
+                <input type="number" className="short" />
+                <button>Lose Wealth</button>
+            </div>
         </section>
     );
 }
