@@ -69,9 +69,9 @@ const ItemSummary = ({item, index}) => {
                 <option value="equipped">Equipped</option>
                 <option value="notCarried">Not Carried</option>
                 {cur.equipment.filter((itemObj) => itemObj.tags.includes("Container"))
-                    .map((itemObj) => {
+                    .map((itemObj) => (
                         <option key={itemObj.id} value={itemObj.id}>{itemObj.name}</option>
-                    })
+                    ))
                 }
                 <option value="sell">Sell (one)</option>
                 <option value="useUp">Use Up (one)</option>

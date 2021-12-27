@@ -529,6 +529,10 @@ export const CharSheetStyling = styled.div`
             cursor: pointer;
             padding: 3px 20px;
             background-color: hsla(136, 54%, 43%, 0.3);
+
+            h4 {
+                margin: 4px 0;
+            }
         }
         .toggle {
             display: none;
