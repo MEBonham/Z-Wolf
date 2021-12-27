@@ -9,6 +9,7 @@ import AccordionSection from '../ui/AccordionSection';
 
 import MersenneTwister from 'mersenne-twister';
 import ItemSummary from './ItemSummary';
+import ItemManagement from './ItemManagement';
 let gen = new MersenneTwister();
 
 const CharSheetInventory = () => {
@@ -70,7 +71,7 @@ const CharSheetInventory = () => {
                     {cur.equipment.map((equipObj, i) => {
                         return(<AccordionSection key={i}>
                             <ItemSummary item={equipObj} index={i} />
-                            <p>{equipObj.delta}</p>
+                            <ItemManagement item={equipObj} />
                         </AccordionSection>);
                     })}
                 </Accordion>

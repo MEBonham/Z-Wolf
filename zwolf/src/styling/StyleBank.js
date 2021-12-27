@@ -531,12 +531,18 @@ export const CharSheetStyling = styled.div`
         }
         .toggle.open {
             width: 100%;
-            border-radius: 0 0 9px 9px;
             border-left: 2px solid hsla(136, 54%, 43%, 0.3);
             border-right: 2px solid hsla(136, 54%, 43%, 0.3);
             border-bottom: 2px solid hsla(136, 54%, 43%, 0.3);
             padding: 0 20px 2px;
             display: flex;
+
+            p {
+                margin: 0 0 4px;
+            }
+        }
+        section:last-child .toggle.open {
+            border-radius: 0 0 9px 9px;
         }
     }
     .editParent {
