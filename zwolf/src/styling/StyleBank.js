@@ -405,6 +405,10 @@ export const CharSheetStyling = styled.div`
                 display: inline-block;
                 width: 54%;
             }
+            span.bulk {
+                display: inline-block;
+                width: 20%;
+            }
         }
         form.acquire {
             margin-top: 2.4rem;

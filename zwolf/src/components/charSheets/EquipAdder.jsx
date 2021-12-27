@@ -34,7 +34,8 @@ const EquipAdder = () => {
                 {
                     ...lib[formData.selection],
                     quantity: parseInt(formData.quantity),
-                    id: nanoid()
+                    id: nanoid(),
+                    location: "available"
                 }
             ]
         });
