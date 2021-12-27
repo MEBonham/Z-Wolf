@@ -15,6 +15,7 @@
     "history": "^5.0.1",
     "is-hotkey": "^0.2.0",
     "lodash": "^4.17.21",
+    "mersenne-twister": "^1.1.0",
     "nanoid": "^3.1.25",
     "react": "^17.0.0",
     "react-bootstrap": "^1.6.1",

@@ -384,14 +384,45 @@ export const CharSheetStyling = styled.div`
         .short {
             width: 60px;
         }
+        .checkbox {
+            position: relative;
+            top: 2px;
+        }
         > header {
             display: flex;
             justify-content: space-between;
             align-items: flex-end;
         }
-        div.floatRight {
+        form.floatRight {
             display: flex;
             justify-content: flex-end;
+            margin-bottom: 1rem;
+        }
+        h4.itemSummary {
+            width: 100%;
+
+            > span.nameQty {
+                display: inline-block;
+                width: 54%;
+            }
+        }
+        form.acquire {
+            margin-top: 2.4rem;
+
+            > span {
+                margin-right: 6px;
+                position: relative;
+
+                label {
+                    font-size: 1.4rem;
+                }
+                label.above {
+                    position: absolute;
+                    bottom: 2rem;
+                    width: 100%;
+                    text-align: center;
+                }
+            }
         }
     }
     section.tab.configure {
