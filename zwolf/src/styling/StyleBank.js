@@ -261,6 +261,7 @@ export const CharSheetStyling = styled.div`
                 display: flex;
                 flex-direction: column;
                 align-items: center;
+                position: relative;
 
                 div.poolMax {
                     margin-bottom: 4px;
@@ -293,6 +294,18 @@ export const CharSheetStyling = styled.div`
                         margin: 0;
                         font-size: 1.2rem;
                     }
+                }
+                img.decrement {
+                    width: 20px;
+                    position: absolute;
+                    top: 30px;
+                    left: -10px;
+                }
+                img.increment {
+                    width: 20px;
+                    position: absolute;
+                    top: 30px;
+                    right: -10px;
                 }
             }
         }
