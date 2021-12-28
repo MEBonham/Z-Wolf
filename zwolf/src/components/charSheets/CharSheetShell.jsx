@@ -4,6 +4,8 @@ import { useParams } from 'react-router-dom';
 import fb from '../../fbConfig';
 import { CharSheetStyling, HzSpace, PortraitDiv } from '../../styling/StyleBank';
 import useChar from '../../hooks/CreatureStore';
+import useSidebar from '../../hooks/SidebarStore';
+import useDice from '../../hooks/DiceStore';
 
 import portraitDefault from '../../media/ui/portrait-default.jpg';
 import jasmine from '../../media/example-playgroup/JasmineAvatar.png';
@@ -28,6 +30,8 @@ const CharSheetShell = () => {
     const setCur = useChar((state) => state.setCur);
     const loadingChar = useChar((state) => state.loadingChar);
     const setLoadingChar = useChar((state) => state.setLoadingChar);
+    const sidebarMode = useSidebar((state) => state.mode);
+    const roll = useDice((state) => state.addRoll);
 
     const [activeTab, setActiveTab] = useState("Main");
     const [tabContents, setTabContents] = useState(null);
@@ -169,16 +173,88 @@ const CharSheetShell = () => {
                                 </div>
                                 <div className="pseudoTable">
                                     <div className="misc">
-                                        <span><strong>Heroics +{cur.stats.heroics}</strong></span>
-                                        <span><strong>Awesome +{cur.stats.awesome}</strong></span>
-                                        <span><strong>Spellcraft {cur.stats.spellcraft >= 0 ? "+" : null}{cur.stats.spellcraft}</strong></span>
-                                        <span><strong>Speed {cur.stats.speed >= 0 ? "+" : null}{cur.stats.speed}</strong></span>
+                                        <span
+                                            onClick={sidebarMode === "play"? () => roll({
+                                                sides: "usual",
+                                                modifier: cur.stats.heroics,
+                                                text: "a Heroics Check"
+                                            }) : null}
+                                            className={sidebarMode === "play" ? "clickable" : ""}
+                                        >
+                                            <strong>Heroics +{cur.stats.heroics}</strong>
+                                        </span>
+                                        <span
+                                            onClick={sidebarMode === "play"? () => roll({
+                                                sides: "usual",
+                                                modifier: cur.stats.awesome,
+                                                text: "an Awesome Check"
+                                            }) : null}
+                                            className={sidebarMode === "play" ? "clickable" : ""}
+                                        >
+                                            <strong>Awesome +{cur.stats.awesome}</strong>
+                                        </span>
+                                        <span
+                                            onClick={sidebarMode === "play"? () => roll({
+                                                sides: "usual",
+                                                modifier: cur.stats.spellcraft,
+                                                text: "a Spellcraft Check"
+                                            }) : null}
+                                            className={sidebarMode === "play" ? "clickable" : ""}
+                                        >
+                                            <strong>Spellcraft {cur.stats.spellcraft >= 0 ? "+" : null}{cur.stats.spellcraft}</strong>
+                                        </span>
+                                        <span
+                                            onClick={sidebarMode === "play"? () => roll({
+                                                sides: "usual",
+                                                modifier: cur.stats.speed,
+                                                text: "a Speed Check"
+                                            }) : null}
+                                            className={sidebarMode === "play" ? "clickable" : ""}
+                                        >
+                                            <strong>Speed {cur.stats.speed >= 0 ? "+" : null}{cur.stats.speed}</strong>
+                                        </span>
                                     </div>
                                     <div className="saves">
-                                        <span><strong>Defense {cur.stats.defSave >= 0 ? "+" : null}{cur.stats.defSave}</strong></span>
-                                        <span><strong>Fortitude {cur.stats.fortSave >= 0 ? "+" : null}{cur.stats.fortSave}</strong></span>
-                                        <span><strong>Reflex {cur.stats.refSave >= 0 ? "+" : null}{cur.stats.refSave}</strong></span>
-                                        <span><strong>Willpower {cur.stats.willSave >= 0 ? "+" : null}{cur.stats.willSave}</strong></span>
+                                        <span
+                                            onClick={sidebarMode === "play"? () => roll({
+                                                sides: "usual",
+                                                modifier: cur.stats.defSave,
+                                                text: "a Defense Save"
+                                            }) : null}
+                                            className={sidebarMode === "play" ? "clickable" : ""}
+                                        >
+                                            <strong>Defense {cur.stats.defSave >= 0 ? "+" : null}{cur.stats.defSave}</strong>
+                                        </span>
+                                        <span
+                                            onClick={sidebarMode === "play"? () => roll({
+                                                sides: "usual",
+                                                modifier: cur.stats.fortSave,
+                                                text: "a Fortitude Save"
+                                            }) : null}
+                                            className={sidebarMode === "play" ? "clickable" : ""}
+                                        >
+                                            <strong>Fortitude {cur.stats.fortSave >= 0 ? "+" : null}{cur.stats.fortSave}</strong>
+                                        </span>
+                                        <span
+                                            onClick={sidebarMode === "play"? () => roll({
+                                                sides: "usual",
+                                                modifier: cur.stats.refSave,
+                                                text: "a Reflex Save"
+                                            }) : null}
+                                            className={sidebarMode === "play" ? "clickable" : ""}
+                                        >
+                                            <strong>Reflex {cur.stats.refSave >= 0 ? "+" : null}{cur.stats.refSave}</strong>
+                                        </span>
+                                        <span
+                                            onClick={sidebarMode === "play"? () => roll({
+                                                sides: "usual",
+                                                modifier: cur.stats.willSave,
+                                                text: "a Willpower Save"
+                                            }) : null}
+                                            className={sidebarMode === "play" ? "clickable" : ""}
+                                        >
+                                            <strong>Willpower {cur.stats.willSave >= 0 ? "+" : null}{cur.stats.willSave}</strong>
+                                        </span>
                                     </div>
                                 </div>
                             </div>

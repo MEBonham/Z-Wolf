@@ -127,6 +127,70 @@ export const Sidebar = styled.section`
             margin: 10px 0 8px;
         }
     }
+    div.sidePane.playMode {
+        width: 100%;
+        height: calc(100% - 60px);
+        justify-content: space-between;
+
+        section.rollsBox {
+            width: calc(100% - 16px);
+            height: 65%;
+            margin: 8px;
+
+            div.rollOptionsTab {
+                width: 42%;
+                height: 6rem;
+                background-color: rgba(255, 255, 255, 0.05);
+                box-shadow: 0 -4px 6px 0 rgba(255, 255, 255, 0.5);
+                border-radius: 10px 10px 0 0;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-evenly;
+                align-items: center;
+
+                select {
+                    margin-top: 6px;
+                }
+                > div {
+                    margin-bottom: 2px;
+                    font-size: 1.2rem;
+
+                    input {
+                        position: relative;
+                        top: 2px;
+                    }
+                }
+            }
+            div.rollsBoxInner {
+                width: 100%;
+                height: calc(100% - 6rem);
+                background-color: rgba(255, 255, 255, 0.05);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                h3 {
+                    margin: 10px 0;
+                    font-size: 2rem;
+                }
+                div.oneRoll {
+                    width: 100%;
+                    display: flex;
+
+                    span.dodecShadow {
+                        display: inline-block;
+                        width: 30px;
+                        height: 30px;
+                        background-image: url("/dodecahedron.png");
+                        background-size: cover;
+                        padding-top: 0.5rem;
+                        font-size: 1.8rem;
+                        text-align: center;
+                    }
+                }
+            }
+        }
+    }
 `;
 
 export const MainNavStyle = styled.nav`
@@ -627,11 +691,11 @@ export const PortraitDiv = styled.div`
         width: 100%;
     }
     img.exRemind {
-        width: 80px;
-        height: 80px;
+        width: 60px;
+        height: 60px;
         position: absolute;
         right: 10px;
-        bottom: 70px;
+        top: 110px;
     }
 `;
 

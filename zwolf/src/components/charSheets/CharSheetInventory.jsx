@@ -4,21 +4,21 @@ import { useForm } from 'react-hook-form';
 import _ from 'lodash';
 
 import useChar from '../../hooks/CreatureStore';
+import useDice from '../../hooks/DiceStore';
 import { expunge } from '../../helpers/CalcStats';
 import { formatInventory, ultimateLoc } from '../../helpers/EquipOrg';
 import EquipAdder from './EquipAdder';
 import Accordion from '../ui/Accordion';
 import AccordionSection from '../ui/AccordionSection';
 
-import MersenneTwister from 'mersenne-twister';
 import ItemSummary from './ItemSummary';
 import ItemManagement from './ItemManagement';
-let gen = new MersenneTwister();
 
 const CharSheetInventory = () => {
     const { slug } = useParams();
     const cur = useChar((state) => state.cur);
     const setCur = useChar((state) => state.setCur);
+    const gen = useDice((state) => state.generator);
     const { register, watch, reset } = useForm();
     const wealthQty = watch("wealthQty");
 

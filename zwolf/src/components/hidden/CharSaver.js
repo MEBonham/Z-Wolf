@@ -5,8 +5,7 @@ import fb from '../../fbConfig';
 import useChar from '../../hooks/CreatureStore';
 import useSidebar from '../../hooks/SidebarStore';
 import useStyle from '../../hooks/StyleStore';
-
-const AUTOSAVE_INTERVAL = 5 * 1000;
+import { AUTOSAVE_INTERVAL } from '../../helpers/SiteConstants';
 
 const CharSaver = (props) => {
     const { slug } = props;

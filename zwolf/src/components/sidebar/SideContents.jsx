@@ -5,6 +5,7 @@ import useSidebar from '../../hooks/SidebarStore';
 import MainNav from './MainNav';
 import AcctMgt from './AcctMgt';
 import LibPreview from './LibPreview';
+import PlayMode from './PlayMode';
 
 const SideContents = () => {
     const sideMode = useSidebar((state) => state.mode);
@@ -23,6 +24,9 @@ const SideContents = () => {
                 break;
             case "libPreview":
                 setModeComp(<LibPreview />);
+                break;
+            case "play":
+                setModeComp(<PlayMode />);
                 break;
             default:
                 setModeComp(<MainNav />);
