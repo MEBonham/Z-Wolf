@@ -1,10 +1,12 @@
 import React, { useEffect, useRef } from 'react';
 
 import useChar from '../../hooks/CreatureStore';
+import indentImg from '../../media/ui/indent-arrow.png';
 
-const ItemSummary = ({item, index}) => {
+const ItemSummary = ({item}) => {
     const cur = useChar((state) => state.cur);
     const setCur = useChar((state) => state.setCur);
+    const index = cur.equipment.findIndex((itemObj) => itemObj.id === item.id);
     const menu = useRef(null);
     const oldLoc = item.location;
 
@@ -59,6 +61,7 @@ const ItemSummary = ({item, index}) => {
     return(
         <h4 className="itemSummary">
             <span className="nameQty">
+                {[...Array(item.depth).keys()].map((i) => (<img src={indentImg} className="icon" key={i} />))}
                 {item.name + (item.quantity > 1 ? ` (x${item.quantity})` : "")}
             </span>
             <span className="bulk">

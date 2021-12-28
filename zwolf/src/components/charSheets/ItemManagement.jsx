@@ -7,7 +7,6 @@ const ItemManagement = ({ item }) => {
 
     useEffect(() => {
         if (quill.current) {
-            console.log("flag");
             quill.current.getEditor().setContents(JSON.parse(item.delta).ops.slice(2));
         }
     }, []);

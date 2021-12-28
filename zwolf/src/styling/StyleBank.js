@@ -404,6 +404,11 @@ export const CharSheetStyling = styled.div`
             > span.nameQty {
                 display: inline-block;
                 width: 54%;
+
+                img {
+                    width: 12px;
+                    margin-right: 2px;
+                }
             }
             span.bulk {
                 display: inline-block;

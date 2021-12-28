@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import _ from 'lodash';
 
 import useChar from '../../hooks/CreatureStore';
+import { formatInventory } from '../../helpers/EquipOrg';
 import EquipAdder from './EquipAdder';
 import Accordion from '../ui/Accordion';
 import AccordionSection from '../ui/AccordionSection';
@@ -53,6 +55,16 @@ const CharSheetInventory = () => {
         });
     }
 
+    useEffect(() => {
+        const formatted = formatInventory(cur.equipment);
+        if (cur && !_.isEqual(formatted, cur.equipment)) {
+            setCur({
+                ...cur,
+                equipment: formatted
+            });
+        }
+    }, [cur]);
+
     return (
         <section className="tab inventory">
             <header>
@@ -70,7 +82,7 @@ const CharSheetInventory = () => {
                 <Accordion lsUniqueKey={`zWolfCharInvAccordion_${slug}_main`}>
                     {cur.equipment.map((equipObj, i) => {
                         return(<AccordionSection key={i}>
-                            <ItemSummary item={equipObj} index={i} />
+                            <ItemSummary item={equipObj} />
                             <ItemManagement item={equipObj} />
                         </AccordionSection>);
                     })}
