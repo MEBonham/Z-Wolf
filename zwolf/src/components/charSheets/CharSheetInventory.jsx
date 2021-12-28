@@ -131,7 +131,7 @@ const CharSheetInventory = () => {
                 <button onClick={lose}>Lose Wealth</button>
             </form>
             <section>
-                <Accordion lsUniqueKey={`zWolfCharInvAccordion_${slug}_main`}>
+                <Accordion lsUniqueKey={`zWolfCharInvAccordion_${slug}_inv`}>
                     {cur.equipment.map((equipObj, i) => {
                         return(<AccordionSection key={i}>
                             <ItemSummary item={equipObj} sell={sell} />

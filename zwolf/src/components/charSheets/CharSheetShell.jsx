@@ -198,8 +198,8 @@ const CharSheetShell = () => {
                     <nav className="charSheetTabs">
                         <span className={`clickable ${activeTab === "Main" ? "active" : null}`} onClick={() => handleTab("Main")}>Main</span>
                         <span className={`clickable ${activeTab === "Inventory" ? "active" : null}`} onClick={() => handleTab("Inventory")}>Inventory</span>
-                        <span className={`clickable ${activeTab === "Configure" ? "active" : null}`} onClick={() => handleTab("Configure")}>Configure</span>
                         <span className={`clickable ${activeTab === "Biographic" ? "active" : null}`} onClick={() => handleTab("Biographic")}>Biographic</span>
+                        <span className={`clickable ${activeTab === "Configure" ? "active" : null}`} onClick={() => handleTab("Configure")}>Configure</span>
                     </nav>
                     {tabContents}
                 </>

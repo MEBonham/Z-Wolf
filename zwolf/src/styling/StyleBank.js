@@ -538,6 +538,29 @@ export const CharSheetStyling = styled.div`
             }
         }
     }
+    section.tab.biographic {
+        input.long {
+            width: 45rem;
+        }
+        h4.complicationTitleBar {
+            width: 100%;
+
+            > span:first-child {
+                display: inline-block;
+                width: 90%;
+            }
+            > span.mebButton {
+                padding: 0 5px 2px;
+                border-radius: 4px;
+                position: relative;
+                top: -1px;
+                background-color: #333333;
+            }
+        }
+        .accordion {
+            margin-bottom: 10px;
+        }
+    }
     .accordion {
         width: 100%;
         border-radius: 10px;
