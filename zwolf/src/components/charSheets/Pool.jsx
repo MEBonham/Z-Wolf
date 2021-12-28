@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import useChar from '../../hooks/CreatureStore';
 import minusBtn from '../../media/ui/MinusButton.png';
 import plusBtn from '../../media/ui/PlusButton.png';
+import EditVPBox from './EditVPBox';
 
 const Pool = (props) => {
     const { type, color, spellOut } = props;
@@ -21,7 +22,6 @@ const Pool = (props) => {
             [type]: Math.min(cur[type] + 1, cur.stats[`${type}Max`])
         });
     }
-
     const decrement = () => {
         setCur({
             ...cur,
@@ -38,7 +38,10 @@ const Pool = (props) => {
                 <div className="innerBar" />
             </div>
             <div className="mainPoolVal">
-                <p>{cur[type]}</p>
+                {type === "vp" ? 
+                    <EditVPBox /> :
+                    <p>{cur[type]}</p>
+                }
                 <p className="small">{spellOut}</p>
             </div>
             <img src={minusBtn} onClick={decrement} alt="Minus One" className="decrement clickable" />

@@ -285,10 +285,12 @@ export const CharSheetStyling = styled.div`
                     flex-direction: column;
                     align-items: center;
 
-                    p:first-child {
+                    p:first-child,
+                    span.vpEdit {
                         margin: 0;
+                        line-height: 1.5;
                         font-weight: bold;
-                        font-size: 2rem;
+                        font-size: 2.2rem;
                     }
                     p:nth-child(2) {
                         margin: 0;
