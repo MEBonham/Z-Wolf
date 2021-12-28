@@ -5,7 +5,7 @@ import { skillsList } from './GameConstants';
 const farmMods = (modsArr, skillRanks={}, levelCheck=null) => {
     let filtModsArr;
     if (levelCheck) {
-        filtModsArr = modsArr.filter((modObj) => modObj.level <= levelCheck);
+        filtModsArr = modsArr.filter((modObj) => !modObj.level || (modObj.level <= levelCheck));
     } else {
         filtModsArr = modsArr;
     }
@@ -119,4 +119,27 @@ export const calcStats = (char) => {
     result.kpDefault = 1 + farmMods(char.mods.filter((modObj) => modObj.target === "kpDefault"), skillRanks, char.level);
 
     return result;
+}
+
+export const expunge = (block, badId) => {
+    let tempArr = [];
+    ["feats", "talents", "mods", "verbs", "trainedSkills"].forEach((type) => {
+        tempArr = tempArr.concat(block[type].filter((obj) => obj.origin === badId));
+    });
+    if (!tempArr.length) {
+        return block;
+    }
+    let tempBlock = {
+        ...block,
+        mods: block.mods.filter((obj) => obj.origin !== badId),
+        verbs: block.verbs.filter((obj) => obj.origin !== badId),
+        trainedSkills: block.trainedSkills.filter((obj) => obj.origin !== badId)
+    };
+    block.feats.filter((obj) => obj.origin === badId).forEach((featObj) => {
+        tempBlock = expunge(tempBlock, featObj.id);
+    });
+    block.talents.filter((obj) => obj.origin === badId).forEach((talentObj) => {
+        tempBlock = expunge(tempBlock, talentObj.id);
+    });
+    return tempBlock;
 }

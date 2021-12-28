@@ -5,6 +5,7 @@ import { nanoid } from 'nanoid'
 import fb from '../../fbConfig';
 import useChar from '../../hooks/CreatureStore';
 import useSidebar from '../../hooks/SidebarStore';
+import { expunge } from '../../helpers/CalcStats';
 import { clumpObjectsByProperty } from '../../helpers/utilityFct';
 import BufferDot from '../ui/BufferDot';
 import TrainingPicker from './TrainingPicker';
@@ -35,29 +36,6 @@ const SpecialConfig = (props) => {
                 console.log("Error getting library: ", error);
             });
     }, []);
-
-    const expunge = (block, badId) => {
-        let tempArr = [];
-        ["feats", "talents", "mods", "verbs", "trainedSkills"].forEach((type) => {
-            tempArr = tempArr.concat(block[type].filter((obj) => obj.origin === badId));
-        });
-        if (!tempArr.length) {
-            return block;
-        }
-        let tempBlock = {
-            ...block,
-            mods: block.mods.filter((obj) => obj.origin !== badId),
-            verbs: block.verbs.filter((obj) => obj.origin !== badId),
-            trainedSkills: block.trainedSkills.filter((obj) => obj.origin !== badId)
-        };
-        block.feats.filter((obj) => obj.origin === badId).forEach((featObj) => {
-            tempBlock = expunge(tempBlock, featObj.id);
-        });
-        block.talents.filter((obj) => obj.origin === badId).forEach((talentObj) => {
-            tempBlock = expunge(tempBlock, talentObj.id);
-        });
-        return tempBlock;
-    }
 
     const handleMenu = (ev) => {
         const newId = nanoid();

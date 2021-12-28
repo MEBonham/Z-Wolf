@@ -1,6 +1,9 @@
 import React, { useEffect, useRef } from 'react';
+import _ from 'lodash';
 
 import useChar from '../../hooks/CreatureStore';
+import { expunge } from '../../helpers/CalcStats';
+import { ultimateLoc } from '../../helpers/EquipOrg';
 import indentImg from '../../media/ui/indent-arrow.png';
 
 const ItemSummary = ({item, sell}) => {
@@ -22,27 +25,28 @@ const ItemSummary = ({item, sell}) => {
                 sell(item);
                 break;
             case "useUp":
+                let tempInv;
                 if (item.quantity > 1) {
+                    tempInv = _.set(cur.equipment, `${index}.quantity`, item.quantity - 1);
                     setCur({
                         ...cur,
-                        equipment: [
-                            ...cur.equipment.slice(0, index),
-                            {
-                                ...cur.equipment[index],
-                                quantity: item.quantity - 1,
-                                location: oldLoc
-                            },
-                            ...cur.equipment.slice(index + 1)
-                        ]
+                        equipment: tempInv
                     });
                     menu.current.value = oldLoc;
                 } else {
-                    setCur({
-                        ...cur,
-                        equipment: [
+                    tempInv = [
                             ...cur.equipment.slice(0, index),
                             ...cur.equipment.slice(index + 1)
-                        ]
+                    ];
+                    const defaultLoc = ultimateLoc(item, cur.equipment);
+                    for (let j = 0; j < tempInv.length; j++) {
+                        if (tempInv[j].location === item.id) {
+                            tempInv[j].location = defaultLoc;
+                        }
+                    }
+                    setCur({
+                        ...expunge(cur, item.id),
+                        equipment: tempInv
                     });
                 }
                 break;
@@ -94,9 +98,41 @@ const ItemSummary = ({item, sell}) => {
                 });
                 menu.current.value = oldLoc;
                 break;
-            default:
+            case "equipped":
                 setCur({
                     ...cur,
+                    equipment: [
+                        ...cur.equipment.slice(0, index),
+                        {
+                            ...cur.equipment[index],
+                            location: newLoc
+                        },
+                        ...cur.equipment.slice(index + 1)
+                    ],
+                    mods: [
+                        ...cur.mods,
+                        ...(item.modifier ?
+                            item.modifier.map((modObj) => ({
+                                ...modObj,
+                                origin: item.id
+                            }))
+                        : [])
+                    ],
+                    verbs: [
+                        ...cur.verbs,
+                        ...(item.verb ?
+                            item.verb.map((verbObj) => ({
+                                ...verbObj,
+                                origin: item.id,
+                                delta: item.delta
+                            }))
+                        : [])
+                    ]
+                });
+                break;
+            default:
+                setCur({
+                    ...expunge(cur, item.id),
                     equipment: [
                         ...cur.equipment.slice(0, index),
                         {

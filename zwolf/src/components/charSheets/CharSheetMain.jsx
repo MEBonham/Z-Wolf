@@ -44,7 +44,7 @@ const CharSheetMain = () => {
             <section className="verbs">
                 <h2>Verbs</h2>
                 {verbTypes.map((vType) => {
-                    const verbList = cur.verbs.filter((verbObj) => verbObj.level <= cur.level)
+                    const verbList = cur.verbs.filter((verbObj) => !verbObj.level || (verbObj.level <= cur.level))
                         .filter((verbObj) => verbObj.activity === vType);
                     if (verbList.length === 0) {
                         return null;

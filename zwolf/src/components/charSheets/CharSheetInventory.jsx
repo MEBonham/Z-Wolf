@@ -4,7 +4,8 @@ import { useForm } from 'react-hook-form';
 import _ from 'lodash';
 
 import useChar from '../../hooks/CreatureStore';
-import { formatInventory } from '../../helpers/EquipOrg';
+import { expunge } from '../../helpers/CalcStats';
+import { formatInventory, ultimateLoc } from '../../helpers/EquipOrg';
 import { clamp } from '../../helpers/utilityFct';
 import EquipAdder from './EquipAdder';
 import Accordion from '../ui/Accordion';
@@ -53,6 +54,7 @@ const CharSheetInventory = () => {
                 `This sale would profit you ${gain} Wealth for a total of ${cur.wealth + gain}. Proceed?`)) {
             const i = cur.equipment.findIndex((quarry) => quarry.id === itemObj.id);
             let tempInv;
+            let purgedBlock = { ...cur };
             if (itemObj.quantity > 1) {
                 tempInv = _.set(cur.equipment, `${i}.quantity`, itemObj.quantity - 1);
             } else {
@@ -60,9 +62,16 @@ const CharSheetInventory = () => {
                     ...cur.equipment.slice(0, i),
                     ...cur.equipment.slice(i + 1)
                 ];
+                const defaultLoc = ultimateLoc(cur.equipment[i], cur.equipment);
+                for (let j = 0; j < tempInv.length; j++) {
+                    if (tempInv[j].location === itemObj.id) {
+                        tempInv[j].location = defaultLoc;
+                    }
+                }
+                purgedBlock = expunge(purgedBlock, itemObj.id);
             }
             setCur({
-                ...cur,
+                ...purgedBlock,
                 equipment: formatInventory(tempInv),
                 wealth: cur.wealth + gain
             });
@@ -72,11 +81,15 @@ const CharSheetInventory = () => {
         ev.preventDefault();
         const roll = nd6(cur.wealth);
         const newWealth = cur.wealth - Math.max(0, (wealthQty ? wealthQty : 0) - successes(roll));
+        if (newWealth >= 0 || (typeof window !== "undefined" && window.confirm(
+                `That is more Wealth than you have to lose. Set to zero Wealth anyway?`
+        ))) {
+            setCur({
+                ...cur,
+                wealth: Math.max(0, newWealth)
+            });
+        }
         reset();
-        setCur({
-            ...cur,
-            wealth: Math.max(0, newWealth)
-        });
     }
     const buy = (itemObj) => {
         const roll = nd6(cur.wealth);

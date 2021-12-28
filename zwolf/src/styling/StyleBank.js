@@ -536,7 +536,7 @@ export const CharSheetStyling = styled.div`
             background-color: hsla(136, 54%, 43%, 0.3);
 
             h4 {
-                margin: 4px 0;
+                margin: 4px 0 5px;
             }
         }
         .toggle {

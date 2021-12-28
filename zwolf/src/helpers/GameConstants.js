@@ -114,6 +114,7 @@ export const talentTags = [
 export const itemTags = [
     "General Gear",
     "Armor",
+    "Clothing",
     "Container",
     "Shield",
     "Tome",
