@@ -5,6 +5,7 @@ import _ from 'lodash';
 
 import useChar from '../../hooks/CreatureStore';
 import { formatInventory } from '../../helpers/EquipOrg';
+import { clamp } from '../../helpers/utilityFct';
 import EquipAdder from './EquipAdder';
 import Accordion from '../ui/Accordion';
 import AccordionSection from '../ui/AccordionSection';
@@ -44,15 +45,54 @@ const CharSheetInventory = () => {
             wealth: newWealth
         });
     }
+    const sell = (itemObj) => {
+        const roll = nd6(cur.wealth);
+        const maxGain = Math.ceil(itemObj.price / 2);
+        const gain = clamp(itemObj.price - failures(roll), 0, maxGain);
+        if (typeof window !== "undefined" && window.confirm(
+                `This sale would profit you ${gain} Wealth for a total of ${cur.wealth + gain}. Proceed?`)) {
+            const i = cur.equipment.findIndex((quarry) => quarry.id === itemObj.id);
+            let tempInv;
+            if (itemObj.quantity > 1) {
+                tempInv = _.set(cur.equipment, `${i}.quantity`, itemObj.quantity - 1);
+            } else {
+                tempInv = [
+                    ...cur.equipment.slice(0, i),
+                    ...cur.equipment.slice(i + 1)
+                ];
+            }
+            setCur({
+                ...cur,
+                equipment: formatInventory(tempInv),
+                wealth: cur.wealth + gain
+            });
+        }
+    }
     const lose = (ev) => {
         ev.preventDefault();
         const roll = nd6(cur.wealth);
-        const newWealth = Math.max(0, cur.wealth - Math.max(0, (wealthQty ? wealthQty : 0) - successes(roll)));
+        const newWealth = cur.wealth - Math.max(0, (wealthQty ? wealthQty : 0) - successes(roll));
         reset();
         setCur({
             ...cur,
-            wealth: newWealth
+            wealth: Math.max(0, newWealth)
         });
+    }
+    const buy = (itemObj) => {
+        const roll = nd6(cur.wealth);
+        const loss = Math.max(0, itemObj.price - successes(roll));
+        if (loss > cur.wealth) {
+            if (typeof window !== "undefined") {
+                window.alert(`You can't afford that right now! Purchase cancelled.`);
+            }
+            return false;
+        } else if (typeof window !== "undefined") {
+            if (window.confirm(`This purchase would cost you ${loss} Wealth for a remainder of ${cur.wealth - loss}. Proceed?`)) {
+                return (cur.wealth - loss);
+            } else {
+                return false;
+            }
+        } else return false;
     }
 
     useEffect(() => {
@@ -82,13 +122,13 @@ const CharSheetInventory = () => {
                 <Accordion lsUniqueKey={`zWolfCharInvAccordion_${slug}_main`}>
                     {cur.equipment.map((equipObj, i) => {
                         return(<AccordionSection key={i}>
-                            <ItemSummary item={equipObj} />
+                            <ItemSummary item={equipObj} sell={sell} />
                             <ItemManagement item={equipObj} />
                         </AccordionSection>);
                     })}
                 </Accordion>
             </section>
-            <EquipAdder />
+            <EquipAdder buy={buy} />
         </section>
     );
 }

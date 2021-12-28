@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from 'react';
 import useChar from '../../hooks/CreatureStore';
 import indentImg from '../../media/ui/indent-arrow.png';
 
-const ItemSummary = ({item}) => {
+const ItemSummary = ({item, sell}) => {
     const cur = useChar((state) => state.cur);
     const setCur = useChar((state) => state.setCur);
     const index = cur.equipment.findIndex((itemObj) => itemObj.id === item.id);
@@ -18,6 +18,9 @@ const ItemSummary = ({item}) => {
         const newLoc = ev.target.value;
 
         switch (newLoc) {
+            case "sell":
+                sell(item);
+                break;
             case "useUp":
                 if (item.quantity > 1) {
                     setCur({

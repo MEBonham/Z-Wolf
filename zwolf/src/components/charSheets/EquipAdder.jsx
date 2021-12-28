@@ -5,7 +5,7 @@ import { nanoid } from 'nanoid'
 import fb from '../../fbConfig';
 import useChar from '../../hooks/CreatureStore';
 
-const EquipAdder = () => {
+const EquipAdder = ({ buy }) => {
     const cur = useChar((state) => state.cur);
     const setCur = useChar((state) => state.setCur);
     const [lib, setLib] = useState({});
@@ -26,19 +26,37 @@ const EquipAdder = () => {
     }, []);
 
     const acquire = (formData) => {
-        console.log(formData);
-        setCur({
-            ...cur,
-            equipment: [
-                ...cur.equipment,
-                {
-                    ...lib[formData.selection],
-                    quantity: parseInt(formData.quantity),
-                    id: nanoid(),
-                    location: "available"
-                }
-            ]
-        });
+        if (formData.selection !== "(none)" && !formData.buy) {
+            setCur({
+                ...cur,
+                equipment: [
+                    ...cur.equipment,
+                    {
+                        ...lib[formData.selection],
+                        quantity: parseInt(formData.quantity),
+                        id: nanoid(),
+                        location: "available"
+                    }
+                ]
+            });
+        } else if (formData.selection !== "(none)") {
+            const buyResult = buy(lib[formData.selection]);
+            if (buyResult !== false) {
+                setCur({
+                    ...cur,
+                    equipment: [
+                        ...cur.equipment,
+                        {
+                            ...lib[formData.selection],
+                            quantity: parseInt(formData.quantity),
+                            id: nanoid(),
+                            location: "available"
+                        }
+                    ],
+                    wealth: buyResult
+                });
+            }
+        }
         reset();
     }
     
