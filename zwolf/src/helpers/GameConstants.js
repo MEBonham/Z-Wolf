@@ -170,3 +170,6 @@ export const weaponCategories = [
     "Spear",
     "Other"
 ];
+
+export const BULK_ALLOWANCE = 10;
+export const BRAWN_CARRY_FACTOR = 3;

@@ -35,7 +35,8 @@ const EquipAdder = ({ buy }) => {
                         ...lib[formData.selection],
                         quantity: parseInt(formData.quantity),
                         id: nanoid(),
-                        location: "available"
+                        location: "available",
+                        slug: formData.selection
                     }
                 ]
             });
@@ -50,7 +51,8 @@ const EquipAdder = ({ buy }) => {
                             ...lib[formData.selection],
                             quantity: parseInt(formData.quantity),
                             id: nanoid(),
-                            location: "available"
+                            location: "available",
+                            slug: formData.selection
                         }
                     ],
                     wealth: buyResult

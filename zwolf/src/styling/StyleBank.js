@@ -415,6 +415,20 @@ export const CharSheetStyling = styled.div`
                 width: 20%;
             }
         }
+        div.bulkSummary {
+            margin-top: 3px;
+            font-size: 1.6rem;
+            display: flex;
+
+            > span:first-child {
+                width: 54%;
+                height: 1rem;
+            }
+            > span:nth-child(2) {
+                position: relative;
+                left: -9.5rem;
+            }
+        }
         form.acquire {
             margin-top: 2.4rem;
 
@@ -536,7 +550,7 @@ export const CharSheetStyling = styled.div`
             background-color: hsla(136, 54%, 43%, 0.3);
 
             h4 {
-                margin: 4px 0 5px;
+                margin: 4px 0 3px;
             }
         }
         .toggle {
@@ -553,6 +567,9 @@ export const CharSheetStyling = styled.div`
             p {
                 margin: 0 0 4px;
             }
+        }
+        section:last-child .title h4 {
+            margin-bottom: 5px;
         }
         section:last-child .toggle.open {
             border-radius: 0 0 9px 9px;

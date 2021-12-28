@@ -1,6 +1,7 @@
 import _ from 'lodash';
 
-import { skillsList } from './GameConstants';
+import { BRAWN_CARRY_FACTOR, BULK_ALLOWANCE, skillsList } from './GameConstants';
+import { isInSomething, ultimateLoc } from './EquipOrg';
 
 const farmMods = (modsArr, skillRanks={}, levelCheck=null) => {
     let filtModsArr;
@@ -49,8 +50,46 @@ const farmMods = (modsArr, skillRanks={}, levelCheck=null) => {
     return total;
 }
 
+const calcTotalBulk = (equipArr) => {
+    let total = 0;
+    equipArr.forEach((itemObj) => {
+        if (ultimateLoc(itemObj, equipArr) === "notCarried") {
+            total += 0;
+        } else if (itemObj.tags.includes("Clothing") && itemObj.location === "equipped") {
+            total += 0;
+        } else if (itemObj.tags.includes("Armor") && itemObj.location === "equipped") {
+            total += 0;
+        } else if (!isInSomething(itemObj)) {
+            total += parseFloat(itemObj.bulk) * itemObj.quantity;
+            let subItems = equipArr.filter((subObj) => subObj.location === itemObj.id);
+            let subLen = 0;
+            while (subItems.length > subLen) {
+                subLen = subItems.length;
+                let additional = [];
+                subItems.forEach((subObj) => {
+                    additional = [
+                        ...additional,
+                        ...equipArr.filter((sub) => sub.location === subObj.id)
+                    ];
+                });
+                subItems = [
+                    ...subItems,
+                    ...additional
+                ];
+            }
+            let subTotal = 0;
+            subItems.forEach((subObj) => {
+                subTotal += parseFloat(subObj.bulk) * subObj.quantity;
+            });
+            const containerReduction = itemObj.maxReduceBulk ? _.clamp(Math.floor(subTotal / 2), 0, itemObj.maxReduceBulk) : 0;
+            total += subTotal - containerReduction;
+        }
+    });
+    return total;
+}
+
 export const calcStats = (char) => {
-    const result = {};
+    let result = {};
 
     const skillRanks = {};
     let flattenSelections = [];
@@ -117,6 +156,13 @@ export const calcStats = (char) => {
     result.numTrainedSkills = 2 + farmMods(char.mods.filter((modObj) => modObj.target === "numTrainedSkills"), skillRanks, char.level);
     result.numLanguages = 2 + farmMods(char.mods.filter((modObj) => modObj.target === "numLanguages"), skillRanks, char.level);
     result.kpDefault = 1 + farmMods(char.mods.filter((modObj) => modObj.target === "kpDefault"), skillRanks, char.level);
+
+    result.totalEffBulk = calcTotalBulk(char.equipment);
+    result.capacity = BRAWN_CARRY_FACTOR * result.Brawn + BULK_ALLOWANCE;
+    result.Athletics -= Math.max(0, result.totalEffBulk - result.capacity);
+    result.Dexterity -= Math.max(0, result.totalEffBulk - result.capacity);
+    result.Stealth -= Math.max(0, result.totalEffBulk - result.capacity);
+    result.speed -= Math.max(0, result.totalEffBulk - result.capacity);
 
     return result;
 }

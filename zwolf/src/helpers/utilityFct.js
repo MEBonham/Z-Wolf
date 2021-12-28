@@ -1,10 +1,5 @@
 
 
-export const clamp = (main, minVal, maxVal) => {
-    const inter = Math.max(main, minVal);
-    return Math.min(inter, maxVal);
-}
-
 export const addClassName = (element, newClass) => {
     const result = [ ...element.className.split(" "), newClass ].join(" ");
     element.className = result;

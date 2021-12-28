@@ -6,7 +6,6 @@ import _ from 'lodash';
 import useChar from '../../hooks/CreatureStore';
 import { expunge } from '../../helpers/CalcStats';
 import { formatInventory, ultimateLoc } from '../../helpers/EquipOrg';
-import { clamp } from '../../helpers/utilityFct';
 import EquipAdder from './EquipAdder';
 import Accordion from '../ui/Accordion';
 import AccordionSection from '../ui/AccordionSection';
@@ -49,7 +48,7 @@ const CharSheetInventory = () => {
     const sell = (itemObj) => {
         const roll = nd6(cur.wealth);
         const maxGain = Math.ceil(itemObj.price / 2);
-        const gain = clamp(itemObj.price - failures(roll), 0, maxGain);
+        const gain = _.clamp(itemObj.price - failures(roll), 0, maxGain);
         if (typeof window !== "undefined" && window.confirm(
                 `This sale would profit you ${gain} Wealth for a total of ${cur.wealth + gain}. Proceed?`)) {
             const i = cur.equipment.findIndex((quarry) => quarry.id === itemObj.id);
@@ -140,6 +139,12 @@ const CharSheetInventory = () => {
                         </AccordionSection>);
                     })}
                 </Accordion>
+                <div className="bulkSummary">
+                    <span />
+                    <span>
+                        Total Bulk Carried: {cur.stats.totalEffBulk} / {cur.stats.capacity}
+                    </span>
+                </div>
             </section>
             <EquipAdder buy={buy} />
         </section>
