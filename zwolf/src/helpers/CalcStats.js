@@ -39,7 +39,7 @@ const farmMods = (modsArr, skillRanks={}, levelCheck=null, curBlock={}) => {
         } else if (modObj.condition && !checkCondition(modObj.condition, curBlock, modObj.target)[0]) {
             mag = 0;
         } else if (modObj.condition && mag === "special") {
-            mag += checkCondition(modObj.condition, curBlock, modObj.target)[1];
+            mag = checkCondition(modObj.condition, curBlock, modObj.target)[1];
         }
         // Check if the mod stacks with other mods:
         if (modObj.type === "Untyped") {
@@ -150,7 +150,7 @@ const checkCondition = (condition, charBlock, target) => {
                 const mageArmorConsuming = charBlock.mods.filter((modObj) =>
                     modObj.condition === "mageArmorConsuming" &&
                     modObj.target === "willSave" &&
-                    modObj.choice
+                    modObj.choices
                 ).length;
                 if (mageArmorConsuming) {
                     if (charBlock.stats.casterLevel > 8) {
@@ -158,6 +158,7 @@ const checkCondition = (condition, charBlock, target) => {
                     } else if (charBlock.stats.casterLevel > 4) {
                         return [true, 4];
                     } else {
+                        console.log('flag');
                         return [true, 3];
                     }
                 } else {

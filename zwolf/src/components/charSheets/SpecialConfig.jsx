@@ -94,11 +94,11 @@ const SpecialConfig = (props) => {
                     ...tempBlock.mods,
                     {
                         ...tempMods[0],
-                        choice: true
+                        choices: true
                     },
                     ...tempMods.slice(1).map((modObj, i) => ({
                         ...tempMods[i + 1],
-                        choice: false
+                        choices: false
                     }))
                 ],
                 verbs: [
@@ -123,7 +123,8 @@ const SpecialConfig = (props) => {
 
     useEffect(() => {
         const tempMods = cur.mods.filter((modObj) => modObj.origin === id);
-        setOverlaps(clumpObjectsByProperty(tempMods, "overlap"));
+        const clumped = clumpObjectsByProperty(tempMods, "overlap");
+        setOverlaps(clumped);
         setArcheStr(_.get(cur[type].filter((obj) => obj.id === id)[0], "delta", ""));
     }, [cur, id]);
 
@@ -158,18 +159,17 @@ const SpecialConfig = (props) => {
                             </div>
                         );
                     })}
-                {overlaps.length > 0 && overlaps.map((modCluster, i) => {
-                    const overlapId = modCluster[0].overlap;
+                {Object.keys(overlaps).length > 0 && Object.keys(overlaps).map((overlapIndex, i) => {
                     let quarry = cur[type].filter((specialObj) => specialObj.id === id)[0];
-                    let quarryMods = cur.mods.filter((modObj) => modObj.origin === id && modObj.overlap === overlapId);
-                    const curChoice = _.get(quarry, `choices[${overlapId}]`, modCluster[0].target);
+                    let quarryMods = cur.mods.filter((modObj) => modObj.origin === id && modObj.overlap === overlapIndex);
+                    const curChoice = _.get(quarry, `choices[${overlapIndex}]`, overlaps[overlapIndex][0].target);
                     return (
                         <div key={i} className="choices">
                             <select
                                 value={curChoice}
                                 onChange={(ev) => {
                                     ev.preventDefault();
-                                    quarry = _.set(quarry, `choices[${overlapId}]`, ev.target.value);
+                                    quarry = _.set(quarry, `choices[${overlapIndex}]`, ev.target.value);
                                     quarryMods = quarryMods.map((modObj) => ({
                                         ...modObj,
                                         choices: modObj.target === ev.target.value ? true : false
@@ -178,7 +178,7 @@ const SpecialConfig = (props) => {
                                         ...cur,
                                         mods: [
                                             ...cur.mods.filter((modObj) => (modObj.origin !== id) ||
-                                                (modObj.overlap !== overlapId)
+                                                (modObj.overlap !== overlapIndex)
                                             ),
                                             ...quarryMods
                                         ],
@@ -189,7 +189,7 @@ const SpecialConfig = (props) => {
                                     });
                                 }}
                             >
-                                {modCluster.map((modObj) => (
+                                {overlaps[overlapIndex].map((modObj) => (
                                     <option value={modObj.target} key={modObj.target}>
                                         {modObj.mag > 0 ? "+" : null}{modObj.mag} to {modObj.target}
                                     </option>
