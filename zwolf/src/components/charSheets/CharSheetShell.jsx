@@ -177,7 +177,8 @@ const CharSheetShell = () => {
                                             onClick={sidebarMode === "play"? () => roll({
                                                 sides: "usual",
                                                 modifier: cur.stats.heroics,
-                                                text: "a Heroics Check"
+                                                text: "a Heroics Check",
+                                                character: cur.name
                                             }) : null}
                                             className={sidebarMode === "play" ? "clickable" : ""}
                                         >
@@ -187,7 +188,8 @@ const CharSheetShell = () => {
                                             onClick={sidebarMode === "play"? () => roll({
                                                 sides: "usual",
                                                 modifier: cur.stats.awesome,
-                                                text: "an Awesome Check"
+                                                text: "an Awesome Check",
+                                                character: cur.name
                                             }) : null}
                                             className={sidebarMode === "play" ? "clickable" : ""}
                                         >
@@ -197,7 +199,8 @@ const CharSheetShell = () => {
                                             onClick={sidebarMode === "play"? () => roll({
                                                 sides: "usual",
                                                 modifier: cur.stats.spellcraft,
-                                                text: "a Spellcraft Check"
+                                                text: "a Spellcraft Check",
+                                                character: cur.name
                                             }) : null}
                                             className={sidebarMode === "play" ? "clickable" : ""}
                                         >
@@ -207,7 +210,8 @@ const CharSheetShell = () => {
                                             onClick={sidebarMode === "play"? () => roll({
                                                 sides: "usual",
                                                 modifier: cur.stats.speed,
-                                                text: "a Speed Check"
+                                                text: "a Speed Check",
+                                                character: cur.name
                                             }) : null}
                                             className={sidebarMode === "play" ? "clickable" : ""}
                                         >
@@ -219,7 +223,8 @@ const CharSheetShell = () => {
                                             onClick={sidebarMode === "play"? () => roll({
                                                 sides: "usual",
                                                 modifier: cur.stats.defSave,
-                                                text: "a Defense Save"
+                                                text: "a Defense Save",
+                                                character: cur.name
                                             }) : null}
                                             className={sidebarMode === "play" ? "clickable" : ""}
                                         >
@@ -229,7 +234,8 @@ const CharSheetShell = () => {
                                             onClick={sidebarMode === "play"? () => roll({
                                                 sides: "usual",
                                                 modifier: cur.stats.fortSave,
-                                                text: "a Fortitude Save"
+                                                text: "a Fortitude Save",
+                                                character: cur.name
                                             }) : null}
                                             className={sidebarMode === "play" ? "clickable" : ""}
                                         >
@@ -239,7 +245,8 @@ const CharSheetShell = () => {
                                             onClick={sidebarMode === "play"? () => roll({
                                                 sides: "usual",
                                                 modifier: cur.stats.refSave,
-                                                text: "a Reflex Save"
+                                                text: "a Reflex Save",
+                                                character: cur.name
                                             }) : null}
                                             className={sidebarMode === "play" ? "clickable" : ""}
                                         >
@@ -249,7 +256,8 @@ const CharSheetShell = () => {
                                             onClick={sidebarMode === "play"? () => roll({
                                                 sides: "usual",
                                                 modifier: cur.stats.willSave,
-                                                text: "a Willpower Save"
+                                                text: "a Willpower Save",
+                                                character: cur.name
                                             }) : null}
                                             className={sidebarMode === "play" ? "clickable" : ""}
                                         >

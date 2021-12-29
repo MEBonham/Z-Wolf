@@ -23,15 +23,15 @@ const useDice = create((set) => ({
                 if (state.mode === "Normal") {
                     const natRolls = state.nDs(3, 12, state.generator);
                     result.natRolls = natRolls;
-                    result.keyNat = natRolls.sort()[1]
+                    result.keyNat = natRolls.slice().sort((a, b) => a - b)[1]
                 } else if (state.mode === "Boost") {
                     const natRolls = state.nDs(2, 12, state.generator);
                     result.natRolls = natRolls;
-                    result.keyNat = natRolls.sort()[1]
+                    result.keyNat = natRolls.slice().sort((a, b) => a - b)[1]
                 } else if (state.mode === "Drag") {
                     const natRolls = state.nDs(2, 12, state.generator);
                     result.natRolls = natRolls;
-                    result.keyNat = natRolls.sort()[0]
+                    result.keyNat = natRolls.slice().sort((a, b) => a - b)[0]
                 } else {
                     const natRolls = state.nDs(1, 12, state.generator);
                     result.natRolls = natRolls;

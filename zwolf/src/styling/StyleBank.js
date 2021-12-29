@@ -169,14 +169,31 @@ export const Sidebar = styled.section`
                 flex-direction: column;
                 align-items: center;
 
+                div.simplebar-content {
+                    display: flex;
+                    flex-direction: column-reverse;
+                    align-items: center;
+                }
                 h3 {
                     margin: 10px 0;
                     font-size: 2rem;
                 }
                 div.oneRoll {
                     width: 100%;
+                    margin-bottom: 6px;
                     display: flex;
 
+                    > span:first-child {
+                        width: 90px;
+                        margin-right: 6px;
+                        display: flex;
+                        justify-content: center;
+                    }
+                    span.textExplanation {
+                        margin-right: 6px;
+                        padding: 0.8rem 0;
+                        font-size: 1.4rem;
+                    }
                     span.dodecShadow {
                         display: inline-block;
                         width: 30px;

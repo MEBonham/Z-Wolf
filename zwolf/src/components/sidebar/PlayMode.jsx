@@ -30,7 +30,7 @@ const PlayMode = () => {
                         <option value="Normal">Normal</option>
                         <option value="Boost">Boosted</option>
                         <option value="Drag">Dragged</option>
-                        <option value="BoostAndDrag">Boosted & Dragged</option>
+                        <option value="BoostAndDrag">Boosted &amp; Dragged</option>
                     </select>
                     <div>
                         <input type="checkbox" onChange={() => toggleCoast()} />
@@ -42,12 +42,18 @@ const PlayMode = () => {
                     <SimpleBarReact style={{ width: '100%', height: 'calc(100% - 20px - 2rem)', paddingRight: '30px' }}>
                         {rollHistory.map((rollObj, i) => (
                             <div key={i} className="oneRoll">
-                                {rollObj.sides === "usual" ?
-                                    rollObj.natRolls.map((oneRoll, j) => (
-                                        <span key={j} className="dodecShadow">{oneRoll}</span>
-                                    )) :
-                                    <span className="oneDie">{rollObj.keyNat}</span>
-                                }
+                                <span>
+                                    {rollObj.sides === "usual" ?
+                                        rollObj.natRolls.map((oneRoll, j) => (
+                                            <span key={j} className="dodecShadow">{oneRoll}</span>
+                                        )) :
+                                        <span className="oneDie">{rollObj.keyNat}</span>
+                                    }
+                                </span>
+                                <span className="textExplanation">
+                                    {rollObj.character} rolls {rollObj.text}: 
+                                </span>
+                                <span className="dodecShadow">{rollObj.result}</span>
                             </div>
                         ))}
                     </SimpleBarReact>
