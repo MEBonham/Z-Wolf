@@ -30,12 +30,12 @@ const Accordion = ({ children, lsUniqueKey }) => {
     return (
         <div className="accordion">
             {Children.map(children, (child, idx) => (
-                cloneElement(child, {
+                child ? cloneElement(child, {
                     idx,
                     openIdx,
                     toggle,
                     lsUniqueKey
-                })
+                }) : null
             ))}
         </div>
     );

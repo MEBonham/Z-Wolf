@@ -5,6 +5,7 @@ import { skillsList, verbTypes } from '../../helpers/GameConstants';
 import useChar from '../../hooks/CreatureStore';
 import Accordion from '../ui/Accordion';
 import AccordionSection from '../ui/AccordionSection';
+import BufferDot from '../ui/BufferDot';
 
 const CharSheetMain = () => {
     const { slug } = useParams();
@@ -46,12 +47,25 @@ const CharSheetMain = () => {
                 {verbTypes.map((vType) => {
                     const verbList = cur.verbs.filter((verbObj) => !verbObj.level || (verbObj.level <= cur.level))
                         .filter((verbObj) => verbObj.activity === vType);
-                    if (verbList.length === 0) {
+                    if (verbList.length === 0 && !["Passive"].includes(vType)) {
                         return null;
                     }
                     return (<div key={vType}>
                         <h3>{vType}</h3>
                         <Accordion lsUniqueKey={`zWolfCharVerbsAccordion_${slug}_${vType}`}>
+                            {vType === "Passive" ? 
+                                <AccordionSection>
+                                    <h4>Languages</h4>
+                                    <p>
+                                        <BufferDot />
+                                        {cur.languages.slice().sort().map((language, i) => (
+                                            <span key={i}>
+                                                {language} <BufferDot />
+                                            </span>
+                                        ))}
+                                    </p>
+                                </AccordionSection>
+                                : null}
                             {verbList.map((verbObj, i) => {
                                 const [title, text] = mineVerbDelta(verbObj.origin, verbObj.bullet);
                                 return(<AccordionSection key={i}>
