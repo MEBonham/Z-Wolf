@@ -90,7 +90,7 @@ const CharSheetShell = () => {
         return(() => {
             unsubscribe();
         });
-    }, []);
+    }, [slug]);
 
     useEffect(() => {
         if (typeof window !== "undefined") {

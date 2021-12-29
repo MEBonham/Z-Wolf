@@ -40,7 +40,7 @@ const PlayMode = () => {
     }, [db]);
 
     const newRelation = (formData) => {
-        if (cur) {
+        if (cur && formData.character !== "null") {
             setCur({
                 ...cur,
                 relatedSlugs: [
@@ -54,19 +54,22 @@ const PlayMode = () => {
 
     return(
         <div className="sidePane playMode">
-            <h2>Play Mode for Z-Wolf</h2>
+            <div>
+                <h2>Play Mode for Z-Wolf</h2>
+                {cur && <h4>{cur.name}</h4>}
+            </div>
             <div className="otherStuff">
                 {cur && <div>
                     <strong>Related characters:</strong>
                     <span> </span>
-                    {cur.relatedSlugs.map((otherSlug) => {
+                    {cur.relatedSlugs.map((otherSlug) => (
                         <span key={otherSlug}>
                             <Link to={`/bestiary/${otherSlug}`}>
                                 {charLib && charLib[otherSlug] ? charLib[otherSlug].name : otherSlug}
                             </Link>
                             <BufferDot />
                         </span>
-                    })}
+                    ))}
                 </div>}
                 <form onSubmit={handleSubmit(newRelation)}>
                     <select {...register("character")}>

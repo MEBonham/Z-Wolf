@@ -132,6 +132,10 @@ export const Sidebar = styled.section`
         height: calc(100% - 60px);
         justify-content: space-between;
 
+        h4 {
+            width: 100%;
+            text-align: center;
+        }
         div.otherStuff {
             width: 100%;
             padding: 10px;
@@ -234,6 +238,35 @@ export const Sidebar = styled.section`
             input, button {
                 width: 100%;
                 margin: 2px 0;
+            }
+        }
+    }
+    div.sidePane form.newChar {
+        margin-top: 12px;
+        width: 100%;
+        padding: 0 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        input.stretch {
+            width: 100%;
+            margin: 2px 0;
+        }
+        label {
+            font-size: 1.4rem;
+            margin-right: 8px;
+        }
+        div.checks {
+            margin: 6px 0 10px;
+
+            span {
+                margin-right: 4px;
+
+                input {
+                    position: relative;
+                    top: 2px;
+                }
             }
         }
     }
@@ -742,6 +775,8 @@ export const PortraitDiv = styled.div`
         position: absolute;
         right: 10px;
         top: 110px;
+        z-index: 2;
+        border: 1px solid black;
     }
 `;
 

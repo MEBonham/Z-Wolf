@@ -171,5 +171,27 @@ export const weaponCategories = [
     "Other"
 ];
 
-export const BULK_ALLOWANCE = 10;
-export const BRAWN_CARRY_FACTOR = 3;
+export const BULK_ALLOWANCE = 12;
+export const BRAWN_CARRY_FACTOR = 2;
+
+export const charFrame = {
+    baseSkillRanks: {},
+    bestSave: "fort",
+    complications: [],
+    epithet: "Adventurer",
+    equipment: [],
+    examplePc: false,
+    feats: [],
+    kits: [],
+    kp: 1,
+    languages: ["Common"],
+    level: 2,
+    mods: [],
+    relatedSlugs: [],
+    sp: 4,
+    talents: [],
+    trainedSkills: [],
+    verbs: [],
+    vp: 12,
+    wealth: 20
+};
