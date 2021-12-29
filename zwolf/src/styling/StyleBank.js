@@ -150,7 +150,7 @@ export const Sidebar = styled.section`
                 width: 42%;
                 height: 6rem;
                 background-color: rgba(255, 255, 255, 0.05);
-                box-shadow: 0 -4px 6px 0 rgba(255, 255, 255, 0.5);
+                box-shadow: 0 -3px 3px 0 rgba(255, 255, 255, 0.5);
                 border-radius: 10px 10px 0 0;
                 display: flex;
                 flex-direction: column;
@@ -173,6 +173,7 @@ export const Sidebar = styled.section`
             div.rollsBoxInner {
                 width: 100%;
                 height: calc(100% - 6rem);
+                border-radius: 0 2px 2px 2px;
                 background-color: rgba(255, 255, 255, 0.05);
                 display: flex;
                 flex-direction: column;
@@ -214,6 +215,25 @@ export const Sidebar = styled.section`
                         text-align: center;
                     }
                 }
+            }
+        }
+    }
+    div.sidePane.cmpMgt {
+        padding: 0 20px;
+        display: flex;
+        align-items: flex-start;
+
+        h2 {
+            width: 100%;
+            text-align: center;
+        }
+        form {
+            width: 100%;
+            padding-top: 10px;
+
+            input, button {
+                width: 100%;
+                margin: 2px 0;
             }
         }
     }

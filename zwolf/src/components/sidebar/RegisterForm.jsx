@@ -38,18 +38,31 @@ const RegisterForm = () => {
                         },
                         email: res.user.email,
                         rank: "peasant",
-                        passcodes: []
+                        passcodes: [],
+                        participations: []
                     }).then(() => {
                         handleToggle();
                     }).catch((err) => {
                         console.log("Error:", err);
+                        db.collection("errors").doc(Date.now()).set({
+                            origin: "Register new user getRedirectResult 1",
+                            ...err
+                        });
                     });
                 } catch(err) {
                     console.log("Error:", err);
+                    db.collection("errors").doc(Date.now()).set({
+                        origin: "Register new user getRedirectResult 2",
+                        ...err
+                    });
                 }
             }
         }).catch((error) => {
             console.log(err);
+            db.collection("errors").doc(Date.now()).set({
+                origin: "Register new user getRedirectResult 3",
+                ...err
+            });
         });
 
     return(

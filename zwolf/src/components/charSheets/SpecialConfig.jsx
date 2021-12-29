@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import _ from 'lodash';
-import { nanoid } from 'nanoid'
+import { nanoid } from 'nanoid';
 
 import fb from '../../fbConfig';
 import useChar from '../../hooks/CreatureStore';
