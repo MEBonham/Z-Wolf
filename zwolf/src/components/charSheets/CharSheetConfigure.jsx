@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import _ from 'lodash';
+import { useForm } from 'react-hook-form';
 
 import useChar from '../../hooks/CreatureStore';
 import SpecialConfig from './SpecialConfig';
@@ -15,8 +16,14 @@ const CharSheetConfigure = () => {
     const [featBlocks, setFeatBlocks] = useState([]);
     const [talentBlocks, setTalentBlocks] = useState([]);
     const [synergies, setSynergies] = useState([]);
+    const bestSave = useRef(null);
+    const { register, handleSubmit, reset } = useForm();
 
     useEffect(() => {
+        if (cur && bestSave.current) {
+            bestSave.current.value = cur.bestSave;
+        }
+
         const tempKits = [];
         const tempFeats = [];
         const tempTalents = [];
@@ -99,6 +106,17 @@ const CharSheetConfigure = () => {
         setTalentBlocks(tempTalents);
         setSynergies(cur.mods.filter((modObj) => modObj.type === "Synergy"));
     }, [cur]);
+
+    const newLang = (formData) => {
+        setCur({
+            ...cur,
+            languages: [
+                ...cur.languages,
+                formData.newLang
+            ]
+        });
+        reset();
+    }
 
     return (
         <section className="tab configure">
@@ -218,6 +236,27 @@ const CharSheetConfigure = () => {
                         })}
                     </div>
                 </section>}
+            </section>
+            <section className="misc">
+                <h3>Other</h3>
+                <div>
+                    <label>Best Save:</label>
+                    <select
+                        onChange={(ev) => setCur({
+                            ...cur,
+                            bestSave: ev.target.value
+                        })}
+                        ref={bestSave}
+                    >
+                        <option value="fort">Fortitude</option>
+                        <option value="ref">Reflex</option>
+                        <option value="will">Willpower</option>
+                    </select>
+                </div>
+                <form onSubmit={handleSubmit(newLang)}>
+                    <input type="text" placeholder="New Language" {...register("newLang", { required: true })} />
+                    <button type="submit">Add Language</button>
+                </form>
             </section>
         </section>
     );

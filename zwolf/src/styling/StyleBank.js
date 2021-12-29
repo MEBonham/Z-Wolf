@@ -695,6 +695,15 @@ export const CharSheetStyling = styled.div`
                 margin-right: 4px;
             }
         }
+        section.misc {
+            label {
+                margin-right: 6px;
+                font-size: 1.4rem;
+            }
+            form {
+                margin-top: 8px;
+            }
+        }
     }
     section.tab.biographic {
         input.long {
