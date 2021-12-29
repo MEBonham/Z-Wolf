@@ -3,7 +3,7 @@ import _ from 'lodash';
 import { BRAWN_CARRY_FACTOR, BULK_ALLOWANCE, skillsList } from './GameConstants';
 import { isInSomething, ultimateLoc } from './EquipOrg';
 
-const farmMods = (modsArr, skillRanks={}, levelCheck=null) => {
+const farmMods = (modsArr, skillRanks={}, levelCheck=null, curBlock={}) => {
     let filtModsArr;
     if (levelCheck) {
         filtModsArr = modsArr.filter((modObj) => !modObj.level || (modObj.level <= levelCheck));
@@ -33,6 +33,15 @@ const farmMods = (modsArr, skillRanks={}, levelCheck=null) => {
         } else {
             mag = modObj.mag;
         }
+        // Check if the mod is conditional:
+        if (!modObj.choices) {
+            mag = 0;
+        } else if (modObj.condition && !checkCondition(modObj.condition, curBlock, modObj.target)[0]) {
+            mag = 0;
+        } else if (modObj.condition && mag === "special") {
+            mag += checkCondition(modObj.condition, curBlock, modObj.target)[1];
+        }
+        // Check if the mod stacks with other mods:
         if (modObj.type === "Untyped") {
             typeTotals.Untyped += mag;
         } else if (typeTotals[modObj.type] && mag < 0) {
@@ -88,6 +97,88 @@ const calcTotalBulk = (equipArr) => {
     return total;
 }
 
+const checkCondition = (condition, charBlock, target) => {
+    let mod = 0;
+    switch (condition) {
+        case "arcaneAversion":
+            const armor = charBlock.equipment.filter((itemObj) => 
+                itemObj.tags.includes("Armor") &&
+                itemObj.location === "equipped" &&
+                !itemObj.tags.includes("specialWizardCompatible")
+            );
+            const shield = charBlock.equipment.filter((itemObj) => 
+                itemObj.tags.includes("Shield") &&
+                itemObj.location === "equipped" &&
+                !itemObj.tags.includes("specialWizardCompatible")
+            );
+            if (armor.length > 0) {
+                mod -= 1;
+                armor.forEach((armorWornPiece) => {
+                    const armorId = armorWornPiece.id;
+                    charBlock.mods.filter((modObj) => 
+                        modObj.origin === armorId &&
+                        modObj.type === "Encumbrance" &&
+                        mod.Target === "Dexterity"
+                    ).forEach((modObj) => {
+                        mod += modObj.mag;
+                    });
+                });
+            }
+            if (shield.length > 0) {
+                mod -= 1;
+                armor.forEach((shieldWornPiece) => {
+                    const shieldId = shieldWornPiece.id;
+                    charBlock.mods.filter((modObj) => 
+                        modObj.origin === shieldId &&
+                        modObj.type === "Encumbrance" &&
+                        mod.Target === "Dexterity"
+                    ).forEach((modObj) => {
+                        mod += modObj.mag;
+                    });
+                });
+            }
+            if (mod < 0) {
+                return [true, mod];
+            } else {
+                return [false, null];
+            }
+        case "mageArmorConsuming":
+            if (target === "willSave") {
+                return [true, -1];
+            }
+            if (target === "av") {
+                const mageArmorConsuming = charBlock.mods.filter((modObj) =>
+                    modObj.condition === "mageArmorConsuming" &&
+                    modObj.target === "willSave" &&
+                    modObj.choice
+                ).length;
+                if (mageArmorConsuming) {
+                    if (charBlock.stats.casterLevel > 8) {
+                        return [true, 5];
+                    } else if (charBlock.stats.casterLevel > 4) {
+                        return [true, 4];
+                    } else {
+                        return [true, 3];
+                    }
+                } else {
+                    return [false, null];
+                }
+            }
+            return [false, null];
+        case "metalArmorWorn":
+            const metalArmorWorn = charBlock.equipment.filter((itemObj) =>
+                itemObj.tags.includes("Armor") &&
+                itemObj.location === "equipped" &&
+                itemObj.girth === "Heavy" &&
+                !itemObj.tags.includes("specialNonmetallic")
+            );
+            if (metalArmorWorn.length > 0) return [true, null];
+            return [false, null];
+        default:
+            return [false, null];
+    }
+}
+
 export const calcStats = (char) => {
     let result = {};
     let modsTweak = char.mods;
@@ -107,12 +198,12 @@ export const calcStats = (char) => {
     });
 
     result.heroics = Math.max(0, Math.min(4, Math.floor(char.level / 2)));
-    result.awesome = 4 + char.level + farmMods(modsTweak.filter((modObj) => modObj.target === "awesome"), skillRanks, char.level);
-    result.fightingLevel = result.heroics + farmMods(modsTweak.filter((modObj) => modObj.target === "fightingLevel"), skillRanks, char.level);
-    result.casterLevel = result.heroics + farmMods(modsTweak.filter((modObj) => modObj.target === "casterLevel"), skillRanks, char.level);
-    result.coastNum = 4 + farmMods(modsTweak.filter((modObj) => modObj.target === "coastNum"), skillRanks, char.level);
+    result.awesome = 4 + char.level + farmMods(modsTweak.filter((modObj) => modObj.target === "awesome"), skillRanks, char.level, char);
+    result.fightingLevel = result.heroics + farmMods(modsTweak.filter((modObj) => modObj.target === "fightingLevel"), skillRanks, char.level, char);
+    result.casterLevel = result.heroics + farmMods(modsTweak.filter((modObj) => modObj.target === "casterLevel"), skillRanks, char.level, char);
+    result.coastNum = 4 + farmMods(modsTweak.filter((modObj) => modObj.target === "coastNum"), skillRanks, char.level, char);
 
-    result.sizeCategory = farmMods(modsTweak.filter((modObj) => modObj.target === "sizeCategory"), skillRanks, char.level);
+    result.sizeCategory = farmMods(modsTweak.filter((modObj) => modObj.target === "sizeCategory"), skillRanks, char.level, char);
     let latestSizeChange = 0;
     modsTweak.filter((modObj) => modObj.target === "sizeCategory")
         .forEach((modObj) => {
@@ -127,7 +218,7 @@ export const calcStats = (char) => {
             level: latestSizeChange,
             mag: (-1) * result.sizeCategory,
             origin: "size",
-            overlap: 0,
+            overlap: "0",
             target: "defSave",
             type: "Size"
         },
@@ -136,7 +227,7 @@ export const calcStats = (char) => {
             level: latestSizeChange,
             mag: (-1) * result.sizeCategory,
             origin: "size",
-            overlap: 1,
+            overlap: "1",
             target: "wpnAcc",
             type: "Size"
         },
@@ -145,7 +236,7 @@ export const calcStats = (char) => {
             level: latestSizeChange,
             mag: 2 * result.sizeCategory,
             origin: "size",
-            overlap: 2,
+            overlap: "2",
             target: "Brawn",
             type: "Size"
         },
@@ -154,7 +245,7 @@ export const calcStats = (char) => {
             level: latestSizeChange,
             mag: result.sizeCategory,
             origin: "size",
-            overlap: 3,
+            overlap: "3",
             target: "av",
             type: "Size"
         },
@@ -163,7 +254,7 @@ export const calcStats = (char) => {
             level: latestSizeChange,
             mag: result.sizeCategory,
             origin: "size",
-            overlap: 4,
+            overlap: "4",
             target: "wpnImpactMod",
             type: "Size"
         },
@@ -172,55 +263,55 @@ export const calcStats = (char) => {
             level: latestSizeChange,
             mag: result.sizeCategory,
             origin: "size",
-            overlap: 5,
+            overlap: "5",
             target: "speed",
             type: "Size"
         }
     ]
 
     result.numKits = Math.min(6, 1 + Math.ceil(char.level / 2));
-    result.numFeats = Math.min(8, char.level) + farmMods(modsTweak.filter((modObj) => modObj.target === "numFeats"), skillRanks, char.level);
-    result.numTalents = 3 + char.level + farmMods(modsTweak.filter((modObj) => modObj.target === "numTalents"), skillRanks, char.level);
+    result.numFeats = Math.min(8, char.level) + farmMods(modsTweak.filter((modObj) => modObj.target === "numFeats"), skillRanks, char.level, char);
+    result.numTalents = 3 + char.level + farmMods(modsTweak.filter((modObj) => modObj.target === "numTalents"), skillRanks, char.level, char);
 
     result.baseFort = result.heroics + ((char.bestSave === "fort") ? 2 :
-        farmMods(modsTweak.filter((modObj) => modObj.target === "fortSave" && modObj.type === "Base"), {}, char.level));
+        farmMods(modsTweak.filter((modObj) => modObj.target === "fortSave" && modObj.type === "Base"), {}, char.level, char));
     result.baseRef = result.heroics + ((char.bestSave === "ref") ? 2 :
-        farmMods(modsTweak.filter((modObj) => modObj.target === "refSave" && modObj.type === "Base"), {}, char.level));
+        farmMods(modsTweak.filter((modObj) => modObj.target === "refSave" && modObj.type === "Base"), {}, char.level, char));
     result.baseWill = result.heroics + ((char.bestSave === "will") ? 2 :
-        farmMods(modsTweak.filter((modObj) => modObj.target === "willSave" && modObj.type === "Base"), {}, char.level));
-    result.defSave = result.heroics + farmMods(modsTweak.filter((modObj) => modObj.target === "defSave"), skillRanks, char.level);
+        farmMods(modsTweak.filter((modObj) => modObj.target === "willSave" && modObj.type === "Base"), {}, char.level, char));
+    result.defSave = result.heroics + farmMods(modsTweak.filter((modObj) => modObj.target === "defSave"), skillRanks, char.level, char);
     result.fortSave = result.baseFort + farmMods(modsTweak.filter((modObj) =>
         modObj.target === "fortSave" && modObj.type !== "Base"
-    ), skillRanks, char.level);
+    ), skillRanks, char.level, char);
     result.refSave = result.baseRef + farmMods(modsTweak.filter((modObj) =>
         modObj.target === "refSave" && modObj.type !== "Base"
-    ), skillRanks, char.level);
+    ), skillRanks, char.level, char);
     result.willSave = result.baseWill + farmMods(modsTweak.filter((modObj) =>
         modObj.target === "willSave" && modObj.type !== "Base"
-    ), skillRanks, char.level);
+    ), skillRanks, char.level, char);
 
-    result.vpMax = 5 + (char.level * 2) + result.baseFort + farmMods(modsTweak.filter((modObj) => modObj.target === "vpMax"), skillRanks, char.level);
-    result.spMax = 4 + farmMods(modsTweak.filter((modObj) => modObj.target === "spMax"), skillRanks, char.level);
-    result.kpMax = 2 + farmMods(modsTweak.filter((modObj) => modObj.target === "kpMax"), skillRanks, char.level);
+    result.vpMax = 5 + (char.level * 2) + result.baseFort + farmMods(modsTweak.filter((modObj) => modObj.target === "vpMax"), skillRanks, char.level, char);
+    result.spMax = 4 + farmMods(modsTweak.filter((modObj) => modObj.target === "spMax"), skillRanks, char.level, char);
+    result.kpMax = 2 + farmMods(modsTweak.filter((modObj) => modObj.target === "kpMax"), skillRanks, char.level, char);
     
     skillsList.forEach((skillName) => {
-        result[skillName] = skillRanks[skillName] + farmMods(modsTweak.filter((modObj) => modObj.target === skillName), skillRanks, char.level);
+        result[skillName] = skillRanks[skillName] + farmMods(modsTweak.filter((modObj) => modObj.target === skillName), skillRanks, char.level, char);
     });
 
-    result.wpnAcc = 6 + result.fightingLevel + farmMods(modsTweak.filter((modObj) => modObj.target === "wpnAcc"), skillRanks, char.level);
-    result.wpnImpactMod = farmMods(modsTweak.filter((modObj) => modObj.target === "wpnImpactMod"), skillRanks, char.level);
-    result.spellAcc = 6 + result.casterLevel + farmMods(modsTweak.filter((modObj) => modObj.target === "spellAcc"), skillRanks, char.level);
-    result.spellImpactMod = farmMods(modsTweak.filter((modObj) => modObj.target === "spellImpactMod"), skillRanks, char.level);
-    result.vimAcc = 6 + result.baseFort + farmMods(modsTweak.filter((modObj) => modObj.target === "vimAcc"), skillRanks, char.level);
-    result.vimImpactMod = farmMods(modsTweak.filter((modObj) => modObj.target === "vimImpactMod"), skillRanks, char.level);
+    result.wpnAcc = 6 + result.fightingLevel + farmMods(modsTweak.filter((modObj) => modObj.target === "wpnAcc"), skillRanks, char.level, char);
+    result.wpnImpactMod = farmMods(modsTweak.filter((modObj) => modObj.target === "wpnImpactMod"), skillRanks, char.level, char);
+    result.spellAcc = 6 + result.casterLevel + farmMods(modsTweak.filter((modObj) => modObj.target === "spellAcc"), skillRanks, char.level, char);
+    result.spellImpactMod = farmMods(modsTweak.filter((modObj) => modObj.target === "spellImpactMod"), skillRanks, char.level, char);
+    result.vimAcc = 6 + result.baseFort + farmMods(modsTweak.filter((modObj) => modObj.target === "vimAcc"), skillRanks, char.level, char);
+    result.vimImpactMod = farmMods(modsTweak.filter((modObj) => modObj.target === "vimImpactMod"), skillRanks, char.level, char);
 
-    result.av = 3 + farmMods(modsTweak.filter((modObj) => modObj.target === "av"), skillRanks, char.level);
-    result.resVal = 4 + Math.max(result.av, char.level) + farmMods(modsTweak.filter((modObj) => modObj.target === "resVal"), skillRanks, char.level);
-    result.speed = farmMods(modsTweak.filter((modObj) => modObj.target === "speed"), skillRanks, char.level);
-    result.spellcraft = result.casterLevel + farmMods(modsTweak.filter((modObj) => modObj.target === "spellcraft"), skillRanks, char.level);
-    result.numTrainedSkills = 2 + farmMods(modsTweak.filter((modObj) => modObj.target === "numTrainedSkills"), skillRanks, char.level);
-    result.numLanguages = 2 + farmMods(modsTweak.filter((modObj) => modObj.target === "numLanguages"), skillRanks, char.level);
-    result.kpDefault = 1 + farmMods(modsTweak.filter((modObj) => modObj.target === "kpDefault"), skillRanks, char.level);
+    result.av = 3 + farmMods(modsTweak.filter((modObj) => modObj.target === "av"), skillRanks, char.level, char);
+    result.resVal = 4 + Math.max(result.av, char.level) + farmMods(modsTweak.filter((modObj) => modObj.target === "resVal"), skillRanks, char.level, char);
+    result.speed = farmMods(modsTweak.filter((modObj) => modObj.target === "speed"), skillRanks, char.level, char);
+    result.spellcraft = result.casterLevel + farmMods(modsTweak.filter((modObj) => modObj.target === "spellcraft"), skillRanks, char.level, char);
+    result.numTrainedSkills = 2 + farmMods(modsTweak.filter((modObj) => modObj.target === "numTrainedSkills"), skillRanks, char.level, char);
+    result.numLanguages = 2 + farmMods(modsTweak.filter((modObj) => modObj.target === "numLanguages"), skillRanks, char.level, char);
+    result.kpDefault = 1 + farmMods(modsTweak.filter((modObj) => modObj.target === "kpDefault"), skillRanks, char.level, char);
 
     result.totalEffBulk = calcTotalBulk(char.equipment);
     result.capacity = BRAWN_CARRY_FACTOR * result.Brawn + BULK_ALLOWANCE;
