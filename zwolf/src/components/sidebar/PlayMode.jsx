@@ -1,15 +1,24 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import SimpleBarReact from 'simplebar-react';
+import { useForm } from 'react-hook-form';
 
+import fb from '../../fbConfig';
+import useChar from '../../hooks/CreatureStore';
 import useDice from '../../hooks/DiceStore';
+import BufferDot from '../ui/BufferDot';
 
 const PlayMode = () => {
+    const cur = useChar((state) => state.cur);
+    const setCur = useChar((state) => state.setCur);
     const dieMode = useDice((state) => state.mode);
     const setMode = useDice((state) => state.setMode);
     const setCoast = useDice((state) => state.setCoast);
     const toggleCoast = useDice((state) => state.toggleCoast);
     const rollHistory = useDice((state) => state.rollHistory);
+    const [charLib, setCharLib] = useState({});
     const selectRef = useRef(null);
+    const { register, handleSubmit, reset } = useForm();
 
     useEffect(() => {
         setCoast(false);
@@ -18,11 +27,57 @@ const PlayMode = () => {
         selectRef.current.value = dieMode;
     }, [dieMode]);
 
+    const db = fb.db;
+    useEffect(() => {
+        const unsubscribe = db.collection("creatures").onSnapshot((querySnapshot) => {
+            const tempLib = {};
+            querySnapshot.forEach((doc) => {
+                tempLib[doc.id] = doc.data();
+            });
+            setCharLib(tempLib);
+        });
+        return (() => unsubscribe());
+    }, [db]);
+
+    const newRelation = (formData) => {
+        if (cur) {
+            setCur({
+                ...cur,
+                relatedSlugs: [
+                    ...cur.relatedSlugs,
+                    formData.character
+                ]
+            });
+        }
+        reset();
+    }
+
     return(
         <div className="sidePane playMode">
             <h2>Play Mode for Z-Wolf</h2>
             <div className="otherStuff">
-
+                {cur && <div>
+                    <strong>Related characters:</strong>
+                    <span> </span>
+                    {cur.relatedSlugs.map((otherSlug) => {
+                        <span key={otherSlug}>
+                            <Link to={`/bestiary/${otherSlug}`}>
+                                {charLib && charLib[otherSlug] ? charLib[otherSlug].name : otherSlug}
+                            </Link>
+                            <BufferDot />
+                        </span>
+                    })}
+                </div>}
+                <form onSubmit={handleSubmit(newRelation)}>
+                    <select {...register("character")}>
+                        <option value="null">(none)</option>
+                        {cur && charLib && Object.keys(charLib).filter((otherSlug) => (charLib[otherSlug].campaign === cur.campaign) && (otherSlug !== cur.slug))
+                            .map((otherSlug) => (
+                                <option key={otherSlug} value={otherSlug}>{charLib[otherSlug].name}</option>
+                            ))}
+                    </select>
+                    <button type="submit">Add</button>
+                </form>
             </div>
             <section className="rollsBox">
                 <div className="rollOptionsTab">

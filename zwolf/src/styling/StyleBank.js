@@ -132,6 +132,15 @@ export const Sidebar = styled.section`
         height: calc(100% - 60px);
         justify-content: space-between;
 
+        div.otherStuff {
+            width: 100%;
+            padding: 10px;
+            font-size: 1.4rem;
+
+            > div {
+                margin-bottom: 4px;
+            }
+        }
         section.rollsBox {
             width: calc(100% - 16px);
             height: 65%;
@@ -180,7 +189,7 @@ export const Sidebar = styled.section`
                 }
                 div.oneRoll {
                     width: 100%;
-                    margin-bottom: 6px;
+                    margin: 0 0 6px 4px;
                     display: flex;
 
                     > span:first-child {

@@ -79,7 +79,10 @@ const CharSheetShell = () => {
 
         const unsubscribe = db.collection("creatures").doc(slug)
             .onSnapshot((snapshot) => {
-                setCur(snapshot.data());
+                setCur({
+                    ...snapshot.data(),
+                    slug
+                });
                 setLoadingChar(false);
                 // console.log(cur);
             });
