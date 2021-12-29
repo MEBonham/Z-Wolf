@@ -190,7 +190,14 @@ export const charFrame = {
     relatedSlugs: [],
     sp: 4,
     talents: [],
-    trainedSkills: [],
+    trainedSkills: [
+        {
+            origin: "1A"
+        },
+        {
+            origin: "1B"
+        }
+    ],
     verbs: [],
     vp: 12,
     wealth: 20

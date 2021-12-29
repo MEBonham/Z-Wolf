@@ -60,7 +60,7 @@ const SpecialConfig = (props) => {
                 ...base,
                 origin: newId,
                 level,
-                choices
+                choices: {}
             }));
             tempVerbs = tempVerbs.map((base) => ({
                 ...base,

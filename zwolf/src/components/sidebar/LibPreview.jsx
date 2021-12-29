@@ -58,9 +58,9 @@ const LibPreview = () => {
     }, [libEntry]);
 
     return(
-        <div className="sidePane">
+        <div className="sidePane libSpotlight">
             <h4>Library Spotlight</h4>
-            <SimpleBarReact style={{ width: '100%', height: 'calc(100% - 60px)', paddingRight: '20px' }}>
+            <SimpleBarReact style={{ width: '100%', height: 'calc(100% - 32px)', paddingRight: '20px' }}>
                 <SpecialBlock>
                     <ReactQuill
                         readOnly={true}

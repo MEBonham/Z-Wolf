@@ -87,6 +87,13 @@ export const PrimaryBar = styled.section`
             }
         }
     }
+    nav.toc div.columns {
+        display: flex;
+
+        div:first-child {
+            width: 50%;
+        }
+    }
 `;
 
 export const Sidebar = styled.section`
@@ -103,6 +110,7 @@ export const Sidebar = styled.section`
         align-items: center;
     }
     div.sidePane {
+        height: calc(100% - 60px);
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -129,7 +137,6 @@ export const Sidebar = styled.section`
     }
     div.sidePane.playMode {
         width: 100%;
-        height: calc(100% - 60px);
         justify-content: space-between;
 
         h4 {
@@ -269,6 +276,9 @@ export const Sidebar = styled.section`
                 }
             }
         }
+    }
+    div.sidePane.libSpotlight {
+        padding-bottom: 6px;
     }
 `;
 
