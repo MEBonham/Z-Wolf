@@ -171,7 +171,7 @@ export const weaponCategories = [
     "Other"
 ];
 
-export const BULK_ALLOWANCE = 16;
+export const BULK_ALLOWANCE = 18;
 export const BRAWN_CARRY_FACTOR = 1;
 
 export const charFrame = {
@@ -200,5 +200,5 @@ export const charFrame = {
     ],
     verbs: [],
     vp: 12,
-    wealth: 20
+    wealth: 14
 };

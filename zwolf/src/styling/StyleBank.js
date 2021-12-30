@@ -717,7 +717,7 @@ export const CharSheetStyling = styled.div`
     }
     section.tab.biographic {
         input.long {
-            width: 45rem;
+            width: 42rem;
         }
         h4.complicationTitleBar {
             width: 100%;
