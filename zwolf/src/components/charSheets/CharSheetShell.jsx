@@ -126,20 +126,22 @@ const CharSheetShell = () => {
     }, [activeTab]);
 
     const storageRef = fb.storage().ref(`${PORTRAIT_PATH}/${slug}`);
-    storageRef.getDownloadURL()
-        .then((url) => {
-            if (portraitElement.current) {
-                portraitElement.current.setAttribute('src', url);
-            }
-        }).catch((error) => {
-            if (error.code === "storage/object-not-found") {
+    useEffect(() => {
+        storageRef.getDownloadURL()
+            .then((url) => {
                 if (portraitElement.current) {
-                    portraitElement.current.setAttribute('src', portraitDefault);
+                    portraitElement.current.setAttribute('src', url);
                 }
-            } else {
-                console.log(error.code);
-            }
-        });
+            }).catch((error) => {
+                if (error.code === "storage/object-not-found") {
+                    if (portraitElement.current) {
+                        portraitElement.current.setAttribute('src', portraitDefault);
+                    }
+                } else {
+                    console.log(error.code);
+                }
+            });
+    }, [slug]);
 
     const handleTab = (newTab) => {
         window.localStorage.setItem("zWolfActiveCharTab", newTab);
