@@ -230,6 +230,9 @@ export const Sidebar = styled.section`
                         font-size: 1.8rem;
                         text-align: center;
                     }
+                    span.dodecShadow.glow {
+                        text-shadow: 1px 1px 5px cyan;
+                    }
                 }
             }
         }

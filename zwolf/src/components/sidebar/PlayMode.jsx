@@ -13,16 +13,18 @@ const PlayMode = () => {
     const setCur = useChar((state) => state.setCur);
     const dieMode = useDice((state) => state.mode);
     const setMode = useDice((state) => state.setMode);
+    const coasting = useDice((state) => state.coasting);
     const setCoast = useDice((state) => state.setCoast);
     const toggleCoast = useDice((state) => state.toggleCoast);
     const rollHistory = useDice((state) => state.rollHistory);
     const [charLib, setCharLib] = useState({});
     const selectRef = useRef(null);
+    const checkRef = useRef(null);
     const { register, handleSubmit, reset } = useForm();
 
     useEffect(() => {
-        setCoast(false);
-    }, []);
+        checkRef.current.checked = coasting;
+    }, [rollHistory]);
     useEffect(() => {
         selectRef.current.value = dieMode;
     }, [dieMode]);
@@ -91,7 +93,7 @@ const PlayMode = () => {
                         <option value="BoostAndDrag">Boosted &amp; Dragged</option>
                     </select>
                     <div>
-                        <input type="checkbox" onChange={() => toggleCoast()} />
+                        <input type="checkbox" onChange={() => toggleCoast()} ref={checkRef} />
                         <label>Coasting?</label>
                     </div>
                 </div>
@@ -103,13 +105,19 @@ const PlayMode = () => {
                                 <span>
                                     {rollObj.sides === "usual" ?
                                         rollObj.natRolls.map((oneRoll, j) => (
-                                            <span key={j} className="dodecShadow">{oneRoll}</span>
+                                            <span key={j}
+                                                className={`dodecShadow
+                                                    ${(oneRoll === rollObj.keyNat) && (!rollObj.coast || rollObj.keyNat >= rollObj.coast) ?
+                                                "glow" : ""}`}
+                                            >
+                                                {oneRoll}
+                                            </span>
                                         )) :
                                         <span className="oneDie">{rollObj.keyNat}</span>
                                     }
                                 </span>
                                 <span className="textExplanation">
-                                    {rollObj.character} rolls {rollObj.text}: 
+                                    {rollObj.character} {rollObj.coast ? "coasts" : "rolls"} {rollObj.text}: 
                                 </span>
                                 <span className="dodecShadow">{rollObj.result}</span>
                             </div>

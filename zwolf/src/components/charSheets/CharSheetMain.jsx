@@ -46,7 +46,7 @@ const CharSheetMain = () => {
                                 modifier: cur.stats[skillName],
                                 text: `a${skillName === "Athletics" || skillName === "Insight" ? "n" : ""} ${skillName} Check`,
                                 character: cur.name
-                            }) : null}
+                            }, cur.stats.coastNum) : null}
                             className={sidebarMode === "play" ? "clickable" : ""}
                         >
                             <td>{skillName}</td>
