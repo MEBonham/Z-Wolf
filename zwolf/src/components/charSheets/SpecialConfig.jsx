@@ -20,7 +20,7 @@ const SpecialConfig = (props) => {
     const setPreviewSlug = useSidebar((state) => state.setPreviewSlug);
     const modeSwap = useSidebar((state) => state.modeSwap);
     const [lib, setLib] = useState({});
-    const [overlaps, setOverlaps] = useState([]);
+    const [overlaps, setOverlaps] = useState({});
     const [archeStr, setArcheStr] = useState([]);
     const [prevId, setPrevId] = useState(id ? id : "(none)");
 
@@ -60,7 +60,8 @@ const SpecialConfig = (props) => {
             tempMods = tempMods.map((base) => ({
                 ...base,
                 origin: newId,
-                level
+                level,
+                choices: true
             }));
             tempVerbs = tempVerbs.map((base) => ({
                 ...base,
@@ -92,14 +93,7 @@ const SpecialConfig = (props) => {
                 ...tempBlock,
                 mods: [
                     ...tempBlock.mods,
-                    {
-                        ...tempMods[0],
-                        choices: true
-                    },
-                    ...tempMods.slice(1).map((modObj, i) => ({
-                        ...tempMods[i + 1],
-                        choices: false
-                    }))
+                    ...tempMods
                 ],
                 verbs: [
                     ...tempBlock.verbs,

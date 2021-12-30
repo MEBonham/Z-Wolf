@@ -6,7 +6,7 @@ import useChar from '../../hooks/CreatureStore';
 const NewComplicationForm = () => {
     const cur = useChar((state) => state.cur);
     const setCur = useChar((state) => state.setCur);
-    const { register, handleSubmit, reset } = useForm();
+    const { register, handleSubmit, reset, setFocus } = useForm();
 
     const handleCompSave = (formData) => {
         setCur({
@@ -21,6 +21,7 @@ const NewComplicationForm = () => {
             ]
         });
         reset();
+        setFocus("category");
     }
     
     return(

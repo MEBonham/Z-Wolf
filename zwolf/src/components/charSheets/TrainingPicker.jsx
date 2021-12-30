@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import _ from 'lodash';
 
 import { skillsList } from '../../helpers/GameConstants';
@@ -14,6 +14,22 @@ const TrainingPicker = (props) => {
     } else {
         curSkill = "Free Choice";
     }
+
+    useEffect(() => {
+        if (modObj.selection.length === 1) {
+            setCur({
+                ...cur,
+                trainedSkills: [
+                    ...cur.trainedSkills.filter((obj) => obj.origin !== origin),
+                    {
+                        ...(cur.trainedSkills.filter((obj) => obj.origin === origin)[0]),
+                        skill: modObj.selection[0]
+                    }
+                ]
+            });
+        }
+    }, [modObj, origin]);
+
     return (
         <select
             value={curSkill}

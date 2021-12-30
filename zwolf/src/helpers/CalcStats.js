@@ -157,9 +157,10 @@ const checkCondition = (condition, charBlock, target) => {
                         return [true, 5];
                     } else if (charBlock.stats.casterLevel > 4) {
                         return [true, 4];
-                    } else {
-                        console.log('flag');
+                    } else if (charBlock.stats.casterLevel > 1) {
                         return [true, 3];
+                    } else {
+                        return [true, 2];
                     }
                 } else {
                     return [false, null];
@@ -314,7 +315,7 @@ export const calcStats = (char) => {
     result.numLanguages = 2 + farmMods(modsTweak.filter((modObj) => modObj.target === "numLanguages"), skillRanks, char.level, char);
     result.kpDefault = 1 + farmMods(modsTweak.filter((modObj) => modObj.target === "kpDefault"), skillRanks, char.level, char);
 
-    result.totalEffBulk = calcTotalBulk(char.equipment);
+    result.totalEffBulk = calcTotalBulk(char.equipment) + Math.floor(char.wealth / 10);
     result.capacity = BRAWN_CARRY_FACTOR * result.Brawn + BULK_ALLOWANCE;
     result.Athletics -= Math.max(0, result.totalEffBulk - result.capacity);
     result.Dexterity -= Math.max(0, result.totalEffBulk - result.capacity);
