@@ -96,7 +96,7 @@ const PlayMode = () => {
                     </div>
                 </div>
                 <div className="rollsBoxInner">
-                    <h3>Dice Rolls</h3>
+                    <h3>Dice Rolls and Such</h3>
                     <SimpleBarReact style={{ width: '100%', height: 'calc(100% - 20px - 2rem)', paddingRight: '30px' }}>
                         {rollHistory.map((rollObj, i) => (
                             <div key={i} className="oneRoll">

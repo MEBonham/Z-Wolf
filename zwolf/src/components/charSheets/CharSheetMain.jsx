@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 
 import { skillsList, verbTypes } from '../../helpers/GameConstants';
 import useChar from '../../hooks/CreatureStore';
+import useSidebar from '../../hooks/SidebarStore';
+import useDice from '../../hooks/DiceStore';
 import Accordion from '../ui/Accordion';
 import AccordionSection from '../ui/AccordionSection';
 import BufferDot from '../ui/BufferDot';
@@ -10,6 +12,8 @@ import BufferDot from '../ui/BufferDot';
 const CharSheetMain = () => {
     const { slug } = useParams();
     const cur = useChar((state) => state.cur);
+    const sidebarMode = useSidebar((state) => state.mode);
+    const roll = useDice((state) => state.addRoll);
 
     const mineVerbDelta = (originId, originBullet) => {
         const menuForId = [
@@ -35,7 +39,16 @@ const CharSheetMain = () => {
                 </thead>
                 <tbody>
                     {skillsList.map((skillName) => (
-                        <tr key={skillName}>
+                        <tr
+                            key={skillName}
+                            onClick={sidebarMode === "play"? () => roll({
+                                sides: "usual",
+                                modifier: cur.stats[skillName],
+                                text: `a${skillName === "Athletics" || skillName === "Insight" ? "n" : ""} ${skillName} Check`,
+                                character: cur.name
+                            }) : null}
+                            className={sidebarMode === "play" ? "clickable" : ""}
+                        >
                             <td>{skillName}</td>
                             <td>{cur.stats[skillName] >= 0 ? "+" : null}{cur.stats[skillName]}</td>
                         </tr>
