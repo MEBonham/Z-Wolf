@@ -121,6 +121,29 @@ const SpecialConfig = (props) => {
         setOverlaps(clumped);
         setArcheStr(_.get(cur[type].filter((obj) => obj.id === id)[0], "delta", ""));
     }, [cur, id]);
+    useEffect(() => {
+        let flag = false;
+        Object.keys(overlaps).forEach((key) => {
+            const arr = overlaps[key];
+            let trues = arr.filter((modObj) => modObj.choices).length;
+            if (trues > 1) {
+                flag = true;
+            }
+        });
+        if (flag) {
+            setCur({
+                ...cur,
+                mods: [
+                    ...(cur.mods.filter((modObj) => (modObj.origin !== id) || (!Object.keys(overlaps).includes(modObj.overlap)))),
+                    ...(cur.mods.filter((modObj) => (modObj.origin === id) && (Object.keys(overlaps).includes(modObj.overlap)))
+                        .map((modObj, i) => ({
+                            ...modObj,
+                            choices: (i === 0) ? true : false
+                        })))
+                ]
+            });
+        }
+    }, [overlaps]);
 
     return(
         <>
