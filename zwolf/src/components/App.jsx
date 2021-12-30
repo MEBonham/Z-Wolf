@@ -22,7 +22,7 @@ const App = () => {
             .then((res) => {
                 if (res.user) {
                     try {
-                        db.collection("profiles").doc(res.user.uid).set({
+                        const defaults = {
                             defaultData: {
                                 displayName: res.user.displayName,
                                 emailVerified: res.user.emailVerified,
@@ -36,11 +36,28 @@ const App = () => {
                             passcodes: ["examples"],
                             participations: [],
                             disabledCampaigns: []
-                        });
+                        };
+                        db.collection("profiles").doc(res.user.uid).get()
+                            .then((doc) => {
+                                if (doc.exists) {
+                                    db.collection("profiles").doc(res.user.uid).set({
+                                        ...defaults,
+                                        ...doc.data()
+                                    });
+                                } else {
+                                    db.collection("profiles").doc(res.user.uid).set(defaults);
+                                }
+                            }).catch((err) => {
+                                console.log("Error:", err);
+                                db.collection("errors").doc(Date.now()).set({
+                                    origin: "Register new user getRedirectResult 0",
+                                    ...err
+                                });
+                            })
                     } catch(err) {
                         console.log("Error:", err);
                         db.collection("errors").doc(Date.now()).set({
-                            origin: "Register new user getRedirectResult 2",
+                            origin: "Register new user getRedirectResult 1",
                             ...err
                         });
                     }
@@ -48,7 +65,7 @@ const App = () => {
             }).catch((error) => {
                 console.log(err);
                 db.collection("errors").doc(Date.now()).set({
-                    origin: "Register new user getRedirectResult 3",
+                    origin: "Register new user getRedirectResult 2",
                     ...err
                 });
             });
