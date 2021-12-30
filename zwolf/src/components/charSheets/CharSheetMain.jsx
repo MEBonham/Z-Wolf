@@ -1,17 +1,20 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 
-import { skillsList, verbTypes } from '../../helpers/GameConstants';
+import { skillsList, verbTypes, statuses } from '../../helpers/GameConstants';
 import useChar from '../../hooks/CreatureStore';
 import useSidebar from '../../hooks/SidebarStore';
 import useDice from '../../hooks/DiceStore';
 import Accordion from '../ui/Accordion';
 import AccordionSection from '../ui/AccordionSection';
 import BufferDot from '../ui/BufferDot';
+import checked from '../../media/ui/checked-box.png';
+import unchecked from '../../media/ui/empty-checkbox.png';
 
 const CharSheetMain = () => {
     const { slug } = useParams();
     const cur = useChar((state) => state.cur);
+    const setCur = useChar((state) => state.setCur);
     const sidebarMode = useSidebar((state) => state.mode);
     const roll = useDice((state) => state.addRoll);
 
@@ -29,32 +32,70 @@ const CharSheetMain = () => {
         return [title, intervalArr[intervalArr.length - 1].slice(1, -18)];
     }
 
+    const toggleStatus = (key) => {
+        setCur({
+            ...cur,
+            status: {
+                ...cur.status,
+                [key]: !cur.status[key]
+            }
+        });
+    }
+
     return (
         <section className="tab main">
-            <table>
-                <thead>
-                    <tr>
-                        <th colSpan='2'>Skills (CoastNum: {cur.stats.coastNum})</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {skillsList.map((skillName) => (
-                        <tr
-                            key={skillName}
-                            onClick={sidebarMode === "play"? () => roll({
-                                sides: "usual",
-                                modifier: cur.stats[skillName],
-                                text: `a${skillName === "Athletics" || skillName === "Insight" ? "n" : ""} ${skillName} Check`,
-                                character: cur.name
-                            }, cur.stats.coastNum) : null}
-                            className={sidebarMode === "play" ? "clickable" : ""}
-                        >
-                            <td>{skillName}</td>
-                            <td>{cur.stats[skillName] >= 0 ? "+" : null}{cur.stats[skillName]}</td>
+            <div className="leftColumn">
+                <table>
+                    <thead>
+                        <tr>
+                            <th colSpan='2'>Status</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {Object.keys(statuses).map((boolLabel) => (
+                            <tr key={boolLabel}>
+                                <td>{cur.status[boolLabel] ?
+                                    <img
+                                        src={checked}
+                                        className="clickable"
+                                        onClick={() => toggleStatus(boolLabel)}
+                                    /> :
+                                    <img
+                                        src={unchecked}
+                                        className="clickable"
+                                        onClick={() => toggleStatus(boolLabel)}
+                                    />
+                                }</td>
+                                <td>{boolLabel}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+                <table>
+                    <thead>
+                        <tr>
+                            <th colSpan='2'>Skills (CoastNum: {cur.stats.coastNum})</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {skillsList.map((skillName) => (
+                            <tr
+                                key={skillName}
+                                onClick={sidebarMode === "play"? () => roll({
+                                    sides: "usual",
+                                    modifier: cur.stats[skillName],
+                                    text: `a${skillName === "Athletics" || skillName === "Insight" ? "n" : ""} ${skillName} Check`,
+                                    character: cur.name
+                                }, cur.stats.coastNum) : null}
+                                className={sidebarMode === "play" ? "clickable" : ""}
+                            >
+                                <td>{skillName}</td>
+                                <td>{cur.stats[skillName] >= 0 ? "+" : null}{cur.stats[skillName]}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
             <section className="verbs">
                 <h2>Verbs</h2>
                 {verbTypes.map((vType) => {

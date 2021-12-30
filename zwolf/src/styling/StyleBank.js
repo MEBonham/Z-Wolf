@@ -580,7 +580,24 @@ export const CharSheetStyling = styled.div`
         display: flex;
         align-items: flex-start;
 
-        > table {
+        div.leftColumn table:first-child {
+            margin: 0 4px 20px;
+            border-radius: 4px;
+            padding: 0 8px 4px;
+            border-collapse: separate;
+            border-spacing: 0 4px;
+            font-size: 1.6rem;
+            background-color: hsla(0, 0%, 100%, 0.1);
+            box-shadow: 0 0 6px hsla(0, 0%, 100%, 0.2);
+
+            img {
+                width: 14px;
+                margin-right: 8px;
+                position: relative;
+                top: 1px;
+            }
+        }
+        div.leftColumn table:nth-child(2) {
             width: 20rem;
             font-size: 1.6rem;
             border-collapse: separate;

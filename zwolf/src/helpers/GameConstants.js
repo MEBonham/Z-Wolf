@@ -78,6 +78,15 @@ export const modTargets = [
     "wpnImpactMod"
 ];
 
+export const statuses = {
+    Momentum: false,
+    Suffused: false,
+    Exerted: false,
+    Wounded: false,
+    Dying: false,
+    Dropped: false
+};
+
 export const kitTags = [
     "Ancestry",
     "Core",
@@ -189,6 +198,7 @@ export const charFrame = {
     mods: [],
     relatedSlugs: [],
     sp: 4,
+    status: { ...statuses },
     talents: [],
     trainedSkills: [
         {
