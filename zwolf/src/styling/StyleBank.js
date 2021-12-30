@@ -98,6 +98,15 @@ export const PrimaryBar = styled.section`
             width: 50%;
         }
     }
+    table.synergy {
+        font-size: 1.6rem;
+        border-collapse: separate;
+        border-spacing: 4px 8px;
+
+        td:first-child {
+            padding-right: 12px;
+        }
+    }
 `;
 
 export const Sidebar = styled.section`

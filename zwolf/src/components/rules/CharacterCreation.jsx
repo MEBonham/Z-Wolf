@@ -36,7 +36,7 @@ const CharacterCreation = () => {
             <p>Your character gains a new Kit at Levels 3, 5, 7, and 9. They gain a Feat at each Level, up to Level 8. They gain a new Talent at each level.</p>
             <h4>"Help! I'm Paralyzed by Options!"</h4>
             <p>Z-Wolf allows for very diverse characters that do a lot of different things. If you're new to the system, this can cause a lot of stressful decision-making that you're not ready for.</p>
-            <p>In this case, we recommend you follow the Pre-Built Characters' selections of special abilities. This is similar to having a Class in another TTRPG, dictating what special abilities you receive at each level of progression.</p>
+            <p>In this case, we strongly recommend you follow the Pre-Built Characters' selections of special abilities. This is similar to having a Class in another TTRPG, dictating what special abilities you receive at each level of progression.</p>
             <h3>5. Choose Complications</h3>
             <p>Your character may be awesome, but they still have weaknesses and flaws in their personality. Including things that may not be thought of at first as flaws or weaknesses, such as a driving motivation or relationships with friends and family.</p>
             <p>At this point, you should list out these weaknesses, as "Complications" on your character sheet. There is no menu of options provided by Z-Wolf to choose from here; you can be as creative as you like and have weaknesses that are as crippling as your heart desires. At the very least, you should pick two Complications, including an overarching motivation for your character (greed? revenge? altruism?).</p>
@@ -68,7 +68,7 @@ const CharacterCreation = () => {
             <p>Your Wealth is equal to ... whatever was left over when you started with the Wealth dictated by the GM and then finished purchasing starting equipment.</p>
             <h4>Synergy Bonuses</h4>
             <p>Having a lot of Ranks in a Skill can give you bonuses to statistics that are tangentially related to that skill, as relayed on the following table.</p>
-            <table>
+            <table className="synergy">
                 <thead>
                     <tr>
                         <th>Number of Ranks in Skill:</th>
