@@ -16,8 +16,12 @@ const useDice = create((set) => ({
     toggleCoast: () => set((state) => ({ coasting: !state.coasting })),
 
     rollHistory: [],
-    addRoll: (rollObj, cNum=0) => {
+    addRoll: (rollObj, cNum=0, status={}) => {
         set((state) => {
+            let situational = 0;
+            if (status.Wounded && rollObj.text.endsWith("Save")) {
+                situational -= 2;
+            }
             const result = {};
             if (rollObj.sides === "usual") {
                 if (state.mode === "Normal") {
@@ -37,7 +41,7 @@ const useDice = create((set) => ({
                     result.natRolls = natRolls;
                     result.keyNat = natRolls[0]
                 }
-                result.result = Math.max(state.coasting ? cNum : 0, result.keyNat) + rollObj.modifier;
+                result.result = Math.max(state.coasting ? cNum : 0, result.keyNat) + rollObj.modifier + situational;
             } else {
                 const natRolls = state.nDs(1, parseInt(rollObj.sides), state.generator);
                 result.natRolls = natRolls;

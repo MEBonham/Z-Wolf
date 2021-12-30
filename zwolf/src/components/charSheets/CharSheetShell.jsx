@@ -182,7 +182,7 @@ const CharSheetShell = () => {
                                                 modifier: cur.stats.heroics,
                                                 text: "a Heroics Check",
                                                 character: cur.name
-                                            }) : null}
+                                            }, 0, cur.status) : null}
                                             className={sidebarMode === "play" ? "clickable" : ""}
                                         >
                                             <strong>Heroics +{cur.stats.heroics}</strong>
@@ -193,7 +193,7 @@ const CharSheetShell = () => {
                                                 modifier: cur.stats.awesome,
                                                 text: "an Awesome Check",
                                                 character: cur.name
-                                            }) : null}
+                                            }, 0, cur.status) : null}
                                             className={sidebarMode === "play" ? "clickable" : ""}
                                         >
                                             <strong>Awesome +{cur.stats.awesome}</strong>
@@ -204,7 +204,7 @@ const CharSheetShell = () => {
                                                 modifier: cur.stats.spellcraft,
                                                 text: "a Spellcraft Check",
                                                 character: cur.name
-                                            }) : null}
+                                            }, 0, cur.status) : null}
                                             className={sidebarMode === "play" ? "clickable" : ""}
                                         >
                                             <strong>Spellcraft {cur.stats.spellcraft >= 0 ? "+" : null}{cur.stats.spellcraft}</strong>
@@ -215,7 +215,7 @@ const CharSheetShell = () => {
                                                 modifier: cur.stats.speed,
                                                 text: "a Speed Check",
                                                 character: cur.name
-                                            }) : null}
+                                            }, 0, cur.status) : null}
                                             className={sidebarMode === "play" ? "clickable" : ""}
                                         >
                                             <strong>Speed {cur.stats.speed >= 0 ? "+" : null}{cur.stats.speed}</strong>
@@ -228,7 +228,7 @@ const CharSheetShell = () => {
                                                 modifier: cur.stats.defSave,
                                                 text: "a Defense Save",
                                                 character: cur.name
-                                            }) : null}
+                                            }, 0, cur.status) : null}
                                             className={sidebarMode === "play" ? "clickable" : ""}
                                         >
                                             <strong>Defense {cur.stats.defSave >= 0 ? "+" : null}{cur.stats.defSave}</strong>
@@ -239,7 +239,7 @@ const CharSheetShell = () => {
                                                 modifier: cur.stats.fortSave,
                                                 text: "a Fortitude Save",
                                                 character: cur.name
-                                            }) : null}
+                                            }, 0, cur.status) : null}
                                             className={sidebarMode === "play" ? "clickable" : ""}
                                         >
                                             <strong>Fortitude {cur.stats.fortSave >= 0 ? "+" : null}{cur.stats.fortSave}</strong>
@@ -250,7 +250,7 @@ const CharSheetShell = () => {
                                                 modifier: cur.stats.refSave,
                                                 text: "a Reflex Save",
                                                 character: cur.name
-                                            }) : null}
+                                            }, 0, cur.status) : null}
                                             className={sidebarMode === "play" ? "clickable" : ""}
                                         >
                                             <strong>Reflex {cur.stats.refSave >= 0 ? "+" : null}{cur.stats.refSave}</strong>
@@ -261,7 +261,7 @@ const CharSheetShell = () => {
                                                 modifier: cur.stats.willSave,
                                                 text: "a Willpower Save",
                                                 character: cur.name
-                                            }) : null}
+                                            }, 0, cur.status) : null}
                                             className={sidebarMode === "play" ? "clickable" : ""}
                                         >
                                             <strong>Willpower {cur.stats.willSave >= 0 ? "+" : null}{cur.stats.willSave}</strong>
