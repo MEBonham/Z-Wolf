@@ -12,8 +12,6 @@ const UserSettings = () => {
     const [cmpLib, setCmpLib] = useState({});
     const { register, handleSubmit, reset } = useForm();
 
-    console.log(uid);
-
     const logout = async () => {
         await fb.auth.signOut();
     }
@@ -26,13 +24,12 @@ const UserSettings = () => {
 
     const db = fb.db;
     useEffect(() => {
-        if (uid && profile.passcodes) {
+        if (uid && profile && profile.passcodes) {
             saveProfile(uid);
         }
     }, [profile, uid]);
     const saveProfile = async (uid) => {
         try {
-            console.log("flag", { ...profile });
             await db.collection("profiles").doc(uid).set({
                 ...profile
             });

@@ -22,7 +22,17 @@ const useUser = create((set) => ({
     loginFlag: false,
     setLoginFlag: (newVal) => set((state) => ({ loginFlag: newVal })),
     profileObj: {},
-    setProfileObj: (newObj) => set((state) => ({ profileObj: newObj }))
+    setProfileObj: (newObj) => {
+        set((state) => {
+            if (state.uid === newObj.uid) {
+                return({ profileObj: newObj });
+            } else if (!state.uid) {
+                return({ profileObj: {} });
+            } else {
+                return(state);
+            }
+        });
+    }
 
 }));
 

@@ -19,6 +19,9 @@ const UsersLoader = () => {
 
         const authUnsub = fb.auth.onAuthStateChanged((user) => {
             setUser(user);
+            if (!user) {
+                setProfileObj({});
+            }
             setLoadingUser(false);
         });
         return (() => authUnsub());
@@ -29,7 +32,12 @@ const UsersLoader = () => {
         if (uid) {
             const unsubscribe = db.collection("profiles").doc(uid)
                 .onSnapshot((doc) => {
-                    setProfileObj(doc.data());
+                    if (!uid || doc.id === uid) {
+                        setProfileObj({
+                            ...doc.data(),
+                            uid: doc.id
+                        });
+                    }
                 });
             return (() => unsubscribe());
         }

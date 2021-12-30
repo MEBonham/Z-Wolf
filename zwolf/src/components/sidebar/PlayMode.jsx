@@ -8,6 +8,7 @@ import fb from '../../fbConfig';
 import useChar from '../../hooks/CreatureStore';
 import useDice from '../../hooks/DiceStore';
 import BufferDot from '../ui/BufferDot';
+import RollsLoader from '../hidden/RollsLoader';
 
 const PlayMode = () => {
     const cur = useChar((state) => state.cur);
@@ -15,7 +16,7 @@ const PlayMode = () => {
     const dieMode = useDice((state) => state.mode);
     const setMode = useDice((state) => state.setMode);
     const coasting = useDice((state) => state.coasting);
-    const setCoast = useDice((state) => state.setCoast);
+    // const setCoast = useDice((state) => state.setCoast);
     const toggleCoast = useDice((state) => state.toggleCoast);
     const rollHistory = useDice((state) => state.rollHistory);
     const [charLib, setCharLib] = useState({});
@@ -57,6 +58,7 @@ const PlayMode = () => {
 
     return(
         <div className="sidePane playMode">
+            <RollsLoader />
             <div>
                 <h2>Play Mode for Z-Wolf</h2>
                 {cur && <h4>{cur.name}</h4>}

@@ -10,8 +10,10 @@ import MainHeader from './headerfooter/MainHeader';
 import MainFooter from './headerfooter/MainFooter';
 import SideContents from './sidebar/SideContents';
 import MainRouting from './MainRouting';
+import useUser from '../hooks/UserStore';
 
 const App = () => {
+    const profile = useUser((state) => state.profileObj);
     const [headerFooterHeight, setHeaderFooterHeight] = useState(80);
 
     useEffect(() => {
@@ -35,7 +37,8 @@ const App = () => {
                             rank: "peasant",
                             passcodes: ["examples"],
                             participations: [],
-                            disabledCampaigns: []
+                            disabledCampaigns: [],
+                            lastRollView: Date.now()
                         };
                         db.collection("profiles").doc(res.user.uid).get()
                             .then((doc) => {
@@ -74,6 +77,9 @@ const App = () => {
     return(
         <div className="App">
             <UsersLoader />
+            {/* <div className="bugHunter">
+                <p>{JSON.stringify(profile)}</p>
+            </div> */}
             <MainHeader />
             <MainEnvelope headerFooterHeight={headerFooterHeight}>
                 <PrimaryBar>

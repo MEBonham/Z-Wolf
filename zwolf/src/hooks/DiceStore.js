@@ -1,11 +1,29 @@
 import create from 'zustand';
 import MersenneTwister from 'mersenne-twister';
+import { nanoid } from 'nanoid';
+
+import fb from '../fbConfig';
 
 const useDice = create((set) => ({
 
     generator: new MersenneTwister(),
     nDs: (n, s, gen) => {
         return([...Array(n).keys()].map(() => (Math.floor(s * gen.random() + 1))));
+    },
+
+    db: fb.db,
+    dbSave: async (dbRef, rollObj, uid) => {
+        console.log("flag");
+        try {
+            const id = nanoid();
+            await dbRef.collection("rolls").doc(id).set({
+                ...rollObj,
+                time: Date.now(),
+                shownTo: [ uid ]
+            });
+        } catch(err) {
+            console.log("Error while saving Roll:", err);
+        }
     },
 
     mode: "Normal",
@@ -16,7 +34,7 @@ const useDice = create((set) => ({
     toggleCoast: () => set((state) => ({ coasting: !state.coasting })),
 
     rollHistory: [],
-    addRoll: (rollObj, cNum=0, status={}) => {
+    addRoll: (rollObj, cNum=0, status={}, uid=null) => {
         set((state) => {
             let situational = 0;
             const tooltips = [];
@@ -50,20 +68,32 @@ const useDice = create((set) => ({
                 result.keyNat = natRolls[0];
                 result.result = natRolls[0];
             }
+            const details = {
+                ...rollObj,
+                ...result,
+                coast: state.coasting ? cNum : false,
+                tooltips
+            };
+            if (uid) {
+                state.dbSave(state.db, details, uid);
+            }
             return ({
                 rollHistory: [
                     ...state.rollHistory,
-                    {
-                        ...rollObj,
-                        ...result,
-                        coast: state.coasting ? cNum : false,
-                        tooltips
-                    }
+                    details
                 ],
                 mode: "Normal",
                 coasting: false
             });
         });
+    },
+    addRemoteRoll: (rollObj) => {
+        set((state) => ({
+            rollHistory: [
+                ...state.rollHistory,
+                rollObj
+            ]
+        }));
     }
 
 }));

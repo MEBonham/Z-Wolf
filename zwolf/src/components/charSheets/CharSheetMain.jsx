@@ -2,6 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 
 import { skillsList, verbTypes, statuses } from '../../helpers/GameConstants';
+import useUser from '../../hooks/UserStore';
 import useChar from '../../hooks/CreatureStore';
 import useSidebar from '../../hooks/SidebarStore';
 import useDice from '../../hooks/DiceStore';
@@ -13,6 +14,7 @@ import unchecked from '../../media/ui/empty-checkbox.png';
 
 const CharSheetMain = () => {
     const { slug } = useParams();
+    const uid = useUser((state) => state.uid);
     const cur = useChar((state) => state.cur);
     const setCur = useChar((state) => state.setCur);
     const sidebarMode = useSidebar((state) => state.mode);
@@ -85,8 +87,9 @@ const CharSheetMain = () => {
                                     sides: "usual",
                                     modifier: cur.stats[skillName],
                                     text: `a${skillName === "Athletics" || skillName === "Insight" ? "n" : ""} ${skillName} Check`,
-                                    character: cur.name
-                                }, cur.stats.coastNum) : null}
+                                    character: cur.name,
+                                    campaign: cur.campaign
+                                }, cur.stats.coastNum, cur.status, uid) : null}
                                 className={sidebarMode === "play" ? "clickable" : ""}
                             >
                                 <td>{skillName}</td>
