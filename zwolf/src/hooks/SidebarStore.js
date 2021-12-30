@@ -10,35 +10,29 @@ const useSidebar = create((set) => ({
             link: null,
             spellOut: "Main Navigation"
         },
+        acctMgt: {
+            navInclude: true,
+            link: null,
+            order: -3,
+            spellOut: "Account"
+        },
         charSelect: {
             navInclude: true,
             link: "/bestiary",
             order: 0,
-            spellOut: "Select Character to View"
+            spellOut: "View Creature Menu"
         },
         play: {
             navInclude: true,
             link: null,
-            order: 2,
+            order: -2,
             spellOut: "Play Mode for Z-Wolf"
-        },
-        edit: {
-            navInclude: true,
-            link: null,
-            order: 1,
-            spellOut: "Character Editing Mode"
         },
         campaignMgt: {
             navInclude: true,
             link: null,
             order: 3,
             spellOut: "Manage Campaigns"
-        },
-        acctMgt: {
-            navInclude: true,
-            link: null,
-            order: 4,
-            spellOut: "Manage User Account"
         },
         legal: {
             navInclude: true,
