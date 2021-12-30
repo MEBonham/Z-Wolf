@@ -134,11 +134,6 @@ export const Sidebar = styled.section`
         > button {
             margin: 10px 0 8px;
         }
-        > header {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
     }
     div.sidePane.playMode {
         width: 100%;
@@ -284,6 +279,35 @@ export const Sidebar = styled.section`
                     position: relative;
                     top: 2px;
                 }
+            }
+        }
+    }
+    div.sidePane div.simplebar-content {
+        div.userSettings {
+            padding-left: 20px;
+
+            > header {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            div.hRule {
+                width: 100%;
+                height: 1px;
+                margin: 8px 0;
+                background-color: hsla(0, 0%, 100%, 0.3);
+            }
+            h3 {
+                margin: 8px 0;
+                font-size: 2rem;
+            }
+            > section {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            form {
+                margin-bottom: 12px;
             }
         }
     }

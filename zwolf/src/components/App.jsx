@@ -34,7 +34,8 @@ const App = () => {
                             email: res.user.email,
                             rank: "peasant",
                             passcodes: ["examples"],
-                            participations: []
+                            participations: [],
+                            disabledCampaigns: []
                         });
                     } catch(err) {
                         console.log("Error:", err);

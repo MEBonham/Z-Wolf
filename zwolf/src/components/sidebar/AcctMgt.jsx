@@ -31,8 +31,14 @@ const AcctMgt = () => {
                     uid ?
                         <UserSettings /> :
                         loginFlag ?
-                            <LoginForm /> :
-                            <RegisterForm />
+                            <>
+                                <LoginForm />
+                                <UserSettings />
+                            </> :
+                            <>
+                                <RegisterForm />
+                                <UserSettings />
+                            </>
                 }
             </SimpleBarReact>
         </div>
