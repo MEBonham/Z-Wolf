@@ -12,6 +12,8 @@ const UserSettings = () => {
     const [cmpLib, setCmpLib] = useState({});
     const { register, handleSubmit, reset } = useForm();
 
+    console.log(uid);
+
     const logout = async () => {
         await fb.auth.signOut();
     }
@@ -27,9 +29,10 @@ const UserSettings = () => {
         if (uid && profile.passcodes) {
             saveProfile(uid);
         }
-    }, [profile]);
+    }, [profile, uid]);
     const saveProfile = async (uid) => {
         try {
+            console.log("flag", { ...profile });
             await db.collection("profiles").doc(uid).set({
                 ...profile
             });
@@ -42,15 +45,15 @@ const UserSettings = () => {
         const unsubscribe = db.collection("campaigns").onSnapshot((querySnapshot) => {
             const tempLib = {};
             querySnapshot.forEach((doc) => {
-                if (doc.data().owner === uid || profile.passcodes.includes(doc.data().pcCode) ||
-                    profile.passcodes.includes(doc.data().npcCode)) {
+                if (doc.data().owner === uid || (profile.passcodes && (profile.passcodes.includes(doc.data().pcCode) ||
+                    profile.passcodes.includes(doc.data().npcCode)))) {
                         tempLib[doc.id] = doc.data();
                     }
             });
             setCmpLib(tempLib);
         });
         return (() => unsubscribe());
-    }, [db, uid]);
+    }, [db, profile, uid]);
 
     const addCode = (formData) => {
         if (uid) {
@@ -71,6 +74,24 @@ const UserSettings = () => {
         reset();
     }
 
+    const enable = (id) => {
+        setProfile({
+            ...profile,
+            disabledCampaigns: [
+                ...profile.disabledCampaigns.filter((cmpId) => cmpId !== id)
+            ]
+        });
+    }
+    const disable = (id) => {
+        setProfile({
+            ...profile,
+            disabledCampaigns: [
+                ...profile.disabledCampaigns,
+                id
+            ]
+        });
+    }
+
     return(
         <div className="userSettings">
             <header>
@@ -87,6 +108,19 @@ const UserSettings = () => {
                 </form>
             </section>
             <div className="hRule" />
+            {uid && Object.keys(cmpLib).length > 0 && <section>
+                <h3>Toggle Campaign Displays</h3>
+                <ul>
+                    {Object.keys(cmpLib).filter((cmpId) => !profile.disabledCampaigns.includes(cmpId))
+                        .map((cmpId) => (
+                            <li onClick={() => disable(cmpId)} className="enabled clickable" key={cmpId}>{cmpLib[cmpId].name}</li>
+                        ))}
+                    {Object.keys(cmpLib).filter((cmpId) => profile.disabledCampaigns.includes(cmpId))
+                        .map((cmpId) => (
+                            <li onClick={() => enable(cmpId)} className="disabled clickable" key={cmpId}>{cmpLib[cmpId].name}</li>
+                        ))}
+                </ul>
+            </section>}
         </div>
     );
 }

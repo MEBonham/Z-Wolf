@@ -305,6 +305,27 @@ export const Sidebar = styled.section`
                 display: flex;
                 flex-direction: column;
                 align-items: center;
+
+                ul {
+                    width: 100%;
+                    margin-top: 8px;
+                    padding-left: 10px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    list-style: none;
+                    font-size: 1.4rem;
+
+                    li {
+                        margin: 3px 0;
+                    }
+                    li.enabled {
+                        text-shadow: 1px 1px 5px cyan;
+                    }
+                    li.disabled {
+                        text-shadow: 1px 1px 5px red;
+                    }
+                }
             }
             form {
                 margin-bottom: 12px;
