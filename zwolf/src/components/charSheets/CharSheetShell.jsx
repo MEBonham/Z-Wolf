@@ -141,7 +141,7 @@ const CharSheetShell = () => {
                     console.log(error.code);
                 }
             });
-    }, [slug]);
+    }, [slug, tabContents]);
 
     const handleTab = (newTab) => {
         window.localStorage.setItem("zWolfActiveCharTab", newTab);

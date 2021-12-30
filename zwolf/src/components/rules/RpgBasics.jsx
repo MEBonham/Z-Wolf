@@ -19,7 +19,7 @@ const RpgBasics = () => {
             </section>
             <section>
                 <h2>Diversity</h2>
-                <p>There is a lot of variety in how people play TTRPGs. Even the above statements are not set in stone in some more unusual TTRPGs! Even within a single ruleset such as CRE8, there is room for a number of different playstyles.</p>
+                <p>There is a lot of variety in how people play TTRPGs. Even the above statements are not set in stone in some more unusual TTRPGs! Even within a single ruleset such as Z-Wolf, there is room for a number of different playstyles.</p>
                 <p>Sometimes the story's setting is created by the GM independently (a "homebrew setting"). Other times the setting is drawn from a published resource, adapted from a novel, or otherwise comes from an external source.</p>
                 <p>Sometimes the PCs have an obvious goal like "survive" or "save the world from the disease that turns everyone it touches into a sentient swarm of bugs." The GM may come up with this plot framework herself, or it can be guided by a published resource (known as a "module"). Other times, the PCs are allowed to basically follow their individual motivations and figure out what adventure they want to have. This is sometimes called a "sandbox game."</p>
                 <p>TTRPGs may emphasize the "role-playing" aspect, or the opportunity to act out different personalities and social situations; or they may emphasize lethal action (combat), tactical thinking, and "optimized" character choices; or they may emphasize puzzle-like challenges and "thinking outside the box." Try to find a combination of game styles that allows all participants to enjoy what they're doing!</p>
@@ -28,9 +28,9 @@ const RpgBasics = () => {
                 <h2>Other Jargon</h2>
                 <p>TTRPGs are played in "blocks" called <strong>sessions</strong>. A session is typically 2-5 hours long.</p>
                 <p>A complete story or game of a TTRPG is called a <strong>campaign</strong>. A campaign can be one session long, but more typically it involves many sessions, and can stretch to last for months or even years.</p>
-                <p><strong>Campaign Setting:</strong> The world or universe in which the story takes place. In CRE8 it is intended to be a fantasy setting, but in other TTRPGs it could be a science fiction setting, a realistic setting, or something more unique.</p>
-                <p><strong>Playgroup:</strong>All of the TTRPG's participants, including the GM (who is not a "player").</p>
-                <p><strong>Game System:</strong> The set of rules that governs a TTRPG. The same ruleset is normally used for an entire campaign. This website is for the game system "CRE8".</p>
+                <p><strong>Campaign Setting:</strong> The world or universe in which the story takes place. In Z-Wolf it is intended to be a fantasy setting, but in other TTRPGs it could be a science fiction setting, a realistic setting, or something more unique.</p>
+                <p><strong>Playgroup:</strong> All of the TTRPG's participants, including the GM (who is not a "player").</p>
+                <p><strong>Game System:</strong> The set of rules that governs a TTRPG. The same ruleset is normally used for an entire campaign. This website is for the game system "Z-Wolf".</p>
                 <p><strong>Party</strong> or <strong>Adventuring Party:</strong> The group of PCs in a campaign.</p>
                 <p><strong>NPC:</strong> Any character in the story who is not a PC. This is an acronym for "non-player character."</p>
                 <p><strong>Adventure:</strong> A "chapter" of a campaign. It is typically a few sessions long.</p>

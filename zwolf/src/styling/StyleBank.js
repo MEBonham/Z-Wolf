@@ -75,6 +75,10 @@ export const PrimaryBar = styled.section`
         line-height: 1.5;
         font-size: 1.4rem;
     }
+    ul {
+        margin-left: 20px;
+        list-style: disc;
+    }
 
     nav.toc, section.typicalList {
         font-size: 1.4rem;
