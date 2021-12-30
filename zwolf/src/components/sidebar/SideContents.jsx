@@ -45,7 +45,7 @@ const SideContents = () => {
         <>
             <header>
                 <button onClick={(ev) => { ev.preventDefault(); toggleManualSave(); }}>Save Work</button>
-                <span onClick={handleMenuBtn} className="clickable">Main Menu Button</span>
+                <span onClick={handleMenuBtn} className="clickable">Main Menu</span>
             </header>
             {modeComp}
         </>

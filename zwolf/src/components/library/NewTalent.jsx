@@ -24,7 +24,9 @@ const NewTalent = () => {
         setDelta(editor.getContents());
     }
 
-    // writeAllSeeds();
+    // useEffect(() => {
+    //     writeAllSeeds();
+    // }, []);
 
     const db = fb.db;
     const handleSave = (formData) => {

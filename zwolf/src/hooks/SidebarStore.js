@@ -55,7 +55,7 @@ const useSidebar = create((set) => ({
             navInclude: true,
             link: "/",
             order: -1,
-            spellOut: "Table of Contents"
+            spellOut: "Home"
         },
         libPreview: {
             navInclude: false,
