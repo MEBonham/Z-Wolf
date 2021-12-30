@@ -7,14 +7,12 @@ const RegisterForm = () => {
     const setLoadingUser = useUser((state) => state.setLoadingUser);
     const loginFlag = useUser((state) => state.loginFlag);
     const setLoginFlag = useUser((state) => state.setLoginFlag);
-    const handleToggle = (ev) => {
+    const handleToggle = () => {
         if (typeof window !== "undefined") {
             window.localStorage.setItem("zWolfAlreadyMadeAccount", JSON.stringify(!loginFlag));
         }
         setLoginFlag(!loginFlag);
     }
-
-    const db = fb.db;
 
     const gProvider = fb.provider;
     const gRegister = (ev) => {
@@ -22,48 +20,8 @@ const RegisterForm = () => {
         setLoadingUser(true);
         fb.auth.useDeviceLanguage();
         fb.auth.signInWithRedirect(gProvider);
+        handleToggle();
     }
-    fb.auth.getRedirectResult()
-        .then((res) => {
-            if (res.user) {
-                try {
-                    db.collection("profiles").doc(res.user.uid).set({
-                        defaultData: {
-                            displayName: res.user.displayName,
-                            emailVerified: res.user.emailVerified,
-                            isAnonymous: res.user.isAnonymous,
-                            phoneNumber: res.user.phoneNumber,
-                            photoURL: res.user.photoURL,
-                            refreshToken: res.user.refreshToken
-                        },
-                        email: res.user.email,
-                        rank: "peasant",
-                        passcodes: [],
-                        participations: []
-                    }).then(() => {
-                        handleToggle();
-                    }).catch((err) => {
-                        console.log("Error:", err);
-                        db.collection("errors").doc(Date.now()).set({
-                            origin: "Register new user getRedirectResult 1",
-                            ...err
-                        });
-                    });
-                } catch(err) {
-                    console.log("Error:", err);
-                    db.collection("errors").doc(Date.now()).set({
-                        origin: "Register new user getRedirectResult 2",
-                        ...err
-                    });
-                }
-            }
-        }).catch((error) => {
-            console.log(err);
-            db.collection("errors").doc(Date.now()).set({
-                origin: "Register new user getRedirectResult 3",
-                ...err
-            });
-        });
 
     return(
         <div className="sidePane">

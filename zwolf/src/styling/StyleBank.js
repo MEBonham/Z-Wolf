@@ -134,6 +134,11 @@ export const Sidebar = styled.section`
         > button {
             margin: 10px 0 8px;
         }
+        > header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
     }
     div.sidePane.playMode {
         width: 100%;
@@ -151,10 +156,15 @@ export const Sidebar = styled.section`
             > div {
                 margin-bottom: 4px;
             }
+            form {
+                width: 100%;
+                display: flex;
+                justify-content: flex-end;
+            }
         }
         section.rollsBox {
             width: calc(100% - 16px);
-            height: 65%;
+            height: 70%;
             margin: 8px;
 
             div.rollOptionsTab {
@@ -793,7 +803,7 @@ export const PortraitDiv = styled.div`
         height: 60px;
         position: absolute;
         right: 10px;
-        top: 110px;
+        top: 140px;
         z-index: 2;
         border: 1px solid black;
     }

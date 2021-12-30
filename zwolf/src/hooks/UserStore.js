@@ -4,19 +4,16 @@ const useUser = create((set) => ({
 
     uid: null,
     displayName: null,
-    rank: "peasant",
     setUser: (userObj) => {
         if (userObj) {
             set((state) => ({
                 uid: userObj.uid,
-                displayName: userObj.displayName ? userObj.displayName : userObj.uid,
-                rank: userObj.rank
+                displayName: userObj.displayName ? userObj.displayName : userObj.uid
             }));
         } else {
             set((state) => ({
                 uid: null,
-                displayName: null,
-                rank: null
+                displayName: null
             }));
         }
     },
