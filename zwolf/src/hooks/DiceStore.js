@@ -19,8 +19,10 @@ const useDice = create((set) => ({
     addRoll: (rollObj, cNum=0, status={}) => {
         set((state) => {
             let situational = 0;
+            const tooltips = [];
             if (status.Wounded && rollObj.text.endsWith("Save")) {
                 situational -= 2;
+                tooltips.push("Wounded: -2")
             }
             const result = {};
             if (rollObj.sides === "usual") {
@@ -54,7 +56,8 @@ const useDice = create((set) => ({
                     {
                         ...rollObj,
                         ...result,
-                        coast: state.coasting ? cNum : false
+                        coast: state.coasting ? cNum : false,
+                        tooltips
                     }
                 ],
                 mode: "Normal",

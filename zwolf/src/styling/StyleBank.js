@@ -581,7 +581,7 @@ export const CharSheetStyling = styled.div`
         align-items: flex-start;
 
         div.leftColumn table:first-child {
-            margin: 0 4px 20px;
+            margin: 8px 4px 20px;
             border-radius: 4px;
             padding: 0 8px 4px;
             border-collapse: separate;

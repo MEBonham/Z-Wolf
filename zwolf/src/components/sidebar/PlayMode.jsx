@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import SimpleBarReact from 'simplebar-react';
 import { useForm } from 'react-hook-form';
+import ReactTooltip from 'react-tooltip';
 
 import fb from '../../fbConfig';
 import useChar from '../../hooks/CreatureStore';
@@ -119,7 +120,12 @@ const PlayMode = () => {
                                 <span className="textExplanation">
                                     {rollObj.character} {rollObj.coast ? "coasts" : "rolls"} {rollObj.text}: 
                                 </span>
-                                <span className="dodecShadow">{rollObj.result}</span>
+                                <span className="dodecShadow" data-tip data-for="rollExplanation">{rollObj.result}</span>
+                                {rollObj.tooltips.length > 0 && <ReactTooltip id="rollExplanation" place="left">
+                                    {rollObj.tooltips.map((tip, j) => (
+                                        <p key={j}>{tip}</p>
+                                    ))}
+                                </ReactTooltip>}
                             </div>
                         ))}
                     </SimpleBarReact>
