@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 
-import { skillsList, verbTypes, statuses } from '../../helpers/GameConstants';
+import { skillsList, verbTypes, statuses, sizeCatNames } from '../../helpers/GameConstants';
 import useUser from '../../hooks/UserStore';
 import useChar from '../../hooks/CreatureStore';
 import useSidebar from '../../hooks/SidebarStore';
@@ -112,6 +112,12 @@ const CharSheetMain = () => {
                         <Accordion lsUniqueKey={`zWolfCharVerbsAccordion_${slug}_${vType}`}>
                             {vType === "Passive" ? 
                                 <AccordionSection>
+                                    <h4>{sizeCatNames[`${cur.stats.sizeCategory}`]} Size</h4>
+                                    <p>You are a {sizeCatNames[`${cur.stats.sizeCategory}`]} creature. Boost checks where your being smaller than a compared creature is an advantage (e.g. hiding from them). Drag checks where your being smaller than a compared creature is a disadvantage (e.g. maintaining your footing if they push you around).</p>
+                                </AccordionSection>
+                            : null}
+                            {vType === "Passive" ? 
+                                <AccordionSection>
                                     <h4>Languages</h4>
                                     <p>
                                         <BufferDot />
@@ -122,7 +128,7 @@ const CharSheetMain = () => {
                                         ))}
                                     </p>
                                 </AccordionSection>
-                                : null}
+                            : null}
                             {verbList.map((verbObj, i) => {
                                 const [title, text] = mineVerbDelta(verbObj.origin, verbObj.bullet);
                                 return(<AccordionSection key={i}>

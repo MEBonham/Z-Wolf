@@ -64,7 +64,8 @@ const BestiaryMenu = () => {
             <nav className="bestiary">
                 {Object.keys(relevantCampaigns).map((cmpId) => {
                     const creatures = relevantCreatures.filter((charObj) => charObj.campaign === cmpId &&
-                        (charObj.pcPasscode || cmpId === uid || profile.passcodes.includes(relevantCampaigns[cmpId].npcCode))
+                        (charObj.pcPasscode || relevantCampaigns[cmpId].owner === uid ||
+                            profile.passcodes.includes(relevantCampaigns[cmpId].npcCode))
                     );
                     if (creatures.length > 0) {
                         creatures.sort((a, b) => a.name - b.name);

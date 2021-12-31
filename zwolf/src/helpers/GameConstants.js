@@ -87,6 +87,18 @@ export const statuses = {
     Dropped: false
 };
 
+export const sizeCatNames = {
+    "-4": "Fine",
+    "-3": "Diminutive",
+    "-2": "Tiny",
+    "-1": "Small",
+    "0": "Medium",
+    "1": "Large",
+    "2": "Huge",
+    "3": "Gargantuan",
+    "4": "Colossal"
+}
+
 export const kitTags = [
     "Ancestry",
     "Core",
