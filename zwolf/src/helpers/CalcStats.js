@@ -145,6 +145,18 @@ const checkCondition = (condition, charBlock, target) => {
             } else {
                 return [false, null];
             }
+        case "lightningAgility1":
+            if (charBlock.bestSave !== "ref") {
+                return [true, 1];
+            } else {
+                return [false, null];
+            }
+        case "lightningAgility2":
+            if (charBlock.bestSave !== "ref" && charBlock.level > 4) {
+                return [true, 2];
+            } else {
+                return [false, null];
+            }
         case "mageArmorConsuming":
             if (target === "willSave") {
                 return [true, -1];
@@ -179,6 +191,30 @@ const checkCondition = (condition, charBlock, target) => {
             );
             if (metalArmorWorn.length > 0) return [true, null];
             return [false, null];
+        case "mightyConstitution1":
+            if (charBlock.bestSave !== "fort") {
+                return [true, 1];
+            } else {
+                return [false, null];
+            }
+        case "mightyConstitution2":
+            if (charBlock.bestSave !== "fort" && charBlock.level > 4) {
+                return [true, 2];
+            } else {
+                return [false, null];
+            }
+        case "steelyFocus1":
+            if (charBlock.bestSave !== "will") {
+                return [true, 1];
+            } else {
+                return [false, null];
+            }
+        case "steelyFocus2":
+            if (charBlock.bestSave !== "will" && charBlock.level > 4) {
+                return [true, 2];
+            } else {
+                return [false, null];
+            }
         default:
             return [false, null];
     }
