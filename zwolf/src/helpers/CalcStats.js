@@ -90,7 +90,10 @@ const calcTotalBulk = (equipArr) => {
             subItems.forEach((subObj) => {
                 subTotal += parseFloat(subObj.bulk) * subObj.quantity;
             });
-            const containerReduction = itemObj.maxReduceBulk ? _.clamp(Math.floor(subTotal / 2), 0, itemObj.maxReduceBulk) : 0;
+            let containerReduction = itemObj.maxReduceBulk ? _.clamp(Math.floor(subTotal / 2), 0, itemObj.maxReduceBulk) : 0;
+            if (itemObj.noBulkCarried) {
+                containerReduction = subTotal;
+            }
             total += subTotal - containerReduction;
         }
     });
