@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { nanoid } from 'nanoid'
 
@@ -9,7 +9,9 @@ const EquipAdder = ({ buy }) => {
     const cur = useChar((state) => state.cur);
     const setCur = useChar((state) => state.setCur);
     const [lib, setLib] = useState({});
-    const { register, handleSubmit, reset } = useForm();
+    const { register, handleSubmit, reset, watch } = useForm();
+    const [buyFlag, setBuyFlag] = useState(false);
+    const buyCheckbox = useRef(null);
 
     const db = fb.db;
     useEffect(() => {
@@ -24,6 +26,10 @@ const EquipAdder = ({ buy }) => {
                 console.log("Error getting library: ", error);
             });
     }, []);
+
+    const matchState = () => {
+        setBuyFlag(buyCheckbox.current.checked);
+    }
 
     const acquire = (formData) => {
         if (formData.selection !== "(none)" && !formData.buy) {
@@ -59,7 +65,10 @@ const EquipAdder = ({ buy }) => {
                 });
             }
         }
+        const prevBuyFlag = buyFlag;
         reset();
+        buyCheckbox.current.checked = prevBuyFlag;
+        setBuyFlag(prevBuyFlag);
     }
     
     return(
@@ -76,10 +85,10 @@ const EquipAdder = ({ buy }) => {
                 <input type="number" {...register("quantity")} defaultValue={1} className="short" />
             </span>
             <span>
-                <input type="checkbox" {...register("buy")} defaultChecked={true} className="checkbox" />
+                <input type="checkbox" {...register("buy")} ref={buyCheckbox} onChange={matchState} className="checkbox" />
                 <label>Spend Wealth (once)?</label>
             </span>
-            <button type="submit">Acquire</button>
+            <button type="submit">{buyFlag ? "Buy" : "Acquire"}</button>
         </form>
     );
 }
