@@ -114,7 +114,13 @@ const CharSheetMain = () => {
                             {vType === "Passive" ? 
                                 <AccordionSection>
                                     <h4>{sizeCatNames[`${cur.stats.sizeCategory}`]} Size</h4>
-                                    <p>You are a {sizeCatNames[`${cur.stats.sizeCategory}`]} creature. Boost checks where your being smaller than a compared creature is an advantage (e.g. hiding from them). Drag checks where your being smaller than a compared creature is a disadvantage (e.g. maintaining your footing if they push you around).</p>
+                                    <p>
+                                        You are a {sizeCatNames[`${cur.stats.sizeCategory}`]} creature.
+                                        <span> </span>
+                                        {cur.stats.sizeCategory < 4 ? "Boost checks where your being smaller than a compared creature is an advantage (e.g. hiding from them). Drag checks where your being smaller than a compared creature is a disadvantage (e.g. maintaining your footing if they push you around)." : null}
+                                        <span> </span>
+                                        {cur.stats.sizeCategory > -4 ? "Boost checks where your being larger than a compared creature is an advantage (e.g. maintaining your footing if they push you around). Drag checks where your being larger than a compared creature is a disadvantage (e.g. hiding from them)." : null}
+                                    </p>
                                 </AccordionSection>
                             : null}
                             {vType === "Passive" ? 
