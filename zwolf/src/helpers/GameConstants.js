@@ -111,6 +111,7 @@ export const featTags = [
     "Counter",
     "Grace",
     "Ki",
+    "Luck",
     "Monster",
     "Spell",
     "Strike"

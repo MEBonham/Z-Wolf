@@ -215,6 +215,12 @@ export const checkCondition = (condition, charBlock, target=null) => {
             } else {
                 return false;
             }
+        case "twoWeaponsWielded":
+            if (charBlock.equipment.filter((itemObj) => itemObj.location === "equipped" && itemObj.delta.includes("Range Melee")).length > 1) {
+                return [true, 2];
+            } else {
+                return [false, null];
+            }
         case "wieldHeavyBlade":
             if (charBlock.equipment.filter((itemObj) => itemObj.location === "equipped" && itemObj.categories && itemObj.categories.includes("Heavy Blade"))) {
                 return [true, 1];
