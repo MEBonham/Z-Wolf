@@ -192,8 +192,8 @@ export const weaponCategories = [
     "Other"
 ];
 
-export const BULK_ALLOWANCE = 18;
-export const BRAWN_CARRY_FACTOR = 1;
+export const BULK_ALLOWANCE = 19;
+export const BRAWN_CARRY_FACTOR = 2;
 
 export const charFrame = {
     baseSkillRanks: {},
