@@ -187,7 +187,7 @@ const SpecialConfig = (props) => {
                                 onChange={(ev) => {
                                     ev.preventDefault();
                                     quarry = _.set(quarry, `choices[${overlapIndex}]`, ev.target.value);
-                                    quarryMods = quarryMods.map((modObj) => ({
+                                    quarryMods = quarryMods.slice().map((modObj) => ({
                                         ...modObj,
                                         choices: modObj.target === ev.target.value ? true : false
                                     }));

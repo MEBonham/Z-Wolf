@@ -205,7 +205,30 @@ export const charFrame = {
     kp: 1,
     languages: ["Common"],
     level: 2,
-    mods: [],
+    mods: [
+        {
+            choices: {},
+            level: 1,
+            mag: "special",
+            origin: "1A",
+            overlap: "0",
+            primary: true,
+            skill: "Brawn",
+            target: "av",
+            type: "Synergy"
+        },
+        {
+            choices: {},
+            level: 1,
+            mag: "special",
+            origin: "1B",
+            overlap: "1",
+            primary: false,
+            skill: "Brawn",
+            target: "wpnImpactMod",
+            type: "Synergy"
+        }
+    ],
     relatedSlugs: [],
     sp: 4,
     status: { ...statuses },

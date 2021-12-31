@@ -19,6 +19,38 @@ const CharSheetConfigure = () => {
     const bestSave = useRef(null);
     const { register, handleSubmit, reset } = useForm();
 
+    // useEffect(() => {
+    //     setCur({
+    //         ...cur,
+    //         mods: [
+    //             ...cur.mods,
+    //             {
+    //                 choices: {},
+    //                 level: 1,
+    //                 mag: "special",
+    //                 origin: "1A",
+    //                 overlap: "0",
+    //                 primary: true,
+    //                 skill: "Brawn",
+    //                 target: "av",
+    //                 type: "Synergy"
+    //             },
+    //             {
+    //                 choices: {},
+    //                 level: 1,
+    //                 mag: "special",
+    //                 origin: "1B",
+    //                 overlap: "1",
+    //                 primary: false,
+    //                 skill: "Brawn",
+    //                 target: "wpnImpactMod",
+    //                 type: "Synergy"
+    //             }
+    //         ]
+    //     });
+    //     console.log("complete");
+    // }, []);
+
     useEffect(() => {
         if (cur && bestSave.current) {
             bestSave.current.value = cur.bestSave;

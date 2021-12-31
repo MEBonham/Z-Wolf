@@ -254,8 +254,8 @@ export const calcStats = (char) => {
     const paragonFlag = (char.kits.filter((kitObj) => kitObj.name === "Human Paragon").length > 0);
     ["fightingLevel", "casterLevel", "coastNum"].forEach((stat) => {
         if (kit1 && kit1.id && kit2 && kit2.id && !paragonFlag &&
-            modsTweak.filter((modObj) => modObj.origin === kit1.id && modObj.target === stat).length > 0 &&
-            modsTweak.filter((modObj) => modObj.origin === kit2.id && modObj.target === stat).length > 0
+            modsTweak.filter((modObj) => modObj.origin === kit1.id && modObj.target === stat && (modObj.choices === undefined || modObj.choices === true)).length > 0 &&
+            modsTweak.filter((modObj) => modObj.origin === kit2.id && modObj.target === stat && (modObj.choices === undefined || modObj.choices === true)).length > 0
         ) {
             result[stat] -= 1;
         }
