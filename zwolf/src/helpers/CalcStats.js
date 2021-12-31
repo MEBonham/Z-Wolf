@@ -204,6 +204,17 @@ export const calcStats = (char) => {
     result.fightingLevel = result.heroics + farmMods(modsTweak.filter((modObj) => modObj.target === "fightingLevel"), skillRanks, char.level, char);
     result.casterLevel = result.heroics + farmMods(modsTweak.filter((modObj) => modObj.target === "casterLevel"), skillRanks, char.level, char);
     result.coastNum = 4 + farmMods(modsTweak.filter((modObj) => modObj.target === "coastNum"), skillRanks, char.level, char);
+    const kit1 = char.kits.filter((kitObj) => kitObj.origin === "1A")[0] ?? null;
+    const kit2 = char.kits.filter((kitObj) => kitObj.origin === "1")[0] ?? null;
+    const paragonFlag = (char.kits.filter((kitObj) => kitObj.name === "Human Paragon").length > 0);
+    ["fightingLevel", "casterLevel", "coastNum"].forEach((stat) => {
+        if (kit1 && kit1.id && kit2 && kit2.id && !paragonFlag &&
+            modsTweak.filter((modObj) => modObj.origin === kit1.id && modObj.target === stat).length > 0 &&
+            modsTweak.filter((modObj) => modObj.origin === kit2.id && modObj.target === stat).length > 0
+        ) {
+            result[stat] -= 1;
+        }
+    });
 
     result.sizeCategory = farmMods(modsTweak.filter((modObj) => modObj.target === "sizeCategory"), skillRanks, char.level, char);
     let latestSizeChange = 0;
@@ -293,6 +304,13 @@ export const calcStats = (char) => {
     ), skillRanks, char.level, char);
 
     result.vpMax = 5 + (char.level * 2) + result.baseFort + farmMods(modsTweak.filter((modObj) => modObj.target === "vpMax"), skillRanks, char.level, char);
+    if (kit1 && kit1.id && kit2 && kit2.id && !paragonFlag) {
+        const vpMods1 = modsTweak.filter((modObj) => modObj.origin === kit1.id && modObj.target === "vpMax");
+        const vpMods2 = modsTweak.filter((modObj) => modObj.origin === kit2.id && modObj.target === "vpMax");
+        if (vpMods1.length > 0 && vpMods2.length > 0) {
+            result.vpMax -= Math.min(vpMods1[0].mag, vpMods2[0].mag);
+        }
+    }
     result.spMax = 4 + farmMods(modsTweak.filter((modObj) => modObj.target === "spMax"), skillRanks, char.level, char);
     result.kpMax = 2 + farmMods(modsTweak.filter((modObj) => modObj.target === "kpMax"), skillRanks, char.level, char);
     

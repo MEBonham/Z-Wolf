@@ -75,7 +75,7 @@ export const PrimaryBar = styled.section`
         line-height: 1.5;
         font-size: 1.4rem;
     }
-    ul {
+    ul.charCreation {
         margin-left: 20px;
         list-style: disc;
     }
@@ -98,6 +98,9 @@ export const PrimaryBar = styled.section`
             width: 50%;
         }
     }
+    nav.bestiary span {
+        font-size: 1.4rem;
+    }
     table.synergy {
         font-size: 1.6rem;
         border-collapse: separate;
@@ -106,6 +109,9 @@ export const PrimaryBar = styled.section`
         td:first-child {
             padding-right: 12px;
         }
+    }
+    div.littleIndent ul {
+        margin-left: 8px;
     }
 `;
 

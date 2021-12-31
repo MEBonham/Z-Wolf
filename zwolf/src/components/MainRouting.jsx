@@ -23,6 +23,7 @@ import Thief from './bestiary/Thief';
 import Cleric from './bestiary/Cleric';
 import CaveRat from './bestiary/CaveRat';
 import Ankithlakith from './bestiary/Ankithlakith';
+import BestiaryMenu from './bestiary/BestiaryMenu';
 
 const MainRouting = () => useRoutes([
     {
@@ -84,6 +85,10 @@ const MainRouting = () => useRoutes([
     {
         path: "/library/items",
         element: <Items />
+    },
+    {
+        path: "/bestiary",
+        element: <BestiaryMenu />
     },
     {
         path: "/bestiary/fighter",

@@ -30,20 +30,13 @@ const RollsLoader = () => {
             const unsubscribe = db.collection("campaigns").onSnapshot((querySnapshot) => {
                 const tempLib = {};
                 querySnapshot.forEach((doc) => {
-                    // console.log(doc.data().owner);
-                    // console.log(uid);
-                    // console.log(profile.passcodes);
-                    // console.log(doc.data().pcCode);
-                    // console.log(doc.data().npcCode);
                     if (doc.data().owner === uid ||
                         (profile.passcodes &&
                             (profile.passcodes.includes(doc.data().pcCode) || profile.passcodes.includes(doc.data().npcCode))
                         )) {
-                            // console.log("flag");
                             tempLib[doc.id] = doc.data();
                         }
                 });
-                // console.log(tempLib);
                 setRelevantCampaigns(tempLib);
             });
             return (() => unsubscribe());
@@ -66,12 +59,6 @@ const RollsLoader = () => {
         const unsubscribe = db.collection("rolls").onSnapshot((querySnapshot) => {
             querySnapshot.forEach((doc) => {
                 const d = doc.data();
-                // console.log(d.time);
-                // console.log(profile.lastRollView);
-                // console.log(relevantCampaigns);
-                // console.log(d.campaign);
-                // console.log(d.shownTo);
-                // console.log(uid);
                 if (
                     d.time > profile.lastRollView &&
                     Object.keys(relevantCampaigns).includes(d.campaign) &&

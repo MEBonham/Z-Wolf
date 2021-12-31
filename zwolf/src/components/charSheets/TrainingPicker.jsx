@@ -16,7 +16,7 @@ const TrainingPicker = (props) => {
     }
 
     useEffect(() => {
-        if (modObj.selection.length === 1) {
+        if (modObj.selection && modObj.selection.length === 1) {
             setCur({
                 ...cur,
                 trainedSkills: [

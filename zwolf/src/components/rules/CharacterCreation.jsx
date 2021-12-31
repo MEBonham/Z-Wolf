@@ -21,7 +21,7 @@ const CharacterCreation = () => {
             <p>On rare occasions, if the character you are building is a Monster, you may have special abilities that Limit your Ranks in a skill. For example, many mundane Beasts have the Charisma, Dexterity, Gadgetry, Glibness, and Knowledge skills Limited. This means Skill Checks using the skill in question are always Capped for that character, which usually means you should avoid ranks in that skill greater than the character's Heroics Check bonus.</p>
             <h3>4. Select Kits, Feats, and Talents</h3>
             <p>Your character's special abilities are divided into three categories:
-                <ul>
+                <ul className="charCreation">
                     <li><strong>Kits</strong> are "packages" of abilities that fit well with each other. They provide your character's unifying themes and archetypes, which makes them the most similar to Classes from other TTRPGs.</li>
                     <li><strong>Feats</strong> are your character's "signature moves," usually only useful in combat. A spellcaster's known Spells are one type of Feat.</li>
                     <li><strong>Talents</strong> are lesser abilities; anything that isn't a Kit or a Feat. They have a lot of variety. Some of them round out your character, giving him abilities that represent a life beyond adventuring (which he may or may not have abandoned). Note that Talents are the main way a character continues to progress beyond Level 8, and therefore become a lot more potent at that point.</li>

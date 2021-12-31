@@ -9,7 +9,7 @@ const Home = () => {
             <p>Z-Wolf is designed to be played using this website for automation. At least a light Virtual Tabletop is also recommended, so that measuring movement distances without a grid doesn't become arduous. I think playing with electronic aids is the way of the future for TTRPGs, and is particularly convenient with Z-Wolf's dice system.</p>
             <nav className="toc">
                 <h1>Table of Contents</h1>
-                <div className="columns">
+                <div className="columns littleIndent">
                     <div>
                         <h2>Rules</h2>
                         <ul>
