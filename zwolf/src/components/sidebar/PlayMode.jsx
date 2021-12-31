@@ -122,12 +122,14 @@ const PlayMode = () => {
                                 <span className="textExplanation">
                                     {rollObj.character} {rollObj.coast ? "coasts" : "rolls"} {rollObj.text}: 
                                 </span>
-                                <span className="dodecShadow" data-tip data-for="rollExplanation">{rollObj.result}</span>
-                                {rollObj.tooltips.length > 0 && <ReactTooltip id="rollExplanation" place="left">
-                                    {rollObj.tooltips.map((tip, j) => (
-                                        <p key={j}>{tip}</p>
-                                    ))}
-                                </ReactTooltip>}
+                                <>
+                                    <span className="dodecShadow" data-tip data-for="rollExplanation">{rollObj.result}</span>
+                                    {rollObj.tooltips.length > 0 && <ReactTooltip id="rollExplanation" place="left">
+                                        {rollObj.tooltips.map((tip, j) => (
+                                            <p key={j}>{tip}</p>
+                                        ))}
+                                    </ReactTooltip>}
+                                </>
                             </div>
                         ))}
                     </SimpleBarReact>

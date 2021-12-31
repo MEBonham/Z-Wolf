@@ -12,6 +12,8 @@ import AccordionSection from '../ui/AccordionSection';
 import BufferDot from '../ui/BufferDot';
 import checked from '../../media/ui/checked-box.png';
 import unchecked from '../../media/ui/empty-checkbox.png';
+import VerbName from './VerbName';
+import VerbDetails from './VerbDetails';
 
 const CharSheetMain = () => {
     const { slug } = useParams();
@@ -20,20 +22,6 @@ const CharSheetMain = () => {
     const setCur = useChar((state) => state.setCur);
     const sidebarMode = useSidebar((state) => state.mode);
     const roll = useDice((state) => state.addRoll);
-
-    const mineVerbDelta = (originId, originBullet) => {
-        const menuForId = [
-            ...cur.equipment,
-            ...cur.feats,
-            ...cur.kits,
-            ...cur.talents
-        ];
-        const delta = menuForId.filter((obj) => obj.id === originId)[0].delta;
-        const title = delta.split(`"attributes":`)[0].split(`"insert":`)[1].slice(1, -4);
-        const intervalStr = delta.split(`"list":"bullet"`)[parseInt(originBullet) - 1];
-        const intervalArr = intervalStr.split(`"insert":`);
-        return [title, intervalArr[intervalArr.length - 1].slice(1, -18)];
-    }
 
     const toggleStatus = (key) => {
         setCur({
@@ -138,10 +126,10 @@ const CharSheetMain = () => {
                             : null}
                             {verbList.filter((verbObj) => (!verbObj.condition || checkCondition(verbObj.condition, cur)))
                                 .map((verbObj, i) => {
-                                    const [title, text] = mineVerbDelta(verbObj.origin, verbObj.bullet);
+                                    // console.log(verbObj.origin);
                                     return(<AccordionSection key={i}>
-                                        <h4>{title}</h4>
-                                        <p>{text}</p>
+                                        <VerbName  details={verbObj} />
+                                        <VerbDetails vType={vType} details={verbObj} />
                                     </AccordionSection>);
                                 })}
                         </Accordion>

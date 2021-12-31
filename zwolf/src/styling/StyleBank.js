@@ -277,6 +277,8 @@ export const Sidebar = styled.section`
                     width: 100%;
                     margin: 0 0 6px 4px;
                     display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
 
                     > span:first-child {
                         width: 90px;
@@ -607,7 +609,6 @@ export const CharSheetStyling = styled.div`
             }
             div.pseudoTable {
                 margin: 3px 0 0;
-                flex-grow: 1;
 
                 > div {
                     width: 100%;
@@ -615,7 +616,8 @@ export const CharSheetStyling = styled.div`
                     display: flex;
 
                     span {
-                        padding: 0 8px;
+                        display: inline-block;
+                        padding: 0 12px;
                         flex-grow: 1;
                         font-size: 1.6rem;
                     }
@@ -693,6 +695,18 @@ export const CharSheetStyling = styled.div`
             h2 {
                 width: 100%;
                 text-align: center;
+            }
+            section.attacks {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+
+                h4.pseudoButton {
+                    margin-bottom: 2px;
+                    padding: 4px 8px;
+                    border-radius: 4px;
+                    background-color: hsla(136, 54%, 43%, 0.25);
+                }
             }
         }
     }

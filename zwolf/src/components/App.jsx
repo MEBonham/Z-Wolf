@@ -13,7 +13,6 @@ import MainRouting from './MainRouting';
 import useUser from '../hooks/UserStore';
 
 const App = () => {
-    const profile = useUser((state) => state.profileObj);
     const [headerFooterHeight, setHeaderFooterHeight] = useState(80);
 
     useEffect(() => {
