@@ -20,13 +20,13 @@ const useSidebar = create((set) => ({
             navInclude: true,
             link: "/bestiary",
             order: 0,
-            spellOut: "View Creature Menu"
+            spellOut: "Creature Menu"
         },
         play: {
             navInclude: true,
             link: null,
             order: -2,
-            spellOut: "Play Mode for Z-Wolf"
+            spellOut: "Play Mode"
         },
         campaignMgt: {
             navInclude: true,
@@ -54,7 +54,7 @@ const useSidebar = create((set) => ({
         toc: {
             navInclude: true,
             link: "/",
-            order: -1,
+            order: -5,
             spellOut: "Home"
         },
         libPreview: {

@@ -43,6 +43,43 @@ export const MainEnvelope = styled.section`
     a {
         color: #cccccc;
     }
+    div.accordion {
+        width: 100%;
+        border-radius: 10px;
+        overflow-y: hidden;
+        background-color: hsla(136, 54%, 43%, 0.1);
+    
+        .title {
+            cursor: pointer;
+            padding: 3px 20px;
+            background-color: hsla(136, 54%, 43%, 0.3);
+    
+            h4 {
+                margin: 4px 0 3px;
+            }
+        }
+        .toggle {
+            display: none;
+        }
+        .toggle.open {
+            width: 100%;
+            border-left: 2px solid hsla(136, 54%, 43%, 0.3);
+            border-right: 2px solid hsla(136, 54%, 43%, 0.3);
+            border-bottom: 2px solid hsla(136, 54%, 43%, 0.3);
+            padding: 0 20px 2px;
+            display: flex;
+    
+            p {
+                margin: 0 0 4px;
+            }
+        }
+        section:last-child .title h4 {
+            margin-bottom: 5px;
+        }
+        section:last-child .toggle.open {
+            border-radius: 0 0 9px 9px;
+        }
+    }
 `;
 
 export const PrimaryBar = styled.section`
@@ -108,6 +145,19 @@ export const PrimaryBar = styled.section`
 
         td:first-child {
             padding-right: 12px;
+        }
+    }
+    section.ogl {
+        margin-top: 6px;
+
+        ol, ul {
+            margin-left: 18px;
+            font-size: 1.4rem;
+            line-height: 1.4;
+
+            li {
+                margin: 4px 0;
+            }
         }
     }
     div.littleIndent ul {
@@ -830,43 +880,6 @@ export const CharSheetStyling = styled.div`
         }
         .accordion {
             margin-bottom: 10px;
-        }
-    }
-    .accordion {
-        width: 100%;
-        border-radius: 10px;
-        overflow-y: hidden;
-        background-color: hsla(136, 54%, 43%, 0.1);
-
-        .title {
-            cursor: pointer;
-            padding: 3px 20px;
-            background-color: hsla(136, 54%, 43%, 0.3);
-
-            h4 {
-                margin: 4px 0 3px;
-            }
-        }
-        .toggle {
-            display: none;
-        }
-        .toggle.open {
-            width: 100%;
-            border-left: 2px solid hsla(136, 54%, 43%, 0.3);
-            border-right: 2px solid hsla(136, 54%, 43%, 0.3);
-            border-bottom: 2px solid hsla(136, 54%, 43%, 0.3);
-            padding: 0 20px 2px;
-            display: flex;
-
-            p {
-                margin: 0 0 4px;
-            }
-        }
-        section:last-child .title h4 {
-            margin-bottom: 5px;
-        }
-        section:last-child .toggle.open {
-            border-radius: 0 0 9px 9px;
         }
     }
     .editParent {

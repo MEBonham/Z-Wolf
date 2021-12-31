@@ -24,11 +24,16 @@ import Cleric from './bestiary/Cleric';
 import CaveRat from './bestiary/CaveRat';
 import Ankithlakith from './bestiary/Ankithlakith';
 import BestiaryMenu from './bestiary/BestiaryMenu';
+import LegalStuff from './LegalStuff';
 
 const MainRouting = () => useRoutes([
     {
         path: "/",
         element: <Home />
+    },
+    {
+        path: "/legal",
+        element: <LegalStuff />
     },
     {
         path: "/rules/rpgbasics",
