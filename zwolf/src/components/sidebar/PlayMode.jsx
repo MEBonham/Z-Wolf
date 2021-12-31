@@ -80,7 +80,7 @@ const PlayMode = () => {
                     <select {...register("character")}>
                         <option value="null">(none)</option>
                         {cur && charLib && Object.keys(charLib).filter((otherSlug) => (charLib[otherSlug].campaign === cur.campaign) &&
-                            (otherSlug !== cur.slug)).map((otherSlug) => (
+                            (otherSlug !== cur.slug) && (!cur.relatedSlugs.includes(otherSlug))).map((otherSlug) => (
                                 <option key={otherSlug} value={otherSlug}>{charLib[otherSlug].name}</option>
                             ))}
                     </select>
