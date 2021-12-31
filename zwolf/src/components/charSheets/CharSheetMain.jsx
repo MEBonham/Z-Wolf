@@ -2,6 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 
 import { skillsList, verbTypes, statuses, sizeCatNames } from '../../helpers/GameConstants';
+import { checkCondition } from '../../helpers/CalcStats';
 import useUser from '../../hooks/UserStore';
 import useChar from '../../hooks/CreatureStore';
 import useSidebar from '../../hooks/SidebarStore';
@@ -129,13 +130,14 @@ const CharSheetMain = () => {
                                     </p>
                                 </AccordionSection>
                             : null}
-                            {verbList.map((verbObj, i) => {
-                                const [title, text] = mineVerbDelta(verbObj.origin, verbObj.bullet);
-                                return(<AccordionSection key={i}>
-                                    <h4>{title}</h4>
-                                    <p>{text}</p>
-                                </AccordionSection>);
-                            })}
+                            {verbList.filter((verbObj) => (!verbObj.condition || checkCondition(verbObj.condition, cur)))
+                                .map((verbObj, i) => {
+                                    const [title, text] = mineVerbDelta(verbObj.origin, verbObj.bullet);
+                                    return(<AccordionSection key={i}>
+                                        <h4>{title}</h4>
+                                        <p>{text}</p>
+                                    </AccordionSection>);
+                                })}
                         </Accordion>
                     </div>);
                 })}

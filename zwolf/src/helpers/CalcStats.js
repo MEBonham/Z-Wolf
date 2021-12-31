@@ -100,7 +100,7 @@ const calcTotalBulk = (equipArr) => {
     return total;
 }
 
-const checkCondition = (condition, charBlock, target) => {
+export const checkCondition = (condition, charBlock, target=null) => {
     let mod = 0;
     switch (condition) {
         case "arcaneAversion":
@@ -145,17 +145,17 @@ const checkCondition = (condition, charBlock, target) => {
             } else {
                 return [false, null];
             }
-        case "lightningAgility1":
+        case "lightningAgility":
             if (charBlock.bestSave !== "ref") {
-                return [true, 1];
+                return [true, (charBlock.level > 4 ? 2 : 1)];
             } else {
                 return [false, null];
             }
-        case "lightningAgility2":
-            if (charBlock.bestSave !== "ref" && charBlock.level > 4) {
-                return [true, 2];
+        case "lightningAgilityVerb":
+            if (charBlock.bestSave === "ref") {
+                return true;
             } else {
-                return [false, null];
+                return false;
             }
         case "mageArmorConsuming":
             if (target === "willSave") {
@@ -191,27 +191,33 @@ const checkCondition = (condition, charBlock, target) => {
             );
             if (metalArmorWorn.length > 0) return [true, null];
             return [false, null];
-        case "mightyConstitution1":
+        case "mightyConstitution":
             if (charBlock.bestSave !== "fort") {
-                return [true, 1];
+                return [true, (charBlock.level > 4 ? 2 : 1)];
             } else {
                 return [false, null];
             }
-        case "mightyConstitution2":
-            if (charBlock.bestSave !== "fort" && charBlock.level > 4) {
-                return [true, 2];
+        case "mightyConstitutionVerb":
+            if (charBlock.bestSave === "fort") {
+                return true;
             } else {
-                return [false, null];
+                return false;
             }
-        case "steelyFocus1":
+        case "steelyFocus":
             if (charBlock.bestSave !== "will") {
-                return [true, 1];
+                return [true, (charBlock.level > 4 ? 2 : 1)];
             } else {
                 return [false, null];
             }
-        case "steelyFocus2":
-            if (charBlock.bestSave !== "will" && charBlock.level > 4) {
-                return [true, 2];
+        case "steelyFocusVerb":
+            if (charBlock.bestSave === "will") {
+                return true;
+            } else {
+                return false;
+            }
+        case "wieldHeavyBlade":
+            if (charBlock.equipment.filter((itemObj) => itemObj.location === "equipped" && itemObj.categories && itemObj.categories.includes("Heavy Blade"))) {
+                return [true, 1];
             } else {
                 return [false, null];
             }
