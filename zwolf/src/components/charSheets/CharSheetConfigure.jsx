@@ -167,21 +167,31 @@ const CharSheetConfigure = () => {
                         {_.range(cur.level).map((i) => (
                             <tr key={i}>
                                 <td><strong>(L{i + 1})</strong><BufferDot /></td>
-                                {_.range(6).map((j) => (
-                                    <td key={j}>
-                                        <select
-                                            value={_.get(cur, `baseSkillRanks[${i + 1}][${j}]`, "Athletics")}
-                                            onChange={(ev) => {
-                                                ev.preventDefault();
-                                                setCur(_.set(cur, `baseSkillRanks[${i + 1}][${j}]`, ev.target.value));
-                                            }}
-                                        >
-                                            {skillsList.map((skillName) => (
-                                                <option key={skillName} value={skillName}>{skillName}</option>
-                                            ))}
-                                        </select>
-                                    </td>
-                                ))}
+                                {_.range(6).map((j) => {
+                                    let ranksAssigned;
+                                    if (cur.baseSkillRanks[`${i + 1}`]) {
+                                        ranksAssigned = cur.baseSkillRanks[`${i + 1}`].length;
+                                    } else {
+                                        ranksAssigned = 0;
+                                    }
+                                    // console.log(i, j, ranksAssigned);
+                                    return(
+                                        <td key={j}>
+                                            <select
+                                                value={_.get(cur, `baseSkillRanks[${i + 1}][${j}]`, "Athletics")}
+                                                onChange={(ev) => {
+                                                    ev.preventDefault();
+                                                    setCur(_.set(cur, `baseSkillRanks[${i + 1}][${j}]`, ev.target.value));
+                                                }}
+                                                disabled={(j <= ranksAssigned) ? false : true}
+                                            >
+                                                {skillsList.map((skillName) => (
+                                                    <option key={skillName} value={skillName}>{skillName}</option>
+                                                ))}
+                                            </select>
+                                        </td>
+                                    );
+                                })}
                             </tr>
                         ))}
                     </tbody>
