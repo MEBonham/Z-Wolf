@@ -114,7 +114,8 @@ const ItemSummary = ({item, sell}) => {
                         ...(item.modifier ?
                             item.modifier.map((modObj) => ({
                                 ...modObj,
-                                origin: item.id
+                                origin: item.id,
+                                choices: true
                             }))
                         : [])
                     ],
