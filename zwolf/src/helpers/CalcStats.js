@@ -243,6 +243,7 @@ export const calcStats = (char) => {
             + 2 * (char.trainedSkills.filter((skillObj) => skillObj.origin === "1A" || skillObj.origin === "1B" || skillObj.level <= char.level)
                     .filter((skillObj) => skillObj.skill === skillName).length ? 1 : 0);
     });
+    result.skillRanks = skillRanks;
 
     result.heroics = Math.max(0, Math.min(4, Math.floor(char.level / 2)));
     result.awesome = 4 + char.level + farmMods(modsTweak.filter((modObj) => modObj.target === "awesome"), skillRanks, char.level, char);

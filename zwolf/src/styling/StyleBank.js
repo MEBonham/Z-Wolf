@@ -672,6 +672,10 @@ export const CharSheetStyling = styled.div`
             border-collapse: separate;
             border-spacing: 0 4px;
 
+            th {
+                padding-left: 4px;
+                text-align: left;
+            }
             td:first-child {
                 padding-right: 8px;
             }

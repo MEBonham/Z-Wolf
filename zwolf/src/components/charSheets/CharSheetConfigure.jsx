@@ -136,7 +136,7 @@ const CharSheetConfigure = () => {
         setKitBlocks(tempKits);
         setFeatBlocks(tempFeats);
         setTalentBlocks(tempTalents);
-        setSynergies(cur.mods.filter((modObj) => modObj.type === "Synergy"));
+        setSynergies(cur.mods.filter((modObj) => modObj.type === "Synergy" && cur.stats.skillRanks[modObj.skill] > 2));
     }, [cur]);
 
     const newLang = (formData) => {
