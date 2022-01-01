@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
@@ -13,11 +13,14 @@ const TEMPLATE = "<h2>Feat Name</h2><p><strong>Prerequisites:</strong> none.</p>
 
 const NewFeat = ({ editMode }) => {
     const slug = (editMode ? useParams().slug : null);
-    const { register, handleSubmit, watch, reset } = useForm();
+    const { register, handleSubmit, watch, reset, setValue } = useForm();
     const [lib, setLib] = useState(null);
     const [numMods, setNumMods] = useState(0);
     const [numVerbs, setNumVerbs] = useState(0);
     const watchModTypes = watch([...Array(numMods).keys()].map((i) => (`modifier.${i}.type`)));
+    const quill = useRef(null);
+    const onlyTwice1 = useRef(2);
+    const onlyTwice2 = useRef(2);
 
     // console.log(slug);
 
@@ -30,6 +33,10 @@ const NewFeat = ({ editMode }) => {
 
     const db = fb.db;
     const handleSave = (formData) => {
+        // if (editMode) {
+        //     console.log(formData);
+        //     return;
+        // }
         const newSlug = encodeURIComponent(formData.slug.split(" ").join("").toLowerCase().replace(/'/g, ""));
         const formDataFixed = _.cloneDeep(formData);
         (formData.modifier ?? []).forEach((modObj, i) => {
@@ -45,7 +52,7 @@ const NewFeat = ({ editMode }) => {
         db.collection("feats").get()
             .then((querySnapshot) => {
                 const slugList = querySnapshot.docs.map((doc) => (doc.id));
-                if (!slugList.includes(newSlug)) {
+                if (!slugList.includes(newSlug) || editMode) {
                     const featObj = {
                         ...formDataFixed,
                         delta: JSON.stringify(delta)
@@ -83,8 +90,42 @@ const NewFeat = ({ editMode }) => {
         }
     }, [editMode, slug]);
     useEffect(() => {
-        if (lib) console.log(lib);
+        if (lib) {
+            console.log(lib);
+            setValue("name", lib.name);
+            setValue("slug", lib.slug);
+            setValue("tags", lib.tags);
+            setValue("basicSeeds", lib.basicSeeds);
+            setValue("advancedSeeds", lib.advancedSeeds);
+            quill.current.getEditor().setContents(JSON.parse(lib.delta).ops);
+            setNumMods(lib.modifier ? lib.modifier.length : 0);
+            setNumVerbs(lib.verb ? lib.verb.length : 0);
+        }
     }, [lib]);
+    useEffect(() => {
+        if (editMode && lib && onlyTwice1.current) {
+            onlyTwice1.current -= 1;
+            if (lib.modifier && lib.modifier.length > 0) {
+                lib.modifier.forEach((modObj, i) => {
+                    setValue(`modifier[${i}].mag`, `${modObj.mag}`);
+                    setValue(`modifier[${i}].overlap`, modObj.overlap);
+                    setValue(`modifier[${i}].target`, modObj.target);
+                    setValue(`modifier[${i}].type`, modObj.type);
+                });
+            }
+        }
+    }, [numMods]);
+    useEffect(() => {
+        if (editMode && lib && onlyTwice2.current) {
+            onlyTwice2.current -= 1;
+            if (lib.verb && lib.verb.length > 0) {
+                lib.verb.forEach((verbObj, i) => {
+                    setValue(`verb[${i}].bullet`, verbObj.bullet);
+                    setValue(`verb[${i}].activity`, verbObj.activity);
+                });
+            }
+        }
+    }, [numVerbs]);
 
     return (
         <LibraryAdd onSubmit={handleSubmit(handleSave)}>
@@ -92,6 +133,7 @@ const NewFeat = ({ editMode }) => {
             <ReactQuill
                 value={richText}
                 onChange={handleChange}
+                ref={quill}
             />
             <div className="cols">
                 <div>
