@@ -241,10 +241,10 @@ export const checkSituation = (condition, charBlock, originObj) => {
                 return [false, null];
             }
         case "attackSituation_twoHanded":
-            // console.log(originObj, charBlock.status);
-            if (originObj.tags.includes("Weapon") && originObj.heft === "Two-Handed" && !originObj.categories.includes("Crossbow")) {
+            console.log(originObj);
+            if (originObj.tags && originObj.tags.includes("Weapon") && originObj.heft === "Two-Handed" && !originObj.categories.includes("Crossbow")) {
                 return [true, 1];
-            } else if (originObj.tags.includes("Weapon") && originObj.heft === "Versatile" && charBlock.status.versatile2H) {
+            } else if (originObj.tags && originObj.tags.includes("Weapon") && originObj.heft === "Versatile" && charBlock.status.versatile2H) {
                 return [true, 1];
             } else {
                 return [false, null];

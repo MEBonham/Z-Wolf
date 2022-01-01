@@ -100,7 +100,7 @@ const VerbDetails = ({ details, vType }) => {
                         >
                             Attack
                         </h4>
-                        {originObj.tags.includes("Weapon") && originObj.heft === "Versatile" ?
+                        {originObj.tags && originObj.tags.includes("Weapon") && originObj.heft === "Versatile" ?
                             <span className="versatileCheck">
                                 <span> </span>
                                 {cur.status.versatile2H ?
