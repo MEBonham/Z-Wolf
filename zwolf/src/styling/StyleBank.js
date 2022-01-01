@@ -287,6 +287,7 @@ export const Sidebar = styled.section`
                         justify-content: center;
                     }
                     span.textExplanation {
+                        width: 60%;
                         margin-right: 6px;
                         padding: 0.8rem 0;
                         font-size: 1.4rem;
