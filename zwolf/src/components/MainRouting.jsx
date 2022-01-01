@@ -22,7 +22,6 @@ import Mage from './bestiary/Mage';
 import Thief from './bestiary/Thief';
 import Cleric from './bestiary/Cleric';
 import CaveRat from './bestiary/CaveRat';
-import Ankithlakith from './bestiary/Ankithlakith';
 import BestiaryMenu from './bestiary/BestiaryMenu';
 import LegalStuff from './LegalStuff';
 
@@ -61,35 +60,51 @@ const MainRouting = () => useRoutes([
     },
     {
         path: "/library/newkit",
-        element: <NewKit />
+        element: <NewKit editMode={false} />
     },
     {
         path: "/library/kits",
         element: <Kits />
     },
     {
+        path: "/library/kits/edit/:slug",
+        element: <NewKit editMode={true} />
+    },
+    {
         path: "/library/newfeat",
-        element: <NewFeat />
+        element: <NewFeat editMode={false} />
     },
     {
         path: "/library/feats",
         element: <Feats />
     },
     {
+        path: "/library/feats/edit/:slug",
+        element: <NewFeat editMode={true} />
+    },
+    {
         path: "/library/newtalent",
-        element: <NewTalent />
+        element: <NewTalent editMode={false} />
     },
     {
         path: "/library/talents",
         element: <Talents />
     },
     {
+        path: "/library/talents/edit/:slug",
+        element: <NewTalent editMode={true} />
+    },
+    {
         path: "/library/newitem",
-        element: <NewItem />
+        element: <NewItem editMode={false} />
     },
     {
         path: "/library/items",
         element: <Items />
+    },
+    {
+        path: "/library/items/edit/:slug",
+        element: <NewItem editMode={true} />
     },
     {
         path: "/bestiary",
@@ -111,10 +126,6 @@ const MainRouting = () => useRoutes([
         path: "/bestiary/cleric",
         element: <Cleric />
     },
-    // {
-    //     path: "/bestiary/ankithlakith",
-    //     element: <Ankithlakith />
-    // },
     {
         path: "/bestiary/caverat",
         element: <CaveRat />

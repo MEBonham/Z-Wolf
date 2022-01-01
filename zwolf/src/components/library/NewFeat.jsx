@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { useForm } from 'react-hook-form';
@@ -10,12 +11,15 @@ import { LibraryAdd } from '../../styling/StyleBank';
 
 const TEMPLATE = "<h2>Feat Name</h2><p><strong>Prerequisites:</strong> none.</p><h3>Effects:</h3><ul><li>[Basic] </li><li>[Advanced] </li></ul><h3>[Basic] Seed Effects:</h3><ul><li>first</li><li>second</li></ul><h3>[Advanced] Seed Effects:</h3><ul><li>first</li><li>second</li></ul><h3>Benefits:</h3><ul><li>first</li><li>second</li></ul><p>Custom Hazard Menu</p><ul><li><strong>Requirement:</strong> xxx. <strong>Hazard:</strong> yyy.</li><li><strong>Requirement:</strong> xxx. <strong>Hazard:</strong> yyy.</li></ul>"
 
-const NewFeat = () => {
+const NewFeat = ({ editMode }) => {
+    const slug = (editMode ? useParams().slug : null);
     const { register, handleSubmit, watch, reset } = useForm();
-    // const quill = useRef(null);
+    const [lib, setLib] = useState(null);
     const [numMods, setNumMods] = useState(0);
     const [numVerbs, setNumVerbs] = useState(0);
     const watchModTypes = watch([...Array(numMods).keys()].map((i) => (`modifier.${i}.type`)));
+
+    // console.log(slug);
 
     const [richText, setRichText] = useState(TEMPLATE);
     const [delta, setDelta] = useState(null);
@@ -64,17 +68,30 @@ const NewFeat = () => {
             });
     }
 
-    // useEffect(() => {
-    //     quill.current.getEditor().getModule('better-table');
-    // }, []);
+    useEffect(() => {
+        if (editMode) {
+            const unsubscribe = db.collection("feats").doc(slug)
+                .onSnapshot((snapshot) => {
+                    setLib({
+                        ...snapshot.data(),
+                        slug
+                    });
+                });
+            return(() => {
+                unsubscribe();
+            });
+        }
+    }, [editMode, slug]);
+    useEffect(() => {
+        if (lib) console.log(lib);
+    }, [lib]);
 
     return (
         <LibraryAdd onSubmit={handleSubmit(handleSave)}>
-            <h1>Create New Feat</h1>
+            <h1>{editMode ? "Edit Feat" : "Create New Feat"}</h1>
             <ReactQuill
                 value={richText}
                 onChange={handleChange}
-                // ref={quill}
             />
             <div className="cols">
                 <div>
