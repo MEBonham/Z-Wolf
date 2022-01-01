@@ -34,6 +34,9 @@ const NewItem = () => {
                 _.set(formDataFixed, `modifier[${i}].mag`, parseInt(modObj.mag));
             }
         });
+        if (!formData.tags) {
+            formDataFixed.tags = [];
+        }
         db.collection("items").get()
             .then((querySnapshot) => {
                 const slugList = querySnapshot.docs.map((doc) => (doc.id));
