@@ -123,8 +123,8 @@ const PlayMode = () => {
                                     {rollObj.character} {rollObj.coast ? "coasts" : "rolls"} {rollObj.text}: 
                                 </span>
                                 <>
-                                    <span className="dodecShadow" data-tip data-for="rollExplanation">{rollObj.result}</span>
-                                    {rollObj.tooltips.length > 0 && <ReactTooltip id="rollExplanation" place="left">
+                                    <span className="dodecShadow" data-tip data-for={`rollExplanation_${i}`}>{rollObj.result}</span>
+                                    {rollObj.tooltips.length > 0 && <ReactTooltip id={`rollExplanation_${i}`} place="left">
                                         {rollObj.tooltips.map((tip, j) => (
                                             <p key={j}>{tip}</p>
                                         ))}
