@@ -706,9 +706,25 @@ export const CharSheetStyling = styled.div`
 
                 h4.pseudoButton {
                     margin-bottom: 2px;
+                    margin-right: 15px;
+                    display: inline-block;
                     padding: 4px 8px;
                     border-radius: 4px;
                     background-color: hsla(136, 54%, 43%, 0.25);
+                }
+                span.versatileCheck {
+
+                    img {
+                        width: 14px;
+                        margin-right: 6px;
+                        position: relative;
+                        top: 1px;
+                    }
+                    label {
+                        font-size: 1.4rem;
+                        position: relative;
+                        bottom: 2px;
+                    }
                 }
             }
         }

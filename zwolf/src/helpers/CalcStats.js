@@ -235,8 +235,17 @@ export const checkCondition = (condition, charBlock, target=null) => {
 export const checkSituation = (condition, charBlock, originObj) => {
     switch (condition) {
         case "attackSituation_heavyBlade":
-            if (originObj.tags.includes("Weapon") && originObj.categories && originObj.categories.includes("Heavy Blade")) {
+            if (originObj.tags.includes("Weapon") && originObj.categories.includes("Heavy Blade")) {
                 return [true, charBlock.stats.heroics];
+            } else {
+                return [false, null];
+            }
+        case "attackSituation_twoHanded":
+            // console.log(originObj, charBlock.status);
+            if (originObj.tags.includes("Weapon") && originObj.heft === "Two-Handed" && !originObj.categories.includes("Crossbow")) {
+                return [true, 1];
+            } else if (originObj.tags.includes("Weapon") && originObj.heft === "Versatile" && charBlock.status.versatile2H) {
+                return [true, 1];
             } else {
                 return [false, null];
             }

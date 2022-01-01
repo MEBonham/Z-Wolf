@@ -228,11 +228,21 @@ export const charFrame = {
             skill: "Brawn",
             target: "wpnImpactMod",
             type: "Synergy"
+        },
+        {
+            choices: {},
+            level: 1,
+            mag: 1,
+            origin: "1C",
+            overlap: "0",
+            target: "wpnImpactMod",
+            type: "Untyped",
+            condition: "attackSituation_twoHanded"
         }
     ],
     relatedSlugs: [],
     sp: 4,
-    status: { ...statuses },
+    status: { ...statuses, versatile2H: false },
     talents: [],
     trainedSkills: [
         {

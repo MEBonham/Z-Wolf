@@ -5,7 +5,8 @@ import useChar from '../../hooks/CreatureStore';
 const VerbName = ({ details }) => {
     const cur = useChar((state) => state.cur);
     const [title, setTitle] = useState(null);
-    console.log(cur.name, details.origin);
+
+    // console.log(cur.name, details.origin);
     
     const oldMine = (originId, originBullet) => {
         const menuForId = [

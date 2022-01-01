@@ -74,7 +74,7 @@ const CharSheetMain = () => {
                             : null}
                             {verbList.filter((verbObj) => (!verbObj.condition || checkCondition(verbObj.condition, cur)))
                                 .map((verbObj, i) => {
-                                    console.log(cur.name, verbObj.origin);
+                                    // console.log(cur.name, verbObj.origin);
                                     return(<AccordionSection key={i}>
                                         <VerbName  details={verbObj} />
                                         <VerbDetails vType={vType} details={verbObj} />

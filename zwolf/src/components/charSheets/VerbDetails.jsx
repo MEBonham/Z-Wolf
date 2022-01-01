@@ -4,10 +4,13 @@ import useUser from '../../hooks/UserStore';
 import useChar from '../../hooks/CreatureStore';
 import useDice from '../../hooks/DiceStore';
 import { checkSituation } from '../../helpers/CalcStats';
+import checked from '../../media/ui/checked-box.png';
+import unchecked from '../../media/ui/empty-checkbox.png';
 
 const VerbDetails = ({ details, vType }) => {
     const uid = useUser((state) => state.uid);
     const cur = useChar((state) => state.cur);
+    const setCur = useChar((state) => state.setCur);
     const roll = useDice((state) => state.addRoll);
     const [component, setComponent] = useState(null);
     const [title, setTitle] = useState(null);
@@ -31,6 +34,16 @@ const VerbDetails = ({ details, vType }) => {
         setTitle(tempTitle);
         setText(tempText);
     }, [cur]);
+
+    const toggle2H = () => {
+        setCur({
+            ...cur,
+            status: {
+                ...cur.status,
+                versatile2H: !cur.status.versatile2H
+            }
+        });
+    }
 
     const mineVerbStuff = () => {
         let originObj;
@@ -62,26 +75,51 @@ const VerbDetails = ({ details, vType }) => {
             let impactMod = parseInt(impactBlock.slice(16)) + cur.stats[`${attackForm}ImpactMod`];
             cur.mods.filter((modObj) => modObj.target === `${attackForm}ImpactMod` && modObj.condition && modObj.condition.startsWith("attackSituation"))
                 .forEach((modObj) => {
+                    // console.log(modObj);
                     const [flag, mod] = checkSituation(modObj.condition, cur, originObj);
                     if (flag) {
+                        // console.log(flag);
                         impactMod += mod;
                     }
                 });
             return(
                 <section className="attacks">
-                    <h4
-                        className="pseudoButton clickable"
-                        onClick={() => roll({
-                            sides: "usual",
-                            modifier: impactMod,
-                            text: `an Attack with ${title}`,
-                            character: cur.name,
-                            campaign: cur.campaign,
-                            extraInfo: `${rangeBlock.split(" ")[0]}: ${rangeBlock.split(" ").slice(1).join(" ")}; ` +
-                                `Accuracy ${cur.stats[`${attackForm}Acc`]}; ${dmgTypeBlock}; ` +
-                                `Bleed ${bleedBlock.split(" ").slice(-1)}.`
-                        }, cur.stats.coastNum, cur.status, uid)}
-                    >Attack</h4>
+                    <div>
+                        <h4
+                            className="pseudoButton clickable"
+                            onClick={() => roll({
+                                sides: "usual",
+                                modifier: impactMod,
+                                text: `an Attack with ${title}`,
+                                character: cur.name,
+                                campaign: cur.campaign,
+                                extraInfo: `${rangeBlock.split(" ")[0]}: ${rangeBlock.split(" ").slice(1).join(" ")}; ` +
+                                    `Accuracy ${cur.stats[`${attackForm}Acc`]}; ${dmgTypeBlock}; ` +
+                                    `Bleed ${bleedBlock.split(" ").slice(-1)}.`
+                            }, cur.stats.coastNum, cur.status, uid)}
+                        >
+                            Attack
+                        </h4>
+                        {originObj.tags.includes("Weapon") && originObj.heft === "Versatile" ?
+                            <span className="versatileCheck">
+                                <span> </span>
+                                {cur.status.versatile2H ?
+                                    <img
+                                        src={checked}
+                                        className="clickable"
+                                        onClick={toggle2H}
+                                    /> :
+                                    <img
+                                        src={unchecked}
+                                        className="clickable"
+                                        onClick={toggle2H}
+                                    />
+                                }
+                                <label>Wielded 2-Handed?</label>
+                            </span> :
+                            null
+                        }
+                    </div>
                     <p>
                         {`${rangeBlock.split(" ")[0]}: ${rangeBlock.split(" ").slice(1).join(" ")}; `}
                         {`Impact ${impactMod >= 0 ? "+" : ""}${impactMod} (${dmgTypeBlock}); `}
@@ -94,7 +132,7 @@ const VerbDetails = ({ details, vType }) => {
     }
     useEffect(() => {
         setComponent(mineVerbStuff());
-    }, [title, text]);
+    }, [cur, title, text]);
 
     return(
         <>
