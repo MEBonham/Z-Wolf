@@ -121,7 +121,7 @@ export const checkCondition = (condition, charBlock, target=null) => {
                     charBlock.mods.filter((modObj) => 
                         modObj.origin === armorId &&
                         modObj.type === "Encumbrance" &&
-                        mod.Target === "Dexterity"
+                        mod.target === "Dexterity"
                     ).forEach((modObj) => {
                         mod += modObj.mag;
                     });
@@ -134,7 +134,7 @@ export const checkCondition = (condition, charBlock, target=null) => {
                     charBlock.mods.filter((modObj) => 
                         modObj.origin === shieldId &&
                         modObj.type === "Encumbrance" &&
-                        mod.Target === "Dexterity"
+                        mod.target === "Dexterity"
                     ).forEach((modObj) => {
                         mod += modObj.mag;
                     });
@@ -224,6 +224,19 @@ export const checkCondition = (condition, charBlock, target=null) => {
         case "wieldHeavyBlade":
             if (charBlock.equipment.filter((itemObj) => itemObj.location === "equipped" && itemObj.categories && itemObj.categories.includes("Heavy Blade"))) {
                 return [true, 1];
+            } else {
+                return [false, null];
+            }
+        default:
+            return [false, null];
+    }
+}
+
+export const checkSituation = (condition, charBlock, originObj) => {
+    switch (condition) {
+        case "attackSituation_heavyBlade":
+            if (originObj.tags.includes("Weapon") && originObj.categories && originObj.categories.includes("Heavy Blade")) {
+                return [true, charBlock.stats.heroics];
             } else {
                 return [false, null];
             }

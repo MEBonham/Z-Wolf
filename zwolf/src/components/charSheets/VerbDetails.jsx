@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import useUser from '../../hooks/UserStore';
 import useChar from '../../hooks/CreatureStore';
 import useDice from '../../hooks/DiceStore';
+import { checkSituation } from '../../helpers/CalcStats';
 
 const VerbDetails = ({ details, vType }) => {
     const uid = useUser((state) => state.uid);
@@ -58,7 +59,14 @@ const VerbDetails = ({ details, vType }) => {
             const impactBlock = remainingText.split("; ")[1];
             const dmgTypeBlock = remainingText.split("; ")[2];
             const bleedBlock = remainingText.split("; ")[3].split("}")[0].slice(0, -2);
-            const impactMod = parseInt(impactBlock.slice(16)) + cur.stats[`${attackForm}ImpactMod`];
+            let impactMod = parseInt(impactBlock.slice(16)) + cur.stats[`${attackForm}ImpactMod`];
+            cur.mods.filter((modObj) => modObj.target === `${attackForm}ImpactMod` && modObj.condition && modObj.condition.startsWith("attackSituation"))
+                .forEach((modObj) => {
+                    const [flag, mod] = checkSituation(modObj.condition, cur, originObj);
+                    if (flag) {
+                        impactMod += mod;
+                    }
+                });
             return(
                 <section className="attacks">
                     <h4
