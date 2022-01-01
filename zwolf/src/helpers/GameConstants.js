@@ -54,6 +54,7 @@ export const modTargets = [
     "heroics",
     "kpDefault",
     "kpMax",
+    "meleeReach",
     "numFeats",
     "numKits",
     "numLanguages",

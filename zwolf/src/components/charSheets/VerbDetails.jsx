@@ -68,7 +68,17 @@ const VerbDetails = ({ details, vType }) => {
             }
             let remainingText = delta.slice(delta.indexOf("Range"));
             // console.log(remainingText);
-            const rangeBlock = remainingText.split("; ")[0];
+            let rangeBlock = remainingText.split("; ")[0];
+            if (rangeBlock.includes("Melee")) {
+                let strArr = rangeBlock.split(" ");
+                let reach = parseFloat(strArr[2]);
+                reach += cur.stats.meleeReachMod;
+                rangeBlock = ([
+                    ...strArr.slice(0, 2),
+                    reach,
+                    ...strArr.slice(3)
+                ]).join(" ");
+            }
             const impactBlock = remainingText.split("; ")[1];
             const dmgTypeBlock = remainingText.split("; ")[2];
             const bleedBlock = remainingText.split("; ")[3].split("}")[0].slice(0, -2);

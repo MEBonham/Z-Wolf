@@ -353,6 +353,15 @@ export const calcStats = (char) => {
             overlap: "5",
             target: "speed",
             type: "Size"
+        },
+        {
+            choices: {},
+            level: latestSizeChange,
+            mag: result.sizeCategory / 2,
+            origin: "size",
+            overlap: "6",
+            target: "meleeReach",
+            type: "Size"
         }
     ]
 
@@ -394,6 +403,7 @@ export const calcStats = (char) => {
 
     result.wpnAcc = 6 + result.fightingLevel + farmMods(modsTweak.filter((modObj) => modObj.target === "wpnAcc"), skillRanks, char.level, char);
     result.wpnImpactMod = farmMods(modsTweak.filter((modObj) => modObj.target === "wpnImpactMod"), skillRanks, char.level, char);
+    result.meleeReachMod = farmMods(modsTweak.filter((modObj) => modObj.target === "meleeReach"), skillRanks, char.level, char);
     result.spellAcc = 6 + result.casterLevel + farmMods(modsTweak.filter((modObj) => modObj.target === "spellAcc"), skillRanks, char.level, char);
     result.spellImpactMod = farmMods(modsTweak.filter((modObj) => modObj.target === "spellImpactMod"), skillRanks, char.level, char);
     result.vimAcc = 6 + result.baseFort + farmMods(modsTweak.filter((modObj) => modObj.target === "vimAcc"), skillRanks, char.level, char);
