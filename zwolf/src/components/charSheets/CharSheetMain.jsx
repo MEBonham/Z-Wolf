@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { skillsList, verbTypes, statuses, sizeCatNames } from '../../helpers/GameConstants';
@@ -22,6 +22,7 @@ const CharSheetMain = () => {
     const setCur = useChar((state) => state.setCur);
     const sidebarMode = useSidebar((state) => state.mode);
     const roll = useDice((state) => state.addRoll);
+    const [verbArea, setVerbArea] = useState(null);
 
     const toggleStatus = (key) => {
         setCur({
@@ -32,6 +33,59 @@ const CharSheetMain = () => {
             }
         });
     }
+
+    useEffect(() => {
+        setVerbArea(
+            <section className="verbs">
+                <h2>Verbs</h2>
+                {verbTypes.map((vType) => {
+                    const verbList = cur.verbs.filter((verbObj) => !verbObj.level || (verbObj.level <= cur.level))
+                        .filter((verbObj) => verbObj.activity === vType);
+                    if (verbList.length === 0 && !["Passive"].includes(vType)) {
+                        return null;
+                    }
+                    return (<div key={vType}>
+                        <h3>{vType}</h3>
+                        <Accordion lsUniqueKey={`zWolfCharVerbsAccordion_${slug}_${vType}`}>
+                            {vType === "Passive" ? 
+                                <AccordionSection>
+                                    <h4>{sizeCatNames[`${cur.stats.sizeCategory}`]} Size</h4>
+                                    <p>
+                                        You are a {sizeCatNames[`${cur.stats.sizeCategory}`]} creature.
+                                        <span> </span>
+                                        {cur.stats.sizeCategory < 4 ? "Boost checks where your being smaller than a compared creature is an advantage (e.g. hiding from them). Drag checks where your being smaller than a compared creature is a disadvantage (e.g. maintaining your footing if they push you around)." : null}
+                                        <span> </span>
+                                        {cur.stats.sizeCategory > -4 ? "Boost checks where your being larger than a compared creature is an advantage (e.g. maintaining your footing if they push you around). Drag checks where your being larger than a compared creature is a disadvantage (e.g. hiding from them)." : null}
+                                    </p>
+                                </AccordionSection>
+                            : null}
+                            {vType === "Passive" ? 
+                                <AccordionSection>
+                                    <h4>Languages</h4>
+                                    <p>
+                                        <BufferDot />
+                                        {cur.languages.slice().sort().map((language, i) => (
+                                            <span key={i}>
+                                                {language} <BufferDot />
+                                            </span>
+                                        ))}
+                                    </p>
+                                </AccordionSection>
+                            : null}
+                            {verbList.filter((verbObj) => (!verbObj.condition || checkCondition(verbObj.condition, cur)))
+                                .map((verbObj, i) => {
+                                    console.log(cur.name, verbObj.origin);
+                                    return(<AccordionSection key={i}>
+                                        <VerbName  details={verbObj} />
+                                        <VerbDetails vType={vType} details={verbObj} />
+                                    </AccordionSection>);
+                                })}
+                        </Accordion>
+                    </div>);
+                })}
+            </section>
+        );
+    }, [cur, slug])
 
     return (
         <section className="tab main">
@@ -88,54 +142,7 @@ const CharSheetMain = () => {
                     </tbody>
                 </table>
             </div>
-            <section className="verbs">
-                <h2>Verbs</h2>
-                {verbTypes.map((vType) => {
-                    const verbList = cur.verbs.filter((verbObj) => !verbObj.level || (verbObj.level <= cur.level))
-                        .filter((verbObj) => verbObj.activity === vType);
-                    if (verbList.length === 0 && !["Passive"].includes(vType)) {
-                        return null;
-                    }
-                    return (<div key={vType}>
-                        <h3>{vType}</h3>
-                        <Accordion lsUniqueKey={`zWolfCharVerbsAccordion_${slug}_${vType}`}>
-                            {vType === "Passive" ? 
-                                <AccordionSection>
-                                    <h4>{sizeCatNames[`${cur.stats.sizeCategory}`]} Size</h4>
-                                    <p>
-                                        You are a {sizeCatNames[`${cur.stats.sizeCategory}`]} creature.
-                                        <span> </span>
-                                        {cur.stats.sizeCategory < 4 ? "Boost checks where your being smaller than a compared creature is an advantage (e.g. hiding from them). Drag checks where your being smaller than a compared creature is a disadvantage (e.g. maintaining your footing if they push you around)." : null}
-                                        <span> </span>
-                                        {cur.stats.sizeCategory > -4 ? "Boost checks where your being larger than a compared creature is an advantage (e.g. maintaining your footing if they push you around). Drag checks where your being larger than a compared creature is a disadvantage (e.g. hiding from them)." : null}
-                                    </p>
-                                </AccordionSection>
-                            : null}
-                            {vType === "Passive" ? 
-                                <AccordionSection>
-                                    <h4>Languages</h4>
-                                    <p>
-                                        <BufferDot />
-                                        {cur.languages.slice().sort().map((language, i) => (
-                                            <span key={i}>
-                                                {language} <BufferDot />
-                                            </span>
-                                        ))}
-                                    </p>
-                                </AccordionSection>
-                            : null}
-                            {verbList.filter((verbObj) => (!verbObj.condition || checkCondition(verbObj.condition, cur)))
-                                .map((verbObj, i) => {
-                                    // console.log(verbObj.origin);
-                                    return(<AccordionSection key={i}>
-                                        <VerbName  details={verbObj} />
-                                        <VerbDetails vType={vType} details={verbObj} />
-                                    </AccordionSection>);
-                                })}
-                        </Accordion>
-                    </div>);
-                })}
-            </section>
+            {verbArea}
         </section>
     );
 }

@@ -9,6 +9,8 @@ const VerbDetails = ({ details, vType }) => {
     const cur = useChar((state) => state.cur);
     const roll = useDice((state) => state.addRoll);
     const [component, setComponent] = useState(null);
+    const [title, setTitle] = useState(null);
+    const [text, setText] = useState(null);
 
     const oldMine = (originId, originBullet) => {
         const menuForId = [
@@ -23,7 +25,11 @@ const VerbDetails = ({ details, vType }) => {
         const intervalArr = intervalStr.split(`"insert":`);
         return [title, intervalArr[intervalArr.length - 1].slice(1, -18)];
     }
-    let [title, text] = oldMine(details.origin, details.bullet);
+    useEffect(() => {
+        let [tempTitle, tempText] = oldMine(details.origin, details.bullet, cur);
+        setTitle(tempTitle);
+        setText(tempText);
+    }, [cur]);
 
     const mineVerbStuff = () => {
         let originObj;
@@ -35,7 +41,7 @@ const VerbDetails = ({ details, vType }) => {
                 originType = type;
             }
         });
-        console.log(cur.name, details.origin);
+        // console.log(cur.name, details.origin);
         const delta = originObj.delta;
         if (vType === "Attack") {
             let attackForm = "wpn";
@@ -77,7 +83,7 @@ const VerbDetails = ({ details, vType }) => {
     }
     useEffect(() => {
         setComponent(mineVerbStuff());
-    }, [cur]);
+    }, [title, text]);
 
     return(
         <>

@@ -124,8 +124,7 @@ const ItemSummary = ({item, sell}) => {
                         ...(item.verb ?
                             item.verb.map((verbObj) => ({
                                 ...verbObj,
-                                origin: item.id,
-                                delta: item.delta
+                                origin: item.id
                             }))
                         : [])
                     ]

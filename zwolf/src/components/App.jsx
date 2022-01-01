@@ -10,7 +10,6 @@ import MainHeader from './headerfooter/MainHeader';
 import MainFooter from './headerfooter/MainFooter';
 import SideContents from './sidebar/SideContents';
 import MainRouting from './MainRouting';
-import useUser from '../hooks/UserStore';
 
 const App = () => {
     const [headerFooterHeight, setHeaderFooterHeight] = useState(80);
