@@ -260,6 +260,8 @@ export const Sidebar = styled.section`
                 height: calc(100% - 6rem);
                 border-radius: 0 2px 2px 2px;
                 background-color: rgba(255, 255, 255, 0.05);
+                padding-left: 4px;
+                padding-bottom: 8px;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
