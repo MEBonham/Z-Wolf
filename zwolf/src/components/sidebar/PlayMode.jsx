@@ -120,7 +120,9 @@ const PlayMode = () => {
                                     }
                                 </span>
                                 <span className="textExplanation">
-                                    {rollObj.character} {rollObj.coast ? "coasts" : "rolls"} {rollObj.text}: 
+                                    {rollObj.character} {rollObj.coast ? "coasts" : "rolls"} {rollObj.text}: {
+                                        rollObj.extraInfo ? `(${rollObj.extraInfo})` : ""
+                                    }
                                 </span>
                                 <>
                                     <span className="dodecShadow" data-tip data-for={`rollExplanation_${i}`}>{rollObj.result}</span>

@@ -68,7 +68,10 @@ const VerbDetails = ({ details, vType }) => {
                             modifier: impactMod,
                             text: `an Attack with ${title}`,
                             character: cur.name,
-                            campaign: cur.campaign
+                            campaign: cur.campaign,
+                            extraInfo: `${rangeBlock.split(" ")[0]}: ${rangeBlock.split(" ").slice(1).join(" ")}; ` +
+                                `Accuracy ${cur.stats[`${attackForm}Acc`]}; ${dmgTypeBlock}; ` +
+                                `Bleed ${bleedBlock.split(" ").slice(-1)}.`
                         }, cur.stats.coastNum, cur.status, uid)}
                     >Attack</h4>
                     <p>
