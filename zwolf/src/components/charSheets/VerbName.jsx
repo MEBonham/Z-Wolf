@@ -25,7 +25,7 @@ const VerbName = ({ details }) => {
     useEffect(() => {
         let [tempTitle, tempText] = oldMine(details.origin, details.bullet);
         setTitle(tempTitle);
-    }, []);
+    }, [cur]);
 
     return(<h4>{title}</h4>);
 }
