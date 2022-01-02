@@ -9,9 +9,8 @@ const EquipAdder = ({ buy }) => {
     const cur = useChar((state) => state.cur);
     const setCur = useChar((state) => state.setCur);
     const [lib, setLib] = useState({});
-    const { register, handleSubmit, reset, watch } = useForm();
-    const [buyFlag, setBuyFlag] = useState(false);
-    const buyCheckbox = useRef(null);
+    const { register, handleSubmit, reset, watch, setValue } = useForm();
+    const buyFlag = watch("buy");
 
     const db = fb.db;
     useEffect(() => {
@@ -27,9 +26,9 @@ const EquipAdder = ({ buy }) => {
             });
     }, []);
 
-    const matchState = () => {
-        setBuyFlag(buyCheckbox.current.checked);
-    }
+    // const matchState = () => {
+    //     setBuyFlag(buyCheckbox.current.checked);
+    // }
 
     const acquire = (formData) => {
         if (formData.selection !== "(none)" && !formData.buy) {
@@ -67,8 +66,7 @@ const EquipAdder = ({ buy }) => {
         }
         const prevBuyFlag = buyFlag;
         reset();
-        buyCheckbox.current.checked = prevBuyFlag;
-        setBuyFlag(prevBuyFlag);
+        setValue("buy", prevBuyFlag);
     }
     
     return(
@@ -85,7 +83,7 @@ const EquipAdder = ({ buy }) => {
                 <input type="number" {...register("quantity")} defaultValue={1} className="short" />
             </span>
             <span>
-                <input type="checkbox" {...register("buy")} ref={buyCheckbox} onChange={matchState} className="checkbox" />
+                <input type="checkbox" {...register("buy")} className="checkbox" />
                 <label>Spend Wealth (once)?</label>
             </span>
             <button type="submit">{buyFlag ? "Buy" : "Acquire"}</button>

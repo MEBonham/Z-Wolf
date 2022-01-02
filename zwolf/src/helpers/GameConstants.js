@@ -194,6 +194,7 @@ export const weaponCategories = [
 
 export const BULK_ALLOWANCE = 19;
 export const BRAWN_CARRY_FACTOR = 2;
+export const RECOMMENDED_STARTING_WEALTH = 14;
 
 export const charFrame = {
     baseSkillRanks: {},
