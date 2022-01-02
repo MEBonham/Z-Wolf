@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import { chapterOrder, dialogues } from './examples/dialogues';
+
 const Home = () => {
     return(
         <>
@@ -39,6 +41,15 @@ const Home = () => {
                             <li>
                                 <Link to="/bestiary/znibbi">Example PC: Znibbi</Link>
                             </li>
+                        </ul>
+                        <h2>Demo-Group Comics</h2>
+                        <ul>
+                            {chapterOrder.map((chapterSlug) => {
+                                const title = dialogues[chapterSlug].filter((lineObj) => lineObj.speaker === "title")[0].text;
+                                return(
+                                    <li><Link to={`/examples/${chapterSlug}`}>{title}</Link></li>
+                                );
+                            })}
                         </ul>
                         <h2>System Library</h2>
                         <ul>

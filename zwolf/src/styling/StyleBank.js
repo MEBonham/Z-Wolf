@@ -163,6 +163,37 @@ export const PrimaryBar = styled.section`
     div.littleIndent ul {
         margin-left: 8px;
     }
+
+    h2.title {
+        width: 100%;
+        margin: 6px 0 20px;
+        text-align: center;
+    }
+    p.demoLine {
+        margin: 20px 0;
+        display: flex;
+        align-items: center;
+
+        span.noSpeaker {
+            display: inline-block;
+            width: 70px;
+            height: 1rem;
+            margin-right: 16px;
+        }
+        span.dice {
+            display: inline-block;
+            width: 70px;
+            height: 70px;
+            margin-right: 16px;
+            background-image: url("/dodecahedron.png");
+            background-size: cover;
+        }
+        img.speaker {
+            width: 70px;
+            height: 70px;
+            margin-right: 16px;
+        }
+    }
 `;
 
 export const Sidebar = styled.section`

@@ -16,6 +16,7 @@ import Kits from './library/Kits';
 import Feats from './library/Feats';
 import Talents from './library/Talents';
 import Items from './library/Items';
+import ExampleScene from './examples/ExampleScene';
 import CharSheetShell from './charSheets/CharSheetShell';
 import Fighter from './bestiary/Fighter';
 import Mage from './bestiary/Mage';
@@ -105,6 +106,10 @@ const MainRouting = () => useRoutes([
     {
         path: "/library/items/edit/:slug",
         element: <NewItem editMode={true} />
+    },
+    {
+        path: "/examples/:chapter",
+        element: <ExampleScene />
     },
     {
         path: "/bestiary",
