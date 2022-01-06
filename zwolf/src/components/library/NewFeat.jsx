@@ -33,10 +33,6 @@ const NewFeat = ({ editMode }) => {
 
     const db = fb.db;
     const handleSave = (formData) => {
-        // if (editMode) {
-        //     console.log(formData);
-        //     return;
-        // }
         const newSlug = encodeURIComponent(formData.slug.split(" ").join("").toLowerCase().replace(/'/g, ""));
         const formDataFixed = _.cloneDeep(formData);
         (formData.modifier ?? []).forEach((modObj, i) => {
@@ -91,7 +87,7 @@ const NewFeat = ({ editMode }) => {
     }, [editMode, slug]);
     useEffect(() => {
         if (lib) {
-            console.log(lib);
+            // console.log(lib);
             setValue("name", lib.name);
             setValue("slug", lib.slug);
             setValue("tags", lib.tags);

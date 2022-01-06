@@ -39,6 +39,9 @@ const Home = () => {
                                 <Link to="/bestiary/ankithlakith">Example PC: Ankithlakith</Link>
                             </li>
                             <li>
+                                <Link to="/bestiary/robry">Example PC: Robry</Link>
+                            </li>
+                            <li>
                                 <Link to="/bestiary/znibbi">Example PC: Znibbi</Link>
                             </li>
                         </ul>

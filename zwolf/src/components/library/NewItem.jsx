@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { useParams } from 'react-router-dom';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { useForm } from 'react-hook-form';
@@ -10,11 +11,16 @@ import { LibraryAdd } from '../../styling/StyleBank';
 
 const TEMPLATE = "<h2>Item Name</h2><p><strong>Description:</strong> none.</p><h3>Effects:</h3><ul><li>[Basic] </li><li>[Attune-1] </li><li>[Attune-2]</li><li>[Attune-3]</li><li>[Attune-4]</li></ul>"
 
-const NewItem = () => {
-    const { register, handleSubmit, watch, reset } = useForm();
+const NewItem = ({ editMode }) => {
+    const slug = (editMode ? useParams().slug : null);
+    const { register, handleSubmit, watch, reset, setValue } = useForm();
+    const [lib, setLib] = useState(null);
     const [numMods, setNumMods] = useState(0);
     const [numVerbs, setNumVerbs] = useState(0);
     const watchModTypes = watch([...Array(numMods).keys()].map((i) => (`modifier.${i}.type`)));
+    const quill = useRef(null);
+    const onlyTwice1 = useRef(2);
+    const onlyTwice2 = useRef(2);
 
     const [richText, setRichText] = useState(TEMPLATE);
     const [delta, setDelta] = useState(null);
@@ -40,7 +46,7 @@ const NewItem = () => {
         db.collection("items").get()
             .then((querySnapshot) => {
                 const slugList = querySnapshot.docs.map((doc) => (doc.id));
-                if (!slugList.includes(newSlug)) {
+                if (!slugList.includes(newSlug) || editMode) {
                     const itemObj = {
                         ...formDataFixed,
                         delta: JSON.stringify(delta)
@@ -71,12 +77,79 @@ const NewItem = () => {
             });
     }
 
+    useEffect(() => {
+        if (editMode) {
+            const unsubscribe = db.collection("items").doc(slug)
+                .onSnapshot((snapshot) => {
+                    setLib({
+                        ...snapshot.data(),
+                        slug
+                    });
+                });
+            return(() => {
+                unsubscribe();
+            });
+        }
+    }, [editMode, slug]);
+    useEffect(() => {
+        if (lib) {
+            // console.log(lib);
+            setValue("name", lib.name);
+            setValue("slug", lib.slug);
+            setValue("price", parseInt(lib.price));
+            setValue("bulk", parseInt(lib.bulk));
+            setValue("hardness", parseInt(lib.hardness));
+            setValue("strucSave", parseInt(lib.strucSave));
+            setValue("tags", lib.tags);
+            if (lib.girth) {
+                setValue("girth", lib.girth);
+            }
+            if (lib.grade) {
+                setValue("grade", lib.grade);
+            }
+            if (lib.heft) {
+                setValue("heft", lib.heft);
+            }
+            if (lib.categories) {
+                setValue("categories", lib.categories);
+            }
+            quill.current.getEditor().setContents(JSON.parse(lib.delta).ops);
+            setNumMods(lib.modifier ? lib.modifier.length : 0);
+            setNumVerbs(lib.verb ? lib.verb.length : 0);
+        }
+    }, [lib]);
+    useEffect(() => {
+        if (editMode && lib && onlyTwice1.current) {
+            onlyTwice1.current -= 1;
+            if (lib.modifier && lib.modifier.length > 0) {
+                lib.modifier.forEach((modObj, i) => {
+                    setValue(`modifier[${i}].mag`, `${modObj.mag}`);
+                    setValue(`modifier[${i}].overlap`, modObj.overlap);
+                    setValue(`modifier[${i}].target`, modObj.target);
+                    setValue(`modifier[${i}].type`, modObj.type);
+                });
+            }
+        }
+    }, [numMods]);
+    useEffect(() => {
+        if (editMode && lib && onlyTwice2.current) {
+            onlyTwice2.current -= 1;
+            if (lib.verb && lib.verb.length > 0) {
+                lib.verb.forEach((verbObj, i) => {
+                    setValue(`verb[${i}].bullet`, verbObj.bullet);
+                    setValue(`verb[${i}].activity`, verbObj.activity);
+                });
+            }
+        }
+    }, [numVerbs]);
+
     return (
         <LibraryAdd onSubmit={handleSubmit(handleSave)}>
             <h1>Create New Item</h1>
             <ReactQuill
                 value={richText}
                 onChange={handleChange}
+                ref={quill}
             />
             <div className="cols">
                 <div>
