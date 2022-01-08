@@ -254,7 +254,7 @@ const CharSheetConfigure = () => {
                                         onChange={(ev) => {
                                             ev.preventDefault();
                                             for (let i = 0; i < mods.length; i++) {
-                                                if (i === ev.target.value) {
+                                                if (i === parseInt(ev.target.value)) {
                                                     mods[i].primary = true;
                                                 } else {
                                                     mods[i].primary = false;
