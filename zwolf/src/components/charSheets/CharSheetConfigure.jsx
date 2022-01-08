@@ -207,10 +207,11 @@ const CharSheetConfigure = () => {
                                         ranksAssigned = 0;
                                     }
                                     // console.log(i, j, ranksAssigned);
+                                    const selection = _.get(cur, `baseSkillRanks[${i + 1}][${j}]`, undefined);
                                     return(
                                         <td key={j}>
                                             <select
-                                                value={_.get(cur, `baseSkillRanks[${i + 1}][${j}]`, "Athletics")}
+                                                value={selection}
                                                 onChange={(ev) => {
                                                     ev.preventDefault();
                                                     setCur(_.set(cur, `baseSkillRanks[${i + 1}][${j}]`, ev.target.value));
@@ -218,7 +219,7 @@ const CharSheetConfigure = () => {
                                                 disabled={(j <= ranksAssigned) ? false : true}
                                             >
                                                 {skillsList.map((skillName) => (
-                                                    <option key={skillName} value={skillName}>{skillName}</option>
+                                                    <option key={skillName} value={skillName}>{(!selection && skillName === "Athletics") ? "(Athletics)" : skillName}</option>
                                                 ))}
                                             </select>
                                         </td>
