@@ -92,6 +92,14 @@ const VerbDetails = ({ details, vType }) => {
                         impactMod += mod;
                     }
                 });
+            let accMod = cur.stats[`${attackForm}Acc`];
+            cur.mods.filter((modObj) => modObj.target === `${attackForm}Acc` && modObj.condition && modObj.condition.startsWith("attackSituation"))
+                .forEach((modObj) => {
+                    const [flag, mod] = checkSituation(modObj.condition, cur, originObj, (modObj.primary ? true : false));
+                    if (flag) {
+                        accMod += mod;
+                    }
+                });
             return(
                 <section className="attacks">
                     <div>
@@ -104,7 +112,7 @@ const VerbDetails = ({ details, vType }) => {
                                 character: cur.name,
                                 campaign: cur.campaign,
                                 extraInfo: `${rangeBlock.split(" ")[0]}: ${rangeBlock.split(" ").slice(1).join(" ")}; ` +
-                                    `Accuracy ${cur.stats[`${attackForm}Acc`]}; ${dmgTypeBlock}; ` +
+                                    `Accuracy ${accMod}; ${dmgTypeBlock}; ` +
                                     `Bleed ${bleedBlock.split(" ").slice(-1)}.`
                             }, cur.stats.coastNum, cur.status, uid)}
                         >
@@ -133,7 +141,7 @@ const VerbDetails = ({ details, vType }) => {
                     <p>
                         {`${rangeBlock.split(" ")[0]}: ${rangeBlock.split(" ").slice(1).join(" ")}; `}
                         {`Impact ${impactMod >= 0 ? "+" : ""}${impactMod} (${dmgTypeBlock}); `}
-                        {`Accuracy ${cur.stats[`${attackForm}Acc`]}; Bleed ${bleedBlock.split(" ").slice(-1)}.`}
+                        {`Accuracy ${accMod}; Bleed ${bleedBlock.split(" ").slice(-1)}.`}
                     </p>
                 </section>
             );

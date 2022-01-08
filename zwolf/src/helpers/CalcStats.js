@@ -232,11 +232,27 @@ export const checkCondition = (condition, charBlock, target=null) => {
     }
 }
 
-export const checkSituation = (condition, charBlock, originObj) => {
+export const checkSituation = (condition, charBlock, originObj, primary=false) => {
     switch (condition) {
         case "attackSituation_heavyBlade":
             if (originObj.tags.includes("Weapon") && originObj.categories.includes("Heavy Blade")) {
                 return [true, charBlock.stats.heroics];
+            } else {
+                return [false, null];
+            }
+        case "attackSituation_lightHeft":
+            if (originObj.heft && originObj.heft === "Light") {
+                if (charBlock.stats.skillRanks.Dexterity > 8) {
+                    return [true, 2];
+                } else if (charBlock.stats.skillRanks.Dexterity > 6 && primary) {
+                    return [true, 2];
+                } else if (charBlock.stats.skillRanks.Dexterity > 4) {
+                    return [true, 1];
+                } else if (charBlock.stats.skillRanks.Dexterity > 2 && primary) {
+                    return [true, 1];
+                } else {
+                    return [true, 0];
+                }
             } else {
                 return [false, null];
             }
