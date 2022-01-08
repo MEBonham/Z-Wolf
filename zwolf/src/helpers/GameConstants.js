@@ -119,6 +119,7 @@ export const featTags = [
 ];
 
 export const talentTags = [
+    "Aura",
     "Background",
     "Buff",
     "Core",

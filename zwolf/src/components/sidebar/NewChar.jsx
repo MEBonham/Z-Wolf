@@ -54,6 +54,10 @@ const NewChar = () => {
             if (typeof window !== "undefined") {
                 window.alert(`URL-Ending "${encodedSlug}" reserved. Choose another URL-Ending.`);
             }
+        } else if (!uid) {
+            if (typeof window !== "undefined") {
+                window.alert(`You must be signed in with an account to create a character.`);
+            }
         } else {
             try {
                 await db.collection("creatures").doc(encodedSlug).set({
@@ -62,7 +66,8 @@ const NewChar = () => {
                     campaign: formData.campaign,
                     name: formData.name,
                     pc: formData.pc,
-                    pcPasscode: formData.pcCode
+                    pcPasscode: formData.pcCode,
+                    creator: uid
                 });
             } catch (err) {
                 console.log("Error:", err);

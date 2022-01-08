@@ -17,10 +17,12 @@ const useUser = create((set) => ({
             }));
         }
     },
+
     loadingUser: false,
     setLoadingUser: (loadStatus) => set((state) => ({ loadingUser: loadStatus })),
     loginFlag: false,
     setLoginFlag: (newVal) => set((state) => ({ loginFlag: newVal })),
+
     profileObj: {},
     setProfileObj: (newObj) => {
         set((state) => {
@@ -32,7 +34,24 @@ const useUser = create((set) => ({
                 return(state);
             }
         });
-    }
+    },
+
+    charAccessLevel: null,
+    setCharAccessLevel: (charBlock, cmpObj) => set((state) => {
+        if (state.profileObj.rank === "Admin") {
+            return({ charAccessLevel: "edit" });
+        } else if (charBlock.creator === state.uid) {
+            return({ charAccessLevel: "edit" });
+        } else if (cmpObj.owner === state.uid) {
+            return({ charAccessLevel: "edit" });
+        } else if (state.profileObj.passcodes.includes(cmpObj.npcCode)) {
+            return({ charAccessLevel: "view" });
+        } else if (state.profileObj.passcodes.includes(cmpObj.pcCode) && charBlock.pcPasscode) {
+            return({ charAccessLevel: "view" });
+        } else {
+            return({ charAccessLevel: false });
+        }
+    })
 
 }));
 
