@@ -10,7 +10,7 @@ const LegalStuff = () => {
         <>
             <h1>Legal Stuff</h1>
             <p>I'm not even sure this page is necessary to include, as this game system is a wholly maverick creation. Of course I've borrowed game design ideas from <em>numerous</em> esoteric places, but heck, I'm not even using a d20 as the primary die anymore!</p>
-            <p>Still, it can't hurt to include the classic OGL d20 document, just in case. It covers common terms like "GM" and "TN".</p>
+            <p>Still, it can't hurt to include the classic OGL d20 document, just in case. It covers common terms like "Saving Throw," I suppose.</p>
             <Accordion lsUniqueKey={`zWolf_legal_ogl`}>
                 <AccordionSection>
                     <h2>OPEN GAME LICENSE Version 1.0a</h2>
