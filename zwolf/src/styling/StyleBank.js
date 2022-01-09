@@ -758,6 +758,9 @@ export const CharSheetStyling = styled.div`
                     }
                 }
             }
+            .muted {
+                opacity: 0.5;
+            }
         }
     }
     section.tab.inventory {

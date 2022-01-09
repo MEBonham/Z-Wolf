@@ -30,9 +30,13 @@ const VerbDetails = ({ details, vType }) => {
         return [title, intervalArr[intervalArr.length - 1].slice(1, -18)];
     }
     useEffect(() => {
-        let [tempTitle, tempText] = oldMine(details.origin, details.bullet, cur);
-        setTitle(tempTitle);
-        setText(tempText);
+        if (details.origin !== 0) {
+            let [tempTitle, tempText] = oldMine(details.origin, details.bullet, cur);
+            setTitle(tempTitle);
+            setText(tempText);
+        } else {
+            setTitle(details.title);
+        }
     }, [cur]);
 
     const toggle2H = () => {
@@ -53,6 +57,12 @@ const VerbDetails = ({ details, vType }) => {
             if (filtArr.length > 0) {
                 originObj = filtArr[0];
                 originType = type;
+            } else if (details.origin === 0) {
+                originType = "default";
+                originObj = {
+                    delta: details.delta,
+                    tags: details.tags
+                };
             }
         });
         // console.log(cur.name, details.origin);
@@ -81,7 +91,7 @@ const VerbDetails = ({ details, vType }) => {
             }
             const impactBlock = remainingText.split("; ")[1];
             const dmgTypeBlock = remainingText.split("; ")[2];
-            const bleedBlock = remainingText.split("; ")[3].split("}")[0].slice(0, -2);
+            const bleedBlock = remainingText.split("; ")[3].split(".")[0];
             let impactMod = parseInt(impactBlock.slice(16)) + cur.stats[`${attackForm}ImpactMod`];
             cur.mods.filter((modObj) => modObj.target === `${attackForm}ImpactMod` && modObj.condition && modObj.condition.startsWith("attackSituation"))
                 .forEach((modObj) => {

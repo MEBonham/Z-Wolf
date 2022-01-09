@@ -80,6 +80,17 @@ const CharSheetMain = () => {
                                         <VerbDetails vType={vType} details={verbObj} />
                                     </AccordionSection>);
                                 })}
+                            {vType === "Attack" ? 
+                                <AccordionSection>
+                                    <h4 className="muted">Unarmed Strike</h4>
+                                    <VerbDetails vType={vType} details={{
+                                        origin: 0,
+                                        delta: `Attack: Range Melee 1; Impact Modifier -4; Bludgeoning Damage; Bleed Number 3.`,
+                                        tags: [],
+                                        title: "Unarmed Strike"
+                                    }} />
+                                </AccordionSection>
+                            : null}
                         </Accordion>
                     </div>);
                 })}
