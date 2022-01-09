@@ -35,6 +35,7 @@ const useDice = create((set) => ({
 
     rollHistory: [],
     addRoll: (rollObj, cNum=0, status={}, uid=null) => {
+        console.log(rollObj.text);
         set((state) => {
             let situational = 0;
             const tooltips = [];
@@ -62,6 +63,9 @@ const useDice = create((set) => ({
                     result.keyNat = natRolls[0]
                 }
                 result.result = Math.max(state.coasting ? cNum : 0, result.keyNat) + rollObj.modifier + situational;
+                if (rollObj.text.includes("Attack")) {
+                    result.result = Math.max(result.result, 1);
+                }
             } else {
                 const natRolls = state.nDs(1, parseInt(rollObj.sides), state.generator);
                 result.natRolls = natRolls;
