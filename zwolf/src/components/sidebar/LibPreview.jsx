@@ -42,6 +42,18 @@ const LibPreview = () => {
             const tagString = libEntry.tags.length ?
                 `[${libEntry.tags.join("] [")}] ${typeTitle}` :
                 typeTitle;
+            const seedsArr = (typeTitle === "Feat" && libEntry.tags.includes("Spell")) ?
+                [
+                    {
+                        insert: `Basic: ${JSON.stringify(libEntry.basicSeeds)}; Advanced: ${JSON.stringify(libEntry.advancedSeeds)}`
+                            .replaceAll(`"`, ``).replaceAll(",", ", ")
+                    },
+                    {
+                        attributes: { header: 4 },
+                        insert: "\n"
+                    }
+                ] :
+                [];
             
             quill.current.getEditor().setContents([
                 ...rawDelta.slice(0, 2),
@@ -52,6 +64,7 @@ const LibPreview = () => {
                     attributes: { header: 4 },
                     insert: "\n"
                 },
+                ...seedsArr,
                 ...rawDelta.slice(2)
             ]);
         }
