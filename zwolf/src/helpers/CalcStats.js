@@ -145,6 +145,14 @@ export const checkCondition = (condition, charBlock, target=null) => {
             } else {
                 return [false, null];
             }
+        case "gnomishTrainingKalwik":
+            const isGnome = charBlock.kits.filter((kitObj) => kitObj.name === "Gnome").length;
+            const specialGnomeTrained = charBlock.talents.filter((talentObj) => talentObj.name === "Gnomish Cultural Training").length;
+            if (isGnome || specialGnomeTrained) {
+                return [true, 3];
+            } else {
+                return [false, null];
+            }
         case "lightningAgility":
             if (charBlock.bestSave !== "ref") {
                 return [true, (charBlock.level > 4 ? 2 : 1)];
@@ -233,7 +241,19 @@ export const checkCondition = (condition, charBlock, target=null) => {
 }
 
 export const checkSituation = (condition, charBlock, originObj, primary=false) => {
+    let isShieldProficient;
+    let wieldedWeapon;
     switch (condition) {
+        case "attackSituation_gnomishTraining":
+            const isGnome = charBlock.kits.filter((kitObj) => kitObj.name === "Gnome").length;
+            const specialGnomeTrained = charBlock.talents.filter((talentObj) => talentObj.name === "Gnomish Cultural Training").length;
+            isShieldProficient = charBlock.talents.filter((talentObj) => talentObj.name === "Shield Training").length;
+            wieldedWeapon = charBlock.equipment.filter((itemObj) => itemObj.tags.includes("Weapon") && itemObj.location === "equipped")[0];
+            if ((isGnome || specialGnomeTrained) && isShieldProficient > 0 && wieldedWeapon.delta.includes("Range Melee")) {
+                return [true, 1];
+            } else {
+                return [false, null];
+            }
         case "attackSituation_heavyBlade":
             if (originObj.tags.includes("Weapon") && originObj.categories.includes("Heavy Blade")) {
                 return [true, charBlock.stats.heroics];
@@ -253,6 +273,14 @@ export const checkSituation = (condition, charBlock, originObj, primary=false) =
                 } else {
                     return [true, 0];
                 }
+            } else {
+                return [false, null];
+            }
+        case "attackSituation_proficientAndMelee":
+            isShieldProficient = charBlock.talents.filter((talentObj) => talentObj.name === "Shield Training").length;
+            wieldedWeapon = charBlock.equipment.filter((itemObj) => itemObj.tags.includes("Weapon") && itemObj.location === "equipped")[0];
+            if (isShieldProficient > 0 && wieldedWeapon.delta.includes("Range Melee")) {
+                return [true, 1];
             } else {
                 return [false, null];
             }
