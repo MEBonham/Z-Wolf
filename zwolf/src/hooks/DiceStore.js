@@ -13,7 +13,6 @@ const useDice = create((set) => ({
 
     db: fb.db,
     dbSave: async (dbRef, rollObj, uid) => {
-        console.log("flag");
         try {
             const id = nanoid();
             await dbRef.collection("rolls").doc(id).set({
@@ -35,7 +34,6 @@ const useDice = create((set) => ({
 
     rollHistory: [],
     addRoll: (rollObj, cNum=0, status={}, uid=null) => {
-        console.log(rollObj.text);
         set((state) => {
             let situational = 0;
             const tooltips = [];
