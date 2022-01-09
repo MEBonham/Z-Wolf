@@ -48,6 +48,18 @@ const Feats = () => {
                         const tagString = featsLib[slug].tags.length ?
                             `[${featsLib[slug].tags.join("] [")}] Feat` :
                             "Feat";
+                        const seedsArr = (featsLib[slug].tags && featsLib[slug].tags.includes("Spell")) ?
+                            [
+                                {
+                                    insert: `Basic: ${JSON.stringify(featsLib[slug].basicSeeds)}; Advanced: ${JSON.stringify(featsLib[slug].advancedSeeds)}`
+                                        .replaceAll(`"`, ``).replaceAll(",", ", ")
+                                },
+                                {
+                                    attributes: { header: 4 },
+                                    insert: "\n"
+                                }
+                            ] :
+                            [];
                         return([
                             ...rawDelta.slice(0, 2),
                             {
@@ -57,6 +69,7 @@ const Feats = () => {
                                 attributes: { header: 4 },
                                 insert: "\n"
                             },
+                            ...seedsArr,
                             ...rawDelta.slice(2)
                         ]);
                     })
