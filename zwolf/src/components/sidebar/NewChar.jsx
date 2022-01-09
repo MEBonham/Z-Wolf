@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
 import fb from '../../fbConfig';
@@ -7,6 +8,7 @@ import { charFrame } from '../../helpers/GameConstants';
 import { calcStats } from '../../helpers/CalcStats';
 
 const NewChar = () => {
+    const progNav = useNavigate();
     const uid = useUser((state) => state.uid);
     const profileObj = useUser((state) => state.profileObj);
     const [campaignOpts, setCampaignOpts] = useState({});
@@ -69,6 +71,7 @@ const NewChar = () => {
                     pcPasscode: formData.pcCode,
                     creator: uid
                 });
+                progNav(`/bestiary/${encodedSlug}`, { replace: true });
             } catch (err) {
                 console.log("Error:", err);
                 db.collection("errors").doc(Date.now()).set({
