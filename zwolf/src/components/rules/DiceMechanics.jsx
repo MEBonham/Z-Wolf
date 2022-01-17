@@ -4,7 +4,7 @@ const DiceMechanics = () => {
     return(
         <>
             <h1>Dice Mechanics</h1>
-            <p>Z-Wolf is designed entirely around twelve-sided (or "dodecahedral") dice, called d12s for short.</p>
+            <p>Z-Wolf is designed mostly around twelve-sided (or "dodecahedral") dice, called d12s for short.</p>
             <p>When an RPG tells you to roll dice, it usually uses NdS notation, where N is the number of dice and S is the number of sides those dice have. For example, in Z-Wolf you usually roll three twelve-sided dice, or 3d12.</p>
             <h2>Basic Z-Wolf Checks</h2>
             <p>A "normal" die roll in Z-Wolf is 3d12, followed by taking the middle number of the three results, adding a number from your character sheet to the number rolled, and comparing the result to a Target Number (TN).</p>
@@ -23,7 +23,7 @@ const DiceMechanics = () => {
             <h3>Boosted AND Dragged Rolls</h3>
             <p>If both positive and negative circumstances apply to your roll (any number of either), the results become less predictible than normal. Roll just a single d12 and use the result as your Natural Die Result, adding modifiers to it normally.</p>
             <h2>Coasting</h2>
-            <p>Your character has a statistic called her Coast Number. Sometimes the rules allow her to "coast" a d20 roll. In this case, roll the d12s normally (3d20 and take the middle result unless the roll is boosted or dragged), but if the Natural Die Result is lower than her Coast Number, use her Coast Number instead of the Natural Die Result to determine the outcoome. Add any modifiers to the Coast Number normally, and compare the final number to the TN normally.</p>
+            <p>Your character has a statistic called her Coast Number. Sometimes the rules allow her to "coast" a d12 roll. In this case, roll the d12s normally (3d20 and take the middle result unless the roll is boosted or dragged), but if the Natural Die Result is lower than her Coast Number, use her Coast Number instead of the Natural Die Result to determine the outcoome. Add any modifiers to the Coast Number normally, and compare the final number to the TN normally.</p>
             <p>Coasting is intended mainly to prevent heroes from making embarrassing mistakes at easy tasks. By default, a character is allowed to "coast" most rolls that involve a Skill, as long as she is not under pressure. The worst results of her actions can be avoided by taking her time to be careful.</p>
             <p>Many special abilities allow characters to "coast" Skill checks that they could not normally "coast," even if they are under pressure. This makes them more heroic.</p>
             <h2>Roll Replacement</h2>
